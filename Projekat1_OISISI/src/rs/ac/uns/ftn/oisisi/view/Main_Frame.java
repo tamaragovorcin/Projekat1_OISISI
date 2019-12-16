@@ -13,13 +13,16 @@ public class Main_Frame extends JFrame{
 	private static final long serialVersionUID = 6925220640504028152L;
 	private static Main_Frame instance = null;
 	
+	public static int screenHight = 0;
+	public static int screenWidth = 0;
+	private Toolbar toolbar; 
 	
 	private Main_Frame() {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
-		int screenHight = screenSize.height;
-		int screenWidth = screenSize.width;
+		screenHight = screenSize.height;
+		screenWidth = screenSize.width;
 		setSize(screenWidth*3/4,screenHight*3/4);
 		setTitle("Studentska sluzba");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,7 +30,15 @@ public class Main_Frame extends JFrame{
         getContentPane().setBackground(Color.LIGHT_GRAY);
         setLayout(new BorderLayout());
         
+        
+        toolbar = Toolbar.getInstance();
+        add(toolbar,BorderLayout.NORTH);
+       toolbar.setVisible(true);
+        
+        //ovo je poslednje obavezno!!!!!
         setVisible(true);
+        
+        
 	}
 	
 	public static Main_Frame getInstance() {
@@ -36,6 +47,8 @@ public class Main_Frame extends JFrame{
 		}
 		return instance;
 	}
+	
+	
 	
 	
 	
