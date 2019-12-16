@@ -1,13 +1,17 @@
 package rs.ac.uns.ftn.oisisi.view;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
+import javax.swing.AbstractButton;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 public class Toolbar extends JToolBar {
@@ -41,21 +45,31 @@ public class Toolbar extends JToolBar {
 		addButton = new JToggleButton();
 		addButton.setToolTipText("Dodavanje nove osobe");
 		addButton.setIcon(new ImageIcon("images2/add.png"));
+		addButton.setMnemonic(KeyEvent.VK_0);
+
+		
 		
 		changeButton = new JToggleButton();
 		changeButton.setToolTipText("Izmena");
 		changeButton.setIcon(new ImageIcon("images2/pencil.png"));
+		changeButton.setMnemonic(KeyEvent.VK_1);
 	
+		
 		deleteButton = new JToggleButton();
 		deleteButton.setToolTipText("Brisanje");
 		deleteButton.setIcon(new ImageIcon("images2/delete.png"));
+		deleteButton.setMnemonic(KeyEvent.VK_2);
+	
 		
 		searchButton = new JButton();
 		searchButton.setToolTipText("Pretrazivanje");
 		searchButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
+		searchButton.setMnemonic(KeyEvent.VK_4);
+	
 		
 		searchField = new JTextField(20);
 		searchField.setToolTipText("Upis za pretragu");
+
 		
 		add(addButton);
 		addSeparator();
@@ -68,6 +82,8 @@ public class Toolbar extends JToolBar {
 		add(searchField);
 		addSeparator();
 		add(searchButton);
+		
+		
 		
 		}
 	
