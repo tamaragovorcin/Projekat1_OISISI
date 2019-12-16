@@ -83,7 +83,7 @@ public class Toolbar extends JToolBar {
 		addSeparator();
 		add(searchButton);
 		
-		
+		setFloatable(false);
 		
 		}
 	

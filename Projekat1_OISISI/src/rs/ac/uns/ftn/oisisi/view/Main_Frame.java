@@ -16,6 +16,7 @@ public class Main_Frame extends JFrame{
 	public static int screenHight = 0;
 	public static int screenWidth = 0;
 	private Toolbar toolbar; 
+	private TabbedPane tabbedPane;
 	
 	private Main_Frame() {
 		
@@ -33,7 +34,12 @@ public class Main_Frame extends JFrame{
         
         toolbar = Toolbar.getInstance();
         add(toolbar,BorderLayout.NORTH);
-       toolbar.setVisible(true);
+        toolbar.setVisible(true);
+        
+        
+        tabbedPane = new TabbedPane();
+        add(tabbedPane,BorderLayout.CENTER);
+        tabbedPane.setVisible(true);
         
         //ovo je poslednje obavezno!!!!!
         setVisible(true);
@@ -47,6 +53,7 @@ public class Main_Frame extends JFrame{
 		}
 		return instance;
 	}
+	
 	
 	
 	
