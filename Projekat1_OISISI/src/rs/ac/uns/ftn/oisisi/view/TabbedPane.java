@@ -7,7 +7,14 @@ public class TabbedPane extends JTabbedPane {
 
 	
 	private static final long serialVersionUID = -3879401383396843796L;
+private  static TabbedPane instance =null;
 	
+	public static TabbedPane getInstance() {
+		if(instance == null) {
+			instance = new TabbedPane();
+		}
+		return instance;
+	}
 	private ProfesoriTablePanel profesoriTable = new ProfesoriTablePanel();	
 	private PredmetiTablePanel predmetiTable = new PredmetiTablePanel();
 	public TabbedPane() {

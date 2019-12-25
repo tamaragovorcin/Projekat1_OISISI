@@ -18,6 +18,23 @@ public class Toolbar extends JToolBar {
 
 	private static final long serialVersionUID = -3010935269356037536L;
 	
+	enum Dugme {
+		STUDENT,PREDMET,PROFESOR;
+		static Dugme getDugme(int i) {
+			Dugme d = null;
+			if(i==0) {
+				d = Dugme.STUDENT;
+			}
+			else if(i==1) {
+				d = Dugme.PREDMET;
+			}
+			else if(i==2) {
+				d=Dugme.PROFESOR;
+			}
+			return d;
+		}
+	}
+	
 	private JToggleButton addButton;
 	
 	private JToggleButton changeButton;
@@ -27,6 +44,10 @@ public class Toolbar extends JToolBar {
 	private JButton searchButton;
 	
 	private JTextField searchField;
+	
+	private JToggleButton dodajStudentButton;
+	private JToggleButton dodajPredmetButton;
+	private JToggleButton dodajProfesoraButton;
 	
 	private  static Toolbar instance =null;
 	
@@ -87,6 +108,34 @@ public class Toolbar extends JToolBar {
 		
 		}
 	
-
+	void promena(Dugme d) {
+		removeAll();
+		if(d == Dugme.STUDENT) {
+			dodajStudentButton = new JToggleButton();
+			dodajStudentButton.setToolTipText("Dodavanje novog studenta");
+			dodajStudentButton.setIcon(new ImageIcon("images2/student.png"));
+			add(dodajStudentButton,FlowLayout.LEFT);
+		}
+		else if(d == Dugme.PREDMET)  {
+			dodajPredmetButton = new JToggleButton();
+			dodajPredmetButton.setToolTipText("Dodavanje novog predmeta");
+			dodajPredmetButton.setIcon(new ImageIcon("images2/book2.png"));
+			add(dodajPredmetButton,FlowLayout.LEFT);
+		}
+		else if(d==Dugme.PROFESOR) {
+			dodajProfesoraButton = new JToggleButton();
+			dodajProfesoraButton.setToolTipText("Dodavanje novog profesora");
+			dodajProfesoraButton.setIcon(new ImageIcon("images2/teacher.png"));
+			add(dodajProfesoraButton,FlowLayout.LEFT);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+	}
 
 }
