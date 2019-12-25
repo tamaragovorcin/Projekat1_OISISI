@@ -1,11 +1,15 @@
 package rs.ac.uns.ftn.oisisi.view;
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JTable;
+
+
 
 public class Main_Frame extends JFrame{
 
@@ -56,6 +60,7 @@ public class Main_Frame extends JFrame{
 	
 	
 	
+
 	
 	
 	
