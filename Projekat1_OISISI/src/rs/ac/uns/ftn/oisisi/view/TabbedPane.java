@@ -12,7 +12,7 @@ public class TabbedPane extends JTabbedPane {
 	private PredmetiTablePanel predmetiTable = new PredmetiTablePanel();
 	public TabbedPane() {
 		addTab("Studenti", new ImageIcon("images2/study.png"),null,"");
-		addTab("Predmeti", new ImageIcon("images2/book.png"),profesoriTable,"Tabela predmeta");
-		addTab("Profesori", new ImageIcon("images2/teacher.png"),predmetiTable,"TabelaProfesora");
+		addTab("Predmeti", new ImageIcon("images2/book.png"),predmetiTable,"Tabela predmeta");
+		addTab("Profesori", new ImageIcon("images2/teacher.png"),profesoriTable,"Tabela profesora");
 	}
 }

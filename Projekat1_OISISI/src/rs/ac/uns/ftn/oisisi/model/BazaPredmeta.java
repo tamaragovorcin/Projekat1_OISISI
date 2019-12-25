@@ -6,6 +6,7 @@ import java.util.List;
 
 
 public class BazaPredmeta {
+	
 	private static BazaPredmeta instance = null;
 	
 	public static BazaPredmeta getInstance() {
@@ -18,6 +19,7 @@ public class BazaPredmeta {
 
 	private List<String>kolone;
 	private List<Predmet>predmeti;
+	private int broj_predmeta =0;
 	
 	private BazaPredmeta() {
 		
@@ -31,6 +33,7 @@ public class BazaPredmeta {
 		this.kolone.add("GODINA STUDIJA");
 		this.kolone.add("SPISAK PROFESORA");
 		this.kolone.add("SPISAK STUDENATA");
+		dodajPredmet();
 		
 	}
 
@@ -65,28 +68,41 @@ public class BazaPredmeta {
 	}
 
 	public String getValueAt(int row, int column) {
-		Predmet predmet = this.predmeti.get(row);
-		switch (column) {
-		case 0:
-			return predmet.getSifra_predmeta();
-		case 1:
-			return predmet.getNaziv_predmeta();
-		case 2:
-			return predmet.getSemestar();
-		case 3:
-			return predmet.getGodina_studija_izvodjenja();
-		case 4:
-			return "Spisak prefosora";
-		case 5:
-			return "Spisak studenata";
-		default:
+		if(row<broj_predmeta) {
+			Predmet predmet = this.predmeti.get(row);
+			switch (column) {
+			case 0:
+				return predmet.getSifra_predmeta();
+			case 1:
+				return predmet.getNaziv_predmeta();
+			case 2:
+				return predmet.getSemestar();
+			case 3:
+				return predmet.getGodina_studija_izvodjenja();
+			case 4:
+				return "Spisak prefosora";
+			case 5:
+				return "Spisak studenata";
+			default:
+				return null;
+			}
+		} else {
 			return null;
 		}
 	}
+	
+	
 
-	public void dodajPredmet(String sifra, String naziv, String semestar, String godina) {
+/*	public void dodajPredmet(String sifra, String naziv, String semestar, String godina) {
+	//	this.predmeti.add(new Predmet("5","Analiza 2","treci","druga godina"));
 		this.predmeti.add(new Predmet(sifra,naziv,semestar,godina));
-	}
+		broj_predmeta++;
+	}*/
+	public void dodajPredmet() {
+			this.predmeti.add(new Predmet("5","Analiza 2","treci","druga godina"));
+			
+			broj_predmeta++;
+		}
 
 	public void izbrisiPredmet(String sifra) {
 		for (Predmet i : predmeti) {
@@ -105,6 +121,14 @@ public class BazaPredmeta {
 				i.setGodina_studija_izvodjenja(godina);
 			}
 		}
+	}
+
+	public int getBroj_predmeta() {
+		return broj_predmeta;
+	}
+
+	public void setBroj_predmeta(int broj_predmeta) {
+		this.broj_predmeta= broj_predmeta;
 	}
 	
 	

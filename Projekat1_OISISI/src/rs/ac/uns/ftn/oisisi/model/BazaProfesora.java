@@ -14,7 +14,7 @@ private static BazaProfesora instance = null;
 		return instance;
 	}
 	
-
+	private int broj_profesora = 0;
 	private List<String>kolone;
 	private List<Profesor>profesori;
 	
@@ -69,31 +69,36 @@ private static BazaProfesora instance = null;
 	}
 
 	public String getValueAt(int row, int column) {
-		Profesor profesor = this.profesori.get(row);
-		switch (column) {
-		case 0:
-			return profesor.getIme();
-		case 1:
-			return profesor.getPrezime();
-		case 2:
-			return profesor.getDatumRodjenja();
-		case 3:
-			return profesor.getAdresaStanovanja();
-		case 4:
-			return profesor.getKontakt_telefon();
-		case 5:
-			return profesor.getEmail();
-		case 6:
-			return profesor.getAdresa_kancelarije();
-		case 7:
-			return profesor.getBroj_licne_karte();
-		case 8:
-			return profesor.getTitula();
-		case 9:
-			return profesor.getZvanje();
-		case 10:
-			return "Spisak predmeta";
-		default:
+		if(row<broj_profesora) {
+			Profesor profesor = this.profesori.get(row);
+			switch (column) {
+			case 0:
+				return profesor.getIme();
+			case 1:
+				return profesor.getPrezime();
+			case 2:
+				return profesor.getDatumRodjenja();
+			case 3:
+				return profesor.getAdresaStanovanja();
+			case 4:
+				return profesor.getKontakt_telefon();
+			case 5:
+				return profesor.getEmail();
+			case 6:
+				return profesor.getAdresa_kancelarije();
+			case 7:
+				return profesor.getBroj_licne_karte();
+			case 8:
+				return profesor.getTitula();
+			case 9:
+				return profesor.getZvanje();
+			case 10:
+				return "Spisak predmeta";
+			default:
+				return null;
+			}
+		}
+		else {
 			return null;
 		}
 	}
@@ -101,6 +106,7 @@ private static BazaProfesora instance = null;
 	public void dodajProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
 			String kontakt_telefon, String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
 		this.profesori.add(new Profesor(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,adresa_kancelarije,broj_licne_karte,titula,zvanje));
+		broj_profesora++;
 	}
 
 	public void izbrisiProfesora(String sifra) {
@@ -127,5 +133,13 @@ private static BazaProfesora instance = null;
 				i.setZvanje(zvanje);
 			}
 		}
+	}
+
+	public int getBroj_profesora() {
+		return broj_profesora;
+	}
+
+	public void setBroj_profesora(int broj_profesora) {
+		this.broj_profesora = broj_profesora;
 	}
 }
