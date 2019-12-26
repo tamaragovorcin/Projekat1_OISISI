@@ -14,8 +14,9 @@ public class TabbedPaneListener implements ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		// TODO Auto-generated method stub
 		TabbedPane tabbed_pane = (TabbedPane) e.getSource();
-		
-		
+		Toolbar tool = Toolbar.getInstance();
+		tool.promena(tool.getDugme(TabbedPane.pritisnutTab= tabbed_pane.getSelectedIndex()));
+		Toolbar.getInstance().getPolje().setText("");
 	
 	}
 

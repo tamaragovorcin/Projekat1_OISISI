@@ -19,21 +19,7 @@ public class Toolbar extends JToolBar {
 	private static final long serialVersionUID = -3010935269356037536L;
 	
 	enum Dugme {
-		STUDENT,PREDMET,PROFESOR;
-		static Dugme getDugme(int i) {
-			Dugme d = null;
-			if(i==0) {
-				d = Dugme.STUDENT;
-			}
-			else if(i==1) {
-				d = Dugme.PREDMET;
-			}
-			else if(i==2) {
-				d=Dugme.PROFESOR;
-			}
-			return d;
-		}
-	}
+		STUDENT,PREDMET,PROFESOR;};
 	
 	private JToggleButton addButton;
 	
@@ -44,6 +30,8 @@ public class Toolbar extends JToolBar {
 	private JButton searchButton;
 	
 	private JTextField searchField;
+	
+	private JTextField polje;
 	
 	private JToggleButton dodajStudentButton;
 	private JToggleButton dodajPredmetButton;
@@ -108,7 +96,7 @@ public class Toolbar extends JToolBar {
 		
 		}
 	
-	void promena(Dugme d) {
+	public void promena(Dugme d) {
 		removeAll();
 		if(d == Dugme.STUDENT) {
 			dodajStudentButton = new JToggleButton();
@@ -128,14 +116,33 @@ public class Toolbar extends JToolBar {
 			dodajProfesoraButton.setIcon(new ImageIcon("images2/teacher.png"));
 			add(dodajProfesoraButton,FlowLayout.LEFT);
 		}
-		
-		
-		
-		
-		
-		
-		
-		
 	}
+
+
+	public Dugme getDugme(int i) {
+			Dugme d = null;
+			if(i==0) {
+				d = Dugme.STUDENT;
+			}
+			else if(i==1) {
+				d = Dugme.PREDMET;
+			}
+			else if(i==2) {
+				d=Dugme.PROFESOR;
+			}
+			return d;
+		}
+
+
+	public JTextField getPolje() {
+		return polje;
+	}
+
+
+	public void setPolje(JTextField polje) {
+		this.polje = polje;
+	}
+
+
 
 }

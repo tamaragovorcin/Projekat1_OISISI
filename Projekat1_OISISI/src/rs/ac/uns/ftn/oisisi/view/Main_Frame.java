@@ -57,6 +57,11 @@ public class Main_Frame extends JFrame{
 		}
 		return instance;
 	}
+
+	public void azurirajPrikaz(String string, int i) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
