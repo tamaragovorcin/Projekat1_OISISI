@@ -30,7 +30,7 @@ public class Main_Frame extends JFrame{
 	
 	private Main_Frame() {
 		
-		Toolkit kit = Toolkit.getDefaultToolkit();
+		Toolkit kit = Toolkit.getDefaultToolkit();//taj sto sam zatvorila je sa casa ako na to mislis aaaaa aj gledam sta je to
 		Dimension screenSize = kit.getScreenSize();
 		screenHight = screenSize.height;
 		screenWidth = screenSize.width;
@@ -61,7 +61,7 @@ public class Main_Frame extends JFrame{
 
 		statusBar= new StatusBar();
 		 add(statusBar,BorderLayout.SOUTH);
-		//statusBar.setVisible(true);
+		statusBar.setVisible(true);
 		
         setVisible(true);
         
