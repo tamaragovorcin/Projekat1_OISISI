@@ -55,6 +55,13 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 		
 	}
 
-
+	public void predmetDodat() {
+		this.koJeOtkacen.add(false);
+	}
+	
+	public void predmetUklonjen(int rowIndex) {
+		this.koJeOtkacen.remove(rowIndex);
+	}
+	
 
 }

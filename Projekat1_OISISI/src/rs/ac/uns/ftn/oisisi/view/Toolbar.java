@@ -110,26 +110,7 @@ public class Toolbar extends JToolBar {
 		searchField.setToolTipText("Upis za pretragu");
 
 		
-	/*	add(dodajStudentButton);
-		addSeparator();
-		add(dodajProfesoraButton);
-		addSeparator();
-		add(dodajPredmetButton);
-		addSeparator();*/
-		
-	/*	add(addButton);
-		addSeparator();
-		
-		add(changeButton);
-		addSeparator();
-		add(deleteButton);
 	
-		add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*32));
-		
-		add(searchField);
-		addSeparator();
-		add(searchButton);*/
-		
 		promena(Dugme.STUDENT);
 		
 		setFloatable(false);
@@ -139,31 +120,26 @@ public class Toolbar extends JToolBar {
 	public void promena(Dugme d) {
 		removeAll();
 		if(d == Dugme.STUDENT) {
-		/*	dodajStudentButton = new JToggleButton();
-			dodajStudentButton.setToolTipText("Dodavanje novog studenta");
-			dodajStudentButton.setIcon(new ImageIcon("images2/student.png"));*/
+	
 
 			add(dodajStudentButton,FlowLayout.LEFT);
 		}
 		else if(d == Dugme.PREDMET)  {
-		/*	dodajPredmetButton = new JToggleButton();
-			dodajPredmetButton.setToolTipText("Dodavanje novog predmeta");
-			dodajPredmetButton.setIcon(new ImageIcon("images2/book2.png"));*/
+		
 			dodajPredmetButton.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					DodavanjePredmetaDialog dialog = new DodavanjePredmetaDialog(Main_Frame.getInstance(), "Dodavanje novog predmeta", true);
 					dialog.setVisible(true);
+					PredmetiJTable.getInstance().refresTabelu();
 
 				}
 			});
 			add(dodajPredmetButton,FlowLayout.LEFT);
 		}
 		else if(d==Dugme.PROFESOR) {
-			/*dodajProfesoraButton = new JToggleButton();
-			dodajProfesoraButton.setToolTipText("Dodavanje novog profesora");
-			dodajProfesoraButton.setIcon(new ImageIcon("images2/teacher.png"));*/
+		
 			add(dodajProfesoraButton,FlowLayout.LEFT);
 		}
 		addSeparator();

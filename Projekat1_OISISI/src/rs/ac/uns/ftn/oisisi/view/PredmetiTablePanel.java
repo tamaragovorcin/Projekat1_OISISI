@@ -52,7 +52,7 @@ public class PredmetiTablePanel extends JPanel{
 		add(levo,BorderLayout.WEST);
 		add(desno,BorderLayout.EAST);
 		
-		predmetiTable = new PredmetiJTable();
+		predmetiTable = PredmetiJTable.getInstance();
 		scrollPane = new JScrollPane(predmetiTable);
 		
 		add(scrollPane,BorderLayout.CENTER);

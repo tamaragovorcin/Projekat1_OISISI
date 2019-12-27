@@ -14,9 +14,17 @@ public class PredmetiJTable extends JTable{
 	 * 
 	 */
 	private static final long serialVersionUID = -7818780852556687386L;
-
 	
-	public PredmetiJTable() {
+	private static PredmetiJTable instance = null;
+	
+	static public PredmetiJTable getInstance() {
+		if(instance == null) {
+			instance = new PredmetiJTable();
+		}
+		return instance;
+	}
+	
+	private PredmetiJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -40,5 +48,12 @@ public class PredmetiJTable extends JTable{
 		}
 			
 		return c;
+	}
+
+	public void refresTabelu() {
+		AbstractTableModelPredmeti arp = (AbstractTableModelPredmeti) this.getModel();
+		arp.fireTableDataChanged();
+		validate();
+		
 	}
 }

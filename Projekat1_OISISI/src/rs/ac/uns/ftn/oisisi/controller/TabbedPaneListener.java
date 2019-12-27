@@ -16,7 +16,7 @@ public class TabbedPaneListener implements ChangeListener {
 		TabbedPane tabbed_pane = (TabbedPane) e.getSource();
 		Toolbar tool = Toolbar.getInstance();
 		tool.promena(tool.getDugme(tabbed_pane.getSelectedIndex()));
-		Toolbar.getInstance().getPolje().setText("");
+		
 		
 		
 	

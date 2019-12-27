@@ -19,31 +19,37 @@ public class BazaPredmeta {
 
 	private List<String>kolone;
 	private List<Predmet>predmeti;
-	private int broj_predmeta =0;
+	private static int broj_predmeta =0;
 	
 	private BazaPredmeta() {
+		String sifra="";
+		String naziv="";
+		String semestar = "";
+		String godina="";
 		
 		
-		initPredmete();
 		
 		this.kolone=new ArrayList<String>();
+		this.predmeti=new ArrayList<Predmet>();
 		this.kolone.add("SIFRA");
 		this.kolone.add("NAZIV");
 		this.kolone.add("SEMESTAR");
 		this.kolone.add("GODINA STUDIJA");
 		this.kolone.add("SPISAK PROFESORA");
 		this.kolone.add("SPISAK STUDENATA");
-		dodajPredmet();
-		
+		//dodajPredmet();
+		//initPredmete( sifra,  naziv, semestar, godina);
+		//dodajPredmet( sifra,  naziv, semestar, godina);
 	}
 
-	private void initPredmete() {
-		this.predmeti=new ArrayList<Predmet>();
+	public void initPredmete(String sifra, String naziv, String semestar, String godina) {
 		
-		this.predmeti.add(new Predmet("1","Algebra","prvi","prva godina"));
-		this.predmeti.add(new Predmet("2","Fizika","drugi","prva godina"));
-		this.predmeti.add(new Predmet("3","Objektno programiranje","treci","druga godina"));
+		this.predmeti.add(new Predmet(sifra,naziv,semestar,godina));
+		//this.predmeti.add(new Predmet("1","Algebra","prvi","prva godina"));
+		//this.predmeti.add(new Predmet("2","Fizika","drugi","prva godina"));
+		//this.predmeti.add(new Predmet("3","Objektno programiranje","treci","druga godina"));
 		
+		broj_predmeta++;
 		
 	}
 
@@ -68,7 +74,7 @@ public class BazaPredmeta {
 	}
 
 	public String getValueAt(int row, int column) {
-		if(row<broj_predmeta) {
+		if(row<predmeti.size()) {
 			Predmet predmet = this.predmeti.get(row);
 			switch (column) {
 			case 0:
@@ -93,16 +99,16 @@ public class BazaPredmeta {
 	
 	
 
-/*	public void dodajPredmet(String sifra, String naziv, String semestar, String godina) {
+	//public void dodajPredmet(String sifra, String naziv, String semestar, String godina) {
 	//	this.predmeti.add(new Predmet("5","Analiza 2","treci","druga godina"));
-		this.predmeti.add(new Predmet(sifra,naziv,semestar,godina));
-		broj_predmeta++;
-	}*/
-	public void dodajPredmet() {
+	//	this.predmeti.add(new Predmet(sifra,naziv,semestar,godina));
+	//	broj_predmeta++;
+	//}
+	/*public void dodajPredmet() {
 			this.predmeti.add(new Predmet("5","Analiza 2","treci","druga godina"));
 			
 			broj_predmeta++;
-		}
+		}*/
 
 	public void izbrisiPredmet(String sifra) {
 		for (Predmet i : predmeti) {

@@ -19,9 +19,9 @@ public static PredmetiController getInstance() {
 
 private PredmetiController() {}
 
-public void dodajIgraca() {
+public void dodajPredmet() {
 
-	BazaPredmeta.getInstance().dodajPredmet();
+	//BazaPredmeta.getInstance().dodajPredmet("123","Hemija","zimski","druga");
 
 	Main_Frame.getInstance().azurirajPrikaz("DODAT", -1);
 }
