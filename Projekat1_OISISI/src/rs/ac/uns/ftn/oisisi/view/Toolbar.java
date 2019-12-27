@@ -177,7 +177,7 @@ public class Toolbar extends JToolBar {
 			addSeparator();
 			add(dodajStudentaNaPredmet);
 			add(dodajProfesoraNaPredmet);
-			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*32));
+			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*28));
 			add(searchField);
 			addSeparator();
 			add(searchButton);
