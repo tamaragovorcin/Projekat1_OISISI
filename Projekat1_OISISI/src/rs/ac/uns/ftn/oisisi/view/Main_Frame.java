@@ -53,10 +53,11 @@ public class Main_Frame extends JFrame{
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		 menu = new MenuBar();
+		
+		menu = MenuBar.getInstance();
+        menu.setVisible(true);
 		this.setJMenuBar(menu);
-		//treba ti jos 9 polja u meniju da znas
-        //ovo je poslednje obavezno!!!!!
+
         setVisible(true);
         
         
