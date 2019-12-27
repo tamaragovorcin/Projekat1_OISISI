@@ -11,6 +11,8 @@ import javax.swing.JTable;
 
 
 
+
+
 public class Main_Frame extends JFrame{
 
 
@@ -56,6 +58,10 @@ public class Main_Frame extends JFrame{
 			instance = new Main_Frame();
 		}
 		return instance;
+	}
+
+	public void azurirajPrikaz(Object object, int i) {
+		
 	}
 	
 	
