@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.oisisi.view;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractButton;
@@ -13,6 +14,10 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
+
+
+
+
 
 public class Toolbar extends JToolBar {
 
@@ -137,12 +142,22 @@ public class Toolbar extends JToolBar {
 		/*	dodajStudentButton = new JToggleButton();
 			dodajStudentButton.setToolTipText("Dodavanje novog studenta");
 			dodajStudentButton.setIcon(new ImageIcon("images2/student.png"));*/
+
 			add(dodajStudentButton,FlowLayout.LEFT);
 		}
 		else if(d == Dugme.PREDMET)  {
 		/*	dodajPredmetButton = new JToggleButton();
 			dodajPredmetButton.setToolTipText("Dodavanje novog predmeta");
 			dodajPredmetButton.setIcon(new ImageIcon("images2/book2.png"));*/
+			dodajPredmetButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					DodavanjePredmetaDialog dialog = new DodavanjePredmetaDialog(Main_Frame.getInstance(), "Dodavanje novog predmeta", true);
+					dialog.setVisible(true);
+
+				}
+			});
 			add(dodajPredmetButton,FlowLayout.LEFT);
 		}
 		else if(d==Dugme.PROFESOR) {
