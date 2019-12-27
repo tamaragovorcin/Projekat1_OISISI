@@ -20,6 +20,8 @@ public class Toolbar extends JToolBar {
 	
 	enum Dugme {
 		STUDENT,PREDMET,PROFESOR;
+	
+		
 		
 	};
 	
@@ -36,6 +38,9 @@ public class Toolbar extends JToolBar {
 	private JToggleButton dodajStudentButton;
 	private JToggleButton dodajPredmetButton;
 	private JToggleButton dodajProfesoraButton;
+	
+	private JToggleButton dodajStudentaNaPredmet;
+	private JToggleButton dodajProfesoraNaPredmet;
 
 	private JTextField polje;
 	
@@ -43,13 +48,13 @@ public class Toolbar extends JToolBar {
 	
 	public static Toolbar getInstance() {
 		if(instance == null) {
-			instance = new Toolbar();
+			instance = new Toolbar(Dugme.STUDENT);
 		}
 		return instance;
 	}
 	
 	
-	private Toolbar() {
+	private Toolbar(Dugme d) {
 		super(SwingConstants.HORIZONTAL);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		
@@ -58,10 +63,28 @@ public class Toolbar extends JToolBar {
 		addButton.setIcon(new ImageIcon("images2/add.png"));
 		addButton.setMnemonic(KeyEvent.VK_0);
 
+		dodajStudentButton = new JToggleButton();
+		dodajStudentButton.setToolTipText("Dodaj novog studenta");
+		dodajStudentButton.setIcon(new ImageIcon("images2/student.png"));
 		
+		dodajPredmetButton = new JToggleButton();
+		dodajPredmetButton.setToolTipText("Dodavanje novog predmeta");
+		dodajPredmetButton.setIcon(new ImageIcon("images2/book2.png"));
+		
+		dodajProfesoraButton = new JToggleButton();
+		dodajProfesoraButton.setToolTipText("Dodavanje novog profesora");
+		dodajProfesoraButton.setIcon(new ImageIcon("images2/teacher.png"));
+		
+		dodajStudentaNaPredmet = new JToggleButton();
+		dodajStudentaNaPredmet.setToolTipText("Dodavanje studenta na predmet");
+		dodajStudentaNaPredmet.setIcon(new ImageIcon("images2/student.png"));
+		
+		dodajProfesoraNaPredmet = new JToggleButton();
+		dodajProfesoraNaPredmet.setToolTipText("Dodavanje profesora na predmet");
+		dodajProfesoraNaPredmet.setIcon(new ImageIcon("images2/teacher.png"));
 		
 		changeButton = new JToggleButton();
-		changeButton.setToolTipText("Izmena");
+		changeButton.setToolTipText("Izmena studenta");
 		changeButton.setIcon(new ImageIcon("images2/pencil.png"));
 		changeButton.setMnemonic(KeyEvent.VK_1);
 	
@@ -82,8 +105,16 @@ public class Toolbar extends JToolBar {
 		searchField.setToolTipText("Upis za pretragu");
 
 		
-		add(addButton);
+	/*	add(dodajStudentButton);
 		addSeparator();
+		add(dodajProfesoraButton);
+		addSeparator();
+		add(dodajPredmetButton);
+		addSeparator();*/
+		
+	/*	add(addButton);
+		addSeparator();
+		
 		add(changeButton);
 		addSeparator();
 		add(deleteButton);
@@ -92,7 +123,9 @@ public class Toolbar extends JToolBar {
 		
 		add(searchField);
 		addSeparator();
-		add(searchButton);
+		add(searchButton);*/
+		
+		promena(Dugme.STUDENT);
 		
 		setFloatable(false);
 		
@@ -101,22 +134,65 @@ public class Toolbar extends JToolBar {
 	public void promena(Dugme d) {
 		removeAll();
 		if(d == Dugme.STUDENT) {
-			dodajStudentButton = new JToggleButton();
+		/*	dodajStudentButton = new JToggleButton();
 			dodajStudentButton.setToolTipText("Dodavanje novog studenta");
-			dodajStudentButton.setIcon(new ImageIcon("images2/student.png"));
+			dodajStudentButton.setIcon(new ImageIcon("images2/student.png"));*/
 			add(dodajStudentButton,FlowLayout.LEFT);
 		}
 		else if(d == Dugme.PREDMET)  {
-			dodajPredmetButton = new JToggleButton();
+		/*	dodajPredmetButton = new JToggleButton();
 			dodajPredmetButton.setToolTipText("Dodavanje novog predmeta");
-			dodajPredmetButton.setIcon(new ImageIcon("images2/book2.png"));
+			dodajPredmetButton.setIcon(new ImageIcon("images2/book2.png"));*/
 			add(dodajPredmetButton,FlowLayout.LEFT);
 		}
 		else if(d==Dugme.PROFESOR) {
-			dodajProfesoraButton = new JToggleButton();
+			/*dodajProfesoraButton = new JToggleButton();
 			dodajProfesoraButton.setToolTipText("Dodavanje novog profesora");
-			dodajProfesoraButton.setIcon(new ImageIcon("images2/teacher.png"));
+			dodajProfesoraButton.setIcon(new ImageIcon("images2/teacher.png"));*/
 			add(dodajProfesoraButton,FlowLayout.LEFT);
+		}
+		addSeparator();
+		
+		if(d == Dugme.STUDENT) {
+			changeButton.setToolTipText("Izmena studenta");
+			deleteButton.setToolTipText("Brisanje studenta");
+			
+			add(changeButton);
+			addSeparator();
+			add(deleteButton);
+			
+			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*32));
+			add(searchField);
+			addSeparator();
+			add(searchButton);
+				
+			}
+		else if(d == Dugme.PREDMET)  {
+			changeButton.setToolTipText("Izmena predmeta");
+			deleteButton.setToolTipText("Brisanje predmeta");
+			
+			add(changeButton);
+			addSeparator();
+			add(deleteButton);
+			addSeparator();
+			add(dodajStudentaNaPredmet);
+			add(dodajProfesoraNaPredmet);
+			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*32));
+			add(searchField);
+			addSeparator();
+			add(searchButton);
+		}
+		else if(d==Dugme.PROFESOR) {
+			changeButton.setToolTipText("Izmena profesora");
+			deleteButton.setToolTipText("Brisanje profesora");
+			
+			add(changeButton);
+			addSeparator();
+			add(deleteButton);
+			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*32));
+			add(searchField);
+			addSeparator();
+			add(searchButton);
 		}
 	}
 		

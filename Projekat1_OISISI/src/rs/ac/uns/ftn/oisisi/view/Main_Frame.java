@@ -9,6 +9,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 
+import rs.ac.uns.ftn.oisisi.controller.TabbedPaneListener;
+
 
 
 
@@ -45,6 +47,7 @@ public class Main_Frame extends JFrame{
         
         tabbedPane = new TabbedPane();
         add(tabbedPane,BorderLayout.CENTER);
+        tabbedPane.addChangeListener(new TabbedPaneListener());
         tabbedPane.setVisible(true);
         
         //ovo je poslednje obavezno!!!!!
