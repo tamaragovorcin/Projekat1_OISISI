@@ -25,6 +25,7 @@ public class Main_Frame extends JFrame{
 	public static int screenWidth = 0;
 	private Toolbar toolbar; 
 	private TabbedPane tabbedPane;
+	private MenuBar menu;
 	
 	private Main_Frame() {
 		
@@ -50,6 +51,11 @@ public class Main_Frame extends JFrame{
         tabbedPane.addChangeListener(new TabbedPaneListener());
         tabbedPane.setVisible(true);
         
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		 menu = new MenuBar();
+		this.setJMenuBar(menu);
+		//treba ti jos 9 polja u meniju da znas
         //ovo je poslednje obavezno!!!!!
         setVisible(true);
         
