@@ -26,10 +26,11 @@ public class Main_Frame extends JFrame{
 	private Toolbar toolbar; 
 	private TabbedPane tabbedPane;
 	private MenuBar menu;
+	private StatusBar statusBar;
 	
 	private Main_Frame() {
 		
-		Toolkit kit = Toolkit.getDefaultToolkit();
+		Toolkit kit = Toolkit.getDefaultToolkit();//taj sto sam zatvorila je sa casa ako na to mislis aaaaa aj gledam sta je to
 		Dimension screenSize = kit.getScreenSize();
 		screenHight = screenSize.height;
 		screenWidth = screenSize.width;
@@ -53,10 +54,15 @@ public class Main_Frame extends JFrame{
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		 menu = new MenuBar();
+		
+		menu = MenuBar.getInstance();
+        menu.setVisible(true);
 		this.setJMenuBar(menu);
-		//treba ti jos 9 polja u meniju da znas
-        //ovo je poslednje obavezno!!!!!
+
+		statusBar= new StatusBar();
+		 add(statusBar,BorderLayout.SOUTH);
+		statusBar.setVisible(true);
+		
         setVisible(true);
         
         
