@@ -9,11 +9,15 @@ import javax.swing.AbstractButton;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
+
+
+import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 
 
 
@@ -125,7 +129,7 @@ public class Toolbar extends JToolBar {
 			add(dodajStudentButton,FlowLayout.LEFT);
 		}
 		else if(d == Dugme.PREDMET)  {
-		
+
 			dodajPredmetButton.addActionListener(new ActionListener() {
 
 				@Override
@@ -147,6 +151,25 @@ public class Toolbar extends JToolBar {
 		if(d == Dugme.STUDENT) {
 			changeButton.setToolTipText("Izmena studenta");
 			deleteButton.setToolTipText("Brisanje studenta");
+			deleteButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				//	PredmetiController.getInstance().izbrisiPredmet((PredmetiJTable.getInstance().getSelectedRow()));
+					int row = PredmetiJTable.getInstance().getSelectedRow();
+					
+					int izbor = JOptionPane.showConfirmDialog(null,
+							"Da li ste sigurni da zelite da obrisete predmet?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
+					if (izbor == JOptionPane.YES_OPTION) {
+						JOptionPane.showMessageDialog(null, "Predmet je obrisan!");
+						PredmetiController.getInstance().izbrisiPredmet(row);
+					} else {
+						JOptionPane.showMessageDialog(null, "Predmet nije obrisan.");
+					}
+					
+					PredmetiJTable.getInstance().refresTabelu();
+				}
+			});
 			
 			add(changeButton);
 			addSeparator();
