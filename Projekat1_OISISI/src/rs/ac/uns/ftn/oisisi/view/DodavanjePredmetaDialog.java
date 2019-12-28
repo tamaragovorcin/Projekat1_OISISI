@@ -239,15 +239,18 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 				int nesto=0;
 				for(Predmet p: BazaPredmeta.getInstance().getPredmete()) {
 					if(p.getSifra_predmeta().equals(tekst[0])) {
-						JOptionPane.showMessageDialog(null, "Uneta sifra predmeta vec postoji!");
+						
 						nesto =1;
 					}
 				}
 				if(nesto==0) {
+					setVisible(true);
 					BazaPredmeta.getInstance().initPredmete(tekst[0], tekst[1], tekst[2], tekst[3]);
 				} 
 				else if(nesto ==1) {
-						
+					setVisible(false);
+					JOptionPane.showMessageDialog(null, "Uneta sifra predmeta vec postoji!");
+					setVisible(true);
 				}
 			}
 			
