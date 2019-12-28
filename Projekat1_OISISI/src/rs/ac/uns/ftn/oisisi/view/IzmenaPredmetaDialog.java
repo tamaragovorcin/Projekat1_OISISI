@@ -2,14 +2,13 @@ package rs.ac.uns.ftn.oisisi.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -23,12 +22,12 @@ import javax.swing.JTextField;
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 
-public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
+public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -720118426910400743L;
+	private static final long serialVersionUID = 8377505010808280172L;
 
 	private int mode = 1;
 	public static final int ODUSTANAK = 0;
@@ -38,25 +37,32 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 	JTextField txtNaziv = new JTextField();
 	JComboBox<String> semestarComboBox;
 	JComboBox<String> godinaComboBox;
-
-	public DodavanjePredmetaDialog(Main_Frame instance, String string, boolean b) {
+	
+	List<Predmet> predmeti = BazaPredmeta.getInstance().getPredmete();
+	
+	
+	public IzmenaPredmetaDialog(Main_Frame instance, String string, boolean b,int row) {
+		
 		super(instance, string, b);
 		setSize(400, 400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		setTitle("Dodavanje predmeta");
-
+		setTitle("Izmena predmeta");
+		
+		Predmet predmet = predmeti.get(row);
+		
+		
 		Dimension dim = new Dimension(120, 20);
-
-		JPanel pan_odogovr = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		
+		JPanel pan_odogovor = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JButton odustanak = new JButton("ODUSTANAK");
 		odustanak.addActionListener(this);
-		JButton potvrda = new JButton("POTVRDA");
+		JButton potvrda = new JButton("POTVRDA"); 
 		potvrda.addActionListener(this);
 
-		pan_odogovr.add(odustanak);
-		pan_odogovr.add(potvrda);
-
+		pan_odogovor.add(odustanak);
+		pan_odogovor.add(potvrda);
+		
 		JPanel pan_centar = new JPanel();
 
 		JPanel panSifra = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -67,6 +73,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		txtSifra.setPreferredSize(dim);
 		txtSifra.setName("txtSifra");
 		txtSifra.setBackground(Color.GRAY);
+		txtSifra.setText(predmet.getSifra_predmeta());
 		txtSifra.addKeyListener(new KeyListener() {
 
 			@Override
@@ -102,6 +109,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		txtNaziv.setPreferredSize(dim);
 		txtNaziv.setName("txtNaziv");
 		txtNaziv.setBackground(Color.GRAY);
+		txtNaziv.setText(predmet.getNaziv_predmeta());
 		txtNaziv.addKeyListener(new KeyListener() {
 
 			@Override
@@ -136,6 +144,23 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		String semestar[] = { "    ", "zimski", "letnji" };
 
 		semestarComboBox = new JComboBox<String>(semestar);
+		
+		semestarComboBox.getSelectedItem().toString();
+		String a = predmet.getSemestar();
+		int br=0;
+		switch(a){
+			case "zimski":
+				 br=1;
+				 break;
+			case "letnji":
+				br=2;
+				break;
+			default: 
+				br= 0;
+		}
+		
+		semestarComboBox.setSelectedItem(br);
+	
 		semestarComboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -156,6 +181,34 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		lblGodina.setPreferredSize(dim);
 		String godina[] = { "     ", "I", "II", "III", "IV", "V" };
 		godinaComboBox = new JComboBox<String>(godina);
+		
+		godinaComboBox.getSelectedItem().toString();
+		String godina2 = predmet.getGodina_studija_izvodjenja();
+		int br2=0;
+		switch(godina2){
+			case "I":
+				 br2=1;
+				 break;
+			case "II":
+				br2=2;
+				break;
+			case "III":
+				 br2=3;
+				 break;
+			case "IV":
+				br2=4;
+				break;
+			case "V":
+				br2=5;
+				break;
+				
+			default:
+				br2 =0;
+		}
+		
+		godinaComboBox.setSelectedItem(br);
+		
+		
 		godinaComboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -178,9 +231,11 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		pan_centar.add(panGodina);
 
 		add(pan_centar, BorderLayout.CENTER);
-		add(pan_odogovr, BorderLayout.SOUTH);
+		add(pan_odogovor, BorderLayout.SOUTH);
 
-		setResizable(false);
+		setResizable(false);	
+		
+		
 	}
 
 	public String[] pokupiUnetiTekst() {
@@ -233,7 +288,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		} else {
 			mode = DodavanjePredmetaDialog.POTVRDA;
 			if(BazaPredmeta.getInstance().getPredmete().size()==0) {
-				BazaPredmeta.getInstance().initPredmete(tekst[0], tekst[1], tekst[2], tekst[3]);
+				BazaPredmeta.getInstance().izmeniPredmet(tekst[0], tekst[1], tekst[2], tekst[3]);
 			}
 			else {
 				int nesto=0;
@@ -268,5 +323,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 	public void setMode(int mode) {
 		this.mode = mode;
 	}
+
+
 
 }
