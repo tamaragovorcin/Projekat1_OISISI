@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
 public class AbstractTableModelStudenti  extends AbstractTableModel {
@@ -17,15 +18,15 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 	
 	public AbstractTableModelStudenti() {
 		this.koJeOtkacen = new ArrayList<>();
-		for (int i = 0; i < BazaStudenta.getInstance().getStudente().size(); i++) {
+		for (int i = 0; i < 12; i++) {
 			koJeOtkacen.add(false);
 		}
 	}
 
 
 	public int getRowCount() {
-	//	BazaProfesora.getInstance().getProfesore().size();
-		return 10;
+	//return BazaStudenta.getInstance().getStudente().size();
+		return 20;
 	}
 
 	@Override
@@ -33,7 +34,8 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 		//return BazaProfesora.getInstance().getColumnCount() +2;
 		return BazaStudenta.getInstance().getColumnCount();
 	}
-
+	
+	
 	@Override
 	public String getColumnName(int column) {
 		if (column >= BazaStudenta.getInstance().getColumnCount()) {
@@ -49,6 +51,13 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 			return BazaStudenta.getInstance().getValueAt(rowIndex, columnIndex);
 		
 	}
-
+	public void studentDodat() {
+		this.koJeOtkacen.add(false);
+	}
+	
+	public void studentUklonjen(int rowIndex) {
+		this.koJeOtkacen.remove(rowIndex);
+	}
+	
 	
 }

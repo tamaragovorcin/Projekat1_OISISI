@@ -11,6 +11,16 @@ public class StudentiJTable extends JTable {
 
 	private static final long serialVersionUID = 4206039227512091130L;
 
+private static StudentiJTable instance = null;
+	
+	static public StudentiJTable getInstance() {
+		if(instance == null) {
+			instance = new StudentiJTable();
+		}
+		return instance;
+	}
+	
+	
 	public StudentiJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);

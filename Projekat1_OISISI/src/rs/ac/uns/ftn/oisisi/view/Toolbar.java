@@ -120,8 +120,15 @@ public class Toolbar extends JToolBar {
 	public void promena(Dugme d) {
 		removeAll();
 		if(d == Dugme.STUDENT) {
-	
+			dodajStudentButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					DodavanjeStudentaDialog dialog = new DodavanjeStudentaDialog(Main_Frame.getInstance(), "Dodavanje novog studenta", true);
+					dialog.setVisible(true);
+					//StudentiJTable.getInstance().refresTabelu();
 
+				}
+			});
 			add(dodajStudentButton,FlowLayout.LEFT);
 		}
 		else if(d == Dugme.PREDMET)  {

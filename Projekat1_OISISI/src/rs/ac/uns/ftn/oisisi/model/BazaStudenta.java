@@ -26,7 +26,6 @@ public class BazaStudenta {
 	private BazaStudenta() {
 		
 		
-		initStudenti();
 		
 		this.kolone=new ArrayList<String>();
 		this.kolone.add("IME");
@@ -44,21 +43,22 @@ public class BazaStudenta {
 		
 	}
 
-	private void initStudenti() {
-		this.studenti=new ArrayList<Student>();
+	public void initStudenti(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
+			String kontakt_telefon, String indeks, String datumUpisa, String godinaStudija,String status,String prosecnaOcena) {
+		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,indeks,datumUpisa,godinaStudija,status,prosecnaOcena));
 		
-		this.studenti.add(new Student("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.",3,"B",8.12));
-		this.studenti.add(new Student("Jovan","Simic","20.08.1997.","Zeleznicka 18","0694566123","jovansimic5@gmail.com","RA5-2015","1.10.2015",4,"B",9.7));
-		this.studenti.add(new Student("Nadja","Jovic","05.05.1998.","Vase Stajica 3","0654599255","nadjajovic@gmail.com","RA89-2017","1.10.2017",3,"S",7.0));
-		
+		//this.studenti.add(new Student("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.",3,"B",8.12));
+		//this.studenti.add(new Student("Jovan","Simic","20.08.1997.","Zeleznicka 18","0694566123","jovansimic5@gmail.com","RA5-2015","1.10.2015",4,"B",9.7));
+		//this.studenti.add(new Student("Nadja","Jovic","05.05.1998.","Vase Stajica 3","0654599255","nadjajovic@gmail.com","RA89-2017","1.10.2017",3,"S",7.0));
+		broj_studenata++;
 		
 	}
 
-	public List<Student>getStudente() {
+	public List<Student> getStudente() {
 		return studenti;
 	}
 	
-	public void setStudentee(List<Student> studenti) {
+	public void setStudente(List<Student> studenti) {
 		this.studenti=studenti;
 	}
 	
@@ -95,11 +95,11 @@ public class BazaStudenta {
 			case 7:
 				return student.getDatumUpisa();
 			case 8:
-				return Integer.toString(student.getGodinaStudija());
+				return student.getGodinaStudija();
 			case 9:
 				return student.getStatus();
 			case 10:
-				return Double.toString(student.getProsecnaOcena());
+				return student.getProsecnaOcena();
 			case 11:
 				return "Spisak predmeta";
 			default:
@@ -111,12 +111,12 @@ public class BazaStudenta {
 		}
 	}
 
-	public void dodajStudenta(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String indeks, String datumUpisa, int godinaStudija,String status,double prosecnaOcena) {
+	/*public void dodajStudenta(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
+			String kontakt_telefon, String indeks, String datumUpisa, String godinaStudija,String status,String prosecnaOcena) {
 		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,indeks,datumUpisa,godinaStudija,status,prosecnaOcena));
 		broj_studenata++;
 	}
-
+*/
 	public void izbrisiStudenta(String sifra) {
 		for (Student i : studenti) {
 			if (i.getBrojIndeksa().equals(sifra)) {
@@ -127,7 +127,7 @@ public class BazaStudenta {
 	}
 
 	public void izmeniStudent(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String indeks, String datumUpisa, int godinaStudija,String status,double prosecnaOcena) {
+			String kontakt_telefon, String indeks, String datumUpisa,String godinaStudija,String status,String prosecnaOcena) {
 		for (Student i : studenti) {
 			if (i.getBrojIndeksa().equals(indeks)) {
 				i.setIme(ime);

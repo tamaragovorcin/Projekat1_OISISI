@@ -7,15 +7,15 @@ public class Student extends Osoba{
 
 	private String brojIndeksa;
 	private String datumUpisa;
-	private int godinaStudija;
+	private String godinaStudija;
     private	String Status;
-	private double prosecnaOcena;
+	private String prosecnaOcena;
 	private ArrayList<Predmet> predmeti;
 	
 	
 	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String brojIndeksa,String datumUpisa, int godinaStudija, String status,
-			double prosecnaOcena) {
+			String kontakt_telefon, String brojIndeksa,String datumUpisa, String godinaStudija, String status,
+			String prosecnaOcena) {
 		super(ime, prezime, datumRodjenja, adresaStanovanja, email, kontakt_telefon);
 		this.brojIndeksa = brojIndeksa;
 		this.datumUpisa = datumUpisa;
@@ -46,12 +46,12 @@ public class Student extends Osoba{
 	}
 
 
-	public int getGodinaStudija() {
+	public String getGodinaStudija() {
 		return godinaStudija;
 	}
 
 
-	public void setGodinaStudija(int godinaStudija) {
+	public void setGodinaStudija(String godinaStudija) {
 		this.godinaStudija = godinaStudija;
 	}
 
@@ -66,12 +66,12 @@ public class Student extends Osoba{
 	}
 
 
-	public double getProsecnaOcena() {
+	public String getProsecnaOcena() {
 		return prosecnaOcena;
 	}
 
 
-	public void setProsecnaOcena(double prosecnaOcena) {
+	public void setProsecnaOcena(String prosecnaOcena) {
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
