@@ -22,6 +22,8 @@ public class Profesor extends Osoba {
 		this.spisak_predmeta = new ArrayList<Predmet>();
 	}
 	
+	
+
 	public String getAdresa_kancelarije() {
 		return adresa_kancelarije;
 	}
