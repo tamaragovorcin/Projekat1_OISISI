@@ -5,19 +5,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import javax.swing.AbstractButton;
+
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
-import javax.swing.KeyStroke;
+
 import javax.swing.SwingConstants;
 
 
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 
 
 
@@ -151,25 +153,7 @@ public class Toolbar extends JToolBar {
 		if(d == Dugme.STUDENT) {
 			changeButton.setToolTipText("Izmena studenta");
 			deleteButton.setToolTipText("Brisanje studenta");
-			deleteButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-				//	PredmetiController.getInstance().izbrisiPredmet((PredmetiJTable.getInstance().getSelectedRow()));
-					int row = PredmetiJTable.getInstance().getSelectedRow();
-					
-					int izbor = JOptionPane.showConfirmDialog(null,
-							"Da li ste sigurni da zelite da obrisete predmet?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
-					if (izbor == JOptionPane.YES_OPTION) {
-						JOptionPane.showMessageDialog(null, "Predmet je obrisan!");
-						PredmetiController.getInstance().izbrisiPredmet(row);
-					} else {
-						JOptionPane.showMessageDialog(null, "Predmet nije obrisan.");
-					}
-					
-					PredmetiJTable.getInstance().refresTabelu();
-				}
-			});
+			
 			
 			add(changeButton);
 			addSeparator();
@@ -183,7 +167,53 @@ public class Toolbar extends JToolBar {
 			}
 		else if(d == Dugme.PREDMET)  {
 			changeButton.setToolTipText("Izmena predmeta");
+			changeButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int row = PredmetiJTable.getInstance().getSelectedRow();
+					if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
+						PredmetiController.getInstance().izmeniPredmet(row);
+						
+						
+						
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+					}
+					PredmetiJTable.getInstance().refresTabelu();
+				}
+			});
+			
+			
+			
+			
 			deleteButton.setToolTipText("Brisanje predmeta");
+			deleteButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+			
+					int row = PredmetiJTable.getInstance().getSelectedRow();
+					if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
+						int izbor = JOptionPane.showConfirmDialog(null,
+								"Da li ste sigurni da zelite da obrisete predmet?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
+						if (izbor == JOptionPane.YES_OPTION) {
+							JOptionPane.showMessageDialog(null, "Predmet je obrisan!");
+							PredmetiController.getInstance().izbrisiPredmet(row);
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Predmet nije obrisan.");
+						}
+						
+					}else {
+							JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+						}
+						
+						PredmetiJTable.getInstance().refresTabelu();
+					
+				}
+			});
 			
 			add(changeButton);
 			addSeparator();

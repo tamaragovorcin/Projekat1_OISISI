@@ -57,7 +57,7 @@ public class Predmet {
 		this.studenti_na_predmetu = studenti_na_predmetu;
 	}
 	
-	
+
 	
 	
 }
