@@ -230,7 +230,9 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		
 		if (e.getActionCommand().equals("ODUSTANAK")) {
 			mode = DodavanjePredmetaDialog.ODUSTANAK;
+		
 		} else {
+			
 			mode = DodavanjePredmetaDialog.POTVRDA;
 			if(BazaPredmeta.getInstance().getPredmete().size()==0) {
 				BazaPredmeta.getInstance().initPredmete(tekst[0], tekst[1], tekst[2], tekst[3]);
