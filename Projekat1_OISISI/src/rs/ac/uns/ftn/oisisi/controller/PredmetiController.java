@@ -2,6 +2,8 @@ package rs.ac.uns.ftn.oisisi.controller;
 
 
 
+import java.io.IOException;
+
 import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
@@ -60,6 +62,15 @@ public void pretraziPredmet() {
 	
 	BazaPredmeta.getInstance().pretragaPredmeta(a);
 	
+}
+
+
+public void sacuvajPredmeteTXT() throws IOException {
+	BazaPredmeta.getInstance().sacuvajPredmeteTXT();
+}
+
+public void ucitajPredmeteTXT() throws IOException {
+	BazaPredmeta.getInstance().ucitajPredmeteTXT();
 }
 
 

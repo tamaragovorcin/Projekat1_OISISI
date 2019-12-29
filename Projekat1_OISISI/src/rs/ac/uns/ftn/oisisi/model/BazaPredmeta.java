@@ -1,9 +1,21 @@
 package rs.ac.uns.ftn.oisisi.model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+
+import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
 
 public class BazaPredmeta {
 
@@ -23,6 +35,8 @@ public class BazaPredmeta {
 
 	private static int brojPredmetaPretrage = 0;
 	private static int broj_predmeta = 0;
+	
+	File nazivTXT = new File("predmeti.txt");
 
 	private BazaPredmeta() {
 		String sifra = "";
@@ -256,6 +270,55 @@ public class BazaPredmeta {
 			JOptionPane.showMessageDialog(null, "Ne postoji predmet sa unetim vrednostima.");
 		}
 
+	}
+	
+	
+	public void sacuvajPredmeteTXT() throws IOException {
+		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT))); 
+			for(int i = 0; i<predmeti.size();i++) {
+				Predmet p = predmeti.get(i);
+				String a = p.toString();
+				br.write(a);
+			}
+			br.close();
+	}
+	
+	public void ucitajPredmeteTXT() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
+		
+		String ulaz = new String();
+		
+		while((ulaz=br.readLine())!=null) {
+			String deo[] = ulaz.split("|");
+			String delovi[] =  new String[deo.length];
+			for(int i = 0; i <deo.length;i++) {
+				delovi[i] = deo[i].trim();
+			}
+			dodajpredmet(delovi);
+		}
+		PredmetiJTable.getInstance().refresTabelu();
+		
+	}
+
+	private boolean dodajpredmet(String[] delovi) {
+		broj_predmeta++;
+		String a = delovi[0];
+		if(predmetiNePostoji(a)) {
+			Predmet novi = new Predmet(delovi[0],delovi[1],delovi[2],delovi[3]);
+			predmeti.add(novi);
+			return true;
+		}
+		return false;
+		
+	}
+
+	private boolean predmetiNePostoji(String a) {
+		for(Predmet p:predmeti) {
+			if(a.equals(p.getSifra_predmeta())) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }
