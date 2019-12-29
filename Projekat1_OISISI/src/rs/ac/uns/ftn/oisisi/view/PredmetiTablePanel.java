@@ -5,9 +5,12 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import java.awt.Toolkit;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 
 public class PredmetiTablePanel extends JPanel{
 /**
@@ -51,6 +54,14 @@ public class PredmetiTablePanel extends JPanel{
 		add(dole,BorderLayout.SOUTH);
 		add(levo,BorderLayout.WEST);
 		add(desno,BorderLayout.EAST);
+		
+		try {
+			PredmetiController.getInstance().ucitajPredmeteTXT();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 		predmetiTable = PredmetiJTable.getInstance();
 		scrollPane = new JScrollPane(predmetiTable);

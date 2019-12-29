@@ -289,7 +289,7 @@ public class BazaPredmeta {
 		String ulaz = new String();
 		
 		while((ulaz=br.readLine())!=null) {
-			String deo[] = ulaz.split("|");
+			String deo[] = ulaz.split("-");
 			String delovi[] =  new String[deo.length];
 			for(int i = 0; i <deo.length;i++) {
 				delovi[i] = deo[i].trim();
@@ -301,11 +301,13 @@ public class BazaPredmeta {
 	}
 
 	private boolean dodajpredmet(String[] delovi) {
-		broj_predmeta++;
+		
 		String a = delovi[0];
 		if(predmetiNePostoji(a)) {
+			
 			Predmet novi = new Predmet(delovi[0],delovi[1],delovi[2],delovi[3]);
 			predmeti.add(novi);
+			broj_predmeta++;
 			return true;
 		}
 		return false;
