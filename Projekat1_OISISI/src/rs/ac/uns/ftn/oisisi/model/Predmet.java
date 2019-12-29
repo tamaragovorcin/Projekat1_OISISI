@@ -53,6 +53,12 @@ public class Predmet {
 	public ArrayList<Student> getStudenti_na_predmetu() {
 		return studenti_na_predmetu;
 	}
+	@Override
+	public String toString() {
+		return "Predmet [sifra_predmeta=" + sifra_predmeta + ", naziv_predmeta=" + naziv_predmeta + ", semestar="
+				+ semestar + ", godina_studija_izvodjenja=" + godina_studija_izvodjenja + ", profesori_predavaci="
+				+ profesori_predavaci + ", studenti_na_predmetu=" + studenti_na_predmetu + "]";
+	}
 	public void setStudenti_na_predmetu(ArrayList<Student> studenti_na_predmetu) {
 		this.studenti_na_predmetu = studenti_na_predmetu;
 	}

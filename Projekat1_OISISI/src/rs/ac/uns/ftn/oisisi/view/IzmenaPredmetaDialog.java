@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.oisisi.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -30,7 +31,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 	private static final long serialVersionUID = 8377505010808280172L;
 
 	private int mode = 1;
-	public static final int ODUSTANAK = 0;
+	public static final int ODUSTANAK = 0; 
 	public static final int POTVRDA = 1;
 
 	JTextField txtSifra = new JTextField();
@@ -40,7 +41,10 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 	
 	List<Predmet> predmeti = BazaPredmeta.getInstance().getPredmete();
 	
-	
+	private int br=0;
+	private int br2=0;
+	private int red;
+	private Predmet predmet;
 	public IzmenaPredmetaDialog(Main_Frame instance, String string, boolean b,int row) {
 		
 		super(instance, string, b);
@@ -50,7 +54,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		setTitle("Izmena predmeta");
 		
 		Predmet predmet = predmeti.get(row);
-		
+		red = row;
 		
 		Dimension dim = new Dimension(120, 20);
 		
@@ -109,7 +113,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		txtNaziv.setPreferredSize(dim);
 		txtNaziv.setName("txtNaziv");
 		txtNaziv.setBackground(Color.GRAY);
-		txtNaziv.setText(predmet.getNaziv_predmeta());
+		
 		txtNaziv.addKeyListener(new KeyListener() {
 
 			@Override
@@ -145,22 +149,6 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
 		semestarComboBox = new JComboBox<String>(semestar);
 		
-		semestarComboBox.getSelectedItem().toString();
-		String a = predmet.getSemestar();
-		int br=0;
-		switch(a){
-			case "zimski":
-				 br=1;
-				 break;
-			case "letnji":
-				br=2;
-				break;
-			default: 
-				br= 0;
-		}
-		
-		semestarComboBox.setSelectedItem(br);
-	
 		semestarComboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -181,33 +169,6 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		lblGodina.setPreferredSize(dim);
 		String godina[] = { "     ", "I", "II", "III", "IV", "V" };
 		godinaComboBox = new JComboBox<String>(godina);
-		
-		godinaComboBox.getSelectedItem().toString();
-		String godina2 = predmet.getGodina_studija_izvodjenja();
-		int br2=0;
-		switch(godina2){
-			case "I":
-				 br2=1;
-				 break;
-			case "II":
-				br2=2;
-				break;
-			case "III":
-				 br2=3;
-				 break;
-			case "IV":
-				br2=4;
-				break;
-			case "V":
-				br2=5;
-				break;
-				
-			default:
-				br2 =0;
-		}
-		
-		godinaComboBox.setSelectedItem(br);
-		
 		
 		godinaComboBox.addActionListener(new ActionListener() {
 
@@ -232,7 +193,8 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odogovor, BorderLayout.SOUTH);
-
+		
+		Set();
 		setResizable(false);	
 		
 		
@@ -277,45 +239,45 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 	}
 
 	
-	
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String tekst[] = pokupiUnetiTekst();
-		
+	
 		if (e.getActionCommand().equals("ODUSTANAK")) {
-			mode = DodavanjePredmetaDialog.ODUSTANAK;
+			mode = IzmenaPredmetaDialog.ODUSTANAK;
+			//dispose();
 		} else {
-			mode = DodavanjePredmetaDialog.POTVRDA;
-			if(BazaPredmeta.getInstance().getPredmete().size()==0) {
-				BazaPredmeta.getInstance().izmeniPredmet(tekst[0], tekst[1], tekst[2], tekst[3]);
+			mode = IzmenaPredmetaDialog.POTVRDA;  	
+			if(!predmet.getSifra_predmeta().equals(tekst[0])) { 
+				for(Predmet p: predmeti) {
+					if(tekst[0].equals(p.getSifra_predmeta())) {
+						JOptionPane.showMessageDialog((Component) e.getSource(), "Izmenjena sifra vec postoji!");
+						return;
+					}
+					
+				}
+				predmet.setSifra_predmeta(tekst[0]);
+				predmet.setNaziv_predmeta(tekst[1]);
+				predmet.setSemestar(tekst[2]);
+				predmet.setGodina_studija_izvodjenja(tekst[3]);
+				PredmetiJTable.getInstance().refresTabelu();
 			}
 			else {
-				int nesto=0;
-				for(Predmet p: BazaPredmeta.getInstance().getPredmete()) {
-					if(p.getSifra_predmeta().equals(tekst[0])) {
-						
-						nesto =1;
-					}
-				}
-				if(nesto==0) {
-					setVisible(true);
-					BazaPredmeta.getInstance().initPredmete(tekst[0], tekst[1], tekst[2], tekst[3]);
-				} 
-				else if(nesto ==1) {
-					setVisible(false);
-					JOptionPane.showMessageDialog(null, "Uneta sifra predmeta vec postoji!");
-					setVisible(true);
-				}
+				predmet.setNaziv_predmeta(tekst[1]);
+				predmet.setSemestar(tekst[2]);
+				predmet.setGodina_studija_izvodjenja(tekst[3]);
+				
+				
+				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
+				PredmetiJTable.getInstance().refresTabelu();
 			}
-			
-			}
-		setVisible(false);
 		}
+		setVisible(false);
+	}
 		
 
 	
-
 	public int getMode() {
 		return mode;
 	}
@@ -325,5 +287,48 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 	}
 
 
-
+	public void  Set() {
+		
+		predmet = BazaPredmeta.getInstance().getPredmete().get(red);
+		txtSifra.setText(predmet.getSifra_predmeta());
+		txtNaziv.setText(predmet.getNaziv_predmeta());	
+		String a = predmet.getSemestar();
+		switch(a){
+			case "zimski":
+				 br=1;
+				 break;
+			case "letnji":
+				br=2;
+				break;
+			default: 
+				br= 0;
+		}
+		semestarComboBox.setSelectedIndex(br); 
+		String godina2 = predmet.getGodina_studija_izvodjenja();
+		
+		switch(godina2){
+			case "I":
+				 br2=1;
+				 break;
+			case "II":
+				br2=2;
+				break;
+			case "III":
+				 br2=3;
+				 break;
+			case "IV":
+				br2=4;
+				break;
+			case "V":
+				br2=5;
+				break;
+				
+			default:
+				br2 =0;
+		}
+		
+		godinaComboBox.setSelectedIndex(br);
+	}
+	
+	
 }

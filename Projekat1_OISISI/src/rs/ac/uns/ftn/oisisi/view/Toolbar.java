@@ -181,14 +181,11 @@ public class Toolbar extends JToolBar {
 					int row = PredmetiJTable.getInstance().getSelectedRow();
 					if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
 						PredmetiController.getInstance().izmeniPredmet(row);
-						
-						
-						
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
 					}
-					PredmetiJTable.getInstance().refresTabelu();
+					PredmetiJTable.getInstance().refresTabelu();  
 				}
 			});
 			
