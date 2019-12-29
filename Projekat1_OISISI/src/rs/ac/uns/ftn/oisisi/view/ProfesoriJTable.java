@@ -26,10 +26,10 @@ public class ProfesoriJTable extends JTable {
 		Component c = super.prepareRenderer(renderer, row, column);
 		// selektovani red ce imati drugaciju boju od ostalih
 		if (isRowSelected(row)) {
-			c.setBackground(Color.DARK_GRAY);
+			c.setBackground(Color.LIGHT_GRAY);
 		} else {
 			if(row%2 ==0) {
-				c.setBackground(Color.LIGHT_GRAY);
+				c.setBackground(new Color(204, 227, 249));
 			}
 			else {
 			c.setBackground(Color.WHITE);

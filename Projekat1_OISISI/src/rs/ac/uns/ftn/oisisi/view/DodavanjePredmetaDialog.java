@@ -5,6 +5,9 @@ import java.awt.Color;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -41,7 +44,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 	public DodavanjePredmetaDialog(Main_Frame instance, String string, boolean b) {
 		super(instance, string, b);
-		setSize(400, 400);
+		setSize(400, 300);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle("Dodavanje predmeta");
@@ -58,8 +61,11 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		pan_odogovr.add(potvrda);
 
 		JPanel pan_centar = new JPanel();
+		pan_centar.setBackground(Color.white);
+		pan_centar.setLayout(new GridBagLayout());
+		pan_centar.setBackground(new Color(204, 227, 249));
 
-		JPanel panSifra = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		
 
 		JLabel labelaSifra = new JLabel("Sifra predmeta*:");
 		labelaSifra.setPreferredSize(dim);
@@ -91,11 +97,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		panSifra.add(labelaSifra);
-		panSifra.add(txtSifra);
-
-		JPanel panNaziv = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
+	
 		JLabel lblNaziv = new JLabel("Naziv predmeta*:");
 		lblNaziv.setPreferredSize(dim);
 
@@ -127,10 +129,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 			}
 		});
 
-		panNaziv.add(lblNaziv);
-		panNaziv.add(txtNaziv);
-
-		JPanel panSemestar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+	
 		JLabel lblsemestar = new JLabel("Semestar*:");
 		lblsemestar.setPreferredSize(dim);
 		String semestar[] = { "    ", "zimski", "letnji" };
@@ -140,7 +139,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (isValid()) {
+				if (provera()) {
 					potvrda.setEnabled(true);
 				} else {
 					potvrda.setEnabled(false);
@@ -148,10 +147,6 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 			}
 		});
 
-		panSemestar.add(lblsemestar);
-		panSemestar.add(semestarComboBox);
-
-		JPanel panGodina = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel lblGodina = new JLabel("Godina*:");
 		lblGodina.setPreferredSize(dim);
 		String godina[] = { "     ", "I", "II", "III", "IV", "V" };
@@ -160,7 +155,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (isValid()) {
+				if (provera()) {
 					potvrda.setEnabled(true);
 				} else {
 					potvrda.setEnabled(false);
@@ -168,14 +163,60 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 			}
 		});
+		GridBagConstraints gbcSifra = new GridBagConstraints();
+		gbcSifra.gridx = 0;
+		gbcSifra.gridy = 0;
+		gbcSifra.insets = new Insets(10, 20, 0, 0);
+		pan_centar.add(labelaSifra, gbcSifra);
 
-		panGodina.add(lblGodina);
-		panGodina.add(godinaComboBox);
+		GridBagConstraints gbcNaziv = new GridBagConstraints();
+		gbcNaziv.gridx = 0;
+		gbcNaziv.gridy = 1;
+		gbcNaziv.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(lblNaziv, gbcNaziv);
 
-		pan_centar.add(panSifra);
-		pan_centar.add(panNaziv);
-		pan_centar.add(panSemestar);
-		pan_centar.add(panGodina);
+		GridBagConstraints gbcTekstSifra = new GridBagConstraints();
+		gbcTekstSifra.gridx = 1;
+		gbcTekstSifra.gridy = 0;
+		gbcTekstSifra.weightx = 100;
+		gbcTekstSifra.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstSifra.insets = new Insets(10, 20, 0, 20);
+		pan_centar.add(txtSifra, gbcTekstSifra);
+
+		GridBagConstraints gbcTekstNaziv = new GridBagConstraints();
+		gbcTekstNaziv.gridx = 1;
+		gbcTekstNaziv.gridy = 1;
+		gbcTekstNaziv.weightx = 200;
+		gbcTekstNaziv.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstNaziv.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtNaziv, gbcTekstNaziv);
+
+		GridBagConstraints gbcSemestar = new GridBagConstraints();
+		gbcSemestar.gridx = 0;
+		gbcSemestar.gridy = 2;
+		gbcSemestar.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(lblsemestar, gbcSemestar);
+
+		GridBagConstraints gbcGodina = new GridBagConstraints();
+		gbcGodina.gridx = 0;
+		gbcGodina.gridy = 3;
+		gbcGodina.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(lblGodina, gbcGodina);
+
+		GridBagConstraints gbcComboBoxSemestar = new GridBagConstraints();
+		gbcComboBoxSemestar.gridx = 1;
+		gbcComboBoxSemestar.gridy = 2;
+		gbcComboBoxSemestar.weightx = 10;
+		gbcComboBoxSemestar.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(semestarComboBox, gbcComboBoxSemestar);
+
+		GridBagConstraints gbcComboBoxGodina = new GridBagConstraints();
+		gbcComboBoxGodina.gridx = 1;
+		gbcComboBoxGodina.gridy = 3;
+		gbcComboBoxGodina.weightx = 10;
+		gbcComboBoxGodina.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(godinaComboBox, gbcComboBoxGodina);
+
 
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odogovr, BorderLayout.SOUTH);
