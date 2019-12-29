@@ -55,6 +55,8 @@ public class Toolbar extends JToolBar {
 
 	private JTextField polje;
 	
+	
+
 	private  static Toolbar instance =null;
 	
 	public static Toolbar getInstance() {
@@ -190,8 +192,6 @@ public class Toolbar extends JToolBar {
 			});
 			
 			
-			
-			
 			deleteButton.setToolTipText("Brisanje predmeta");
 			deleteButton.addActionListener(new ActionListener() {
 
@@ -216,6 +216,16 @@ public class Toolbar extends JToolBar {
 						
 						PredmetiJTable.getInstance().refresTabelu();
 					
+				}
+			});
+			
+			
+			searchButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					PredmetiController.getInstance().pretraziPredmet();
+					PredmetiJTable.getInstance().refresTabelu();
 				}
 			});
 			
@@ -267,6 +277,9 @@ public class Toolbar extends JToolBar {
 	public void setPolje(JTextField polje) {
 		this.polje = polje;
 	}
-
+	
+	public JTextField getTekst() {
+		return searchField;
+	}
 
 }

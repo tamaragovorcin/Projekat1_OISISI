@@ -2,10 +2,14 @@ package rs.ac.uns.ftn.oisisi.controller;
 
 
 
+import javax.swing.JTextField;
+
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.view.IzmenaPredmetaDialog;
 import rs.ac.uns.ftn.oisisi.view.Main_Frame;
+import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
+import rs.ac.uns.ftn.oisisi.view.Toolbar;
 
 public class PredmetiController {
 
@@ -46,5 +50,22 @@ public void izmeniPredmet(int rowSelectedIndex) {
 	IzmenaPredmetaDialog dialog = new IzmenaPredmetaDialog(Main_Frame.getInstance(), "Izmena predmeta", true, rowSelectedIndex);
 	dialog.setVisible(true);
 }
+
+
+
+public void pretraziPredmet() {
+
+	JTextField tekst = Toolbar.getInstance().getTekst();
+	String a = tekst.getText();
+	
+	BazaPredmeta.getInstance().pretragaPredmeta(a);
+	
+}
+
+
+
+
+
+
 
 }
