@@ -178,7 +178,7 @@ public class Main_Frame extends JFrame{
 	
 	private JTable tabelaProfesora;
 
-	/*public void azurirajPrikazProfesora(String a, int i) {
+	public void azurirajPrikazProfesora(String a, int i) {
 		AbstractTableModelProfesori model = (AbstractTableModelProfesori) tabelaProfesora.getModel();
 		if (a != null) {
 			if (a.toUpperCase().trim().equals("DODAT")) {
@@ -189,7 +189,7 @@ public class Main_Frame extends JFrame{
 		}
 		model.fireTableDataChanged();
 		validate();
-	}*/
+	}
 	
 	
 	

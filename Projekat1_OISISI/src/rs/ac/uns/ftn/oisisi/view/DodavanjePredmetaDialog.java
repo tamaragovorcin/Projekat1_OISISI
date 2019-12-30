@@ -190,6 +190,12 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		gbcTekstNaziv.fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstNaziv.insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtNaziv, gbcTekstNaziv);
+		
+		
+		
+		
+		
+		
 
 		GridBagConstraints gbcSemestar = new GridBagConstraints();
 		gbcSemestar.gridx = 0;

@@ -15,13 +15,13 @@ private static ProfesoriController instance = null;
 	
 	private ProfesoriController() {}
 	
-	/*public void dodajProfesora() {
+	public void dodajProfesora() {
 		// izmena modela
-		BazaProfesora.getInstance().dodajProfesora("Ana","Petrovic","15.02.1956.","Fruskogorska 8","anapetrovic@gmail.com","0645899164","Radnicka 64","4569793","Redovni profesor","Doktor nauka");
+		//BazaProfesora.getInstance().dodajProfesora("Ana","Petrovic","15.02.1956.","Fruskogorska 8","anapetrovic@gmail.com","0645899164","Radnicka 64","4569793","Redovni profesor","Doktor nauka");
 		// azuriranje prikaza
 		Main_Frame.getInstance().azurirajPrikazProfesora("DODAT", -1);
 	}
-	
+	/*
     public void izbrisiProfesora(int rowSelectedIndex) {
     	if (rowSelectedIndex < 0) {
 			return;

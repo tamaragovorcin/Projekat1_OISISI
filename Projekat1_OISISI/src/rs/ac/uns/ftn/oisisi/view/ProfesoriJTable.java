@@ -12,7 +12,15 @@ public class ProfesoriJTable extends JTable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4206039227512091130L;
-
+private static ProfesoriJTable instance = null;
+	
+	static public ProfesoriJTable getInstance() {
+		if(instance == null) {
+			instance = new ProfesoriJTable();
+		}
+		return instance;
+	}
+	
 	public ProfesoriJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
@@ -36,5 +44,11 @@ public class ProfesoriJTable extends JTable {
 			}
 		}
 		return c;
+	}
+	public void refresTabelu() {
+		AbstractTableModelProfesori arp = (AbstractTableModelProfesori) this.getModel();
+		arp.fireTableDataChanged();
+		validate();
+		
 	}
 }

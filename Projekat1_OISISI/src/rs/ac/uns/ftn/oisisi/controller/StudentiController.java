@@ -16,9 +16,7 @@ private static StudentiController instance = null;
 	private StudentiController() {}
 	
 	public void dodajStudenta() {
-		// izmena modela
-		//BazaStudenta.getInstance().initStudenti("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.","3","B","8.12");
-		// azuriranje prikaza
+		
 		Main_Frame.getInstance().azurirajPrikazStudenta("DODAT", -1);
 	}
 	

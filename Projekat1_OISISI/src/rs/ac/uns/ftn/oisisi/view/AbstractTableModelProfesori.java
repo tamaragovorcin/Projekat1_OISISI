@@ -56,6 +56,13 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 		
 	}
 
+	public void profesorDodat() {
+		this.koJeOtkacen.add(false);
+	}
+	
+	public void profesorUklonjen(int rowIndex) {
+		this.koJeOtkacen.remove(rowIndex);
+	}
 	
 
 }

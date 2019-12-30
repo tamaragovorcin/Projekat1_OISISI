@@ -154,7 +154,15 @@ public class Toolbar extends JToolBar {
 			add(dodajPredmetButton,FlowLayout.LEFT);
 		}
 		else if(d==Dugme.PROFESOR) {
-		
+			dodajProfesoraButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					DodavanjeProfesoraDialog dialog = new DodavanjeProfesoraDialog(Main_Frame.getInstance(), "Dodavanje novog profesora", true);
+					dialog.setVisible(true);
+				StudentiJTable.getInstance().refresTabelu();
+
+				}
+			});
 			add(dodajProfesoraButton,FlowLayout.LEFT);
 		}
 		addSeparator();

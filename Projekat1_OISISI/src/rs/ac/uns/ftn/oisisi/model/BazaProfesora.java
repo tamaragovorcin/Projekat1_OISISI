@@ -24,6 +24,7 @@ private static BazaProfesora instance = null;
 		initProfesori();
 		
 		this.kolone=new ArrayList<String>();
+		this.profesori=new ArrayList<Profesor>();
 		this.kolone.add("IME");
 		this.kolone.add("PREZIME");
 		this.kolone.add("DATUM RODJENJA");
