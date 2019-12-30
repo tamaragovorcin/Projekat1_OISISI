@@ -133,7 +133,7 @@ public class Toolbar extends JToolBar {
 				public void actionPerformed(ActionEvent arg0) {
 					DodavanjeStudentaDialog dialog = new DodavanjeStudentaDialog(Main_Frame.getInstance(), "Dodavanje novog studenta", true);
 					dialog.setVisible(true);
-					//StudentiJTable.getInstance().refresTabelu();
+				StudentiJTable.getInstance().refresTabelu();
 
 				}
 			});

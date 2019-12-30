@@ -15,11 +15,11 @@ private static ProfesoriController instance = null;
 	
 	private ProfesoriController() {}
 	
-	public void dodajProfesora() {
+	/*public void dodajProfesora() {
 		// izmena modela
 		BazaProfesora.getInstance().dodajProfesora("Ana","Petrovic","15.02.1956.","Fruskogorska 8","anapetrovic@gmail.com","0645899164","Radnicka 64","4569793","Redovni profesor","Doktor nauka");
 		// azuriranje prikaza
-		Main_Frame.getInstance().azurirajPrikaz("DODAT", -1);
+		Main_Frame.getInstance().azurirajPrikazProfesora("DODAT", -1);
 	}
 	
     public void izbrisiProfesora(int rowSelectedIndex) {
@@ -30,7 +30,7 @@ private static ProfesoriController instance = null;
     	Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
     	BazaProfesora.getInstance().izbrisiProfesora(profesor.getBroj_licne_karte());
 		// azuriranje prikaza
-		Main_Frame.getInstance().azurirajPrikaz("UKLONJEN", rowSelectedIndex);
+		Main_Frame.getInstance().azurirajPrikazProfesora("UKLONJEN", rowSelectedIndex);
     }
 	
 	public void izmeniProfesora(int rowSelectedIndex) {
@@ -43,7 +43,7 @@ private static ProfesoriController instance = null;
 		// TODO: izmena dodatnih polja modela tabele
 		
 		// azuriranje prikaza
-		Main_Frame.getInstance().azurirajPrikaz(null, -1);
-	}
+		Main_Frame.getInstance().azurirajPrikazProfesora(null, -1);
+	}*/
 	
 }

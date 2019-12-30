@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.text.TabExpander;
 
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
@@ -43,9 +44,8 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 	JTextField txtIndeks=new JTextField();
 	JTextField txtDatumUpisa=new JTextField();
 	JComboBox<String> godinaComboBox;
-	JRadioButton budzet = new JRadioButton("Budzet");
+	JRadioButton budzet = new JRadioButton("Budzet",true);
 	JRadioButton samofinansiranje = new JRadioButton("Samofinansiranje");
-	JTextField txtProsecnaOcena=new JTextField();
 	ButtonGroup btnGroup1 = new ButtonGroup();
 	
 
@@ -62,6 +62,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		JButton odustanak = new JButton("ODUSTANAK");
 		odustanak.addActionListener(this);
 		JButton potvrda = new JButton("POTVRDA");
+		potvrda.setEnabled(false);
 		potvrda.addActionListener(this);
 
 		pan_odogovr.add(odustanak);
@@ -410,57 +411,6 @@ JPanel panDatumUpisa = new JPanel(new FlowLayout(FlowLayout.LEFT));//new FlowLay
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (isValid()) {
-					potvrda.setEnabled(true);
-				} else {
-					potvrda.setEnabled(false);
-				}
-
-			}
-		});
-		
-		
-		
-		
-		
-	    JPanel panBudzet =new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblBudzet = new JLabel("Budzet/Samofinansiranje*:");
-		lblBudzet.setPreferredSize(dim);
-		panBudzet.add(lblBudzet);
-	//	panBudzet.add(btnGroup1);
-		btnGroup1.add(budzet);
-		btnGroup1.add(samofinansiranje);  
-		
-		
-		
-JPanel panProsecnaOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));//new FlowLayout(FlowLayout.LEFT)
-
-		
-		
-		
-		
-		JLabel labelaProsecnaOcena = new JLabel("Prosecna ocena*:");
-		labelaProsecnaOcena.setPreferredSize(dim);
-
-		txtProsecnaOcena.setPreferredSize(dim);
-		txtProsecnaOcena.setName("txtProsecnaOcena");
-		txtProsecnaOcena.setBackground(Color.CYAN);
-		txtProsecnaOcena.addKeyListener(new KeyListener() {
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
 				if (provera()) {
 					potvrda.setEnabled(true);
 				} else {
@@ -469,14 +419,49 @@ JPanel panProsecnaOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));//new Flow
 
 			}
 		});
-		panProsecnaOcena.add(labelaProsecnaOcena);
-		panProsecnaOcena.add(txtProsecnaOcena);
 		
-		
-		
+
 		panGodina.add(lblGodina);
 		panGodina.add(godinaComboBox);
 
+		
+		JPanel panBudzet = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		budzet.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (provera()) {
+					potvrda.setEnabled(true);
+				} else {
+					potvrda.setEnabled(false);
+				}
+			}
+		});
+		
+		samofinansiranje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (provera()) {
+					potvrda.setEnabled(true);
+				} else {
+					potvrda.setEnabled(false);
+				}
+			}
+		});
+		
+		//panBudzet.add(btnGroup1);
+	  panBudzet.add(budzet);
+	  panBudzet.add(samofinansiranje);
+		
+
+		btnGroup1.add(budzet);
+		btnGroup1.add(samofinansiranje);
+		
+
+		
 		
 		pan_centar.add(panIme);
 		pan_centar.add(panPrezime);
@@ -487,10 +472,9 @@ JPanel panProsecnaOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));//new Flow
 		pan_centar.add(panIndeks);
 		pan_centar.add(panDatumUpisa);
 		pan_centar.add(panGodina);
-		pan_centar.add(panBudzet);
+		//pan_centar.add(panBudzet);
 		pan_centar.add(budzet);
 		pan_centar.add(samofinansiranje);
-		pan_centar.add(panProsecnaOcena);
 
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odogovr, BorderLayout.SOUTH);
@@ -515,13 +499,17 @@ JPanel panProsecnaOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));//new Flow
 		tekst[6]=txtIndeks.getText().toString();
 		tekst[7]=txtDatumUpisa.getText().toString();
 		tekst[8] = godinaComboBox.getSelectedItem().toString();
-		tekst[9]= btnGroup1.getSelection().toString();
-		tekst[10]= txtProsecnaOcena.getText().toString();
+		if(samofinansiranje.isSelected()) {
+			tekst[9]="S";}
+		else {
+			tekst[9]="B";}
 		
-
+	
 		return tekst;
 	}
 
+	
+	
 	protected boolean provera() {
 		String tekst[] = pokupiUnetiTekst();
 		boolean izlaz = true;
@@ -558,10 +546,9 @@ JPanel panProsecnaOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));//new Flow
 			txtDatumUpisa.setBackground(Color.RED);
 			return false;
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[1])) {
-			txtProsecnaOcena.setBackground(Color.RED);
-			return false;
-		}
+		
+		
+		
 		for (String t : tekst) {
 			if ((t = t.trim()).length() == 0) {
 				txtIme.setBackground(Color.WHITE);
@@ -572,7 +559,6 @@ JPanel panProsecnaOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));//new Flow
 				txtEmail.setBackground(Color.WHITE);
 				txtIndeks.setBackground(Color.WHITE);
 				txtDatumUpisa.setBackground(Color.WHITE);
-				txtProsecnaOcena.setBackground(Color.WHITE);
 				izlaz = false;
 			}
 		}
@@ -584,7 +570,6 @@ JPanel panProsecnaOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));//new Flow
 		txtEmail.setBackground(Color.WHITE);
 		txtIndeks.setBackground(Color.WHITE);
 		txtDatumUpisa.setBackground(Color.WHITE);
-		txtProsecnaOcena.setBackground(Color.WHITE);
 
 		return izlaz;
 	}
@@ -601,7 +586,8 @@ JPanel panProsecnaOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));//new Flow
 		} else {
 			mode = DodavanjeStudentaDialog.POTVRDA;
 			if(BazaStudenta.getInstance().getStudente().size()==0) {
-				BazaStudenta.getInstance().initStudenti(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4],tekst[5],tekst[6],tekst[7],tekst[8], tekst[9],tekst[10]);
+				BazaStudenta.getInstance().initStudenti(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4],tekst[5],tekst[6],tekst[7],tekst[8], tekst[9]);
+				StudentiJTable.getInstance().refresTabelu();
 			}
 			else {
 				int nesto=0;
@@ -612,14 +598,15 @@ JPanel panProsecnaOcena = new JPanel(new FlowLayout(FlowLayout.LEFT));//new Flow
 					}
 				}
 				if(nesto==0) {
-					BazaStudenta.getInstance().initStudenti(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4],tekst[5],tekst[6],tekst[7],tekst[8], tekst[9],tekst[10]);
+					BazaStudenta.getInstance().initStudenti(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4],tekst[5],tekst[6],tekst[7],tekst[8], tekst[9]);
+					StudentiJTable.getInstance().refresTabelu();
 				} 
 				else if(nesto ==1) {
 						
 				}
 			}
 	}
-			
+		StudentiJTable.getInstance().refresTabelu();
 		setVisible(false);
 		}
 		

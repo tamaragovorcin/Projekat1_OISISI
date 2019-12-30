@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
+import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
 public class AbstractTableModelStudenti  extends AbstractTableModel {
@@ -18,7 +19,7 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 	
 	public AbstractTableModelStudenti() {
 		this.koJeOtkacen = new ArrayList<>();
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 20; i++) {
 			koJeOtkacen.add(false);
 		}
 	}
