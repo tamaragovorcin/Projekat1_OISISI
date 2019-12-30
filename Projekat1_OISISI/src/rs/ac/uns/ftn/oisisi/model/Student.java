@@ -19,7 +19,7 @@ public class Student extends Osoba{
 		this.datumUpisa = datumUpisa;
 		this.godinaStudija = godinaStudija;
 		Status = status;
-		this.predmeti = predmeti;
+		this.predmeti = new ArrayList<Predmet>();
 	}
 
 

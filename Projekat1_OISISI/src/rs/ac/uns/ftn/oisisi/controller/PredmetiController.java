@@ -24,7 +24,7 @@ public void dodajPredmet() {
 
 	//BazaPredmeta.getInstance().dodajPredmet("123","Hemija","zimski","druga");
 
-	Main_Frame.getInstance().azurirajPrikaz("DODAT", -1);
+	Main_Frame.getInstance().azurirajPrikazPredmeta("DODAT", -1);
 }
 
 public void izbrisiPredmet(int rowSelectedIndex) {
@@ -35,7 +35,7 @@ public void izbrisiPredmet(int rowSelectedIndex) {
 	Predmet predmet = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
 	BazaPredmeta.getInstance().izbrisiPredmet(predmet.getSifra_predmeta());
 	
-	Main_Frame.getInstance().azurirajPrikaz("UKLONJEN", rowSelectedIndex);
+	Main_Frame.getInstance().azurirajPrikazPredmeta("UKLONJEN", rowSelectedIndex);
 }
 
 public void izmeniPredmet(int rowSelectedIndex) {
@@ -51,7 +51,7 @@ public void izmeniPredmet(int rowSelectedIndex) {
 	// TODO: izmena dodatnih polja modela tabele
 	
 	// azuriranje prikaza
-	Main_Frame.getInstance().azurirajPrikaz(null, -1);
+	Main_Frame.getInstance().azurirajPrikazPredmeta(null, -1);
 }
 
 }

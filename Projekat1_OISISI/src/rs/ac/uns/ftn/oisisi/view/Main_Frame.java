@@ -9,6 +9,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 
+import rs.ac.uns.ftn.oisisi.controller.TabbedPaneListener;
+
 
 
 
@@ -107,7 +109,20 @@ public class Main_Frame extends JFrame{
 	}
 
 	
-	
+	private JTable tabelaProfesora;
+
+	/*public void azurirajPrikazProfesora(String a, int i) {
+		AbstractTableModelProfesori model = (AbstractTableModelProfesori) tabelaProfesora.getModel();
+		if (a != null) {
+			if (a.toUpperCase().trim().equals("DODAT")) {
+				model.profesorDodat();
+			} else if (a.toUpperCase().trim().equals("UKLONJEN")) {
+				model.profesorUklonjen(i);
+			}
+		}
+		model.fireTableDataChanged();
+		validate();
+	}*/
 	
 	
 	

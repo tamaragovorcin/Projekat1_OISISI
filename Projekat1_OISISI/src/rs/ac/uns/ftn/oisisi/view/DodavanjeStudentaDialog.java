@@ -471,9 +471,9 @@ JPanel panDatumUpisa = new JPanel(new FlowLayout(FlowLayout.LEFT));//new FlowLay
 		pan_centar.add(panIndeks);
 		pan_centar.add(panDatumUpisa);
 		pan_centar.add(panGodina);
-		pan_centar.add(panBudzet);
-		//pan_centar.add(budzet);
-		//pan_centar.add(samofinansiranje);
+		//pan_centar.add(panBudzet);
+		pan_centar.add(budzet);
+		pan_centar.add(samofinansiranje);
 
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odogovr, BorderLayout.SOUTH);

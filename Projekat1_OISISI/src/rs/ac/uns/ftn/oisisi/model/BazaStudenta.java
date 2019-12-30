@@ -28,6 +28,7 @@ public class BazaStudenta {
 		
 		
 		this.kolone=new ArrayList<String>();
+		this.studenti = new ArrayList<Student>();
 		this.kolone.add("IME");
 		this.kolone.add("PREZIME");
 		this.kolone.add("DATUM RODJENJA");
@@ -38,20 +39,27 @@ public class BazaStudenta {
 		this.kolone.add("DATUM UPISA");
 		this.kolone.add("TRENUTNA GODINA STUDIJA");
 		this.kolone.add("STATUS");
-		this.kolone.add("PROSECNA OCENA");
 		this.kolone.add("SPISAK PREDMETA");
 		
+		//initi();
+		//initStudenti("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.","III","B");
 	}
 
 	public void initStudenti(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String indeks, String datumUpisa, String godinaStudija,String status) {
-		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,indeks,datumUpisa,godinaStudija,status));
-		
+		String kontakt_telefon, String brojIndeksa,String datumUpisa, String godinaStudija, String status) {
+
+		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,brojIndeksa,datumUpisa,godinaStudija,status));
+		broj_studenata++;
+	}/*	
 		//this.studenti.add(new Student("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.",3,"B",8.12));
 		//this.studenti.add(new Student("Jovan","Simic","20.08.1997.","Zeleznicka 18","0694566123","jovansimic5@gmail.com","RA5-2015","1.10.2015",4,"B",9.7));
 		//this.studenti.add(new Student("Nadja","Jovic","05.05.1998.","Vase Stajica 3","0654599255","nadjajovic@gmail.com","RA89-2017","1.10.2017",3,"S",7.0));
-		broj_studenata++;
 		
+		
+	//}*/
+	public void initi() {
+		this.studenti.add(new Student("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.","III","B"));
+		broj_studenata++;
 	}
 
 	public List<Student> getStudente() {
@@ -63,7 +71,7 @@ public class BazaStudenta {
 	}
 	
 	public int getColumnCount() {
-		return 12;
+		return 11;
 	}
 
 	public String getColumnName(int index) {
@@ -75,7 +83,7 @@ public class BazaStudenta {
 	}
 
 	public String getValueAt(int row, int column) {
-		if(row<broj_studenata) {
+		if(row<studenti.size()) {
 			Student student= this.studenti.get(row);
 			switch (column) {
 			case 0:
