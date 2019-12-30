@@ -1,5 +1,2 @@
-123 - Fizika - zimski - II - []
 1234 - Matematika - letnji - I - []
-12345 - Hemija - zimski - II - []
 12 - Logika - zimski - II - []
-12345566677 - asd - zimski - I - []

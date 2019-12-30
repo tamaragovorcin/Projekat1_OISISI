@@ -44,7 +44,7 @@ public class StudentiTablePanel extends JPanel{
 		add(levo,BorderLayout.WEST);
 		add(desno,BorderLayout.EAST);
 		
-		studentiJTable = new StudentiJTable();
+		studentiJTable = StudentiJTable.getInstance();
 		scrollPane = new JScrollPane(studentiJTable);
 		
 		add(scrollPane,BorderLayout.CENTER);

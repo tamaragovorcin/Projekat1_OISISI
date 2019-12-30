@@ -163,7 +163,7 @@ public class Main_Frame extends JFrame{
 	private JTable tabelaStudenta;
 
 	public void azurirajPrikazStudenta(String a, int i) {
-		AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaPredmeta.getModel();
+		AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaStudenta.getModel();
 		if (a != null) {
 			if (a.toUpperCase().trim().equals("DODAT")) {
 				model.studentDodat();

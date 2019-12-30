@@ -21,7 +21,7 @@ private static ProfesoriJTable instance = null;
 		return instance;
 	}
 	
-	public ProfesoriJTable() {
+	private ProfesoriJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

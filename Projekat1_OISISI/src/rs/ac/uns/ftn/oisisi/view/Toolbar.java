@@ -19,7 +19,9 @@ import javax.swing.SwingConstants;
 
 
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
+import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
+import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
 
 
@@ -41,10 +43,12 @@ public class Toolbar extends JToolBar {
 	private JToggleButton changeButton;
 	
 	private JToggleButton deleteButton;
+	private JToggleButton deletestudentButton;
 	
 	private JButton searchButton;
 	
 	private JTextField searchField;
+	
 	
 	private JToggleButton dodajStudentButton;
 	private JToggleButton dodajPredmetButton;
@@ -107,6 +111,10 @@ public class Toolbar extends JToolBar {
 		deleteButton.setIcon(new ImageIcon("images2/delete.png"));
 		deleteButton.setMnemonic(KeyEvent.VK_2);
 	
+		deletestudentButton = new JToggleButton();
+		deletestudentButton.setToolTipText("Brisanje");
+		deletestudentButton.setIcon(new ImageIcon("images2/delete.png"));
+		deletestudentButton.setMnemonic(KeyEvent.VK_2);
 		
 		searchButton = new JButton();
 		searchButton.setToolTipText("Pretrazivanje");
@@ -167,19 +175,59 @@ public class Toolbar extends JToolBar {
 		}
 		addSeparator();
 		
+		
+		
+		
+		
+		
+		
+		
 		if(d == Dugme.STUDENT) {
-			changeButton.setToolTipText("Izmena studenta");
-			deleteButton.setToolTipText("Brisanje studenta");
+			//changeButton.setToolTipText("Izmena studenta");
 			
 			
-			add(changeButton);
+			deletestudentButton.setToolTipText("Brisanje studenta");
+			deletestudentButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+			
+					int row = StudentiJTable.getInstance().getSelectedRow();
+					if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata() ) {
+						int izbor = JOptionPane.showConfirmDialog(null,
+								"Da li ste sigurni da zelite da obrisete stduenta?","Brisanje studenta",JOptionPane.YES_NO_OPTION);
+						if (izbor == JOptionPane.YES_OPTION) {
+							JOptionPane.showMessageDialog(null, "Student je obrisan!");
+							StudentiController.getInstance().izbrisiStudeta(row);
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Student nije obrisan.");
+						}
+						
+					}else {
+							JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+						}
+						
+						StudentiJTable.getInstance().refresTabelu();
+					
+				}
+			});
+			
+			
+			//searchButton.addActionListener(new ActionListener() {
+				
+			
+			
+			//add(changeButton);
+			//addSeparator();
+			add(deletestudentButton);
 			addSeparator();
-			add(deleteButton);
-			
-			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*32));
-			add(searchField);
-			addSeparator();
-			add(searchButton);
+			//add(dodajStudentaNaPredmet);
+			//add(dodajProfesoraNaPredmet);
+			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*28));
+			//add(searchField);
+			//addSeparator();
+			//add(searchButton);
 				
 			}
 		else if(d == Dugme.PREDMET)  {
@@ -211,8 +259,9 @@ public class Toolbar extends JToolBar {
 						int izbor = JOptionPane.showConfirmDialog(null,
 								"Da li ste sigurni da zelite da obrisete predmet?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
 						if (izbor == JOptionPane.YES_OPTION) {
-							JOptionPane.showMessageDialog(null, "Predmet je obrisan!");
 							PredmetiController.getInstance().izbrisiPredmet(row);
+							JOptionPane.showMessageDialog(null, "Predmet je obrisan!");
+							
 						}
 						else {
 							JOptionPane.showMessageDialog(null, "Predmet nije obrisan.");

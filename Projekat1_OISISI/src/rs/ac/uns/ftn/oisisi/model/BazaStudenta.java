@@ -41,7 +41,7 @@ public class BazaStudenta {
 		this.kolone.add("STATUS");
 		this.kolone.add("SPISAK PREDMETA");
 		
-		//initi();
+		initi();
 		//initStudenti("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.","III","B");
 	}
 

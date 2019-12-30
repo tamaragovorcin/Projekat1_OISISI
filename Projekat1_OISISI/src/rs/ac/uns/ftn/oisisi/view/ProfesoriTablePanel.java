@@ -49,7 +49,7 @@ public class ProfesoriTablePanel extends JPanel{
 		add(levo,BorderLayout.WEST);
 		add(desno,BorderLayout.EAST);
 		
-		profesoriTable = new ProfesoriJTable();
+		profesoriTable =ProfesoriJTable.getInstance();
 		scrollPane = new JScrollPane(profesoriTable);
 		
 		add(scrollPane,BorderLayout.CENTER);

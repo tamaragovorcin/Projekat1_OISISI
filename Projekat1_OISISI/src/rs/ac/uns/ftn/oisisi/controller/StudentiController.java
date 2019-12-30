@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.oisisi.controller;
 
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
+import rs.ac.uns.ftn.oisisi.model.Student;
 import rs.ac.uns.ftn.oisisi.view.Main_Frame;
 
 public class StudentiController {
@@ -20,7 +21,7 @@ private static StudentiController instance = null;
 		Main_Frame.getInstance().azurirajPrikazStudenta("DODAT", -1);
 	}
 	
-    /*public void izbrisiStudeta(int rowSelectedIndex) {
+    public void izbrisiStudeta(int rowSelectedIndex) {
     	if (rowSelectedIndex < 0) {
 			return;
 		}
@@ -28,9 +29,9 @@ private static StudentiController instance = null;
     	Student student = BazaStudenta.getInstance().getRow(rowSelectedIndex);
     	BazaStudenta.getInstance().izbrisiStudenta(student.getBrojIndeksa());
 		// azuriranje prikaza
-		Main_Frame.getInstance().azurirajPrikaz("UKLONJEN", rowSelectedIndex);
+		Main_Frame.getInstance().azurirajPrikazStudenta("UKLONJEN", rowSelectedIndex);
     }
-	
+	/*
 	public void izmeniStudenta(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {
 			return;

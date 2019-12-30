@@ -1,7 +1,9 @@
 package rs.ac.uns.ftn.oisisi.view;
 
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 
@@ -80,18 +82,47 @@ file = new JMenu("File");
 					novistudent.setMnemonic(KeyEvent.VK_N);
 					novistudent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 					novistudent.setIcon(new ImageIcon("images2/close.png"));
+					novistudent.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							DodavanjeStudentaDialog dialog = new DodavanjeStudentaDialog(Main_Frame.getInstance(), "Dodavanje novog studenta", true);
+							dialog.setVisible(true);
+						StudentiJTable.getInstance().refresTabelu();
+
+						}
+					});
+
 					miNew.add(novistudent);
 					miNew.addSeparator();
 					
 					noviprofesor.setMnemonic(KeyEvent.VK_N);
 					noviprofesor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 					noviprofesor.setIcon(new ImageIcon("images2/close.png"));
+					
+					noviprofesor.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							DodavanjeProfesoraDialog dialog = new DodavanjeProfesoraDialog(Main_Frame.getInstance(), "Dodavanje novog profesora", true);
+							dialog.setVisible(true);
+						ProfesoriJTable.getInstance().refresTabelu();
+
+						}
+					});
 					miNew.add(noviprofesor);
 					miNew.addSeparator();
 					
 					novipredmet.setMnemonic(KeyEvent.VK_N);
 					novipredmet.setIcon(new ImageIcon("images2/close.png"));
 					novipredmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+					novipredmet.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							DodavanjePredmetaDialog dialog = new DodavanjePredmetaDialog(Main_Frame.getInstance(), "Dodavanje novog predmeta", true);
+							dialog.setVisible(true);
+						PredmetiJTable.getInstance().refresTabelu();
+
+						}
+					});
 					miNew.add(novipredmet);
 					
 					

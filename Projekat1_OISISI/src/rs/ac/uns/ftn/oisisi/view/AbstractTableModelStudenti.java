@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
-import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
 public class AbstractTableModelStudenti  extends AbstractTableModel {

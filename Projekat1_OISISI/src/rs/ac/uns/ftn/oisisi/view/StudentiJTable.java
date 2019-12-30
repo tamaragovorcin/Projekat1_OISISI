@@ -21,7 +21,7 @@ private static StudentiJTable instance = null;
 	}
 	
 	
-	public StudentiJTable() {
+	private StudentiJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
