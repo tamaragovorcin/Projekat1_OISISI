@@ -30,7 +30,7 @@ private static ProfesoriController instance = null;
     	Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
     	BazaProfesora.getInstance().izbrisiProfesora(profesor.getBroj_licne_karte());
 		// azuriranje prikaza
-		Main_Frame.getInstance().azurirajPrikazProfesora("UKLONJEN", rowSelectedIndex);
+		//Main_Frame.getInstance().azurirajPrikazProfesora("UKLONJEN", rowSelectedIndex);
     }
 	
 	public void izmeniProfesora(int rowSelectedIndex) {

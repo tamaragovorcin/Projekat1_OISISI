@@ -40,7 +40,7 @@ public class PredmetiController {
 		Predmet predmet = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
 		BazaPredmeta.getInstance().izbrisiPredmet(predmet.getSifra_predmeta());
 
-		Main_Frame.getInstance().azurirajPrikazPredmeta("UKLONJEN", rowSelectedIndex);
+		//Main_Frame.getInstance().azurirajPrikazPredmeta("UKLONJEN", rowSelectedIndex);
 	}
 
 	public void izmeniPredmet(int rowSelectedIndex) {

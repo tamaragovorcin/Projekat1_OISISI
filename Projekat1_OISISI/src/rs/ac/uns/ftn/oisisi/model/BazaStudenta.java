@@ -83,6 +83,8 @@ public class BazaStudenta {
 	}
 
 	public String getValueAt(int row, int column) {
+		
+		
 		if(row<studenti.size()) {
 			Student student= this.studenti.get(row);
 			switch (column) {
@@ -133,7 +135,7 @@ public class BazaStudenta {
 	}
 
 	public void izmeniStudent(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String indeks, String datumUpisa,String godinaStudija,String status,String prosecnaOcena) {
+			String kontakt_telefon, String indeks, String datumUpisa,String godinaStudija,String status) {
 		for (Student i : studenti) {
 			if (i.getBrojIndeksa().equals(indeks)) {
 				i.setIme(ime);

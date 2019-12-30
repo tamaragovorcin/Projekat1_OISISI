@@ -41,7 +41,7 @@ public class Toolbar extends JToolBar {
 	private JToggleButton addButton;
 	
 	private JToggleButton changeButton;
-	
+	private JToggleButton changestudentButton;
 	private JToggleButton deleteButton;
 	private JToggleButton deletestudentButton;
 	
@@ -101,10 +101,15 @@ public class Toolbar extends JToolBar {
 		dodajProfesoraNaPredmet.setIcon(new ImageIcon("images2/teacher.png"));
 		
 		changeButton = new JToggleButton();
-		changeButton.setToolTipText("Izmena studenta");
+		changeButton.setToolTipText("Izmena predmeta");
 		changeButton.setIcon(new ImageIcon("images2/pencil.png"));
 		changeButton.setMnemonic(KeyEvent.VK_1);
-	
+		
+		
+		changestudentButton = new JToggleButton();
+		changestudentButton.setToolTipText("Izmena studenta");
+		changestudentButton.setIcon(new ImageIcon("images2/pencil.png"));
+		changestudentButton.setMnemonic(KeyEvent.VK_1);
 		
 		deleteButton = new JToggleButton();
 		deleteButton.setToolTipText("Brisanje");
@@ -146,6 +151,10 @@ public class Toolbar extends JToolBar {
 				}
 			});
 			add(dodajStudentButton,FlowLayout.LEFT);
+			
+			
+			
+			
 		}
 		else if(d == Dugme.PREDMET)  {
 
@@ -183,7 +192,21 @@ public class Toolbar extends JToolBar {
 		
 		
 		if(d == Dugme.STUDENT) {
-			//changeButton.setToolTipText("Izmena studenta");
+			changestudentButton.setToolTipText("Izmena studenta");
+			changestudentButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int row = StudentiJTable.getInstance().getSelectedRow();
+					if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata()) {
+						StudentiController.getInstance().izmeniStudenta(row);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+					}
+					StudentiJTable.getInstance().refresTabelu();  
+				}
+			});
 			
 			
 			deletestudentButton.setToolTipText("Brisanje studenta");
@@ -218,8 +241,8 @@ public class Toolbar extends JToolBar {
 				
 			
 			
-			//add(changeButton);
-			//addSeparator();
+			add(changestudentButton);
+			addSeparator();
 			add(deletestudentButton);
 			addSeparator();
 			//add(dodajStudentaNaPredmet);

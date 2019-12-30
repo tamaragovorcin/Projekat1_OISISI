@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
 public class AbstractTableModelStudenti  extends AbstractTableModel {
@@ -12,6 +13,8 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 	private static final long serialVersionUID = 2995603907983526790L;
 	public static String kolonaDugme = "DUGME";
 	public static String kolonaCheck = "CHECK";
+	
+	
 	
 	private List<Boolean> koJeOtkacen;
 	
