@@ -46,5 +46,10 @@ private static StudentiJTable instance = null;
 		return c;
 	}
 	
-	
+	public void refresTabelu() {
+		AbstractTableModelStudenti arp = (AbstractTableModelStudenti) this.getModel();
+		arp.fireTableDataChanged();
+		validate();
+		
+	}
 }

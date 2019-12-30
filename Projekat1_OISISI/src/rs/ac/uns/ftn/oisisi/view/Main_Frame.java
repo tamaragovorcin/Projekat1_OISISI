@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 
 
-import rs.ac.uns.ftn.oisisi.controller.TabbedPaneListener;
 
 
 
@@ -78,7 +77,7 @@ public class Main_Frame extends JFrame{
 	
 	private JTable tabelaPredmeta;
 
-	public void azurirajPrikaz(String a, int i) {
+	public void azurirajPrikazPredmeta(String a, int i) {
 		AbstractTableModelPredmeti model = (AbstractTableModelPredmeti) tabelaPredmeta.getModel();
 		if (a != null) {
 			if (a.toUpperCase().trim().equals("DODAT")) {
@@ -92,7 +91,20 @@ public class Main_Frame extends JFrame{
 	}
 	
 	
-	
+	private JTable tabelaStudenta;
+
+	public void azurirajPrikazStudenta(String a, int i) {
+		AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaPredmeta.getModel();
+		if (a != null) {
+			if (a.toUpperCase().trim().equals("DODAT")) {
+				model.studentDodat();
+			} else if (a.toUpperCase().trim().equals("UKLONJEN")) {
+				model.studentUklonjen(i);
+			}
+		}
+		model.fireTableDataChanged();
+		validate();
+	}
 
 	
 	

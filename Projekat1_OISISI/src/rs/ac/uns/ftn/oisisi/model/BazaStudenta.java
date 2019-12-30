@@ -44,8 +44,8 @@ public class BazaStudenta {
 	}
 
 	public void initStudenti(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String indeks, String datumUpisa, String godinaStudija,String status,String prosecnaOcena) {
-		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,indeks,datumUpisa,godinaStudija,status,prosecnaOcena));
+			String kontakt_telefon, String indeks, String datumUpisa, String godinaStudija,String status) {
+		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,indeks,datumUpisa,godinaStudija,status));
 		
 		//this.studenti.add(new Student("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.",3,"B",8.12));
 		//this.studenti.add(new Student("Jovan","Simic","20.08.1997.","Zeleznicka 18","0694566123","jovansimic5@gmail.com","RA5-2015","1.10.2015",4,"B",9.7));
@@ -99,8 +99,6 @@ public class BazaStudenta {
 			case 9:
 				return student.getStatus();
 			case 10:
-				return student.getProsecnaOcena();
-			case 11:
 				return "Spisak predmeta";
 			default:
 				return null;
@@ -139,7 +137,6 @@ public class BazaStudenta {
 				i.setDatumUpisa(datumUpisa);
 				i.setGodinaStudija(godinaStudija);
 				i.setStatus(status);
-				i.setProsecnaOcena(prosecnaOcena);
 			}
 		}
 	}
