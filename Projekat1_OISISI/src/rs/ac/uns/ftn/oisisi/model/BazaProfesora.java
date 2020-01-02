@@ -15,13 +15,14 @@ private static BazaProfesora instance = null;
 	}
 	
 	private int broj_profesora = 0;
+
 	private List<String>kolone;
 	private List<Profesor>profesori;
 	
 	private BazaProfesora() {
 		
 		
-		initProfesori();
+		//initProfesori();
 		
 		this.kolone=new ArrayList<String>();
 		this.profesori=new ArrayList<Profesor>();
@@ -46,6 +47,7 @@ private static BazaProfesora instance = null;
 		this.profesori.add(new Profesor("Jovan","Jovanovic","20.08.1970.","Sfarikova 15","0694566123","jovanjovanovic@gmail.com","Radnicka 55","4569872","Redovni profesor","Doktor nauka"));
 		this.profesori.add(new Profesor("Natalija","Jokic","05.05.1975.","Puskinova 9","0654599255","natalijajokic@gmail.com","Radnicka 55","0321236","Redovni profesor","Doktor nauka"));
 		
+		++broj_profesora;
 		
 	}
 
@@ -70,7 +72,7 @@ private static BazaProfesora instance = null;
 	}
 
 	public String getValueAt(int row, int column) {
-		if(row<broj_profesora) {
+		if(row<profesori.size()) {
 			Profesor profesor = this.profesori.get(row);
 			switch (column) {
 			case 0:
@@ -107,7 +109,7 @@ private static BazaProfesora instance = null;
 	public void dodajProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
 			String kontakt_telefon, String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
 		this.profesori.add(new Profesor(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,adresa_kancelarije,broj_licne_karte,titula,zvanje));
-		broj_profesora++;
+		++broj_profesora;
 	}
 
 	public void izbrisiProfesora(String sifra) {

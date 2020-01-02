@@ -21,18 +21,17 @@ private static ProfesoriController instance = null;
 		// azuriranje prikaza
 		Main_Frame.getInstance().azurirajPrikazProfesora("DODAT", -1);
 	}
-	/*
+	
     public void izbrisiProfesora(int rowSelectedIndex) {
     	if (rowSelectedIndex < 0) {
 			return;
 		}
-    	// izmena modela
+    	
     	Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
     	BazaProfesora.getInstance().izbrisiProfesora(profesor.getBroj_licne_karte());
-		// azuriranje prikaza
-		//Main_Frame.getInstance().azurirajPrikazProfesora("UKLONJEN", rowSelectedIndex);
+		
     }
-	
+	/*
 	public void izmeniProfesora(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {
 			return;

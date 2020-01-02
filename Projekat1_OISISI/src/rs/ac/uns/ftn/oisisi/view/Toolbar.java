@@ -19,8 +19,10 @@ import javax.swing.SwingConstants;
 
 
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
+import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
+import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
 
@@ -177,6 +179,7 @@ public class Toolbar extends JToolBar {
 					DodavanjeProfesoraDialog dialog = new DodavanjeProfesoraDialog(Main_Frame.getInstance(), "Dodavanje novog profesora", true);
 					dialog.setVisible(true);
 				StudentiJTable.getInstance().refresTabelu();
+					
 
 				}
 			});
@@ -323,6 +326,32 @@ public class Toolbar extends JToolBar {
 		else if(d==Dugme.PROFESOR) {
 			changeButton.setToolTipText("Izmena profesora");
 			deleteButton.setToolTipText("Brisanje profesora");
+			deleteButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+			
+					int row = ProfesoriJTable.getInstance().getSelectedRow();
+					if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora() ) {
+						int izbor = JOptionPane.showConfirmDialog(null,
+								"Da li ste sigurni da zelite da obrisete profesora?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
+						if (izbor == JOptionPane.YES_OPTION) {
+							ProfesoriController.getInstance().izbrisiProfesora(row);
+							JOptionPane.showMessageDialog(null, "Profesor je obrisan!");
+							
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Profesor nije obrisan.");
+						}
+						
+					}else {
+							JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+						}
+						
+						ProfesoriJTable.getInstance().refresTabelu();
+					
+				}
+			});
 			
 			add(changeButton);
 			addSeparator();

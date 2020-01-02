@@ -29,13 +29,13 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		//return BazaPredmeta.getInstance().getPredmete().size();
-		return 10;
+		return BazaPredmeta.getInstance().getPredmete().size();
+	
 	}
 
 	@Override
 	public int getColumnCount() {
-		//return BazaPredmeta.getInstance().getColumnCount() +2;
+	
 		return BazaPredmeta.getInstance().getColumnCount();
 		 
 	}

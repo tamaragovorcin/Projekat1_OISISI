@@ -39,10 +39,6 @@ public class BazaPredmeta {
 	File nazivTXT = new File("predmeti.txt");
 
 	private BazaPredmeta() {
-		String sifra = "";
-		String naziv = "";
-		String semestar = "";
-		String godina = "";
 
 		this.kolone = new ArrayList<String>();
 		this.predmeti = new ArrayList<Predmet>();
@@ -79,7 +75,7 @@ public class BazaPredmeta {
 	}
 
 	public int getColumnCount() {
-		return 5;
+		return 6;
 	}
 
 	public String getColumnName(int index) {
