@@ -5,12 +5,19 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import com.sun.jdi.connect.Connector.SelectedArgument;
 
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
+
 
 public class PredmetiTablePanel extends JPanel{
 /**
@@ -21,6 +28,7 @@ public class PredmetiTablePanel extends JPanel{
 	private PredmetiJTable predmetiTable;
 	private JScrollPane scrollPane;
 	
+	public static int selektovan_red = -1;
 	
 	
 	public PredmetiTablePanel() {
@@ -65,6 +73,43 @@ public class PredmetiTablePanel extends JPanel{
 		
 		predmetiTable = PredmetiJTable.getInstance();
 		scrollPane = new JScrollPane(predmetiTable);
+		
+		TableRowSorter<TableModel>sortiranje = new TableRowSorter<TableModel>(predmetiTable.getModel());
+		predmetiTable.setRowSorter(sortiranje);
+		predmetiTable.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				PredmetiJTable tabela = (PredmetiJTable) e.getComponent();
+				selektovan_red=tabela.convertRowIndexToModel(tabela.getSelectedRow());
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 		
 		add(scrollPane,BorderLayout.CENTER);
 		
