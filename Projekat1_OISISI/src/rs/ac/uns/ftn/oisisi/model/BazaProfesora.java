@@ -14,7 +14,7 @@ private static BazaProfesora instance = null;
 		return instance;
 	}
 	
-	private int broj_profesora = 0;
+	private static int broj_profesora = 0;
 	private List<String>kolone;
 	private List<Profesor>profesori;
 	

@@ -627,6 +627,7 @@ budzet.addActionListener(new ActionListener() {
 		String tekst[] = pokupiUnetiTekst();
 		boolean izlaz = true;
 
+
 		if (!Pattern.matches("[a-zA-Z0-9]*", tekst[0])) {
 			txtIme.setBackground(Color.RED);
 			return false;
@@ -635,31 +636,43 @@ budzet.addActionListener(new ActionListener() {
 			txtPrezime.setBackground(Color.RED);
 			return false;
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[2])) {
-			txtDatumRodjenja.setBackground(Color.RED);
-			return false;
+		if (tekst[2].length() != 0) {
+			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[2])) {// sek
+				txtDatumRodjenja.setBackground(Color.RED);
+				return false;
+			}
 		}
 		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[3])) {
 			txtAdresa.setBackground(Color.RED);
 			return false;
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[4])) {
+		if (!Pattern.matches("^[0-9]*", tekst[4])) {
 			txtTelefon.setBackground(Color.RED);
-			return false;
+			return false;	
+		}else if(tekst[4].length() >16) {
+			txtTelefon.setBackground(Color.RED);
+			return false;	
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[5])) {
-			txtEmail.setBackground(Color.RED);
-			return false;
+		if (tekst[5].length() != 0) {
+			if (!Pattern.matches("^(.+)@(.+)$", tekst[5])) {
+				txtEmail.setBackground(Color.RED);
+				return false;
+			}
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[6])) {
-			txtIndeks.setBackground(Color.RED);
-			return false;
+		if (tekst[6].length() != 0) {
+
+			if (!Pattern.matches("[A-Z]{2,3}-[0-9]{1,3}-[0-9]{4}", tekst[6])) {
+				txtIndeks.setBackground(Color.RED);
+				return false;
+			}
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[7])) {
-			txtDatumUpisa.setBackground(Color.RED);
-			return false;
+		if (tekst[7].length() != 0) {
+			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[7])) {
+				txtDatumUpisa.setBackground(Color.RED);
+				return false;
+			}
 		}
-		
+
 		
 		
 		for (String t : tekst) {
@@ -727,7 +740,7 @@ budzet.addActionListener(new ActionListener() {
 				student.setAdresaStanovanja(tekst[3]);
 				student.setKontakt_telefon(tekst[4]);
 				student.setEmail(tekst[5]);
-				student.setDatumUpisa(tekst[6]);
+				student.setDatumUpisa(tekst[7]);
 				student.setGodinaStudija(tekst[8]);
 				student.setStatus(tekst[9]);
 				

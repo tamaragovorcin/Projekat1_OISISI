@@ -19,7 +19,7 @@ public class BazaStudenta {
 	}
 	
 	
-	private int broj_studenata=0;
+	private static int broj_studenata=0;
 	private List<String>kolone;
 	private List<Student> studenti;
 	
@@ -58,7 +58,7 @@ public class BazaStudenta {
 		
 	//}*/
 	public void initi() {
-		this.studenti.add(new Student("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.","III","B"));
+		this.studenti.add(new Student("Ana","Petrovic","14.02.1999","Pavla Simica 2","anapetrovic@gmail.com","065264102","RA-47-2017","01.10.2017","III","B"));
 		broj_studenata++;
 	}
 
