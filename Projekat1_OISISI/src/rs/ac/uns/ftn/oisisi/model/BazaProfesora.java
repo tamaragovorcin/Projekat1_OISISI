@@ -107,9 +107,9 @@ private static BazaProfesora instance = null;
 		}
 	}
 
-	public void dodajProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
-		this.profesori.add(new Profesor(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,adresa_kancelarije,broj_licne_karte,titula,zvanje));
+	public void dodajProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
+			String kontakt_telefon, String email, String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
+		this.profesori.add(new Profesor(ime,prezime,datumRodjenja,adresaStanovanja,kontakt_telefon,email,adresa_kancelarije,broj_licne_karte,titula,zvanje));
 		++broj_profesora;
 	}
 
@@ -122,16 +122,16 @@ private static BazaProfesora instance = null;
 		}
 	}
 
-	public void izmeniProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
+	public void izmeniProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
+			String kontakt_telefon, String email,String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
 		for (Profesor i : profesori) {
 			if (i.getBroj_licne_karte().equals(broj_licne_karte)) {
 				i.setIme(ime);
 				i.setPrezime(prezime);
 				i.setDatumRodjenja(datumRodjenja);
 				i.setAdresaStanovanja(adresaStanovanja);
-				i.setEmail(email);
 				i.setKontakt_telefon(kontakt_telefon);
+				i.setEmail(email);
 				i.setAdresa_kancelarije(adresa_kancelarije);
 				i.setTitula(titula);
 				i.setZvanje(zvanje);

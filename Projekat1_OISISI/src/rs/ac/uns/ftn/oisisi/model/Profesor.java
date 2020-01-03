@@ -13,9 +13,9 @@ public class Profesor extends Osoba {
 	
 	
 	
-	public Profesor(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
-		super(ime, prezime, datumRodjenja, adresaStanovanja, email, kontakt_telefon);
+	public Profesor(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
+			String kontakt_telefon, String email, String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
+		super(ime, prezime, datumRodjenja, adresaStanovanja,  kontakt_telefon,email);
 		this.adresa_kancelarije = adresa_kancelarije;
 		this.broj_licne_karte = broj_licne_karte;
 		this.titula = titula;

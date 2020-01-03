@@ -8,15 +8,15 @@ public abstract class Osoba {
 	private String email;
 	private String kontakt_telefon;
 	
-	public Osoba(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon) {
+	public Osoba(String ime, String prezime, String datumRodjenja, String adresaStanovanja, 
+			String kontakt_telefon,String email) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
 		this.datumRodjenja = datumRodjenja;
 		this.adresaStanovanja = adresaStanovanja;
-		this.email = email;
 		this.kontakt_telefon = kontakt_telefon;
+		this.email = email;
 	}
 	
 	public String getIme() {

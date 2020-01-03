@@ -45,10 +45,10 @@ public class BazaStudenta {
 		//initStudenti("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.","III","B");
 	}
 
-	public void initStudenti(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-		String kontakt_telefon, String brojIndeksa,String datumUpisa, String godinaStudija, String status) {
+	public void initStudenti(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
+		String kontakt_telefon, String email, String brojIndeksa,String datumUpisa, String godinaStudija, String status) {
 
-		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,brojIndeksa,datumUpisa,godinaStudija,status));
+		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,kontakt_telefon,email,brojIndeksa,datumUpisa,godinaStudija,status));
 		broj_studenata++;
 	}/*	
 		//this.studenti.add(new Student("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.",3,"B",8.12));
@@ -58,7 +58,7 @@ public class BazaStudenta {
 		
 	//}*/
 	public void initi() {
-		this.studenti.add(new Student("Ana","Petrovic","14.02.1999","Pavla Simica 2","anapetrovic@gmail.com","065264102","RA-47-2017","01.10.2017","III","B"));
+		this.studenti.add(new Student("Ana","Petrovic","14.02.1999","Pavla Simica 2","065264102","anapetrovic@gmail.com","RA-47-2017","01.10.2017","III","B"));
 		broj_studenata++;
 	}
 

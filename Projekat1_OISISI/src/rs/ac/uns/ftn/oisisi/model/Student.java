@@ -12,9 +12,9 @@ public class Student extends Osoba{
 	private ArrayList<Predmet> predmeti;
 	
 	
-	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String brojIndeksa,String datumUpisa, String godinaStudija, String status) {
-		super(ime, prezime, datumRodjenja, adresaStanovanja, email, kontakt_telefon);
+	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
+			String kontakt_telefon,String email, String brojIndeksa,String datumUpisa, String godinaStudija, String status) {
+		super(ime, prezime, datumRodjenja, adresaStanovanja, kontakt_telefon, email);
 		this.brojIndeksa = brojIndeksa;
 		this.datumUpisa = datumUpisa;
 		this.godinaStudija = godinaStudija;

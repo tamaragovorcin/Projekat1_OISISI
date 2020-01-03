@@ -44,6 +44,6 @@ private static StudentiController instance = null;
 		dialog.setVisible(true);
 		// TODO: izmena dodatnih polja modela tabele
 		
-}//aj sad mi nadji dijalog
+}
 }
 

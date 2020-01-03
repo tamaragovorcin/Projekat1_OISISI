@@ -81,7 +81,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 		txtIme.setPreferredSize(dim);
 		txtIme.setName("txtIme");
-		txtIme.setBackground(Color.CYAN);
+		txtIme.setBackground(Color.GRAY);
 		txtIme.addKeyListener(new KeyListener() {
 
 			@Override
@@ -112,7 +112,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 		txtPrezime.setPreferredSize(dim);
 		txtPrezime.setName("txtPrezime");
-		txtPrezime.setBackground(Color.CYAN);
+		txtPrezime.setBackground(Color.GRAY);
 		txtPrezime.addKeyListener(new KeyListener() {
 
 			@Override
@@ -143,7 +143,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 		txtDatumRodjenja.setPreferredSize(dim);
 		txtDatumRodjenja.setName("txtDatumRodjenja");
-		txtDatumRodjenja.setBackground(Color.CYAN);
+		txtDatumRodjenja.setBackground(Color.GRAY);
 		txtDatumRodjenja.addKeyListener(new KeyListener() {
 
 			@Override
@@ -174,7 +174,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 		txtAdresa.setPreferredSize(dim);
 		txtAdresa.setName("txtDatumRodjenja");
-		txtAdresa.setBackground(Color.CYAN);
+		txtAdresa.setBackground(Color.GRAY);
 		txtAdresa.addKeyListener(new KeyListener() {
 
 			@Override
@@ -205,7 +205,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 		txtTelefon.setPreferredSize(dim);
 		txtTelefon.setName("txtTelefon");
-		txtTelefon.setBackground(Color.CYAN);
+		txtTelefon.setBackground(Color.GRAY);
 		txtTelefon.addKeyListener(new KeyListener() {
 
 			@Override
@@ -236,7 +236,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 		txtEmail.setPreferredSize(dim);
 		txtEmail.setName("txtEmail");
-		txtEmail.setBackground(Color.CYAN);
+		txtEmail.setBackground(Color.GRAY);
 		txtEmail.addKeyListener(new KeyListener() {
 
 			@Override
@@ -267,7 +267,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 		txtIndeks.setPreferredSize(dim);
 		txtIndeks.setName("txtIndeks");
-		txtIndeks.setBackground(Color.CYAN);
+		txtIndeks.setBackground(Color.GRAY);
 		txtIndeks.addKeyListener(new KeyListener() {
 
 			@Override
@@ -298,7 +298,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 		txtDatumUpisa.setPreferredSize(dim);
 		txtDatumUpisa.setName("txtDatumUpisa");
-		txtDatumUpisa.setBackground(Color.CYAN);
+		txtDatumUpisa.setBackground(Color.GRAY);
 		txtDatumUpisa.addKeyListener(new KeyListener() {
 
 			@Override

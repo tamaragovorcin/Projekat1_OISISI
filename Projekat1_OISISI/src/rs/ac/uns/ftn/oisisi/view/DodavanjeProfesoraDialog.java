@@ -82,7 +82,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtIme.setPreferredSize(dim);
 		txtIme.setName("txtIme");
-		txtIme.setBackground(Color.CYAN);
+		txtIme.setBackground(Color.GRAY);
 		txtIme.addKeyListener(new KeyListener() {
 
 			@Override
@@ -114,7 +114,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtPrezime.setPreferredSize(dim);
 		txtPrezime.setName("txtPrezime");
-		txtPrezime.setBackground(Color.CYAN);
+		txtPrezime.setBackground(Color.GRAY);
 		txtPrezime.addKeyListener(new KeyListener() {
 
 			@Override
@@ -149,7 +149,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtDatumRodjenja.setPreferredSize(dim);
 		txtDatumRodjenja.setName("txtDatumRodjenja");
-		txtDatumRodjenja.setBackground(Color.CYAN);
+		txtDatumRodjenja.setBackground(Color.GRAY);
 		txtDatumRodjenja.addKeyListener(new KeyListener() {
 
 			@Override
@@ -183,7 +183,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtAdresa.setPreferredSize(dim);
 		txtAdresa.setName("txtDatumRodjenja");
-		txtAdresa.setBackground(Color.CYAN);
+		txtAdresa.setBackground(Color.GRAY);
 		txtAdresa.addKeyListener(new KeyListener() {
 
 			@Override
@@ -216,7 +216,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtTelefon.setPreferredSize(dim);
 		txtTelefon.setName("txtTelefon");
-		txtTelefon.setBackground(Color.CYAN);
+		txtTelefon.setBackground(Color.GRAY);
 		txtTelefon.addKeyListener(new KeyListener() {
 
 			@Override
@@ -249,7 +249,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtEmail.setPreferredSize(dim);
 		txtEmail.setName("txtEmail");
-		txtEmail.setBackground(Color.CYAN);
+		txtEmail.setBackground(Color.GRAY);
 		txtEmail.addKeyListener(new KeyListener() {
 
 			@Override
@@ -282,7 +282,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtAdresaKancelarije.setPreferredSize(dim);
 		txtAdresaKancelarije.setName("txtAdresaKancelarije");
-		txtAdresaKancelarije.setBackground(Color.CYAN);
+		txtAdresaKancelarije.setBackground(Color.GRAY);
 		txtAdresaKancelarije.addKeyListener(new KeyListener() {
 
 			@Override
@@ -315,7 +315,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtBrojLicneKarte.setPreferredSize(dim);
 		txtBrojLicneKarte.setName("txtBrojLicneKarte");
-		txtBrojLicneKarte.setBackground(Color.CYAN);
+		txtBrojLicneKarte.setBackground(Color.GRAY);
 		txtBrojLicneKarte.addKeyListener(new KeyListener() {
 
 			@Override
@@ -346,7 +346,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtTitula.setPreferredSize(dim);
 		txtTitula.setName("txtTitula");
-		txtTitula.setBackground(Color.CYAN);
+		txtTitula.setBackground(Color.GRAY);
 		txtTitula.addKeyListener(new KeyListener() {
 
 			@Override
@@ -378,7 +378,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		txtZvanje.setPreferredSize(dim);
 		txtZvanje.setName("txtZvanje");
-		txtZvanje.setBackground(Color.CYAN);
+		txtZvanje.setBackground(Color.GRAY);
 		txtZvanje.addKeyListener(new KeyListener() {
 
 			@Override
@@ -595,7 +595,7 @@ private static final long serialVersionUID = -720118426910400743L;
 		String tekst[] = pokupiUnetiTekst();
 		boolean izlaz = true;
 
-		if (!Pattern.matches("[a-zA-Z0-9]*", tekst[0])) {
+		if (!Pattern.matches("[a-zA-Z0-9_]*", tekst[0])) {
 			txtIme.setBackground(Color.RED);
 			return false;
 		}
@@ -603,21 +603,25 @@ private static final long serialVersionUID = -720118426910400743L;
 			txtPrezime.setBackground(Color.RED);
 			return false;
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[2])) {
-			txtDatumRodjenja.setBackground(Color.RED);
-			return false;
+		if (tekst[2].length() != 0) {
+			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[2])) {
+				txtDatumRodjenja.setBackground(Color.RED);
+				return false;
+			}
 		}
 		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[3])) {
 			txtAdresa.setBackground(Color.RED);
 			return false;
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[4])) {
+		if (!Pattern.matches("^[0-9]*", tekst[4])) {
 			txtTelefon.setBackground(Color.RED);
-			return false;
+			return false;	
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[5])) {
-			txtEmail.setBackground(Color.RED);
-			return false;
+		if (tekst[5].length() != 0) {
+			if (!Pattern.matches("^(.+)@(.+)$", tekst[5])) {
+				txtEmail.setBackground(Color.RED);
+				return false;
+			}
 		}
 		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[6])) {
 			txtAdresaKancelarije.setBackground(Color.RED);

@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.oisisi.controller;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
+import rs.ac.uns.ftn.oisisi.view.IzmenaProfesoraDialog;
+import rs.ac.uns.ftn.oisisi.view.IzmenaStudentaDialog;
 import rs.ac.uns.ftn.oisisi.view.Main_Frame;
 
 public class ProfesoriController {
@@ -31,18 +33,15 @@ private static ProfesoriController instance = null;
     	BazaProfesora.getInstance().izbrisiProfesora(profesor.getBroj_licne_karte());
 		
     }
-	/*
-	public void izmeniProfesora(int rowSelectedIndex) {
+    public void izmeniProfesora(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {
 			return;
 		}
 		// izmena modela
-		Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
-		BazaProfesora.getInstance().izmeniProfesora("Anja","Sibul","15.02.1970.","Fruskogorska 50","anjasibul@gmail.com","0645845664","Radnicka 64",profesor.getBroj_licne_karte(),"Redovni profesor","Doktor nauka");
+		IzmenaProfesoraDialog dialog = new IzmenaProfesoraDialog(Main_Frame.getInstance(), "Izmena profesora", true,
+				rowSelectedIndex);
+		dialog.setVisible(true);
 		// TODO: izmena dodatnih polja modela tabele
 		
-		// azuriranje prikaza
-		Main_Frame.getInstance().azurirajPrikazProfesora(null, -1);
-	}*/
-	
+}
 }

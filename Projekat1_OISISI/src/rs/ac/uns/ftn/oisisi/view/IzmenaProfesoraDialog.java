@@ -15,7 +15,6 @@ import java.awt.event.KeyListener;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import javax.net.ssl.SSLEngineResult.Status;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,14 +25,13 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
+import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
-import rs.ac.uns.ftn.oisisi.model.Predmet;
+import rs.ac.uns.ftn.oisisi.model.Profesor;
 import rs.ac.uns.ftn.oisisi.model.Student;
 
-public class IzmenaStudentaDialog extends JDialog implements ActionListener {
-	
-	
+public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
+
 	private static final long serialVersionUID = 8377505010808280172L;
 
 	private int mode = 1;
@@ -46,31 +44,29 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 	JTextField txtAdresa=new JTextField();
 	JTextField txtTelefon=new JTextField();
 	JTextField txtEmail =new JTextField();
-	JTextField txtIndeks=new JTextField();
-	JTextField txtDatumUpisa=new JTextField();
-	JComboBox<String> godinaComboBox;
-	JRadioButton budzet = new JRadioButton("Budzet",true);
-	JRadioButton samofinansiranje = new JRadioButton("Samofinansiranje");
-	ButtonGroup btnGroup1 = new ButtonGroup();
+	JTextField txtAdresaKancelarije=new JTextField();
+	JTextField txtBrojLicneKarte=new JTextField();
+	JTextField txtTitula=new JTextField();
+	JTextField txtZvanje=new JTextField();
 	
-	List<Student> studenti = BazaStudenta.getInstance().getStudente();
 	
-	String statusStudenta;
-	private int br2=0;
+	List<Profesor> profesori = BazaProfesora.getInstance().getProfesore();
+	
+	
 	private int red;
-	private Student student;
-	public IzmenaStudentaDialog(Main_Frame instance, String string, boolean b,int row) {
+	private Profesor profesor;
+	public IzmenaProfesoraDialog(Main_Frame instance, String string, boolean b,int row) {
 		
 		super(instance, string, b);
 		
 		
-		Student student = studenti.get(row);
+		Profesor profesor = profesori.get(row);
 		red = row;
 		
 		setSize(400, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		setTitle("Izmena studenta");
+		setTitle("Izmena profesora");
 
 		Dimension dim = new Dimension(120, 20);
 
@@ -92,13 +88,13 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		
 		
 
+
 		JLabel labelaIme = new JLabel("Ime*:");
 		labelaIme.setPreferredSize(dim);
 
 		txtIme.setPreferredSize(dim);
 		txtIme.setName("txtIme");
-		txtIme.setBackground(Color.GRAY);
-		//txtIme.setText(student.getIme());
+		txtIme.setBackground(Color.CYAN);
 		txtIme.addKeyListener(new KeyListener() {
 
 			@Override
@@ -123,22 +119,14 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		
-		
-		
 	
-		
-		
-		
-		
-		
-		
+	
 		JLabel labelaPrezime = new JLabel("Prezime*:");
 		labelaIme.setPreferredSize(dim);
 
 		txtPrezime.setPreferredSize(dim);
 		txtPrezime.setName("txtPrezime");
-		txtPrezime.setBackground(Color.GRAY);
+		txtPrezime.setBackground(Color.CYAN);
 		txtPrezime.addKeyListener(new KeyListener() {
 
 			@Override
@@ -173,7 +161,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 		txtDatumRodjenja.setPreferredSize(dim);
 		txtDatumRodjenja.setName("txtDatumRodjenja");
-		txtDatumRodjenja.setBackground(Color.GRAY);
+		txtDatumRodjenja.setBackground(Color.CYAN);
 		txtDatumRodjenja.addKeyListener(new KeyListener() {
 
 			@Override
@@ -207,7 +195,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 		txtAdresa.setPreferredSize(dim);
 		txtAdresa.setName("txtDatumRodjenja");
-		txtAdresa.setBackground(Color.GRAY);
+		txtAdresa.setBackground(Color.CYAN);
 		txtAdresa.addKeyListener(new KeyListener() {
 
 			@Override
@@ -240,7 +228,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 		txtTelefon.setPreferredSize(dim);
 		txtTelefon.setName("txtTelefon");
-		txtTelefon.setBackground(Color.GRAY);
+		txtTelefon.setBackground(Color.CYAN);
 		txtTelefon.addKeyListener(new KeyListener() {
 
 			@Override
@@ -273,7 +261,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 		txtEmail.setPreferredSize(dim);
 		txtEmail.setName("txtEmail");
-		txtEmail.setBackground(Color.GRAY);
+		txtEmail.setBackground(Color.CYAN);
 		txtEmail.addKeyListener(new KeyListener() {
 
 			@Override
@@ -301,14 +289,13 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 	
 		
 		
-		JLabel labelaIndeks = new JLabel("Indeks*:");
-		labelaIndeks.setPreferredSize(dim);
+		JLabel labelaAdresaKancelarije = new JLabel("Adresa kancelarije*:");
+		labelaAdresaKancelarije.setPreferredSize(dim);
 
-		txtIndeks.setPreferredSize(dim);
-		txtIndeks.setName("txtIndeks");
-		txtIndeks.setBackground(Color.GRAY);
-		txtIndeks.setText(student.getBrojIndeksa());
-		txtIndeks.addKeyListener(new KeyListener() {
+		txtAdresaKancelarije.setPreferredSize(dim);
+		txtAdresaKancelarije.setName("txtAdresaKancelarije");
+		txtAdresaKancelarije.setBackground(Color.CYAN);
+		txtAdresaKancelarije.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -335,13 +322,13 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 	
 		
 		
-		JLabel labelaDatumUpisa = new JLabel("Datum upisa*:");
-		labelaIndeks.setPreferredSize(dim);
+		JLabel labelaBrojLicneKarte = new JLabel("Broj licne karte*:");
+		labelaBrojLicneKarte.setPreferredSize(dim);
 
-		txtDatumUpisa.setPreferredSize(dim);
-		txtDatumUpisa.setName("txtDatumUpisa");
-		txtDatumUpisa.setBackground(Color.GRAY);
-		txtDatumUpisa.addKeyListener(new KeyListener() {
+		txtBrojLicneKarte.setPreferredSize(dim);
+		txtBrojLicneKarte.setName("txtBrojLicneKarte");
+		txtBrojLicneKarte.setBackground(Color.CYAN);
+		txtBrojLicneKarte.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -366,62 +353,68 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 			}
 		});
 		
-		
-		
-		
-		
-		
-		
+		JLabel labelaTitula = new JLabel("Titula*:");
+		labelaBrojLicneKarte.setPreferredSize(dim);
 
-		//JPanel panGodina = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel lblGodina = new JLabel("Godina*:");
-		lblGodina.setPreferredSize(dim);
-		String godina[] = { "     ", "I", "II", "III", "IV", "V" };
-		godinaComboBox = new JComboBox<String>(godina);
-		
-		godinaComboBox.addActionListener(new ActionListener() {
+		txtTitula.setPreferredSize(dim);
+		txtTitula.setName("txtTitula");
+		txtTitula.setBackground(Color.CYAN);
+		txtTitula.addKeyListener(new KeyListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (provera()) {
-					potvrda.setEnabled(true);
-				} else {
-					potvrda.setEnabled(false);
-				}
-
-			}
-		});
-
-		
-budzet.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				if (provera()) {
-					potvrda.setEnabled(true);
-				} else {
-					potvrda.setEnabled(false);
-				}
+
 			}
-		});
-		
-		samofinansiranje.addActionListener(new ActionListener() {
-			
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
 				if (provera()) {
 					potvrda.setEnabled(true);
 				} else {
 					potvrda.setEnabled(false);
 				}
+
 			}
 		});
+	
 		
-	 
-		btnGroup1.add(budzet);
-		btnGroup1.add(samofinansiranje);
+		JLabel labelaZvanje = new JLabel("Zvanje*:");
+		labelaBrojLicneKarte.setPreferredSize(dim);
+
+		txtZvanje.setPreferredSize(dim);
+		txtZvanje.setName("txtZvanje");
+		txtZvanje.setBackground(Color.CYAN);
+		txtZvanje.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (provera()) {
+					potvrda.setEnabled(true);
+				} else {
+					potvrda.setEnabled(false);
+				}
+
+			}
+		});
 		
 		
 		
@@ -461,22 +454,30 @@ budzet.addActionListener(new ActionListener() {
 		gbcEmail .insets = new Insets(20, 20, 0, 0);
 		pan_centar.add(labelaEmail , gbcEmail );
 		
-		GridBagConstraints gbcBrojIndexa = new GridBagConstraints();
-		gbcBrojIndexa .gridx = 0;
-		gbcBrojIndexa .gridy = 6;
-		gbcBrojIndexa .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaIndeks , gbcBrojIndexa );
+		GridBagConstraints gbcAdresaKancelarije = new GridBagConstraints();
+		gbcAdresaKancelarije .gridx = 0;
+		gbcAdresaKancelarije .gridy = 6;
+		gbcAdresaKancelarije .insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaAdresaKancelarije , gbcAdresaKancelarije );
 		
-		GridBagConstraints gbcDatumUpisa = new GridBagConstraints();
-		gbcDatumUpisa .gridx = 0;
-		gbcDatumUpisa .gridy = 7;
-		gbcDatumUpisa .insets =new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaDatumUpisa , gbcDatumUpisa );
-		
-		
+		GridBagConstraints gbcBrojLicneKarte = new GridBagConstraints();
+		gbcBrojLicneKarte  .gridx = 0;
+		gbcBrojLicneKarte  .gridy = 7;
+		gbcBrojLicneKarte  .insets =new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaBrojLicneKarte  , gbcBrojLicneKarte  );
 		
 		
+		GridBagConstraints gbcTitula = new GridBagConstraints();
+		gbcTitula  .gridx = 0;
+		gbcTitula   .gridy = 8;
+		gbcTitula  .insets =new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaTitula   , gbcTitula  );
 		
+		GridBagConstraints gbcZvanje = new GridBagConstraints();
+		gbcZvanje.gridx = 0;
+		gbcZvanje.gridy = 9;
+		gbcZvanje.insets =new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaZvanje   , gbcZvanje  );
 		
 		
 		
@@ -535,71 +536,54 @@ budzet.addActionListener(new ActionListener() {
 		
 		
 		
-		GridBagConstraints gbcTekstBrojIndeksa= new GridBagConstraints();
-		gbcTekstBrojIndeksa .gridx = 1;
-		gbcTekstBrojIndeksa .gridy = 6;
-		gbcTekstBrojIndeksa .weightx = 200;
-		gbcTekstBrojIndeksa .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstBrojIndeksa .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtIndeks , gbcTekstBrojIndeksa );
+		GridBagConstraints gbcTekstAdresaKancelarije= new GridBagConstraints();
+		gbcTekstAdresaKancelarije .gridx = 1;
+		gbcTekstAdresaKancelarije .gridy = 6;
+		gbcTekstAdresaKancelarije .weightx = 200;
+		gbcTekstAdresaKancelarije .fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstAdresaKancelarije .insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtAdresaKancelarije , gbcTekstAdresaKancelarije );
 		
 		
 		
-		GridBagConstraints gbcTekstDatumUpisa = new GridBagConstraints();
-		gbcTekstDatumUpisa .gridx = 1;
-		gbcTekstDatumUpisa .gridy = 7;
-		gbcTekstDatumUpisa .weightx = 200;
-		gbcTekstDatumUpisa .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstDatumUpisa .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtDatumUpisa , gbcTekstDatumUpisa );
+		GridBagConstraints gbcTekstBrojLicneKarte = new GridBagConstraints();
+		gbcTekstBrojLicneKarte .gridx = 1;
+		gbcTekstBrojLicneKarte.gridy = 7;
+		gbcTekstBrojLicneKarte .weightx = 200;
+		gbcTekstBrojLicneKarte .fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstBrojLicneKarte .insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtBrojLicneKarte , gbcTekstBrojLicneKarte );
 		
 
+		GridBagConstraints gbcTekstTitula= new GridBagConstraints();
+		gbcTekstTitula .gridx = 1;
+		gbcTekstTitula.gridy = 8;
+		gbcTekstTitula .weightx = 200;
+		gbcTekstTitula .fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstTitula .insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtTitula , gbcTekstTitula );
 
-
-		GridBagConstraints gbcGodina = new GridBagConstraints();
-		gbcGodina.gridx = 0;
-		gbcGodina.gridy = 8;
-		gbcGodina.insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(lblGodina, gbcGodina);
-
-
-		GridBagConstraints gbcComboBoxGodina = new GridBagConstraints();
-		gbcComboBoxGodina.gridx = 1;
-		gbcComboBoxGodina.gridy = 8;
-		gbcComboBoxGodina.weightx = 10;
-		gbcComboBoxGodina.insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(godinaComboBox, gbcComboBoxGodina);
-
-		budzet.setOpaque(false);
-		
-		
-		GridBagConstraints gbcButtonGroup = new GridBagConstraints();
-		gbcButtonGroup.gridx = 0;
-		gbcButtonGroup.gridy = 9;
-		gbcButtonGroup.insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(budzet, gbcButtonGroup);
-		
-		samofinansiranje.setOpaque(false);
-		
-		GridBagConstraints gbcButtonGroup1 = new GridBagConstraints();
-		gbcButtonGroup1.gridx = 1;
-		gbcButtonGroup1.gridy = 9;
-		gbcButtonGroup1.insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(samofinansiranje, gbcButtonGroup1);
-		
-		
+		GridBagConstraints gbcTekstZvanje = new GridBagConstraints();
+		gbcTekstZvanje .gridx = 1;
+		gbcTekstZvanje.gridy = 9;
+		gbcTekstZvanje .weightx = 200;
+		gbcTekstZvanje.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstZvanje .insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtZvanje , gbcTekstZvanje );
 		
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odgovor, BorderLayout.SOUTH);
+
+		setResizable(false);
 		
 
-		
+
+
 		Set();
 		setResizable(false);	
 		
 		
 	}
-
 
 	public String[] pokupiUnetiTekst() {
 		String tekst[] = new String[10];
@@ -612,15 +596,10 @@ budzet.addActionListener(new ActionListener() {
 		tekst[3]=txtAdresa.getText().toString();
 		tekst[4]=txtTelefon.getText().toString();
 		tekst[5]=txtEmail.getText().toString();
-		tekst[6]=txtIndeks.getText().toString();
-		tekst[7]=txtDatumUpisa.getText().toString();
-		tekst[8] = godinaComboBox.getSelectedItem().toString();
-		if(samofinansiranje.isSelected()) {
-			tekst[9]="S";}
-		else {
-			tekst[9]="B";}
-		
-	
+		tekst[6]=txtAdresaKancelarije.getText().toString();
+		tekst[7]=txtBrojLicneKarte.getText().toString();
+		tekst[8] = txtTitula.getText().toString();
+		tekst[9]=txtZvanje.getText().toString();
 		return tekst;
 	}
 
@@ -628,8 +607,7 @@ budzet.addActionListener(new ActionListener() {
 		String tekst[] = pokupiUnetiTekst();
 		boolean izlaz = true;
 
-
-		if (!Pattern.matches("[a-zA-Z0-9]*", tekst[0])) {
+		if (!Pattern.matches("[a-zA-Z0-9_]*", tekst[0])) {
 			txtIme.setBackground(Color.RED);
 			return false;
 		}
@@ -638,7 +616,7 @@ budzet.addActionListener(new ActionListener() {
 			return false;
 		}
 		if (tekst[2].length() != 0) {
-			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[2])) {// sek
+			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[2])) {
 				txtDatumRodjenja.setBackground(Color.RED);
 				return false;
 			}
@@ -650,9 +628,6 @@ budzet.addActionListener(new ActionListener() {
 		if (!Pattern.matches("^[0-9]*", tekst[4])) {
 			txtTelefon.setBackground(Color.RED);
 			return false;	
-		}else if(tekst[4].length() >16) {
-			txtTelefon.setBackground(Color.RED);
-			return false;	
 		}
 		if (tekst[5].length() != 0) {
 			if (!Pattern.matches("^(.+)@(.+)$", tekst[5])) {
@@ -660,18 +635,21 @@ budzet.addActionListener(new ActionListener() {
 				return false;
 			}
 		}
-		if (tekst[6].length() != 0) {
-
-			if (!Pattern.matches("[A-Z]{2,3}-[0-9]{1,3}-[0-9]{4}", tekst[6])) {
-				txtIndeks.setBackground(Color.RED);
-				return false;
-			}
+		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[6])) {
+			txtAdresaKancelarije.setBackground(Color.RED);
+			return false;
 		}
-		if (tekst[7].length() != 0) {
-			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[7])) {
-				txtDatumUpisa.setBackground(Color.RED);
-				return false;
-			}
+		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[7])) {
+			txtBrojLicneKarte.setBackground(Color.RED);
+			return false;
+		}
+		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[8])) {
+			txtTitula.setBackground(Color.RED);
+			return false;
+		}
+		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[9])) {
+			txtZvanje.setBackground(Color.RED);
+			return false;
 		}
 
 		
@@ -684,8 +662,10 @@ budzet.addActionListener(new ActionListener() {
 				txtAdresa.setBackground(Color.WHITE);
 				txtTelefon.setBackground(Color.WHITE);
 				txtEmail.setBackground(Color.WHITE);
-				txtIndeks.setBackground(Color.WHITE);
-				txtDatumUpisa.setBackground(Color.WHITE);
+				txtAdresaKancelarije.setBackground(Color.WHITE);
+				txtBrojLicneKarte.setBackground(Color.WHITE);
+				txtTitula.setBackground(Color.WHITE);
+				txtZvanje.setBackground(Color.WHITE);
 				izlaz = false;
 			}
 		}
@@ -695,8 +675,10 @@ budzet.addActionListener(new ActionListener() {
 		txtAdresa.setBackground(Color.WHITE);
 		txtTelefon.setBackground(Color.WHITE);
 		txtEmail.setBackground(Color.WHITE);
-		txtIndeks.setBackground(Color.WHITE);
-		txtDatumUpisa.setBackground(Color.WHITE);
+		txtAdresaKancelarije.setBackground(Color.WHITE);
+		txtBrojLicneKarte.setBackground(Color.WHITE);
+		txtTitula.setBackground(Color.WHITE);
+		txtZvanje.setBackground(Color.WHITE);
 
 		return izlaz;
 	}
@@ -712,43 +694,44 @@ budzet.addActionListener(new ActionListener() {
 			mode = IzmenaStudentaDialog.ODUSTANAK;
 			//dispose();
 		} else {
-			mode = IzmenaStudentaDialog.POTVRDA;  	
-			if(!student.getBrojIndeksa().equals(tekst[6])) { 
-				for(Student p:studenti) {
-					if(tekst[6].equals(p.getBrojIndeksa())) {
-						JOptionPane.showMessageDialog((Component) e.getSource(), "Izmenjeni  broj indeksa vec postoji!");
+			mode = IzmenaProfesoraDialog.POTVRDA;  	
+			if(!profesor.getBroj_licne_karte().equals(tekst[7])) { 
+				for(Profesor p:profesori) {
+					if(tekst[7].equals(p.getBroj_licne_karte())) {
+						JOptionPane.showMessageDialog((Component) e.getSource(), "Izmenjeni  broj licne karte vec postoji!");
 						return;
 					}
 					
 				}
 				
-				student.setIme(tekst[0]);
-				student.setPrezime(tekst[1]);
-				student.setDatumRodjenja(tekst[2]);
-				student.setAdresaStanovanja(tekst[3]);
-				student.setKontakt_telefon(tekst[4]);
-				student.setEmail(tekst[5]);
-				student.setBrojIndeksa(tekst[6]);
-				student.setDatumUpisa(tekst[7]);
-				student.setGodinaStudija(tekst[8]);
-				student.setStatus(tekst[9]);
-				StudentiJTable.getInstance().refresTabelu();
+				profesor.setIme(tekst[0]);
+				profesor.setPrezime(tekst[1]);
+				profesor.setDatumRodjenja(tekst[2]);
+				profesor.setAdresaStanovanja(tekst[3]);
+				profesor.setKontakt_telefon(tekst[4]);
+				profesor.setEmail(tekst[5]);
+				profesor.setAdresa_kancelarije(tekst[6]);
+				profesor.setBroj_licne_karte(tekst[7]);
+				profesor.setTitula(tekst[8]);
+				profesor.setZvanje(tekst[9]);
+				ProfesoriJTable.getInstance().refresTabelu();
 			}
 			else {
-				student.setIme(tekst[0]);
-				student.setPrezime(tekst[1]);
-				student.setDatumRodjenja(tekst[2]);
-				student.setAdresaStanovanja(tekst[3]);
-				student.setKontakt_telefon(tekst[4]);
-				student.setEmail(tekst[5]);
-				student.setDatumUpisa(tekst[7]);
-				student.setGodinaStudija(tekst[8]);
-				student.setStatus(tekst[9]);
 				
+				profesor.setIme(tekst[0]);
+				profesor.setPrezime(tekst[1]);
+				profesor.setDatumRodjenja(tekst[2]);
+				profesor.setAdresaStanovanja(tekst[3]);
+				profesor.setKontakt_telefon(tekst[4]);
+				profesor.setEmail(tekst[5]);
+				profesor.setAdresa_kancelarije(tekst[6]);
+				//profesor.setBroj_licne_karte(tekst[7]);
+				profesor.setTitula(tekst[8]);
+				profesor.setZvanje(tekst[9]);
 				
 				
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
-				StudentiJTable.getInstance().refresTabelu();
+				ProfesoriJTable.getInstance().refresTabelu();
 			}
 		}
 		setVisible(false);
@@ -767,52 +750,19 @@ budzet.addActionListener(new ActionListener() {
 
 	public void  Set() {
 		
-		student = BazaStudenta.getInstance().getStudente().get(red);
-		txtIme.setText(student.getIme());
-		txtPrezime.setText(student.getPrezime());
-		txtDatumRodjenja.setText(student.getDatumRodjenja());
-		txtAdresa.setText(student.getAdresaStanovanja());
-		txtTelefon.setText(student.getKontakt_telefon());
-		txtEmail.setText(student.getEmail());
-		txtIndeks.setText(student.getBrojIndeksa());
-		txtDatumUpisa.setText(student.getDatumUpisa());
-		String godina2 = student.getGodinaStudija();
-		String budz =student.getStatus();
+		profesor= BazaProfesora.getInstance().getProfesore().get(red);
+		txtIme.setText(profesor.getIme());
+		txtPrezime.setText(profesor.getPrezime());
+		txtDatumRodjenja.setText(profesor.getDatumRodjenja());
+		txtAdresa.setText(profesor.getAdresaStanovanja());
+		txtTelefon.setText(profesor.getKontakt_telefon());
+		txtEmail.setText(profesor.getEmail());
+		txtAdresaKancelarije.setText(profesor.getAdresa_kancelarije());
+		txtBrojLicneKarte.setText(profesor.getBroj_licne_karte());
+		txtTitula.setText(profesor.getTitula());
+		txtZvanje.setText(profesor.getZvanje());
 		
-		switch(godina2){
-			case "I":
-				 br2=1;
-				 break;
-			case "II":
-				br2=2;
-				break;
-			case "III":
-				 br2=3;
-				 break;
-			case "IV":
-				br2=4;
-				break;
-			case "V":
-				br2=5;
-				break;
-				
-			default:
-				br2 =0;
-		}
 		
-		godinaComboBox.setSelectedIndex(br2);
-		
-		if(student.getStatus()=="S") {
-			samofinansiranje.setSelected(true);
-		}else {
-			budzet.setSelected(true);
-		}
-	
-
-		
-	
 	
 }
 }
-
-

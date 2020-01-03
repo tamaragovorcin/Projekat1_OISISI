@@ -44,6 +44,7 @@ public class Toolbar extends JToolBar {
 	
 	private JToggleButton changeButton;
 	private JToggleButton changestudentButton;
+	private JToggleButton changeprofesorButton;
 	private JToggleButton deleteButton;
 	private JToggleButton deletestudentButton;
 	
@@ -112,6 +113,13 @@ public class Toolbar extends JToolBar {
 		changestudentButton.setToolTipText("Izmena studenta");
 		changestudentButton.setIcon(new ImageIcon("images2/pencil.png"));
 		changestudentButton.setMnemonic(KeyEvent.VK_1);
+		
+		
+		changeprofesorButton = new JToggleButton();
+		changeprofesorButton.setToolTipText("Izmena studenta");
+		changeprofesorButton.setIcon(new ImageIcon("images2/pencil.png"));
+		changeprofesorButton.setMnemonic(KeyEvent.VK_1);
+		
 		
 		deleteButton = new JToggleButton();
 		deleteButton.setToolTipText("Brisanje");
@@ -323,7 +331,21 @@ public class Toolbar extends JToolBar {
 			add(searchButton);
 		}
 		else if(d==Dugme.PROFESOR) {
-			changeButton.setToolTipText("Izmena profesora");
+			changeprofesorButton.setToolTipText("Izmena profesora");
+			changeprofesorButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int row =ProfesoriJTable.getInstance().getSelectedRow();
+					if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora()) {
+						ProfesoriController.getInstance().izmeniProfesora(row);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+					}
+					ProfesoriJTable.getInstance().refresTabelu();  
+				}
+			});
 			deleteButton.setToolTipText("Brisanje profesora");
 			deleteButton.addActionListener(new ActionListener() {
 
@@ -352,7 +374,7 @@ public class Toolbar extends JToolBar {
 				}
 			});
 			
-			add(changeButton);
+			add(changeprofesorButton);
 			addSeparator();
 			add(deleteButton);
 			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*32));
