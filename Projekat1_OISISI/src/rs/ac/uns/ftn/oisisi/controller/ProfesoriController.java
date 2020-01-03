@@ -1,5 +1,8 @@
 package rs.ac.uns.ftn.oisisi.controller;
+import java.io.IOException;
+
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
+import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
 import rs.ac.uns.ftn.oisisi.view.IzmenaProfesoraDialog;
 import rs.ac.uns.ftn.oisisi.view.IzmenaStudentaDialog;
@@ -44,4 +47,13 @@ private static ProfesoriController instance = null;
 		// TODO: izmena dodatnih polja modela tabele
 		
 }
+    
+    public void sacuvajProfesoreTXT() throws IOException {
+		BazaProfesora.getInstance().sacuvajProfesoreTXT();
+	}
+
+	public void ucitajProfesoreTXT() throws IOException {
+		BazaProfesora.getInstance().ucitajProfesoreTXT();
+	}
+
 }

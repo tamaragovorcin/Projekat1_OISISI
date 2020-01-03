@@ -1,7 +1,18 @@
 package rs.ac.uns.ftn.oisisi.model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import rs.ac.uns.ftn.oisisi.view.ProfesoriJTable;
+import rs.ac.uns.ftn.oisisi.view.StudentiJTable;
 
 public class BazaProfesora {
 
@@ -19,7 +30,8 @@ private static BazaProfesora instance = null;
 	private static int broj_profesora = 0;
 	private List<String>kolone;
 	private List<Profesor>profesori;
-	
+
+	File nazivTXT = new File("profesori.txt");
 	private BazaProfesora() {
 		
 		
@@ -145,5 +157,56 @@ private static BazaProfesora instance = null;
 
 	public void setBroj_profesora(int broj_profesora) {
 		this.broj_profesora = broj_profesora;
+	}
+	
+	public void sacuvajProfesoreTXT() throws IOException {
+		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT))); 
+			for(int i = 0; i<profesori.size();i++) {
+				Profesor p = profesori.get(i);
+				String a = p.toString();
+				br.write(a);
+			}
+			br.close();
+	}
+	
+	public void ucitajProfesoreTXT() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
+		
+		String ulaz = new String();
+		
+		while((ulaz=br.readLine())!=null) {
+			String deo[] = ulaz.split("-");
+			String delovi[] =  new String[deo.length];
+			for(int i = 0; i <deo.length;i++) {
+				delovi[i] = deo[i].trim();
+			}
+			dodajprofesora(delovi);
+		}
+		ProfesoriJTable.getInstance().refresTabelu();
+		
+	}
+
+	private boolean dodajprofesora(String[] delovi) {
+		
+		String a = delovi[0];
+		if(profesorNePostoji(a)) {
+			
+			Profesor novi = new Profesor(delovi[0],delovi[1],delovi[2],delovi[3],delovi[4],delovi[5],delovi[6],delovi[7],delovi[8],delovi[9]);
+			profesori.add(novi);
+			broj_profesora++;
+			return true;
+		}
+		return false;
+		
+	}
+
+	private boolean profesorNePostoji(String a) {
+		for(Profesor p: profesori) {
+			if(a.equals(p.getBroj_licne_karte())) {
+				return false;
+			}
+		}
+		return true;
+		
 	}
 }

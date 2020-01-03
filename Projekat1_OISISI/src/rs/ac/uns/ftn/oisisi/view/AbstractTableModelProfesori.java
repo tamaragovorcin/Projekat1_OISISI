@@ -30,8 +30,8 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 
 
 	public int getRowCount() {
-	//	BazaProfesora.getInstance().getProfesore().size();
-		return 10;
+		return BazaProfesora.getInstance().getProfesore().size();
+		
 	}
 
 	@Override
