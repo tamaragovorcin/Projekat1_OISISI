@@ -1,5 +1,8 @@
 package rs.ac.uns.ftn.oisisi.controller;
 
+import java.io.IOException;
+
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Student;
 import rs.ac.uns.ftn.oisisi.view.IzmenaPredmetaDialog;
@@ -45,5 +48,14 @@ private static StudentiController instance = null;
 		// TODO: izmena dodatnih polja modela tabele
 		
 }
+	
+	public void sacuvajStudenteTXT() throws IOException {
+		BazaStudenta.getInstance().sacuvajStudenteTXT();
+	}
+
+	public void ucitajStudenteTXT() throws IOException {
+		BazaStudenta.getInstance().ucitajStudenteTXT();
+	}
+
 }
 

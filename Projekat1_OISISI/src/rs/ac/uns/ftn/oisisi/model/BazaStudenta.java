@@ -1,7 +1,18 @@
 package rs.ac.uns.ftn.oisisi.model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
+import rs.ac.uns.ftn.oisisi.view.StudentiJTable;
 
 public class BazaStudenta {
 	
@@ -22,7 +33,7 @@ public class BazaStudenta {
 	private static int broj_studenata=0;
 	private List<String>kolone;
 	private List<Student> studenti;
-	
+	File nazivTXT = new File("studenti.txt");
 	private BazaStudenta() {
 		
 		
@@ -58,7 +69,7 @@ public class BazaStudenta {
 		
 	//}*/
 	public void initi() {
-		this.studenti.add(new Student("Ana","Petrovic","14.02.1999","Pavla Simica 2","065264102","anapetrovic@gmail.com","RA-47-2017","01.10.2017","III","B"));
+		this.studenti.add(new Student("Ana","Petrovic","14.02.1999","Pavla Simica 2","065264102","anapetrovic@gmail.com","RA/47/2017","01.10.2017","III","B"));
 		broj_studenata++;
 	}
 
@@ -158,4 +169,56 @@ public class BazaStudenta {
 	public void setBroj_studenata(int broj_studenata) {
 		this.broj_studenata=broj_studenata;
 	}
+	
+	
+	public void sacuvajStudenteTXT() throws IOException {
+		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT))); 
+			for(int i = 0; i<studenti.size();i++) {
+				Student p = studenti.get(i);
+				String a = p.toString();
+				br.write(a);
+			}
+			br.close();
+	}
+	
+	public void ucitajStudenteTXT() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
+		
+		String ulaz = new String();
+		
+		while((ulaz=br.readLine())!=null) {
+			String deo[] = ulaz.split("-");
+			String delovi[] =  new String[deo.length];
+			for(int i = 0; i <deo.length;i++) {
+				delovi[i] = deo[i].trim();
+			}
+			dodajstudenta(delovi);
+		}
+		StudentiJTable.getInstance().refresTabelu();
+		
+	}
+
+	private boolean dodajstudenta(String[] delovi) {
+		
+		String a = delovi[0];
+		if(studentNePostoji(a)) {
+			
+			Student novi = new Student(delovi[0],delovi[1],delovi[2],delovi[3],delovi[4],delovi[5],delovi[6],delovi[7],delovi[8],delovi[9]);
+			studenti.add(novi);
+			broj_studenata++;
+			return true;
+		}
+		return false;
+		
+	}
+
+	private boolean studentNePostoji(String a) {
+		for(Student s:studenti) {
+			if(a.equals(s.getBrojIndeksa())) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
