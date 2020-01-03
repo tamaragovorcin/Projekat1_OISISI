@@ -33,7 +33,6 @@ public class BazaPredmeta {
 
 	private List<Predmet> pretraga;
 
-	private static int brojPredmetaPretrage = 0;
 	private static int broj_predmeta = 0;
 	
 	File nazivTXT = new File("predmeti.txt");
@@ -49,19 +48,12 @@ public class BazaPredmeta {
 		this.kolone.add("GODINA STUDIJA");
 		this.kolone.add("SPISAK PROFESORA");
 		this.kolone.add("SPISAK STUDENATA");
-		// dodajPredmet();
-		// initPredmete( sifra, naziv, semestar, godina);
-		// dodajPredmet( sifra, naziv, semestar, godina);
+	
 	}
 
 	public void initPredmete(String sifra, String naziv, String semestar, String godina) {
 
 		this.predmeti.add(new Predmet(sifra, naziv, semestar, godina));
-		// this.predmeti.add(new Predmet("1","Algebra","prvi","prva godina"));
-		// this.predmeti.add(new Predmet("2","Fizika","drugi","prva godina"));
-		// this.predmeti.add(new Predmet("3","Objektno programiranje","treci","druga
-		// godina"));
-
 		broj_predmeta++;
 
 	}
@@ -117,18 +109,6 @@ public class BazaPredmeta {
 		}
 	}
 
-	// public void dodajPredmet(String sifra, String naziv, String semestar, String
-	// godina) {
-	// this.predmeti.add(new Predmet("5","Analiza 2","treci","druga godina"));
-	// this.predmeti.add(new Predmet(sifra,naziv,semestar,godina));
-	// broj_predmeta++;
-	// }
-	/*
-	 * public void dodajPredmet() { this.predmeti.add(new
-	 * Predmet("5","Analiza 2","treci","druga godina"));
-	 * 
-	 * broj_predmeta++; }
-	 */
 
 	public void izbrisiPredmet(String sifra) {
 		for (Predmet i : predmeti) {
@@ -160,19 +140,14 @@ public class BazaPredmeta {
 	public void pretragaPredmeta(String ulaz) {
 		if (ulaz.trim().length() == 0) {
 			pretraga.clear();
-			brojPredmetaPretrage = 0;
 			return;
 		}
 
 		pretraga.clear();
-		brojPredmetaPretrage = 0;
 
 		String podelaTeksta[] = ulaz.split(";");
 		String celina = podelaTeksta[0];
 		String[] deo = celina.split(":");
-
-		// String a = deo[0].toLowerCase().trim();
-		// String b = deo[1].trim().toLowerCase();
 
 		if (deo.length != 2 || deo[1].trim().length() == 0) {
 			JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet!");
@@ -209,7 +184,7 @@ public class BazaPredmeta {
 			}
 		} else {
 			JOptionPane.showMessageDialog(null,
-					"Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar, godina.");
+					"Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.");
 			return;
 		}
 		if (podelaTeksta.length > 1) {
@@ -255,13 +230,11 @@ public class BazaPredmeta {
 					}
 				} else {
 					JOptionPane.showMessageDialog(null,
-							"Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar, godina.");
+							"Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.");
 					return;
 				}
 			}
 		}
-		brojPredmetaPretrage = pretraga.size();
-
 		if (pretraga.size() == 0) {
 			JOptionPane.showMessageDialog(null, "Ne postoji predmet sa unetim vrednostima.");
 		}

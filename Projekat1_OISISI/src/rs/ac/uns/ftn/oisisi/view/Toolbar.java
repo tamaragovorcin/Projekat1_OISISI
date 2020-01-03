@@ -374,6 +374,15 @@ public class Toolbar extends JToolBar {
 				}
 			});
 			
+			searchButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					ProfesoriController.getInstance().pretraziProfesora();
+					ProfesoriJTable.getInstance().refresTabelu();
+				}
+			});
+			
 			add(changeprofesorButton);
 			addSeparator();
 			add(deleteButton);
