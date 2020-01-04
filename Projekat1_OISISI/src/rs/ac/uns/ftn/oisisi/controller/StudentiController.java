@@ -2,12 +2,15 @@ package rs.ac.uns.ftn.oisisi.controller;
 
 import java.io.IOException;
 
+import javax.swing.JTextField;
+
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Student;
 import rs.ac.uns.ftn.oisisi.view.IzmenaPredmetaDialog;
 import rs.ac.uns.ftn.oisisi.view.IzmenaStudentaDialog;
 import rs.ac.uns.ftn.oisisi.view.Main_Frame;
+import rs.ac.uns.ftn.oisisi.view.Toolbar;
 
 public class StudentiController {
 private static StudentiController instance = null;
@@ -55,6 +58,15 @@ private static StudentiController instance = null;
 
 	public void ucitajStudenteTXT() throws IOException {
 		BazaStudenta.getInstance().ucitajStudenteTXT();
+	}
+	
+	public void pretraziStudenta() {
+
+		JTextField tekst = Toolbar.getInstance().getTekst();
+		String a = tekst.getText();
+
+		BazaStudenta.getInstance().pretragaStudenta(a);
+
 	}
 
 }

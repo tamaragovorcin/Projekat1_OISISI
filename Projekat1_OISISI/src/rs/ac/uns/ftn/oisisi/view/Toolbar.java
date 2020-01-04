@@ -49,9 +49,11 @@ public class Toolbar extends JToolBar {
 	private JToggleButton deletestudentButton;
 	
 	private JButton searchButton;
-	
+	private JButton searchstudentButton;
+	private JButton searchProfesorButton;
 	private JTextField searchField;
-	
+	private JTextField searchstudentField;
+	private JTextField searchProfesorField;
 	
 	private JToggleButton dodajStudentButton;
 	private JToggleButton dodajPredmetButton;
@@ -136,12 +138,10 @@ public class Toolbar extends JToolBar {
 		searchButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
 		searchButton.setMnemonic(KeyEvent.VK_4);
 	
-		
+	
 		searchField = new JTextField(20);
 		searchField.setToolTipText("Upis za pretragu");
 
-		
-	
 		promena(Dugme.STUDENT);
 		
 		setFloatable(false);
@@ -246,9 +246,16 @@ public class Toolbar extends JToolBar {
 				}
 			});
 			
-			
-			//searchButton.addActionListener(new ActionListener() {
+			searchButton.addActionListener(new ActionListener() {
 				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				StudentiController.getInstance().pretraziStudenta();
+				StudentiJTable.getInstance().refresTabelu();
+				}
+			});
+			
+		
 			
 			
 			add(changestudentButton);
@@ -257,10 +264,10 @@ public class Toolbar extends JToolBar {
 			addSeparator();
 			//add(dodajStudentaNaPredmet);
 			//add(dodajProfesoraNaPredmet);
-			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*28));
-			//add(searchField);
-			//addSeparator();
-			//add(searchButton);
+			add(Box.createHorizontalStrut(Main_Frame.screenWidth/70*32));
+			add(searchField);
+			addSeparator();
+			add(searchButton);
 				
 			}
 		else if(d == Dugme.PREDMET)  {
