@@ -25,7 +25,7 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 		}
 	}
 	@Override
-	public int getRowCount() {
+	public int getRowCount() { 
 		return BazaPredmeta.getInstance().getPredmete().size();
 	
 	}

@@ -33,6 +33,7 @@ private static BazaProfesora instance = null;
 	private List<String>kolone;
 	private List<Profesor>profesori;
 	private List<Profesor>pretraga;
+	Predmet predmet;
 	
 
 	File nazivTXT = new File("profesori.txt");
@@ -55,15 +56,15 @@ private static BazaProfesora instance = null;
 		this.kolone.add("TITULA");
 		this.kolone.add("ZVANJE");
 		this.kolone.add("SPISAK PREDMETA");
+		initProfesori();
 		
 	}
 
 	private void initProfesori() {
 		this.profesori=new ArrayList<Profesor>();
-		
-		this.profesori.add(new Profesor("Pera","Peric","20.05.1965.","Masarikova 15","0644569456","peraperic@gmail.com","Radnicka 55","0264589","Redovni profesor","Doktor nauka"));
-		this.profesori.add(new Profesor("Jovan","Jovanovic","20.08.1970.","Sfarikova 15","0694566123","jovanjovanovic@gmail.com","Radnicka 55","4569872","Redovni profesor","Doktor nauka"));
-		this.profesori.add(new Profesor("Natalija","Jokic","05.05.1975.","Puskinova 9","0654599255","natalijajokic@gmail.com","Radnicka 55","0321236","Redovni profesor","Doktor nauka"));
+		this.profesori.add(new Profesor("Pera","Peric","20.05.1965.","Masarikova 15","111","peraperic@gmail.com","Radnicka 55","111","Redovni profesor","Doktor nauka"));
+		this.profesori.add(new Profesor("Jovan","Jovanovic","20.08.1970.","Sfarikova 15","0694566123","jovanjovanovic@gmail.com","Radnicka 55","222","Redovni profesor","Doktor nauka"));
+		this.profesori.add(new Profesor("Natalija","Jokic","05.05.1975.","Puskinova 9","0654599255","natalijajokic@gmail.com","Radnicka 55","333","Redovni profesor","Doktor nauka"));
 		
 		++broj_profesora;
 		
@@ -159,6 +160,8 @@ private static BazaProfesora instance = null;
 				i.setAdresa_kancelarije(adresa_kancelarije);
 				i.setTitula(titula);
 				i.setZvanje(zvanje);
+				
+				
 			}
 		}
 	}
@@ -400,5 +403,34 @@ private static BazaProfesora instance = null;
 			}
 			
 			
+	}
+
+	public Profesor getProfesorPoPredmetu(String licna) {
+		Profesor p=null;
+		for(Profesor prof: profesori) {
+			if(prof.getBroj_licne_karte().equals(licna)) {
+				p = prof;
+			}
+		}
+		return p;
+	}
+
+	public boolean postojiLicnaKarta(String licna) {
+		boolean izlaz=false;
+		
+		for(Profesor prof: profesori) {
+			if(prof.getBroj_licne_karte().equals(licna)) {
+				izlaz = true;
+			}
+		}
+		return izlaz;
+	}
+
+	public void dodajPredmetProfesu(Predmet predmet2, String licna) {
+		for(Profesor prof : profesori) {
+			if(prof.getBroj_licne_karte().equals(licna)) {
+				prof.getSpisak_predmeta().add(predmet2);
+			}
+		}
 	}
 }

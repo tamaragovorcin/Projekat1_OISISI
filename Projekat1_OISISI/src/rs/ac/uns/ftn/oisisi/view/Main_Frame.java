@@ -16,7 +16,8 @@ import javax.swing.WindowConstants;
 
 
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
-
+import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
+import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 import rs.ac.uns.ftn.oisisi.controller.TabbedPaneListener;
 
 
@@ -55,7 +56,7 @@ public class Main_Frame extends JFrame{
         toolbar = Toolbar.getInstance();
         add(toolbar,BorderLayout.NORTH);
         toolbar.setVisible(true);
-        
+    	setResizable(true);
         
         tabbedPane = new TabbedPane();
         add(tabbedPane,BorderLayout.CENTER);

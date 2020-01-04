@@ -28,6 +28,20 @@ public class Profesor extends Osoba {
 	public String getAdresa_kancelarije() {
 		return adresa_kancelarije;
 	}
+	@Override
+	public String toString() {
+	String a= "Profesor [adresa_kancelarije=" + adresa_kancelarije + ", broj_licne_karte=" + broj_licne_karte
+				+ ", titula=" + titula + ", zvanje=" + zvanje +  "]";
+	String p=null;
+		for (Predmet predmet : spisak_predmeta) {
+			p+= predmet.getNaziv_predmeta();
+		}
+	
+	return a + p;
+	}
+
+
+
 	public void setAdresa_kancelarije(String adresa_kancelarije) {
 		this.adresa_kancelarije = adresa_kancelarije;
 	}
