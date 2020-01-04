@@ -30,7 +30,6 @@ public class PredmetiTablePanel extends JPanel{
 	
 	public static int selektovan_red = -1;
 	
-	
 	public PredmetiTablePanel() {
 		setLayout(new BorderLayout());
 		setOpaque(false);
@@ -116,6 +115,13 @@ public class PredmetiTablePanel extends JPanel{
 		
 	}
 	
+	public static int getSelektovan_red() {
+		return selektovan_red;
+	}
+
+	public static void setSelektovan_red(int selektovan_red) {
+		PredmetiTablePanel.selektovan_red = selektovan_red;
+	}
 
 
 

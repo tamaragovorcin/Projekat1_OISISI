@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
-
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 
 public class AbstractTableModelProfesori extends AbstractTableModel{
@@ -16,6 +16,8 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 	 * 
 	 */
 	private static final long serialVersionUID = 2995603907983526790L;
+	
+
 	public static String kolonaDugme = "DUGME";
 	public static String kolonaCheck = "CHECK";
 	
@@ -33,10 +35,43 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 		return BazaProfesora.getInstance().getProfesore().size();
 		
 	}
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		switch (columnIndex) {
+		case 0:
+			return String.class;
+		case 1:
+			return String.class;
+		case 2:
+			return String.class;
+		case 3:
+			return String.class;
+		case 4:
+			return String.class;
+		case 5:
+			return String.class;
+		case 6:
+			return String.class;
+		case 7:
+			return String.class;
+		case 8:
+			return String.class;
+		case 9:
+			return String.class;
+		case 10:
+			return JButton.class;
+		default:
+			return null;
+		}
+	}
+
 
 	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return columnIndex>=10;
+	}
+	@Override
 	public int getColumnCount() {
-		//return BazaProfesora.getInstance().getColumnCount() +2;
 		return BazaProfesora.getInstance().getColumnCount();
 	}
 
@@ -51,8 +86,14 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		
+		if (columnIndex < 10)
 			return BazaProfesora.getInstance().getValueAt(rowIndex, columnIndex);
+		else if (columnIndex == 10) {
+			JButton btn = new JButton("" + rowIndex);
+			return btn;
+		} 
+		return null;
+			
 		
 	}
 

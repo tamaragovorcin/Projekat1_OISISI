@@ -6,7 +6,6 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
-
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 
 
@@ -25,8 +24,6 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 			koJeOtkacen.add(false);
 		}
 	}
-
-
 	@Override
 	public int getRowCount() {
 		return BazaPredmeta.getInstance().getPredmete().size();
@@ -41,10 +38,42 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 	}
 
 	public Object getValueAt(int rowIndex, int columnIndex){
-		
+		if (columnIndex < 4)
 			return BazaPredmeta.getInstance().getValueAt(rowIndex, columnIndex);
+		else if (columnIndex == 4) {
+			JButton btn = new JButton("" + rowIndex);
+			return btn;
+		} 
+		return null;
 		
 	}
+
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return columnIndex>=4;
+	}
+
+
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		switch (columnIndex) {
+		case 0:
+			return String.class;
+		case 1:
+			return String.class;
+		case 2:
+			return String.class;
+		case 3:
+			return String.class;
+		case 4:
+			return JButton.class;
+		case 5:
+			return String.class;
+		default:
+			return null;
+		}
+	}
+
 
 	@Override
 	public String getColumnName(int column) {

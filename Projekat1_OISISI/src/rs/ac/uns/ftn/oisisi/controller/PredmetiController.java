@@ -2,13 +2,17 @@ package rs.ac.uns.ftn.oisisi.controller;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
+import rs.ac.uns.ftn.oisisi.view.DialogDodajProfesoraNaPredmet;
+
 import rs.ac.uns.ftn.oisisi.view.IzmenaPredmetaDialog;
 import rs.ac.uns.ftn.oisisi.view.Main_Frame;
 import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
+import rs.ac.uns.ftn.oisisi.view.PredmetiTablePanel;
 import rs.ac.uns.ftn.oisisi.view.Toolbar;
 
 public class PredmetiController {
@@ -27,9 +31,7 @@ public class PredmetiController {
 
 	public void dodajPredmet() {
 
-		// BazaPredmeta.getInstance().dodajPredmet("123","Hemija","zimski","druga");
-
-		Main_Frame.getInstance().azurirajPrikazPredmeta("DODAT", -1);
+		//BazaPredmeta.getInstance().dodajPredmet();
 	}
 
 	public void izbrisiPredmet(int rowSelectedIndex) {
@@ -68,6 +70,18 @@ public class PredmetiController {
 
 	public void ucitajPredmeteTXT() throws IOException {
 		BazaPredmeta.getInstance().ucitajPredmeteTXT();
+	}
+
+	public void dodavanjeProfesoraNaPredmet() {
+		int red = PredmetiJTable.getInstance().getSelectedRow();
+		
+		if(red>=0 && red<BazaPredmeta.getInstance().getBroj_predmeta()) {
+			DialogDodajProfesoraNaPredmet dialog = new DialogDodajProfesoraNaPredmet(null, "Dodavanje profesora na predmet",true);
+			dialog.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+		}	
 	}
 
 }

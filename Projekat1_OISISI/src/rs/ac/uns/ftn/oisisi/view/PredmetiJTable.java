@@ -29,7 +29,9 @@ public class PredmetiJTable extends JTable{
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelPredmeti());
+		new ButtonColumnPredmet_Profesor(this,4);
 		this.setRowHeight(20);
+		
 	}
 
 	@Override

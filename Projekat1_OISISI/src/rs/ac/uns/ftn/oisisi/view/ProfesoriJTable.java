@@ -26,6 +26,7 @@ private static ProfesoriJTable instance = null;
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelProfesori());
+		new ButtonColumnProfesor_Predmeti(this, 10);
 	
 	}
 

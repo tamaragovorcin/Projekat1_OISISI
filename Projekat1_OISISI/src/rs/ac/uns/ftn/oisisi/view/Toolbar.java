@@ -319,6 +319,16 @@ public class Toolbar extends JToolBar {
 				}
 			});
 			
+			dodajProfesoraNaPredmet.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					PredmetiController.getInstance().dodavanjeProfesoraNaPredmet();
+					PredmetiJTable.getInstance().refresTabelu();
+					
+				}
+			});
+			
 			add(changeButton);
 			addSeparator();
 			add(deleteButton);

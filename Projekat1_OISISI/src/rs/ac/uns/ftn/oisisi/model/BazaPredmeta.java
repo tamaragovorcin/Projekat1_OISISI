@@ -13,7 +13,9 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
 
 import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
 
@@ -28,15 +30,17 @@ public class BazaPredmeta {
 		return instance;
 	}
 
+	
 	private List<String> kolone;
 	private List<Predmet> predmeti;
 
 	private List<Predmet> pretraga;
 
 	private static int broj_predmeta = 0;
+	private static int broj_profesora_na_predmetu = 0;
 	
 	File nazivTXT = new File("predmeti.txt");
-
+	
 	private BazaPredmeta() {
 
 		this.kolone = new ArrayList<String>();
@@ -80,12 +84,14 @@ public class BazaPredmeta {
 
 	public String getValueAt(int row, int column) {
 		List<Predmet> temp;
+		
+		
 		if (pretraga.size() == 0) {
 			temp = predmeti;
 		} else {
 			temp = pretraga;
 		}
-
+		
 		if (row < temp.size()) {
 			Predmet predmet = temp.get(row);
 			switch (column) {
@@ -98,7 +104,7 @@ public class BazaPredmeta {
 			case 3:
 				return predmet.getGodina_studija_izvodjenja();
 			case 4:
-				return "Spisak prefosora";
+		    	return "Spisak prefosora";
 			case 5:
 				return "Spisak studenata";
 			default:
@@ -290,6 +296,29 @@ public class BazaPredmeta {
 			}
 		}
 		return true;
+	}
+	
+	public void dodajProfesoraNaPredmet(Profesor prof, Predmet pred,int i) {
+		if(broj_profesora_na_predmetu==0) {
+			predmeti.get(i).getProfesori_predavaci().add(prof);
+		}
+		else 
+		{
+			for(Predmet predmet : predmeti) {
+				if(predmet.getSifra_predmeta().equals(pred.getSifra_predmeta())) {
+					predmet.getProfesori_predavaci().add(prof);
+				}
+			}
+		}
+	}
+	
+	
+	public static int getBroj_profesora_na_predmetu() {
+		return broj_profesora_na_predmetu;
+	}
+
+	public static void setBroj_profesora_na_predmetu(int broj_profesora_na_predmetu) {
+		BazaPredmeta.broj_profesora_na_predmetu = broj_profesora_na_predmetu;
 	}
 
 }
