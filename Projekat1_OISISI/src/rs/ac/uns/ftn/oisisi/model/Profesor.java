@@ -28,7 +28,7 @@ public class Profesor extends Osoba {
 	public String getAdresa_kancelarije() {
 		return adresa_kancelarije;
 	}
-	@Override
+	/*@Override
 	public String toString() {
 	String a= "Profesor [adresa_kancelarije=" + adresa_kancelarije + ", broj_licne_karte=" + broj_licne_karte
 				+ ", titula=" + titula + ", zvanje=" + zvanje +  "]";
@@ -39,7 +39,7 @@ public class Profesor extends Osoba {
 	
 	return a + p;
 	}
-
+*/
 
 
 	public void setAdresa_kancelarije(String adresa_kancelarije) {
@@ -69,6 +69,9 @@ public class Profesor extends Osoba {
 	public void setSpisak_predmeta(ArrayList<Predmet> spisak_predmeta) {
 		this.spisak_predmeta = spisak_predmeta;
 	}
-	
-	
+	@Override
+	public String toString() {
+		
+		return super.toString() + " - " + adresa_kancelarije+ " - " + broj_licne_karte + " - " + titula + " - " + zvanje + " - " + spisak_predmeta+ "\n";
+	}
 }

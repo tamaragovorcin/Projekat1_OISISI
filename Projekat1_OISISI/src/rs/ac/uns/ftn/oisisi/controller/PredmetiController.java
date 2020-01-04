@@ -6,10 +6,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
+import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
+import rs.ac.uns.ftn.oisisi.model.Student;
 import rs.ac.uns.ftn.oisisi.view.DialogDodajProfesoraNaPredmet;
-
+import rs.ac.uns.ftn.oisisi.view.DodavanjeStudentaNaPredmetDialog;
 import rs.ac.uns.ftn.oisisi.view.IzmenaPredmetaDialog;
 import rs.ac.uns.ftn.oisisi.view.Main_Frame;
 import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
@@ -97,6 +99,38 @@ public class PredmetiController {
 		boolean izlaz = false;
 		
 		if(BazaPredmeta.getInstance().PostojiProfesorNaPredmetu(red, licna)) {
+			izlaz = true;
+		}
+		return izlaz;
+		
+	}
+	
+	
+	
+	public void dodavanjeStudentaNaPredmet() {
+		int red = PredmetiJTable.getInstance().getSelectedRow();
+		if(red>=0 && red<BazaPredmeta.getInstance().getBroj_predmeta()) {
+			DodavanjeStudentaNaPredmetDialog dialog = new DodavanjeStudentaNaPredmetDialog(null, "Dodavanje studenta na predmet", true);
+			dialog.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Predmet nije selektovan");
+		}
+	}
+	public void dodajStudenta(Student stud, Predmet pred, int i) {
+		BazaPredmeta.getInstance().dodajStudentaNaPredmet(stud, pred, i);
+	}
+	
+	public Predmet getPredmetPoStudentu(int red) {
+		Predmet p;
+		p = BazaPredmeta.getInstance().getPredmetPoStudentu(red);
+		return p;
+	}
+
+	public boolean PostojiStudentNaPredmetu(int red, String licna) {
+		boolean izlaz = false;
+		
+		if(BazaPredmeta.getInstance().PostojiStudentNaPredmetu(red, licna)) {
 			izlaz = true;
 		}
 		return izlaz;

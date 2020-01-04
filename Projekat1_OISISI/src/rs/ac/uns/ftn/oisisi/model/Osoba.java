@@ -56,6 +56,9 @@ public abstract class Osoba {
 		this.kontakt_telefon = kontakt_telefon;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return  ime+ " - " + prezime + " - " + datumRodjenja + " - " + adresaStanovanja + " - " + email+  " - " + kontakt_telefon;
+	}
 	
 }

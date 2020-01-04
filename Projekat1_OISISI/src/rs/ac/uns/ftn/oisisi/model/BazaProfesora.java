@@ -56,7 +56,7 @@ private static BazaProfesora instance = null;
 		this.kolone.add("TITULA");
 		this.kolone.add("ZVANJE");
 		this.kolone.add("SPISAK PREDMETA");
-		initProfesori();
+		//initProfesori();
 		
 	}
 

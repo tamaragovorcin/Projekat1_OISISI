@@ -36,7 +36,7 @@ public class BazaStudenta {
 	private List<String>kolone;
 	private List<Student> studenti;
 	private List<Student> pretraga;
-	
+	Student student;
 	
 	File nazivTXT = new File("studenti.txt");
 	private BazaStudenta() {
@@ -58,7 +58,7 @@ public class BazaStudenta {
 		this.kolone.add("STATUS");
 		this.kolone.add("SPISAK PREDMETA");
 		
-		initi();
+		//initi();
 		//initStudenti("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.","III","B");
 	}
 
@@ -394,7 +394,7 @@ public class BazaStudenta {
 
 	private boolean dodajstudenta(String[] delovi) {
 		
-		String a = delovi[0];
+		String a = delovi[6];
 		if(studentNePostoji(a)) {
 			
 			Student novi = new Student(delovi[0],delovi[1],delovi[2],delovi[3],delovi[4],delovi[5],delovi[6],delovi[7],delovi[8],delovi[9]);
@@ -414,5 +414,32 @@ public class BazaStudenta {
 		}
 		return true;
 	}
+	public Student getStudentaPoPredmetu(String indeks) {
+		Student p=null;
+		for(Student stud: studenti) {
+			if(stud.getBrojIndeksa().equals(indeks)) {
+				p = stud;
+			}
+		}
+		return p;
+	}
 
+	public boolean postojiBrojIndeksa(String indeks) {
+		boolean izlaz=false;
+		
+		for(Student stud: studenti) {
+			if(stud.getBrojIndeksa().equals(indeks)) {
+				izlaz = true;
+			}
+		}
+		return izlaz;
+	}
+
+	public void dodajPredmetStudentu(Predmet predmet2, String indeks) {
+		for(Student stud: studenti) {
+			if(stud.getBrojIndeksa().equals(indeks)) {
+				stud.getPredmeti().add(predmet2);
+			}
+		}
+	}
 }

@@ -37,7 +37,7 @@ public class BazaPredmeta {
 
 	private static int broj_predmeta = 0;
 	private static int broj_profesora_na_predmetu = 0;
-
+	private static int broj_studenta_na_predmetu = 0;
 	File nazivTXT = new File("predmeti.txt");
 
 	private BazaPredmeta() {
@@ -292,14 +292,19 @@ public class BazaPredmeta {
 		return true;
 	}
 
+	
+	
+	
+	
+	
+	
 	public void dodajProfesoraNaPredmet(Profesor prof, Predmet pred, int i) {
 		
 			predmeti.get(i).getProfesori_predavaci().add(prof);
-			broj_profesora_na_predmetu++;
+			broj_studenta_na_predmetu++;
 		
 		
 	}
-
 	public static int getBroj_profesora_na_predmetu() {
 		return broj_profesora_na_predmetu;
 	}
@@ -313,6 +318,7 @@ public class BazaPredmeta {
 		p = predmeti.get(red);
 		return p;
 	}
+	
 
 	public boolean PostojiProfesorNaPredmetu(int red, String licna) {
 		boolean izlaz = false;
@@ -326,4 +332,47 @@ public class BazaPredmeta {
 		return izlaz;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void dodajStudentaNaPredmet(Student student, Predmet pred, int i) {
+		
+		predmeti.get(i).getStudenti_na_predmetu().add(student);
+		broj_profesora_na_predmetu++;
+	
+	
+}
+
+	public static int getBroj_studenta_na_predmetu() {
+		return broj_studenta_na_predmetu;
+	}
+
+	public static void setBroj_studenta_na_predmetu(int broj_studenta_na_predmetu) {
+		BazaPredmeta.broj_studenta_na_predmetu = broj_studenta_na_predmetu;
+	}
+
+	public Predmet getPredmetPoStudentu(int red) {
+		Predmet p;
+		p = predmeti.get(red);
+		return p;
+	}
+
+public boolean PostojiStudentNaPredmetu(int red, String indeks) {
+	boolean izlaz = false;
+	for( Student stud:predmeti.get(red).getStudenti_na_predmetu()) {
+		if(stud.getBrojIndeksa().equals(indeks)) {
+			izlaz= true;
+			
+		}
+	}
+
+	return izlaz;
+}
 }

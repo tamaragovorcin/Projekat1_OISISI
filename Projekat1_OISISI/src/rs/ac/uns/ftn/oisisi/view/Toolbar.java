@@ -20,6 +20,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import rs.ac.uns.ftn.oisisi.controller.DodavanjeProfesoraNaPredmet;
+import rs.ac.uns.ftn.oisisi.controller.DodavanjeStudentaNaPredmet;
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 import rs.ac.uns.ftn.oisisi.controller.StudentiController;
@@ -358,7 +359,26 @@ public class Toolbar extends JToolBar {
 			
 			add(levo,BorderLayout.WEST);
 			add(desno, BorderLayout.EAST);
+			
+			dodajStudentaNaPredmet.addActionListener(new DodavanjeStudentaNaPredmet());
+			
+			levo.add(changeButton);
+			addSeparator();
+			levo.add(deleteButton);
+			addSeparator();
+			levo.add(dodajStudentaNaPredmet);
+			levo.add(dodajProfesoraNaPredmet);
+			
+			desno.add(searchField);
+			addSeparator();
+			desno.add(searchButton);
+			
+			add(levo,BorderLayout.WEST);
+			add(desno, BorderLayout.EAST);
+		
 		}
+		
+		
 		else if(d==Dugme.PROFESOR) {
 			changeprofesorButton.setToolTipText("Izmena profesora");
 			changeprofesorButton.addActionListener(new ActionListener() {

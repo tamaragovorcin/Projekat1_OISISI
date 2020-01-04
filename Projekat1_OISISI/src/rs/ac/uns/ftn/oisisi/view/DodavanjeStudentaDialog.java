@@ -554,7 +554,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			return false;
 		}
 		if (tekst[2].length() != 0) {
-			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[2])) {// sek
+			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[2])) {
 				txtDatumRodjenja.setBackground(Color.RED);
 				return false;
 			}
@@ -579,7 +579,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		if (tekst[6].length() != 0) {
 
 			if (!Pattern.matches("[A-Z]{2,3}/[0-9]{1,3}/[0-9]{4}", tekst[6])) {
-				txtIndeks.setBackground(Color.RED);// a ono nije bitno ahahahah moglo
+				txtIndeks.setBackground(Color.RED);
 				return false;
 			}
 		}

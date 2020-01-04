@@ -38,8 +38,8 @@ implements TableCellRenderer, TableCellEditor, MouseListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				fireEditingStopped();
-				JOptionPane.showMessageDialog(tabela, "Selektovani su studenti u redu: " + tabela.getSelectedRow());
+				DialogListaStudentaNaPredmetu dialog = new DialogListaStudentaNaPredmetu(Main_Frame.getInstance(),"Lista studenata", true);
+				dialog.setVisible(true);
 			}
 		});
 		this.isEditorActive = false;

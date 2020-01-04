@@ -75,6 +75,9 @@ public class Student extends Osoba{
 	}
 	
 	
-
+	@Override
+	public String toString() {
+		return super.toString() +  " - " + brojIndeksa+ " - " + datumUpisa + " - " + godinaStudija + " - " + Status + " - " + predmeti+ "\n";
+	}
 	
 }
