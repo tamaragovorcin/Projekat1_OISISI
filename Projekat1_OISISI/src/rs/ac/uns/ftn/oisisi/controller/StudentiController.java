@@ -65,7 +65,7 @@ private static StudentiController instance = null;
 		JTextField tekst = Toolbar.getInstance().getTekst();
 		String a = tekst.getText();
 
-		BazaStudenta.getInstance().pretragaStudenata(a);
+		BazaStudenta.getInstance().pretragaStudenta(a);
 
 	}
 
