@@ -6,6 +6,7 @@ import javax.swing.JTextField;
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
+import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
 import rs.ac.uns.ftn.oisisi.view.IzmenaProfesoraDialog;
 import rs.ac.uns.ftn.oisisi.view.IzmenaStudentaDialog;
@@ -67,4 +68,35 @@ private static ProfesoriController instance = null;
 		
 	}
 
+	public Profesor getProfesoraPoPredmetu(String licna) {
+		Profesor p;
+		p = BazaProfesora.getInstance().getProfesorPoPredmetu(licna);
+		return p;
+	}
+
+	public boolean PostojiLicnaKarta(String licna) {
+		boolean izlaz=false;
+		if(BazaProfesora.getInstance().postojiLicnaKarta(licna)) {
+			izlaz = true;
+		}
+		
+		return izlaz;
+	}
+
+	public void dodajPredmetProfesoru(Predmet predmet, String licna) {
+		BazaProfesora.getInstance().dodajPredmetProfesu(predmet,licna);
+		
+	}
+
+	
+
+	/*
+	 * proveraLicne karte BzaProfesor.GetINca...
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	
 }

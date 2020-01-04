@@ -30,7 +30,6 @@ public class BazaPredmeta {
 		return instance;
 	}
 
-	
 	private List<String> kolone;
 	private List<Predmet> predmeti;
 
@@ -38,9 +37,9 @@ public class BazaPredmeta {
 
 	private static int broj_predmeta = 0;
 	private static int broj_profesora_na_predmetu = 0;
-	
+
 	File nazivTXT = new File("predmeti.txt");
-	
+
 	private BazaPredmeta() {
 
 		this.kolone = new ArrayList<String>();
@@ -52,7 +51,7 @@ public class BazaPredmeta {
 		this.kolone.add("GODINA STUDIJA");
 		this.kolone.add("SPISAK PROFESORA");
 		this.kolone.add("SPISAK STUDENATA");
-	
+
 	}
 
 	public void initPredmete(String sifra, String naziv, String semestar, String godina) {
@@ -84,14 +83,13 @@ public class BazaPredmeta {
 
 	public String getValueAt(int row, int column) {
 		List<Predmet> temp;
-		
-		
+
 		if (pretraga.size() == 0) {
 			temp = predmeti;
 		} else {
 			temp = pretraga;
 		}
-		
+
 		if (row < temp.size()) {
 			Predmet predmet = temp.get(row);
 			switch (column) {
@@ -104,7 +102,7 @@ public class BazaPredmeta {
 			case 3:
 				return predmet.getGodina_studija_izvodjenja();
 			case 4:
-		    	return "Spisak prefosora";
+				return "Spisak prefosora";
 			case 5:
 				return "Spisak studenata";
 			default:
@@ -114,7 +112,6 @@ public class BazaPredmeta {
 			return null;
 		}
 	}
-
 
 	public void izbrisiPredmet(String sifra) {
 		for (Predmet i : predmeti) {
@@ -195,17 +192,15 @@ public class BazaPredmeta {
 		}
 		if (podelaTeksta.length > 1) {
 			for (int i = 1; i < podelaTeksta.length; i++) {
-				
+
 				celina = podelaTeksta[i];
 				deo = celina.split(":");
-				
+
 				if (deo.length != 2 || deo[1].trim().length() == 0) {
 					JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet!");
 					return;
 				}
 
-				
-				
 				if (deo[0].toLowerCase().equals("sifra")) {
 					for (Predmet p : predmeti) {
 						if (!p.getSifra_predmeta().toLowerCase().equals(deo[1].trim().toLowerCase())) {
@@ -246,79 +241,89 @@ public class BazaPredmeta {
 		}
 
 	}
-	
-	
+
 	public void sacuvajPredmeteTXT() throws IOException {
-		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT))); 
-			for(int i = 0; i<predmeti.size();i++) {
-				Predmet p = predmeti.get(i);
-				String a = p.toString();
-				br.write(a);
-			}
-			br.close();
+		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT)));
+		for (int i = 0; i < predmeti.size(); i++) {
+			Predmet p = predmeti.get(i);
+			String a = p.toString();
+			br.write(a);
+		}
+		br.close();
 	}
-	
+
 	public void ucitajPredmeteTXT() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
-		
+
 		String ulaz = new String();
-		
-		while((ulaz=br.readLine())!=null) {
+
+		while ((ulaz = br.readLine()) != null) {
 			String deo[] = ulaz.split("-");
-			String delovi[] =  new String[deo.length];
-			for(int i = 0; i <deo.length;i++) {
+			String delovi[] = new String[deo.length];
+			for (int i = 0; i < deo.length; i++) {
 				delovi[i] = deo[i].trim();
 			}
 			dodajpredmet(delovi);
 		}
 		PredmetiJTable.getInstance().refresTabelu();
-		
+
 	}
 
 	private boolean dodajpredmet(String[] delovi) {
-		
+
 		String a = delovi[0];
-		if(predmetiNePostoji(a)) {
-			
-			Predmet novi = new Predmet(delovi[0],delovi[1],delovi[2],delovi[3]);
+		if (predmetiNePostoji(a)) {
+
+			Predmet novi = new Predmet(delovi[0], delovi[1], delovi[2], delovi[3]);
 			predmeti.add(novi);
 			broj_predmeta++;
 			return true;
 		}
 		return false;
-		
+
 	}
 
 	private boolean predmetiNePostoji(String a) {
-		for(Predmet p:predmeti) {
-			if(a.equals(p.getSifra_predmeta())) {
+		for (Predmet p : predmeti) {
+			if (a.equals(p.getSifra_predmeta())) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
-	public void dodajProfesoraNaPredmet(Profesor prof, Predmet pred,int i) {
-		if(broj_profesora_na_predmetu==0) {
+
+	public void dodajProfesoraNaPredmet(Profesor prof, Predmet pred, int i) {
+		
 			predmeti.get(i).getProfesori_predavaci().add(prof);
-		}
-		else 
-		{
-			for(Predmet predmet : predmeti) {
-				if(predmet.getSifra_predmeta().equals(pred.getSifra_predmeta())) {
-					predmet.getProfesori_predavaci().add(prof);
-				}
-			}
-		}
+			broj_profesora_na_predmetu++;
+		
+		
 	}
-	
-	
+
 	public static int getBroj_profesora_na_predmetu() {
 		return broj_profesora_na_predmetu;
 	}
 
 	public static void setBroj_profesora_na_predmetu(int broj_profesora_na_predmetu) {
 		BazaPredmeta.broj_profesora_na_predmetu = broj_profesora_na_predmetu;
+	}
+
+	public Predmet getPredmetPoProfesoru(int red) {
+		Predmet p;
+		p = predmeti.get(red);
+		return p;
+	}
+
+	public boolean PostojiProfesorNaPredmetu(int red, String licna) {
+		boolean izlaz = false;
+		for( Profesor prof:predmeti.get(red).getProfesori_predavaci()) {
+			if(prof.getBroj_licne_karte().equals(licna)) {
+				izlaz= true;
+				
+			}
+		}
+
+		return izlaz;
 	}
 
 }

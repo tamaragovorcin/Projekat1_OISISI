@@ -56,7 +56,7 @@ public class Main_Frame extends JFrame{
         toolbar = Toolbar.getInstance();
         add(toolbar,BorderLayout.NORTH);
         toolbar.setVisible(true);
-        
+    	setResizable(true);
         
         tabbedPane = new TabbedPane();
         add(tabbedPane,BorderLayout.CENTER);
