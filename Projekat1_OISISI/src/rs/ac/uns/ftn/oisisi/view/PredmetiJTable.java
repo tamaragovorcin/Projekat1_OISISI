@@ -31,7 +31,8 @@ public class PredmetiJTable extends JTable{
 		this.setModel(new AbstractTableModelPredmeti());
 		new ButtonColumnPredmet_Profesor(this,4);
 		this.setRowHeight(20);
-		
+		new ButtonColumnPredmet_Student(this,5);
+		this.setRowHeight(20);
 	}
 
 	@Override

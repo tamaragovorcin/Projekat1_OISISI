@@ -16,7 +16,8 @@ import javax.swing.WindowConstants;
 
 
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
-
+import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
+import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 import rs.ac.uns.ftn.oisisi.controller.TabbedPaneListener;
 
 
@@ -108,6 +109,8 @@ public class Main_Frame extends JFrame{
 					
 					try {
 						PredmetiController.getInstance().sacuvajPredmeteTXT();
+						StudentiController.getInstance().sacuvajStudenteTXT();
+						ProfesoriController.getInstance().sacuvajProfesoreTXT();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

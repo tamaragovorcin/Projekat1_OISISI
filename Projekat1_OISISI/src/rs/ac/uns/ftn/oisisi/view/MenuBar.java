@@ -5,14 +5,19 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
-
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
+
+import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 
 
 public class MenuBar extends JMenuBar {
@@ -81,7 +86,7 @@ file = new JMenu("File");
 		
 					novistudent.setMnemonic(KeyEvent.VK_N);
 					novistudent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-					novistudent.setIcon(new ImageIcon("images2/close.png"));
+					novistudent.setIcon(new ImageIcon("images2/plus.png"));
 					novistudent.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent arg0) {
@@ -97,7 +102,7 @@ file = new JMenu("File");
 					
 					noviprofesor.setMnemonic(KeyEvent.VK_N);
 					noviprofesor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-					noviprofesor.setIcon(new ImageIcon("images2/close.png"));
+					noviprofesor.setIcon(new ImageIcon("images2/plus.png"));
 					
 					noviprofesor.addActionListener(new ActionListener() {
 						@Override
@@ -112,7 +117,7 @@ file = new JMenu("File");
 					miNew.addSeparator();
 					
 					novipredmet.setMnemonic(KeyEvent.VK_N);
-					novipredmet.setIcon(new ImageIcon("images2/close.png"));
+					novipredmet.setIcon(new ImageIcon("images2/plus.png"));
 					novipredmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 					novipredmet.addActionListener(new ActionListener() {
 						@Override
@@ -128,30 +133,32 @@ file = new JMenu("File");
 					
 					novipredstud.setMnemonic(KeyEvent.VK_N);
 					novipredstud.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-					novipredstud.setIcon(new ImageIcon("images2/close.png"));
+					novipredstud.setIcon(new ImageIcon("images2/plus.png"));
 					noviprofstud.add(novipredstud);
 					noviprofstud.addSeparator();
 					
 					novipredprof.setMnemonic(KeyEvent.VK_N);
 					novipredprof.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-					novipredprof.setIcon(new ImageIcon("images2/close.png"));
+					novipredprof.setIcon(new ImageIcon("images2/plus.png"));
 					noviprofstud.add(novipredprof);
 					
 					
 					
-					noviprofstud.setIcon(new ImageIcon("images2/close.png"));
+					noviprofstud.setIcon(new ImageIcon("images2/plus.png"));
 					miNew.add(noviprofstud);
 					miNew.addSeparator();
 					
 
-	    miNew.setIcon(new ImageIcon("images2/buttonplus.png"));
+	    miNew.setIcon(new ImageIcon("images2/plus.png"));
 	    file.add(miNew);
 	    file.addSeparator();
 		
 	    
 		miClose.setMnemonic(KeyEvent.VK_C);
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		miClose.setIcon(new ImageIcon("images2/close.png"));
+		miClose.setIcon(new ImageIcon("images2/minus.png"));
+		
+	
 		file.add(miClose);
 		
 		

@@ -26,7 +26,7 @@ private static StudentiJTable instance = null;
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelStudenti());
-	
+		new ButtonColumnStudent_Predmet(this, 10);
 	}
 
 	@Override
