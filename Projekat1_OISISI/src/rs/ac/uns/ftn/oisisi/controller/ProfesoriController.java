@@ -60,7 +60,7 @@ private static ProfesoriController instance = null;
 	}
 
 	public void pretraziProfesora() {
-		JTextField tekst = Toolbar.getInstance().getTekst();
+		JTextField tekst = Toolbar.getInstance().getSearchField();
 		String a = tekst.getText();
 
 		BazaProfesora.getInstance().pretragaProfesora(a);

@@ -61,7 +61,7 @@ public class PredmetiController {
 
 	public void pretraziPredmet() {
 
-		JTextField tekst = Toolbar.getInstance().getTekst();
+		JTextField tekst = Toolbar.getInstance().getSearchField();
 		String a = tekst.getText();
 
 		BazaPredmeta.getInstance().pretragaPredmeta(a);

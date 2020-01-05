@@ -32,7 +32,7 @@ public class AbstractTableListaPredmetaKodProfesora extends AbstractTableModel {
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
+	public Object getValueAt(int rowIndex, int columnIndex) { 
 		int selektovan = ProfesoriJTable.getInstance().getSelectedRow();
 		Profesor p = BazaProfesora.getInstance().getProfesore().get(selektovan);
 		return p.getSpisak_predmeta().get(rowIndex).getSifra_predmeta();
