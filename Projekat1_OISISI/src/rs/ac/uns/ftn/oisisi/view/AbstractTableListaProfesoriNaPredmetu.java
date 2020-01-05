@@ -15,7 +15,7 @@ public class AbstractTableListaProfesoriNaPredmetu extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		int selektovan = PredmetiJTable.getInstance().getSelectedRow();
-
+System.out.println( BazaPredmeta.getInstance().getPredmete().get(selektovan).getProfesori_predavaci().size());
 		return BazaPredmeta.getInstance().getPredmete().get(selektovan).getProfesori_predavaci().size();
 	}
 

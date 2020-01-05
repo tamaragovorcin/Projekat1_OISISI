@@ -54,15 +54,15 @@ public class Predmet implements Serializable{
 	public ArrayList<Student> getStudenti_na_predmetu() {
 		return studenti_na_predmetu;
 	}
-	@Override
-	public String toString() {
-		return sifra_predmeta+ " - " + naziv_predmeta + " - " + semestar + " - " + godina_studija_izvodjenja + " - " + profesori_predavaci+ "\n";
-	}
+	
 	public void setStudenti_na_predmetu(ArrayList<Student> studenti_na_predmetu) {
 		this.studenti_na_predmetu = studenti_na_predmetu;
 	}
 	
 
-	
+	@Override
+	public String toString() {
+		return sifra_predmeta+ " - " + naziv_predmeta + " - " + semestar + " - " + godina_studija_izvodjenja + " - " + profesori_predavaci+ "\n";
+	}
 	
 }

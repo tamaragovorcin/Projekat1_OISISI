@@ -71,6 +71,7 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 		int profesor = TabelaListaProfesora.getInstance().getSelectedRow();
 		
 		if (e.getActionCommand().equals("NAZAD")) {
+			//mode = DialogListaStudentaNaPredmetu.NAZAD;
 			dispose();
 		} else {
 		     mode = DialogListaProfesoraNaPredmetu.OBRISI;
@@ -78,12 +79,27 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 			if(profesor>=0 && profesor<BazaPredmeta.getInstance().getBroj_profesora_na_predmetu()) {
 				BazaPredmeta.getInstance().obrisiProfesorasaPredmeta(predmet,profesor);
 				TabelaListaProfesora.getInstance().refresujTabelu();
-			}
-			else {
+			
+		//	mode = DialogListaProfesoraNaPredmetu.OBRISI;
+			
+		//	if(row>=0 && row<BazaPredmeta.getInstance().getBroj_profesora_na_predmetu()) {
+			
+			//BazaPredmeta.getInstance().obrisiProfesorasaPredmeta(predmet,row);
+				//TabelaListaProfesora.getInstance().refresujTabelu();
+		//	}
+			
+			}else {
 				JOptionPane.showMessageDialog(null, "Profesor nije selektovan");
 			}
 		}
-		setVisible(false);
-	}
 		
+		setVisible(false);
+}
+	public int getMode() {
+		return mode;
+	}
+
+	public void setMode(int mode) {
+		this.mode = mode;
+	}
 }
