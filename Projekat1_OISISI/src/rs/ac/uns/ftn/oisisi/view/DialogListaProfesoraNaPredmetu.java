@@ -14,7 +14,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
 
+import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
+import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
+import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
+import rs.ac.uns.ftn.oisisi.model.Predmet;
 
 
 
@@ -67,23 +71,33 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int predmet = PredmetiJTable.getInstance().getSelectedRow();
-		int profesor = TabelaListaProfesora.getInstance().getSelectedRow();
-		
+
 		if (e.getActionCommand().equals("NAZAD")) {
 			dispose();
 		} else {
-		     mode = DialogListaProfesoraNaPredmetu.OBRISI;
-		     System.out.println(BazaPredmeta.getInstance().getBroj_profesora_na_predmetu());
-			if(profesor>=0 && profesor<BazaPredmeta.getInstance().getBroj_profesora_na_predmetu()) {
-				BazaPredmeta.getInstance().obrisiProfesorasaPredmeta(predmet,profesor);
+			
+			int predmet = PredmetiJTable.getInstance().getSelectedRow();
+			int profesor = TabelaListaProfesora.getInstance().getSelectedRow();
+			
+			Predmet pred = BazaPredmeta.getInstance().getPredmete().get(predmet);
+			String licna = pred.getProfesori_predavaci().get(profesor).getBroj_licne_karte();
+			
+		    mode = DialogListaProfesoraNaPredmetu.OBRISI;
+		    
+			if(profesor>=0 && profesor<BazaPredmeta.getInstance().getPredmete().get(predmet).getProfesori_predavaci().size()) {
+				PredmetiController.getInstance().obrisiProfesoraSaPredmeta(predmet,profesor);
+				ProfesoriController.getInstance().obrisiPredmetKodProfesora(pred,licna);
+				
+				JOptionPane.showMessageDialog(null, "Uspesno je obrisan profesor sa liste predavaca na predmetu.");
 				TabelaListaProfesora.getInstance().refresujTabelu();
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Profesor nije selektovan");
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+				setVisible(true);
 			}
 		}
-		setVisible(false);
+		
 	}
 		
 }

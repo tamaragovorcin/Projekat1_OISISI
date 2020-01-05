@@ -138,5 +138,10 @@ public class PredmetiController {
 		
 	}
 
+	public void obrisiProfesoraSaPredmeta(int predmet, int profesor) {
+		BazaPredmeta.getInstance().obrisiProfesorasaPredmeta(predmet,profesor);
+		
+	}
+
 	
 }

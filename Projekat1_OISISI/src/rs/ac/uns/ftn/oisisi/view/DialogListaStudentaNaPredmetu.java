@@ -52,15 +52,15 @@ private static final long serialVersionUID = -1986048344792559710L;
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int row = TabelaListaStudenata.getInstance().getSelectedRow();
-		
+		int predmet = PredmetiJTable.getInstance().getSelectedRow();
 		if (e.getActionCommand().equals("NAZAD")) {
 			mode = DialogListaStudentaNaPredmetu.NAZAD;
 		} else {
 			mode = DialogListaStudentaNaPredmetu.OBRISI;
-	
+			System.out.println(BazaPredmeta.getInstance().getBroj_studenta_na_predmetu());
 			if(row>=0 && row<BazaPredmeta.getInstance().getBroj_studenta_na_predmetu()) {
 			
-				BazaPredmeta.getInstance().obrisiStudentaSaPredmeta(row);
+				BazaPredmeta.getInstance().obrisiStudentaSaPredmeta(predmet,row);
 				TabelaListaStudenata.getInstance().refresujTabelu();
 			}
 			else {

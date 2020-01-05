@@ -152,7 +152,97 @@ public class Toolbar extends JToolBar {
 	
 		searchField = new JTextField(20);
 		searchField.setToolTipText("Upis za pretragu");
+		
+		dodajStudentButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DodavanjeStudentaDialog dialog = new DodavanjeStudentaDialog(Main_Frame.getInstance(), "Dodavanje novog studenta", true);
+				dialog.setVisible(true);
+			StudentiJTable.getInstance().refresTabelu();
+			dodajStudentButton.setSelected(false);
+			
+			}
+		});
+		
+		dodajPredmetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DodavanjePredmetaDialog dialog = new DodavanjePredmetaDialog(Main_Frame.getInstance(), "Dodavanje novog predmeta", true);
+				dialog.setVisible(true);
+				PredmetiJTable.getInstance().refresTabelu();
+				dodajPredmetButton.setSelected(false);
+			}
+		});
+		
+		dodajProfesoraButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DodavanjeProfesoraDialog dialog = new DodavanjeProfesoraDialog(Main_Frame.getInstance(), "Dodavanje novog profesora", true);
+				dialog.setVisible(true);
+				ProfesoriJTable.getInstance().refresTabelu();
+				dodajProfesoraButton.setSelected(false);
+			}
+		});
+		
+		changestudentButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = StudentiJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata()) {
+					StudentiController.getInstance().izmeniStudenta(row);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+				}
+				StudentiJTable.getInstance().refresTabelu();  
+				changestudentButton.setSelected(false);
+			}
+		});
+		
+		deletestudentButton.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		
+				int row = StudentiJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata() ) {
+					int izbor = JOptionPane.showConfirmDialog(null,
+							"Da li ste sigurni da zelite da obrisete stduenta?","Brisanje studenta",JOptionPane.YES_NO_OPTION);
+					if (izbor == JOptionPane.YES_OPTION) {
+						JOptionPane.showMessageDialog(null, "Student je obrisan!");
+						StudentiController.getInstance().izbrisiStudeta(row);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Student nije obrisan.");
+					}
+					
+				}else {
+						JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+					}
+					
+					StudentiJTable.getInstance().refresTabelu();
+					deletestudentButton.setSelected(false);
+			}
+		});
+		changeprofesorButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row =ProfesoriJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora()) {
+					ProfesoriController.getInstance().izmeniProfesora(row);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+				}
+				ProfesoriJTable.getInstance().refresTabelu();  
+				changeprofesorButton.setSelected(false);
+			}
+		});
+		
+		dodajProfesoraNaPredmet.addActionListener(new DodavanjeProfesoraNaPredmet());
+		
+		dodajStudentaNaPredmet.addActionListener(new DodavanjeStudentaNaPredmet());
 		
 		promena(Dugme.STUDENT);
 		
@@ -167,46 +257,14 @@ public class Toolbar extends JToolBar {
 		desno.removeAll();
 		
 		if(d == Dugme.STUDENT) {
-			dodajStudentButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					DodavanjeStudentaDialog dialog = new DodavanjeStudentaDialog(Main_Frame.getInstance(), "Dodavanje novog studenta", true);
-					dialog.setVisible(true);
-				StudentiJTable.getInstance().refresTabelu();
-				dodajStudentButton.setSelected(false);
-				
-				}
-			});
 			levo.add(dodajStudentButton,FlowLayout.LEFT);
-			
-			
-			
-			
 		}
+		
 		else if(d == Dugme.PREDMET)  {
-
-			dodajPredmetButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					DodavanjePredmetaDialog dialog = new DodavanjePredmetaDialog(Main_Frame.getInstance(), "Dodavanje novog predmeta", true);
-					dialog.setVisible(true);
-					PredmetiJTable.getInstance().refresTabelu();
-					dodajPredmetButton.setSelected(false);
-				}
-			});
 			levo.add(dodajPredmetButton,FlowLayout.LEFT);
 		}
+		
 		else if(d==Dugme.PROFESOR) {
-			dodajProfesoraButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					DodavanjeProfesoraDialog dialog = new DodavanjeProfesoraDialog(Main_Frame.getInstance(), "Dodavanje novog profesora", true);
-					dialog.setVisible(true);
-					ProfesoriJTable.getInstance().refresTabelu();
-					dodajProfesoraButton.setSelected(false);
-				}
-			});
 			levo.add(dodajProfesoraButton,FlowLayout.LEFT);
 		}
 		
@@ -219,49 +277,9 @@ public class Toolbar extends JToolBar {
 		
 		if(d == Dugme.STUDENT) {
 			changestudentButton.setToolTipText("Izmena studenta");
-			changestudentButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					int row = StudentiJTable.getInstance().getSelectedRow();
-					if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata()) {
-						StudentiController.getInstance().izmeniStudenta(row);
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Student nije selektovan.");
-					}
-					StudentiJTable.getInstance().refresTabelu();  
-					changestudentButton.setSelected(false);
-				}
-			});
-			
 			
 			deletestudentButton.setToolTipText("Brisanje studenta");
-			deletestudentButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-			
-					int row = StudentiJTable.getInstance().getSelectedRow();
-					if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata() ) {
-						int izbor = JOptionPane.showConfirmDialog(null,
-								"Da li ste sigurni da zelite da obrisete stduenta?","Brisanje studenta",JOptionPane.YES_NO_OPTION);
-						if (izbor == JOptionPane.YES_OPTION) {
-							JOptionPane.showMessageDialog(null, "Student je obrisan!");
-							StudentiController.getInstance().izbrisiStudeta(row);
-						}
-						else {
-							JOptionPane.showMessageDialog(null, "Student nije obrisan.");
-						}
-						
-					}else {
-							JOptionPane.showMessageDialog(null, "Student nije selektovan.");
-						}
-						
-						StudentiJTable.getInstance().refresTabelu();
-						deletestudentButton.setSelected(false);
-				}
-			});
+		
 			
 			searchButton.addActionListener(new ActionListener() {
 				
@@ -272,10 +290,7 @@ public class Toolbar extends JToolBar {
 				searchButton.setSelected(false);
 				}
 			});
-			
-		
-			
-			
+
 			levo.add(changestudentButton);
 			addSeparator();
 			levo.add(deletestudentButton);
@@ -347,7 +362,7 @@ public class Toolbar extends JToolBar {
 				}
 			});
 			
-			dodajProfesoraNaPredmet.addActionListener(new DodavanjeProfesoraNaPredmet());
+		
 			
 			levo.add(changeButton);
 			addSeparator();
@@ -363,7 +378,6 @@ public class Toolbar extends JToolBar {
 			add(levo,BorderLayout.WEST);
 			add(desno, BorderLayout.EAST);
 			
-			dodajStudentaNaPredmet.addActionListener(new DodavanjeStudentaNaPredmet());
 			
 			levo.add(changeButton);
 			addSeparator();
@@ -382,23 +396,9 @@ public class Toolbar extends JToolBar {
 		}
 		
 		
-		else if(d==Dugme.PROFESOR) { //i ovo istopa sad nista ne radi ustvari u sustini radi samo brka
+		else if(d==Dugme.PROFESOR) { 
 			changeprofesorButton.setToolTipText("Izmena profesora");
-			changeprofesorButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					int row =ProfesoriJTable.getInstance().getSelectedRow();
-					if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora()) {
-						ProfesoriController.getInstance().izmeniProfesora(row);
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
-					}
-					ProfesoriJTable.getInstance().refresTabelu();  
-					changeprofesorButton.setSelected(false);
-				}
-			});
+		
 			deleteButton.setToolTipText("Brisanje profesora");
 			deleteButton.addActionListener(new ActionListener() {
 

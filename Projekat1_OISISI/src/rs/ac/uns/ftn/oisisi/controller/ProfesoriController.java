@@ -88,14 +88,11 @@ private static ProfesoriController instance = null;
 		
 	}
 
-	
+	public void obrisiPredmetKodProfesora(Predmet pred, String licna) {
+		BazaProfesora.getInstance().obrisiPredmetKodProfesora(pred,licna);
+		
+	}
 
-	/*
-	 * proveraLicne karte BzaProfesor.GetINca...
-	 * 
-	 * 
-	 * 
-	 */
 	
 	
 	

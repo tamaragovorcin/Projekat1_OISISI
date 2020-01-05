@@ -452,4 +452,20 @@ private static BazaProfesora instance = null;
 			}
 		}
 	}
+
+	public void obrisiPredmetKodProfesora(Predmet pred, String licna) {
+		for(Profesor p : profesori) {
+			if(p.getBroj_licne_karte().equals(licna)) {
+				for (int i = 0; i < p.getSpisak_predmeta().size(); i++) {
+					if(p.getSpisak_predmeta().get(i).getSifra_predmeta().equals(pred.getSifra_predmeta())) {
+							p.getSpisak_predmeta().remove(i);
+					}
+				}
+			}
+		}
+		
+	}
+
+
+
 }
