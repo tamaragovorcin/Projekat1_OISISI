@@ -1,15 +1,11 @@
 package rs.ac.uns.ftn.oisisi.view;
 
 import javax.swing.table.AbstractTableModel;
-
-import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
-import rs.ac.uns.ftn.oisisi.model.Profesor;
 import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class AbstractTableListaPredmetaKodStudenta extends AbstractTableModel {
 
-	
 	private static final long serialVersionUID = -6180134115071255846L;
 
 	@Override

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Profesor extends Osoba implements Serializable{
 
+	private static final long serialVersionUID = 6215757433625993917L;
+	
 	private String adresa_kancelarije;
 	private String broj_licne_karte;
 	private String titula;

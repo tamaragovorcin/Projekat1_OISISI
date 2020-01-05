@@ -7,12 +7,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
-
 public class PredmetiJTable extends JTable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -7818780852556687386L;
 	
 	private static PredmetiJTable instance = null;
@@ -38,7 +34,6 @@ public class PredmetiJTable extends JTable{
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		Component c = super.prepareRenderer(renderer, row, column);
-		// selektovani red ce imati drugaciju boju od ostalih
 		if (isRowSelected(row)) {
 			c.setBackground(Color.LIGHT_GRAY);
 		} else {
@@ -49,7 +44,6 @@ public class PredmetiJTable extends JTable{
 			c.setBackground(Color.WHITE);
 			}
 		}
-			
 		return c;
 	}
 
@@ -57,6 +51,5 @@ public class PredmetiJTable extends JTable{
 		AbstractTableModelPredmeti arp = (AbstractTableModelPredmeti) this.getModel();
 		arp.fireTableDataChanged();
 		validate();
-		
 	}
 }

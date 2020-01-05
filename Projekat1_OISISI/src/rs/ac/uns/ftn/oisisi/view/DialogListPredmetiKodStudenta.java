@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -13,7 +12,6 @@ public class DialogListPredmetiKodStudenta  extends JDialog{
 	
 	private static final long serialVersionUID = 641427397276372778L;
 
-	private JPanel dole;
 	protected JButton odustani;
 	private JTable listaSifriPredmeta;
 	
@@ -23,9 +21,7 @@ public class DialogListPredmetiKodStudenta  extends JDialog{
 		setLayout(new BorderLayout());
 		setSize(300,400);
 		setLocationRelativeTo(instance);
-	//	setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		
-		 PrikazTabele();
+		PrikazTabele();
 	}
 
 	private void PrikazTabele() {

@@ -1,22 +1,12 @@
 package rs.ac.uns.ftn.oisisi.controller;
 
 import java.io.IOException;
-
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
-import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
-import rs.ac.uns.ftn.oisisi.model.Profesor;
 import rs.ac.uns.ftn.oisisi.model.Student;
-import rs.ac.uns.ftn.oisisi.view.DialogDodajProfesoraNaPredmet;
-import rs.ac.uns.ftn.oisisi.view.DodavanjeStudentaNaPredmetDialog;
-import rs.ac.uns.ftn.oisisi.view.IzmenaPredmetaDialog;
 import rs.ac.uns.ftn.oisisi.view.IzmenaStudentaDialog;
 import rs.ac.uns.ftn.oisisi.view.Main_Frame;
-import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
 import rs.ac.uns.ftn.oisisi.view.Toolbar;
 
 public class StudentiController {
@@ -31,10 +21,7 @@ private static StudentiController instance = null;
 	
 	private StudentiController() {}
 	
-	public void dodajStudenta() {
-		
-		Main_Frame.getInstance().azurirajPrikazStudenta("DODAT", -1);
-	}
+	public void dodajStudenta() {}
 	
     public void izbrisiStudeta(int rowSelectedIndex) {
     	if (rowSelectedIndex < 0) {
@@ -51,7 +38,7 @@ private static StudentiController instance = null;
 		IzmenaStudentaDialog dialog = new IzmenaStudentaDialog(Main_Frame.getInstance(), "Izmena studenta", true,
 				rowSelectedIndex);
 		dialog.setVisible(true);		
-}
+	}
 	
 	public void sacuvajStudenteTXT() throws IOException {
 		BazaStudenta.getInstance().sacuvajStudenteTXT();

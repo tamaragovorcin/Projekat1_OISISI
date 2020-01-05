@@ -2,26 +2,16 @@ package rs.ac.uns.ftn.oisisi.model;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JToggleButton;
-
-import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
 
 public class BazaPredmeta {
 
@@ -54,14 +44,11 @@ public class BazaPredmeta {
 		this.kolone.add("GODINA STUDIJA");
 		this.kolone.add("SPISAK PROFESORA");
 		this.kolone.add("SPISAK STUDENATA");
-
 	}
 
 	public void initPredmete(String sifra, String naziv, String semestar, String godina) {
-
 		this.predmeti.add(new Predmet(sifra, naziv, semestar, godina));
 		broj_predmeta++;
-
 	}
 
 	public List<Predmet> getPredmete() {
@@ -140,7 +127,7 @@ public class BazaPredmeta {
 	}
 
 	public void setBroj_predmeta(int broj_predmeta) {
-		this.broj_predmeta = broj_predmeta;
+		BazaPredmeta.broj_predmeta = broj_predmeta;
 	}
 
 	public void pretragaPredmeta(String ulaz) {
@@ -165,28 +152,24 @@ public class BazaPredmeta {
 				if (p.getSifra_predmeta().toLowerCase().equals(deo[1].trim().toLowerCase())) {
 					pretraga.add(p);
 				}
-
 			}
 		} else if (deo[0].toLowerCase().equals("naziv")) {
 			for (Predmet p : predmeti) {
 				if (p.getNaziv_predmeta().toLowerCase().equals(deo[1].trim().toLowerCase())) {
 					pretraga.add(p);
 				}
-
 			}
 		} else if (deo[0].toLowerCase().equals("semestar")) {
 			for (Predmet p : predmeti) {
 				if (p.getSemestar().toLowerCase().equals(deo[1].trim().toLowerCase())) {
 					pretraga.add(p);
 				}
-
 			}
 		} else if (deo[0].toLowerCase().equals("godina")) {
 			for (Predmet p : predmeti) {
 				if (p.getGodina_studija_izvodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
 					pretraga.add(p);
 				}
-
 			}
 		} else {
 			JOptionPane.showMessageDialog(null,
@@ -209,28 +192,24 @@ public class BazaPredmeta {
 						if (!p.getSifra_predmeta().toLowerCase().equals(deo[1].trim().toLowerCase())) {
 							pretraga.remove(p);
 						}
-
 					}
 				} else if (deo[0].toLowerCase().equals("naziv")) {
 					for (Predmet p : predmeti) {
 						if (!p.getNaziv_predmeta().toLowerCase().equals(deo[1].trim().toLowerCase())) {
 							pretraga.remove(p);
 						}
-
 					}
 				} else if (deo[0].toLowerCase().equals("semestar")) {
 					for (Predmet p : predmeti) {
 						if (!p.getSemestar().toLowerCase().equals(deo[1].trim().toLowerCase())) {
 							pretraga.remove(p);
 						}
-
 					}
 				} else if (deo[0].toLowerCase().equals("godina")) {
 					for (Predmet p : predmeti) {
 						if (!p.getGodina_studija_izvodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
 							pretraga.remove(p);
 						}
-
 					}
 				} else {
 					JOptionPane.showMessageDialog(null,
@@ -245,8 +224,6 @@ public class BazaPredmeta {
 
 	}
 
-
-	
 	public void sacuvajPredmeteTXT() throws IOException{
 		 ObjectOutputStream out=null;
 		 
@@ -296,37 +273,11 @@ public class BazaPredmeta {
 		predmeti.add(p);
 	}
 
-	private boolean dodajpredmet(String[] delovi) {
-
-		String a = delovi[0];
-		if (predmetiNePostoji(a)) {
-
-			Predmet novi = new Predmet(delovi[0], delovi[1], delovi[2], delovi[3]);
-			predmeti.add(novi);
-			broj_predmeta++;
-			return true;
-		}
-		return false;
-
-	}
-
-	private boolean predmetiNePostoji(String a) {
-		for (Predmet p : predmeti) {
-			if (a.equals(p.getSifra_predmeta())) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	public void dodajProfesoraNaPredmet(Profesor prof, Predmet pred, int i) {
-		
-			predmeti.get(i).getProfesori_predavaci().add(prof);
-			broj_profesora_na_predmetu++;
-			//System.out.println(broj_profesora_na_predmetu);
-		
-		
+		predmeti.get(i).getProfesori_predavaci().add(prof);
+		broj_profesora_na_predmetu++;
 	}
+	
 	public static int getBroj_profesora_na_predmetu() {
 		return broj_profesora_na_predmetu;
 	}
@@ -341,20 +292,15 @@ public class BazaPredmeta {
 		return p;
 	}
 	
-	
-
 	public boolean PostojiProfesorNaPredmetu(int red, String licna) {
 		boolean izlaz = false;
 		for( Profesor prof:predmeti.get(red).getProfesori_predavaci()) {
 			if(prof.getBroj_licne_karte().equals(licna)) {
 				izlaz= true;
-				
 			}
 		}
-
 		return izlaz;
 	}
-
 
 	public void dodajStudentaNaPredmet(Student student, Predmet pred, int i) {
 		
@@ -383,26 +329,29 @@ public class BazaPredmeta {
 		for( Student stud:predmeti.get(red).getStudenti_na_predmetu()) {
 			if(stud.getBrojIndeksa().equals(indeks)) {
 				izlaz= true;
-				
 			}
 		}
-	
 		return izlaz;
 	}
 	
-
 	public void obrisiStudentaSaPredmeta(int a,int i) {
-		
 		predmeti.get(a).getStudenti_na_predmetu().remove(i);
-
 		broj_studenta_na_predmetu--;
 	}
 	
 	public void obrisiProfesorasaPredmeta(int predmet,int profesor) {
 		predmeti.get(predmet).getProfesori_predavaci().remove(profesor);
-		broj_profesora_na_predmetu--;
-		
+		broj_profesora_na_predmetu--;	
 	}
 
+	public List<Predmet> getPretraga() {
+		return pretraga;
+	}
+
+	public void setPretraga(List<Predmet> pretraga) {
+		this.pretraga = pretraga;
+	}
+
+	
 	
 }

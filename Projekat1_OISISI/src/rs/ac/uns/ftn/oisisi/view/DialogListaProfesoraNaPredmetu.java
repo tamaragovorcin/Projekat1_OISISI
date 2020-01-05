@@ -24,16 +24,12 @@ import rs.ac.uns.ftn.oisisi.model.Predmet;
 
 public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionListener{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1986048344792559710L;
 	
 	private int mode = 1;
 	public static final int NAZAD = 0;
 	public static final int OBRISI = 1;
-		
-	private JPanel dole;
+
 	protected JButton odustani;
 	private JTable listaLicnihKarti;
   
@@ -50,7 +46,7 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 		obrisi.addActionListener(this);
 		JButton nazad = new JButton("NAZAD");
 		nazad.addActionListener(this);
-	//	setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
 		pan_odgovor.add(nazad);
 		pan_odgovor.add(obrisi);
 		add(pan_odgovor, BorderLayout.SOUTH);
@@ -58,7 +54,6 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 		setResizable(false);
 	     PrikazTabele();
 	}
-	
 	
 	private void PrikazTabele() {
 		listaLicnihKarti =  TabelaListaProfesora.getInstance();
@@ -68,16 +63,14 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 		TabelaListaProfesora.getInstance().refresujTabelu();
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getActionCommand().equals("NAZAD")) {
-			//mode = DialogListaStudentaNaPredmetu.NAZAD;
 			dispose();
 		} else {
 			
-			int predmet = PredmetiJTable.getInstance().getSelectedRow();
+			int predmet = PredmetiTablePanel.getSelektovan_red();
 			int profesor = TabelaListaProfesora.getInstance().getSelectedRow();
 			
 			Predmet pred = BazaPredmeta.getInstance().getPredmete().get(predmet);
@@ -91,7 +84,6 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 				
 				JOptionPane.showMessageDialog(null, "Uspesno je obrisan profesor sa liste predavaca na predmetu.");
 				TabelaListaProfesora.getInstance().refresujTabelu();
-
 			}
 			else {
 				setVisible(false);
@@ -99,7 +91,5 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 				setVisible(true);
 			}
 		}
-		
-
 	}
 }

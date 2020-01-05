@@ -2,7 +2,6 @@ package rs.ac.uns.ftn.oisisi.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -23,11 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.text.TabExpander;
-
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
-import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
@@ -64,12 +59,11 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		JButton odustanak = new JButton("ODUSTANAK");
 		odustanak.addActionListener(this);
 		JButton potvrda = new JButton("POTVRDA");
+		potvrda.setEnabled(false);
 		potvrda.addActionListener(this);
 
 		pan_odogovr.add(odustanak);
 		pan_odogovr.add(potvrda);
-
-		// JPanel panIme = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
 		JPanel pan_centar = new JPanel();
 		pan_centar.setBackground(Color.white);
@@ -87,13 +81,11 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -103,7 +95,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
@@ -149,13 +140,11 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -165,7 +154,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
@@ -180,13 +168,11 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -196,7 +182,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
@@ -211,13 +196,11 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -227,7 +210,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
@@ -242,13 +224,11 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -258,7 +238,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
@@ -273,13 +252,11 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -289,7 +266,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
@@ -304,13 +280,11 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -320,7 +294,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
@@ -337,12 +310,10 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
 		budzet.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -626,12 +597,10 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			if (BazaStudenta.getInstance().getStudente().size() == 0) {
 				BazaStudenta.getInstance().initStudenti(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4], tekst[5],
 						tekst[6], tekst[7], tekst[8], tekst[9]);
-				// StudentiJTable.getInstance().refresTabelu();
 			} else {
 				int nesto = 0;
 				for (Student p : BazaStudenta.getInstance().getStudente()) {
 					if (p.getBrojIndeksa().equals(tekst[6])) {
-						// JOptionPane.showMessageDialog(null, "Uneta sifra predmeta vec postoji!");
 						nesto = 1;
 					}
 				}
@@ -639,7 +608,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 					setVisible(true);
 					BazaStudenta.getInstance().initStudenti(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4], tekst[5],
 							tekst[6], tekst[7], tekst[8], tekst[9]);
-					// StudentiJTable.getInstance().refresTabelu();
 				} else if (nesto == 1) {
 					setVisible(false);
 					JOptionPane.showMessageDialog(null, "Student sa istim brojem indeksa vec postoji!");
@@ -647,7 +615,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 				}
 			}
 		}
-		// StudentiJTable.getInstance().refresTabelu();
 		setVisible(false);
 	}
 

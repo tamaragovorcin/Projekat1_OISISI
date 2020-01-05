@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Predmet implements Serializable{
+
+	private static final long serialVersionUID = 330243256400917804L;
+	
 	private String sifra_predmeta;
 	private String naziv_predmeta;
 	private String semestar;

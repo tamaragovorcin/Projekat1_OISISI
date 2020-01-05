@@ -1,11 +1,12 @@
 package rs.ac.uns.ftn.oisisi.model;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Student extends Osoba implements Serializable{
 
+	private static final long serialVersionUID = -954242664949548409L;
+	
 	private String brojIndeksa;
 	private String datumUpisa;
 	private String godinaStudija;

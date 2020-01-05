@@ -11,11 +11,8 @@ import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 
 public class AbstractTableModelPredmeti extends AbstractTableModel {
 
-
 	private static final long serialVersionUID = -5798037111446621009L;
-	public static String kolonaDugme = "DUGME";
-	public static String kolonaCheck = "CHECK";
-	
+
 	private List<Boolean> koJeOtkacen;
 	
 	public AbstractTableModelPredmeti() {
@@ -24,17 +21,20 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 			koJeOtkacen.add(false);
 		}
 	}
+	
 	@Override
 	public int getRowCount() { 
-		return BazaPredmeta.getInstance().getPredmete().size();
-	
+		if(BazaPredmeta.getInstance().getPretraga().size()==0) {
+			return BazaPredmeta.getInstance().getPredmete().size();
+		}
+		else {
+			return BazaPredmeta.getInstance().getPretraga().size();
+		}
 	}
 
 	@Override
 	public int getColumnCount() {
-	
 		return BazaPredmeta.getInstance().getColumnCount();
-		 
 	}
 
 	public Object getValueAt(int rowIndex, int columnIndex){
@@ -45,14 +45,12 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 			return btn;
 		} 
 		return null;
-		
 	}
 
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return columnIndex>=4;
 	}
-
 
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
@@ -74,14 +72,9 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 		}
 	}
 
-
 	@Override
 	public String getColumnName(int column) {
-		if (column >= BazaPredmeta.getInstance().getColumnCount()) {
-			return column == 11 ? kolonaDugme : kolonaCheck;
-		}
 		return BazaPredmeta.getInstance().getColumnName(column);
-		
 	}
 
 	public void predmetDodat() {
@@ -91,6 +84,5 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 	public void predmetUklonjen(int rowIndex) {
 		this.koJeOtkacen.remove(rowIndex);
 	}
-	
 
 }

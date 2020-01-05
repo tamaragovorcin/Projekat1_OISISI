@@ -20,14 +20,7 @@ import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 import rs.ac.uns.ftn.oisisi.controller.TabbedPaneListener;
 
-
-
-
-
-
-
 public class Main_Frame extends JFrame{
-
 
 	private static final long serialVersionUID = 6925220640504028152L;
 	private static Main_Frame instance = null;
@@ -39,9 +32,16 @@ public class Main_Frame extends JFrame{
 	private MenuBar menu;
 	private StatusBar statusBar;
 	
+	public static Main_Frame getInstance() {
+		if(instance==null) {
+			instance = new Main_Frame();
+		}
+		return instance;
+	}
+	
 	private Main_Frame() {
 		
-		Toolkit kit = Toolkit.getDefaultToolkit();//taj sto sam zatvorila je sa casa ako na to mislis aaaaa aj gledam sta je to
+		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		screenHight = screenSize.height;
 		screenWidth = screenSize.width;
@@ -51,7 +51,6 @@ public class Main_Frame extends JFrame{
 		setLocationRelativeTo(null);
         getContentPane().setBackground(Color.LIGHT_GRAY);
         setLayout(new BorderLayout());
-        
         
         toolbar = Toolbar.getInstance();
         add(toolbar,BorderLayout.NORTH);
@@ -112,7 +111,6 @@ public class Main_Frame extends JFrame{
 						StudentiController.getInstance().sacuvajStudenteTXT();
 						ProfesoriController.getInstance().sacuvajProfesoreTXT();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -125,26 +123,15 @@ public class Main_Frame extends JFrame{
 			@Override
 			public void windowClosed(WindowEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
 			public void windowActivated(WindowEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 		});
 		
         setVisible(true);
-        
-        
-	}
-	
-	public static Main_Frame getInstance() {
-		if(instance==null) {
-			instance = new Main_Frame();
-		}
-		return instance;
 	}
 	
 	private JTable tabelaPredmeta;

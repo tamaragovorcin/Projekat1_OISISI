@@ -25,9 +25,6 @@ import rs.ac.uns.ftn.oisisi.model.Predmet;
 
 public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8377505010808280172L;
 
 	private int mode = 1;
@@ -42,7 +39,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 	List<Predmet> predmeti = BazaPredmeta.getInstance().getPredmete();
 	
 	private int br=0;
-	private int br2=0;
+	private int br2 = 0;
 	private int red;
 	private Predmet predmet;
 	public IzmenaPredmetaDialog(Main_Frame instance, String string, boolean b,int row) {
@@ -83,13 +80,11 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -99,7 +94,6 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 		panSifra.add(labelaSifra);
@@ -119,13 +113,11 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -135,7 +127,6 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
@@ -196,8 +187,6 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		
 		Set();
 		setResizable(false);	
-		
-		
 	}
 
 	public String[] pokupiUnetiTekst() {
@@ -238,15 +227,13 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		return izlaz;
 	}
 
-	
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String tekst[] = pokupiUnetiTekst();
 	
 		if (e.getActionCommand().equals("ODUSTANAK")) {
 			mode = IzmenaPredmetaDialog.ODUSTANAK;
-			//dispose();
+			dispose();
 		} else {
 			mode = IzmenaPredmetaDialog.POTVRDA;  	
 			if(!predmet.getSifra_predmeta().equals(tekst[0])) { 
@@ -255,7 +242,6 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 						JOptionPane.showMessageDialog((Component) e.getSource(), "Izmenjena sifra vec postoji!");
 						return;
 					}
-					
 				}
 				predmet.setSifra_predmeta(tekst[0]);
 				predmet.setNaziv_predmeta(tekst[1]);
@@ -267,17 +253,14 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 				predmet.setNaziv_predmeta(tekst[1]);
 				predmet.setSemestar(tekst[2]);
 				predmet.setGodina_studija_izvodjenja(tekst[3]);
-				
-				
+		
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				PredmetiJTable.getInstance().refresTabelu();
 			}
 		}
 		setVisible(false);
 	}
-		
 
-	
 	public int getMode() {
 		return mode;
 	}
@@ -288,8 +271,12 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
 
 	public void  Set() {
-		
-		predmet = BazaPredmeta.getInstance().getPredmete().get(red);
+		if(BazaPredmeta.getInstance().getPretraga().size()==0) {
+			predmet = BazaPredmeta.getInstance().getPredmete().get(red);
+		}
+		else {
+			predmet = BazaPredmeta.getInstance().getPretraga().get(red);
+		}
 		txtSifra.setText(predmet.getSifra_predmeta());
 		txtNaziv.setText(predmet.getNaziv_predmeta());	
 		String a = predmet.getSemestar();
@@ -322,12 +309,11 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 			case "V":
 				br2=5;
 				break;
-				
 			default:
 				br2 =0;
 		}
 		
-		godinaComboBox.setSelectedIndex(br);
+		godinaComboBox.setSelectedIndex(br2);
 	}
 	
 	

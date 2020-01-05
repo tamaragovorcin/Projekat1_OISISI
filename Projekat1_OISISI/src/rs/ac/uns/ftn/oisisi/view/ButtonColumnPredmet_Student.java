@@ -8,13 +8,13 @@ import java.awt.event.MouseListener;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 public class ButtonColumnPredmet_Student extends AbstractCellEditor
 implements TableCellRenderer, TableCellEditor, MouseListener{
+	
 	private static final long serialVersionUID = 517310325975137614L;
 
 	private JButton renderButton;
@@ -54,7 +54,6 @@ implements TableCellRenderer, TableCellEditor, MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -77,13 +76,11 @@ implements TableCellRenderer, TableCellEditor, MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

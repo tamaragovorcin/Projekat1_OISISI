@@ -5,18 +5,11 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
-
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
-import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
 public class AbstractTableModelStudenti  extends AbstractTableModel {
 	
 	private static final long serialVersionUID = 2995603907983526790L;
-	public static String kolonaDugme = "DUGME";
-	public static String kolonaCheck = "CHECK";
-	
-	
 	
 	private List<Boolean> koJeOtkacen;
 	
@@ -26,7 +19,6 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 			koJeOtkacen.add(false);
 		}
 	}
-
 
 	public int getRowCount() {
 	return BazaStudenta.getInstance().getStudente().size();
@@ -69,19 +61,13 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 	
 	@Override
 	public int getColumnCount() {
-		//return BazaProfesora.getInstance().getColumnCount() +2;
 		return BazaStudenta.getInstance().getColumnCount();
 	}
 	
-	
 	@Override
 	public String getColumnName(int column) {
-		if (column >= BazaStudenta.getInstance().getColumnCount()) {
-			return column == 11 ? kolonaDugme : kolonaCheck;
-		}
-			return BazaStudenta.getInstance().getColumnName(column);
+		return BazaStudenta.getInstance().getColumnName(column);
 	}
-
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
@@ -93,9 +79,8 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 			return btn;
 		} 
 		return null;
-			
-		
 	}
+	
 	public void studentDodat() {
 		this.koJeOtkacen.add(false);
 	}

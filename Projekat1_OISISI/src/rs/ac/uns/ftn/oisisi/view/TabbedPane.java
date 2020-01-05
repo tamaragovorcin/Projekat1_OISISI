@@ -24,4 +24,11 @@ public class TabbedPane extends JTabbedPane {
 		addTab("Predmeti", new ImageIcon("images2/book.png"),predmetiTable,"Tabela predmeta");
 		addTab("Profesori", new ImageIcon("images2/teacher.png"),profesoriTable,"Tabela profesora");
 	}
+	public static int getPritisnutTab() {
+		return pritisnutTab;
+	}
+	public static void setPritisnutTab(int pritisnutTab) {
+		TabbedPane.pritisnutTab = pritisnutTab;
+	}
+	
 }

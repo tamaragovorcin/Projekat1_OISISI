@@ -28,9 +28,6 @@ import rs.ac.uns.ftn.oisisi.model.Predmet;
 
 public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -720118426910400743L;
 
 	private int mode = 1;
@@ -55,7 +52,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		JButton odustanak = new JButton("ODUSTANAK");
 		odustanak.addActionListener(this);
 		JButton potvrda = new JButton("POTVRDA");
-		potvrda.setEnabled(false); // false na pocetku
+		potvrda.setEnabled(false); 
 		potvrda.addActionListener(this);
 
 		pan_odogovr.add(odustanak);
@@ -65,8 +62,6 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		pan_centar.setBackground(Color.white);
 		pan_centar.setLayout(new GridBagLayout());
 		pan_centar.setBackground(new Color(204, 227, 249));
-
-		
 
 		JLabel labelaSifra = new JLabel("Sifra predmeta*:");
 		labelaSifra.setPreferredSize(dim);
@@ -79,13 +74,11 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -95,7 +88,6 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 	
@@ -110,13 +102,11 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
@@ -126,11 +116,9 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 				} else {
 					potvrda.setEnabled(false);
 				}
-
 			}
 		});
 
-	
 		JLabel lblsemestar = new JLabel("Semestar*:");
 		lblsemestar.setPreferredSize(dim);
 		String semestar[] = { "    ", "zimski", "letnji" };
@@ -192,12 +180,6 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		gbcTekstNaziv.insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtNaziv, gbcTekstNaziv);
 		
-		
-		
-		
-		
-		
-
 		GridBagConstraints gbcSemestar = new GridBagConstraints();
 		gbcSemestar.gridx = 0;
 		gbcSemestar.gridy = 2;
@@ -223,7 +205,6 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		gbcComboBoxGodina.weightx = 10;
 		gbcComboBoxGodina.insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(godinaComboBox, gbcComboBoxGodina);
-
 
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odogovr, BorderLayout.SOUTH);
@@ -268,19 +249,14 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 		return izlaz;
 	}
-
-	
-	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String tekst[] = pokupiUnetiTekst();
 		
 		if (e.getActionCommand().equals("ODUSTANAK")) {
-			//mode = DodavanjePredmetaDialog.ODUSTANAK;
 			dispose();
 		} else {
-			
 			mode = DodavanjePredmetaDialog.POTVRDA;
 			if(BazaPredmeta.getInstance().getPredmete().size()==0) {
 				BazaPredmeta.getInstance().initPredmete(tekst[0], tekst[1], tekst[2], tekst[3]);
@@ -289,7 +265,6 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 				int nesto=0;
 				for(Predmet p: BazaPredmeta.getInstance().getPredmete()) {
 					if(p.getSifra_predmeta().equals(tekst[0])) {
-						
 						nesto =1;
 					}
 				}
@@ -306,11 +281,8 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 			
 			}
 		setVisible(false);
-		}
-		
-
+	}
 	
-
 	public int getMode() {
 		return mode;
 	}

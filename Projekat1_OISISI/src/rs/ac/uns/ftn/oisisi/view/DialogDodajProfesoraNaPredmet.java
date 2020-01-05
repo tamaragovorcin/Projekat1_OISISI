@@ -12,15 +12,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.regex.Pattern;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
@@ -28,9 +25,6 @@ import rs.ac.uns.ftn.oisisi.model.Profesor;
 
 public class DialogDodajProfesoraNaPredmet extends JDialog{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3086370650016308061L;
 	JTextField txtLicnaKarta = new JTextField();
 
@@ -57,19 +51,16 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				int red = PredmetiJTable.getInstance().getSelectedRow();
+				int red = PredmetiTablePanel.getSelektovan_red();
 				String licna = pokupiUnetiTekst();
 				
 				Predmet predmet = PredmetiController.getInstance().getPredmetPoProfesoru(red);
 				
 				Profesor profesor = ProfesoriController.getInstance().getProfesoraPoPredmetu(licna);
 				
-	
 				boolean postojiProfesor = ProfesoriController.getInstance().PostojiLicnaKarta(licna);
 				
 				boolean postojiProfesorNaPredmetu = PredmetiController.getInstance().PostojiProfesorNaPredmetu(red,licna);//ne red
-				
-			
 				
 				if(postojiProfesor== true && postojiProfesorNaPredmetu==false) {
 					dispose();
@@ -93,21 +84,13 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 						JOptionPane.showMessageDialog(null, "Nije moguce dodati profesora na predmet.");
 						setVisible(true);
 					}
-				}
-				
-				
-				
+				}	
 			}
-
-			
-		});
-
 		
+		});
 		
 		pan_odogovr.add(odustanak);
 		pan_odogovr.add(potvrda);
-		
-		
 		
 		JPanel pan_centar = new JPanel();
 		pan_centar.setBackground(Color.white);
@@ -124,8 +107,7 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub	
 			}
 			
 			@Override
@@ -135,15 +117,14 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 				} else {
 					potvrda.setEnabled(false);
 				}
-	
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 		});
+		
 		GridBagConstraints gbcLicnaKarta = new GridBagConstraints();
 		gbcLicnaKarta.gridx = 0;
 		gbcLicnaKarta.gridy = 0;
@@ -157,7 +138,6 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 		gbcTXTLicnaKarta.fill = GridBagConstraints.HORIZONTAL;
 		gbcTXTLicnaKarta.insets = new Insets(10, 20, 0, 20);
 		pan_centar.add(txtLicnaKarta, gbcTXTLicnaKarta);
-		
 		
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odogovr, BorderLayout.SOUTH);
@@ -181,13 +161,10 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 		return izlaz;
 	}
 	
-
 	private String pokupiUnetiTekst() {
 		String tekst = new String();
 		tekst =txtLicnaKarta.getText().toString(); 
 		return tekst;
 	}
-	
-	
 	
 }

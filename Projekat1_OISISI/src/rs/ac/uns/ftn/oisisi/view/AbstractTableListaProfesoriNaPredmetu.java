@@ -7,15 +7,11 @@ import rs.ac.uns.ftn.oisisi.model.Predmet;
 
 public class AbstractTableListaProfesoriNaPredmetu extends AbstractTableModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3093131892473243L;
 
 	@Override
 	public int getRowCount() {
-		int selektovan = PredmetiJTable.getInstance().getSelectedRow();
-System.out.println( BazaPredmeta.getInstance().getPredmete().get(selektovan).getProfesori_predavaci().size());
+		int selektovan = PredmetiTablePanel.getSelektovan_red();
 		return BazaPredmeta.getInstance().getPredmete().get(selektovan).getProfesori_predavaci().size();
 	}
 
@@ -26,7 +22,7 @@ System.out.println( BazaPredmeta.getInstance().getPredmete().get(selektovan).get
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		int selektovan = PredmetiJTable.getInstance().getSelectedRow();
+		int selektovan =  PredmetiTablePanel.getSelektovan_red();
 		if (selektovan != -1) {
 			Predmet p = BazaPredmeta.getInstance().getPredmete().get(selektovan);
 			return p.getProfesori_predavaci().get(rowIndex).getBroj_licne_karte();
@@ -36,7 +32,6 @@ System.out.println( BazaPredmeta.getInstance().getPredmete().get(selektovan).get
 	}
 
 	public String getColumnName(int column) {
-
 		return "Broj licne karte";
 	}
 

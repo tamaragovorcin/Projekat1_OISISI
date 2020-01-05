@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
-import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
 import rs.ac.uns.ftn.oisisi.model.Student;
@@ -16,7 +15,6 @@ import rs.ac.uns.ftn.oisisi.view.IzmenaPredmetaDialog;
 import rs.ac.uns.ftn.oisisi.view.Main_Frame;
 import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
 import rs.ac.uns.ftn.oisisi.view.PredmetiTablePanel;
-import rs.ac.uns.ftn.oisisi.view.TabelaListaStudenata;
 import rs.ac.uns.ftn.oisisi.view.Toolbar;
 
 public class PredmetiController {
@@ -35,25 +33,28 @@ public class PredmetiController {
 
 	public void dodajPredmet() {
 
-		//BazaPredmeta.getInstance().dodajPredmet();
+		// BazaPredmeta.getInstance().dodajPredmet();
 	}
 
 	public void izbrisiPredmet(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {
 			return;
 		}
+		if (BazaPredmeta.getInstance().getPretraga().size() == 0) {
+			Predmet predmet = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
+			BazaPredmeta.getInstance().izbrisiPredmet(predmet.getSifra_predmeta());
+		} else {
+			Predmet predmet = BazaPredmeta.getInstance().getPretraga().get(rowSelectedIndex);
+			BazaPredmeta.getInstance().izbrisiPredmet(predmet.getSifra_predmeta());
+			BazaPredmeta.getInstance().getPretraga().remove(rowSelectedIndex);
+		}
 
-		Predmet predmet = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
-		BazaPredmeta.getInstance().izbrisiPredmet(predmet.getSifra_predmeta());
-
-		
 	}
 
 	public void izmeniPredmet(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {
 			return;
 		}
-
 		IzmenaPredmetaDialog dialog = new IzmenaPredmetaDialog(Main_Frame.getInstance(), "Izmena predmeta", true,
 				rowSelectedIndex);
 		dialog.setVisible(true);
@@ -65,7 +66,7 @@ public class PredmetiController {
 		String a = tekst.getText();
 
 		BazaPredmeta.getInstance().pretragaPredmeta(a);
-
+		PredmetiJTable.getInstance().refresTabelu();
 	}
 
 	public void sacuvajPredmeteTXT() throws IOException {
@@ -77,19 +78,20 @@ public class PredmetiController {
 	}
 
 	public void dodavanjeProfesoraNaPredmet() {
-		int red = PredmetiJTable.getInstance().getSelectedRow();
-		if(red>=0 && red<BazaPredmeta.getInstance().getBroj_predmeta()) {
-			DialogDodajProfesoraNaPredmet dialog = new DialogDodajProfesoraNaPredmet(null, "Dodavanje profesora na predmet", true);
+		int red = PredmetiTablePanel.getSelektovan_red();
+		if (red >= 0 && red < BazaPredmeta.getInstance().getBroj_predmeta()) {
+			DialogDodajProfesoraNaPredmet dialog = new DialogDodajProfesoraNaPredmet(null,
+					"Dodavanje profesora na predmet", true);
 			dialog.setVisible(true);
-		}
-		else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Predmet nije selektovan");
 		}
 	}
+
 	public void dodajProfesora(Profesor prof, Predmet pred, int i) {
 		BazaPredmeta.getInstance().dodajProfesoraNaPredmet(prof, pred, i);
 	}
-	
+
 	public Predmet getPredmetPoProfesoru(int red) {
 		Predmet p;
 		p = BazaPredmeta.getInstance().getPredmetPoProfesoru(red);
@@ -98,30 +100,28 @@ public class PredmetiController {
 
 	public boolean PostojiProfesorNaPredmetu(int red, String licna) {
 		boolean izlaz = false;
-		
-		if(BazaPredmeta.getInstance().PostojiProfesorNaPredmetu(red, licna)) {
+
+		if (BazaPredmeta.getInstance().PostojiProfesorNaPredmetu(red, licna)) {
 			izlaz = true;
 		}
 		return izlaz;
-		
 	}
-	
-	
-	
+
 	public void dodavanjeStudentaNaPredmet() {
-		int red = PredmetiJTable.getInstance().getSelectedRow();
-		if(red>=0 && red<BazaPredmeta.getInstance().getBroj_predmeta()) {
-			DodavanjeStudentaNaPredmetDialog dialog = new DodavanjeStudentaNaPredmetDialog(null, "Dodavanje studenta na predmet", true);
+		int red = PredmetiTablePanel.getSelektovan_red();
+		if (red >= 0 && red < BazaPredmeta.getInstance().getBroj_predmeta()) {
+			DodavanjeStudentaNaPredmetDialog dialog = new DodavanjeStudentaNaPredmetDialog(null,
+					"Dodavanje studenta na predmet", true);
 			dialog.setVisible(true);
-		}
-		else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Predmet nije selektovan");
 		}
 	}
+
 	public void dodajStudenta(Student stud, Predmet pred, int i) {
 		BazaPredmeta.getInstance().dodajStudentaNaPredmet(stud, pred, i);
 	}
-	
+
 	public Predmet getPredmetPoStudentu(int red) {
 		Predmet p;
 		p = BazaPredmeta.getInstance().getPredmetPoStudentu(red);
@@ -130,18 +130,15 @@ public class PredmetiController {
 
 	public boolean PostojiStudentNaPredmetu(int red, String licna) {
 		boolean izlaz = false;
-		
-		if(BazaPredmeta.getInstance().PostojiStudentNaPredmetu(red, licna)) {
+
+		if (BazaPredmeta.getInstance().PostojiStudentNaPredmetu(red, licna)) {
 			izlaz = true;
 		}
 		return izlaz;
-		
 	}
 
 	public void obrisiProfesoraSaPredmeta(int predmet, int profesor) {
-		BazaPredmeta.getInstance().obrisiProfesorasaPredmeta(predmet,profesor);
-		
+		BazaPredmeta.getInstance().obrisiProfesorasaPredmeta(predmet, profesor);
 	}
 
-	
 }
