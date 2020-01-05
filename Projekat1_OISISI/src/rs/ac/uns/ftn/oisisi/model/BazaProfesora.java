@@ -39,12 +39,7 @@ private static BazaProfesora instance = null;
 	private List<Profesor>pretraga;
 	Predmet predmet;
 	
-
-	File nazivTXT = new File("profesori.txt");
 	private BazaProfesora() {
-		
-		
-		//initProfesori();
 		
 		this.kolone=new ArrayList<String>();
 		this.profesori=new ArrayList<Profesor>();
@@ -61,7 +56,6 @@ private static BazaProfesora instance = null;
 		this.kolone.add("ZVANJE");
 		this.kolone.add("SPISAK PREDMETA");
 		//initProfesori();
-		
 	}
 
 	private void initProfesori() {
@@ -71,7 +65,6 @@ private static BazaProfesora instance = null;
 		this.profesori.add(new Profesor("Natalija","Jokic","05.05.1975.","Puskinova 9","0654599255","natalijajokic@gmail.com","Radnicka 55","333","Redovni profesor","Doktor nauka"));
 		
 		++broj_profesora;
-		
 	}
 
 	public List<Profesor>getProfesore() {
@@ -178,16 +171,6 @@ private static BazaProfesora instance = null;
 		this.broj_profesora = broj_profesora;
 	}
 	
-/*	public void sacuvajProfesoreTXT() throws IOException {
-		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT))); 
-			for(int i = 0; i<profesori.size();i++) {
-				Profesor p = profesori.get(i);
-				String a = p.toString();
-				br.write(a);
-			}
-			br.close();
-	}*/
-	
 	 public void sacuvajProfesoreTXT() throws IOException{
 		 ObjectOutputStream out=null;
 		 
@@ -208,24 +191,7 @@ private static BazaProfesora instance = null;
 			 }
 		 }
 	 }
-	
-/*	public void ucitajProfesoreTXT() throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
-		
-		String ulaz = new String();
-		
-		while((ulaz=br.readLine())!=null) {
-			String deo[] = ulaz.split("-");
-			String delovi[] =  new String[deo.length];
-			for(int i = 0; i <deo.length;i++) {
-				delovi[i] = deo[i].trim();
-			}
-			dodajprofesora(delovi);
-		}
-		ProfesoriJTable.getInstance().refresTabelu();
-		
-	}*/
-	 
+ 
 	 public void ucitajProfesoreTXT() throws IOException {
 			ObjectInputStream in =null;
 			Profesor p=null;
@@ -247,16 +213,12 @@ private static BazaProfesora instance = null;
 					 }
 				 }
 			 }
-				 
-			 
-			 }
-			 
-
-			private void dodajprofesora2(Profesor p) {
-				// TODO Auto-generated method stub
-				broj_profesora++;
-				profesori.add(p);
-			}
+		 }
+	
+	 private void dodajprofesora2(Profesor p) {
+		broj_profesora++;
+		profesori.add(p);
+	}
 
 	private boolean dodajprofesora(String[] delovi) {
 		

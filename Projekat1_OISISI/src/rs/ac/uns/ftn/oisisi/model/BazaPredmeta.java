@@ -42,7 +42,6 @@ public class BazaPredmeta {
 	private static int broj_predmeta = 0;
 	private static int broj_profesora_na_predmetu = 0;
 	private static int broj_studenta_na_predmetu = 0;
-	File nazivTXT = new File("predmeti.txt");
 
 	private BazaPredmeta() {
 
@@ -246,17 +245,7 @@ public class BazaPredmeta {
 
 	}
 
-	/*public void sacuvajPredmeteTXT() throws IOException {
-		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT)));
-		for (int i = 0; i < predmeti.size(); i++) {
-			Predmet p = predmeti.get(i);
-			String a = p.toString();
-			br.write(a);
-		}
-		br.close();
-	}*/
 
-	
 	
 	public void sacuvajPredmeteTXT() throws IOException{
 		 ObjectOutputStream out=null;
@@ -279,27 +268,9 @@ public class BazaPredmeta {
 		 }
 	 }
 	
-	
-	/*public void ucitajPredmeteTXT() throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
-
-		String ulaz = new String();
-
-		while ((ulaz = br.readLine()) != null) {
-			String deo[] = ulaz.split("-");
-			String delovi[] = new String[deo.length];
-			for (int i = 0; i < deo.length; i++) {
-				delovi[i] = deo[i].trim();
-			}
-			dodajpredmet(delovi);
-		}
-		PredmetiJTable.getInstance().refresTabelu();
-
-	}*/
-	
 	public void ucitajPredmeteTXT() throws IOException {
 		ObjectInputStream in =null;
-	Predmet p=null;
+		Predmet p=null;
 		
 		try {
 			in=new ObjectInputStream(new BufferedInputStream(new FileInputStream("predmeti.raw")));
@@ -309,7 +280,7 @@ public class BazaPredmeta {
 			}
 		}catch(Exception e) {
 			// e.printStackTrace();
-		 }finally {
+	    }finally {
 			 if(in!=null) {
 				 try {
 					 in.close();
@@ -317,17 +288,13 @@ public class BazaPredmeta {
 					 
 				 }
 			 }
-		 }
-			 
+		 } 
+	 }
 		 
-		 }
-		 
-
-		private void dodajpredmeta2(Predmet p) {
-			// TODO Auto-generated method stub
-			broj_predmeta++;
-			predmeti.add(p);
-		}
+	private void dodajpredmeta2(Predmet p) {
+		broj_predmeta++;
+		predmeti.add(p);
+	}
 
 	private boolean dodajpredmet(String[] delovi) {
 
@@ -352,12 +319,6 @@ public class BazaPredmeta {
 		return true;
 	}
 
-	
-	
-	
-	
-	
-	
 	public void dodajProfesoraNaPredmet(Profesor prof, Predmet pred, int i) {
 		
 			predmeti.get(i).getProfesori_predavaci().add(prof);
@@ -393,16 +354,7 @@ public class BazaPredmeta {
 		return izlaz;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public void dodajStudentaNaPredmet(Student student, Predmet pred, int i) {
 		
 		predmeti.get(i).getStudenti_na_predmetu().add(student);

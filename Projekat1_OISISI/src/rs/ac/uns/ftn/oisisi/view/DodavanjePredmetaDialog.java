@@ -55,6 +55,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		JButton odustanak = new JButton("ODUSTANAK");
 		odustanak.addActionListener(this);
 		JButton potvrda = new JButton("POTVRDA");
+		potvrda.setEnabled(false); // false na pocetku
 		potvrda.addActionListener(this);
 
 		pan_odogovr.add(odustanak);
@@ -276,8 +277,8 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		String tekst[] = pokupiUnetiTekst();
 		
 		if (e.getActionCommand().equals("ODUSTANAK")) {
-			mode = DodavanjePredmetaDialog.ODUSTANAK;
-		
+			//mode = DodavanjePredmetaDialog.ODUSTANAK;
+			dispose();
 		} else {
 			
 			mode = DodavanjePredmetaDialog.POTVRDA;

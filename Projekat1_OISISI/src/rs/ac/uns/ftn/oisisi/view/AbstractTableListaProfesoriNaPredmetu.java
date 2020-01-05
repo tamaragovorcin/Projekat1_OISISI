@@ -14,26 +14,30 @@ public class AbstractTableListaProfesoriNaPredmetu extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		int selektovan = PredmetiJTable.getInstance().getSelectedRow(); // treba da se izmeni sa onim gde ti je sort
-					
-		return  BazaPredmeta.getInstance().getPredmete().get(selektovan).getProfesori_predavaci().size();
+		int selektovan = PredmetiJTable.getInstance().getSelectedRow();
+
+		return BazaPredmeta.getInstance().getPredmete().get(selektovan).getProfesori_predavaci().size();
 	}
 
 	@Override
-	public int getColumnCount() { 
+	public int getColumnCount() {
 		return 1;
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		int selektovan = PredmetiJTable.getInstance().getSelectedRow();
-		Predmet p = BazaPredmeta.getInstance().getPredmete().get(selektovan);
-		return p.getProfesori_predavaci().get(rowIndex).getBroj_licne_karte();
+		if (selektovan != -1) {
+			Predmet p = BazaPredmeta.getInstance().getPredmete().get(selektovan);
+			return p.getProfesori_predavaci().get(rowIndex).getBroj_licne_karte();
+		} else {
+			return 0;
+		}
 	}
-	
+
 	public String getColumnName(int column) {
 
-		return "Br.Licne karte";
+		return "Broj licne karte";
 	}
 
 }

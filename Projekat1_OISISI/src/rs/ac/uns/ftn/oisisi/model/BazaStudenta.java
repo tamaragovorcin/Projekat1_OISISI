@@ -29,10 +29,7 @@ public class BazaStudenta {
 		if(instance==null) {
 			instance=new BazaStudenta();
 		}
-		
-			return instance;
-		
-		
+			return instance;	
 	}
 	
 	
@@ -42,10 +39,7 @@ public class BazaStudenta {
 	private List<Student> pretraga;
 	Student student;
 	
-	File nazivTXT = new File("studenti.txt");
 	private BazaStudenta() {
-		
-		
 		
 		this.kolone=new ArrayList<String>();
 		this.studenti = new ArrayList<Student>();
@@ -63,7 +57,6 @@ public class BazaStudenta {
 		this.kolone.add("SPISAK PREDMETA");
 		
 		//initi();
-		//initStudenti("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.","III","B");
 	}
 
 	public void initStudenti(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
@@ -71,13 +64,8 @@ public class BazaStudenta {
 
 		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,kontakt_telefon,email,brojIndeksa,datumUpisa,godinaStudija,status));
 		broj_studenata++;
-	}/*	
-		//this.studenti.add(new Student("Ana","Petrovic","14.02.1999.","Pavla Simica 2","0652610775","anapetrovic@gmail.com","RA47-2017","1.10.2017.",3,"B",8.12));
-		//this.studenti.add(new Student("Jovan","Simic","20.08.1997.","Zeleznicka 18","0694566123","jovansimic5@gmail.com","RA5-2015","1.10.2015",4,"B",9.7));
-		//this.studenti.add(new Student("Nadja","Jovic","05.05.1998.","Vase Stajica 3","0654599255","nadjajovic@gmail.com","RA89-2017","1.10.2017",3,"S",7.0));
-		
-		
-	//}*/
+	}
+	
 	public void initi() {
 		this.studenti.add(new Student("Ana","Petrovic","14.02.1999","Pavla Simica 2","065264102","anapetrovic@gmail.com","RA/47/2017","01.10.2017","III","B"));
 		broj_studenata++;
@@ -146,12 +134,6 @@ public class BazaStudenta {
 		}
 	}
 
-	/*public void dodajStudenta(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String indeks, String datumUpisa, String godinaStudija,String status,String prosecnaOcena) {
-		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,email,kontakt_telefon,indeks,datumUpisa,godinaStudija,status,prosecnaOcena));
-		broj_studenata++;
-	}
-*/
 	public void izbrisiStudenta(String sifra) {
 		for (Student i : studenti) {
 			if (i.getBrojIndeksa().equals(sifra)) {
@@ -366,20 +348,6 @@ public class BazaStudenta {
 	}
 	
 
-		
-	
-	
-	/*public void sacuvajStudenteTXT() throws IOException {
-		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT))); 
-			for(int i = 0; i<studenti.size();i++) {
-				Student p = studenti.get(i);
-				String a = p.toString();
-				br.write(a);
-			}
-			br.close();
-	}*/
-	 
-	 
 	 public void sacuvajStudenteTXT() throws IOException{
 		 ObjectOutputStream out=null;
 		 
@@ -401,50 +369,32 @@ public class BazaStudenta {
 		 }
 	 }
 	
-	/*public void ucitajStudenteTXT() throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
-		
-		String ulaz = new String();
-		
-		while((ulaz=br.readLine())!=null) {
-			String deo[] = ulaz.split("-");
-			String delovi[] =  new String[deo.length];
-			for(int i = 0; i <deo.length;i++) {
-				delovi[i] = deo[i].trim();
-			}
-			dodajstudenta(delovi);
-		}
-		StudentiJTable.getInstance().refresTabelu();
-		
-	}*/
+
 	 public void ucitajStudenteTXT() throws IOException {
-	ObjectInputStream in =null;
-	Student s=null;
-	
-	try {
-		in=new ObjectInputStream(new BufferedInputStream(new FileInputStream("studenti.raw")));
-		while(true) {
-			s=(Student) in.readObject();
-			dodajstudenta2(s);
-		}
-	}catch(Exception e) {
-		// e.printStackTrace();
-	 }finally {
-		 if(in!=null) {
-			 try {
-				 in.close();
-			 }catch(Exception e2) {
-				 
+		ObjectInputStream in =null;
+		Student s=null;
+		
+		try {
+			in=new ObjectInputStream(new BufferedInputStream(new FileInputStream("studenti.raw")));
+			while(true) {
+				s=(Student) in.readObject();
+				dodajstudenta2(s);
+			}
+		}catch(Exception e) {
+			// e.printStackTrace();
+		 }finally {
+			 if(in!=null) {
+				 try {
+					 in.close();
+				 }catch(Exception e2) {
+					 
+				 }
 			 }
 		 }
-	 }
-		 
-	 
 	 }
 	 
 
 	private void dodajstudenta2(Student s) {
-		// TODO Auto-generated method stub
 		broj_studenata++;
 		studenti.add(s);
 	}

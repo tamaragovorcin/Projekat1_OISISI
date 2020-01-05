@@ -64,7 +64,7 @@ public class Toolbar extends JToolBar {
 	
 	private JToggleButton dodajStudentaNaPredmet;
 	private JToggleButton dodajProfesoraNaPredmet;
-
+	
 	private JTextField polje;
 	
 	private JPanel levo;
@@ -97,6 +97,8 @@ public class Toolbar extends JToolBar {
 		dodajStudentButton = new JToggleButton();
 		dodajStudentButton.setToolTipText("Dodaj novog studenta");
 		dodajStudentButton.setIcon(new ImageIcon("images2/student.png"));
+		
+		
 		
 		dodajPredmetButton = new JToggleButton();
 		dodajPredmetButton.setToolTipText("Dodavanje novog predmeta");
@@ -190,7 +192,7 @@ public class Toolbar extends JToolBar {
 					DodavanjePredmetaDialog dialog = new DodavanjePredmetaDialog(Main_Frame.getInstance(), "Dodavanje novog predmeta", true);
 					dialog.setVisible(true);
 					PredmetiJTable.getInstance().refresTabelu();
-
+					dodajPredmetButton.setSelected(false);
 				}
 			});
 			levo.add(dodajPredmetButton,FlowLayout.LEFT);
@@ -201,19 +203,18 @@ public class Toolbar extends JToolBar {
 				public void actionPerformed(ActionEvent arg0) {
 					DodavanjeProfesoraDialog dialog = new DodavanjeProfesoraDialog(Main_Frame.getInstance(), "Dodavanje novog profesora", true);
 					dialog.setVisible(true);
-
-				ProfesoriJTable.getInstance().refresTabelu();
+					ProfesoriJTable.getInstance().refresTabelu();
+					dodajProfesoraButton.setSelected(false);
 				}
 			});
 			levo.add(dodajProfesoraButton,FlowLayout.LEFT);
 		}
+		
+		else {
+			JOptionPane.showMessageDialog(null, "");
+		}
+
 		addSeparator();
-		
-		
-		
-		
-		
-		
 		
 		
 		if(d == Dugme.STUDENT) {
@@ -230,6 +231,7 @@ public class Toolbar extends JToolBar {
 						JOptionPane.showMessageDialog(null, "Student nije selektovan.");
 					}
 					StudentiJTable.getInstance().refresTabelu();  
+					changestudentButton.setSelected(false);
 				}
 			});
 			
@@ -257,7 +259,7 @@ public class Toolbar extends JToolBar {
 						}
 						
 						StudentiJTable.getInstance().refresTabelu();
-					
+						deletestudentButton.setSelected(false);
 				}
 			});
 			
@@ -267,6 +269,7 @@ public class Toolbar extends JToolBar {
 				public void actionPerformed(ActionEvent e) {
 				StudentiController.getInstance().pretraziStudenta();
 				StudentiJTable.getInstance().refresTabelu();
+				searchButton.setSelected(false);
 				}
 			});
 			
@@ -277,9 +280,6 @@ public class Toolbar extends JToolBar {
 			addSeparator();
 			levo.add(deletestudentButton);
 			addSeparator();
-			//add(dodajStudentaNaPredmet);
-			//add(dodajProfesoraNaPredmet);
-			
 			desno.add(searchField);
 			addSeparator();
 			desno.add(searchButton);
@@ -302,6 +302,7 @@ public class Toolbar extends JToolBar {
 						JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
 					}
 					PredmetiJTable.getInstance().refresTabelu();  
+					changeButton.setSelected(false);
 				}
 			});
 			
@@ -310,7 +311,7 @@ public class Toolbar extends JToolBar {
 			deleteButton.addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent e) {
+				public void actionPerformed(ActionEvent e) { //on tebi ovo brka
 			
 					int row = PredmetiJTable.getInstance().getSelectedRow();
 					if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
@@ -330,6 +331,7 @@ public class Toolbar extends JToolBar {
 						}
 						
 						PredmetiJTable.getInstance().refresTabelu();
+						deleteButton.setSelected(false);
 				}
 			});
 			
@@ -341,6 +343,7 @@ public class Toolbar extends JToolBar {
 				public void actionPerformed(ActionEvent e) {
 					PredmetiController.getInstance().pretraziPredmet();
 					PredmetiJTable.getInstance().refresTabelu();
+					searchButton.setSelected(false);
 				}
 			});
 			
@@ -379,7 +382,7 @@ public class Toolbar extends JToolBar {
 		}
 		
 		
-		else if(d==Dugme.PROFESOR) {
+		else if(d==Dugme.PROFESOR) { //i ovo istopa sad nista ne radi ustvari u sustini radi samo brka
 			changeprofesorButton.setToolTipText("Izmena profesora");
 			changeprofesorButton.addActionListener(new ActionListener() {
 				
@@ -393,6 +396,7 @@ public class Toolbar extends JToolBar {
 						JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
 					}
 					ProfesoriJTable.getInstance().refresTabelu();  
+					changeprofesorButton.setSelected(false);
 				}
 			});
 			deleteButton.setToolTipText("Brisanje profesora");
@@ -419,7 +423,7 @@ public class Toolbar extends JToolBar {
 						}
 						
 						ProfesoriJTable.getInstance().refresTabelu();
-					
+					deleteButton.setSelected(false);
 				}
 			});
 			
@@ -429,6 +433,7 @@ public class Toolbar extends JToolBar {
 				public void actionPerformed(ActionEvent e) {
 					ProfesoriController.getInstance().pretraziProfesora();
 					ProfesoriJTable.getInstance().refresTabelu();
+					searchButton.setSelected(false);
 				}
 			});
 			
@@ -477,6 +482,9 @@ public class Toolbar extends JToolBar {
 
 	
 	
-	
+	public void A() {
+		dodajStudentaNaPredmet.setSelected(false);
+		dodajProfesoraNaPredmet.setSelected(false);
+	}
 	
 }

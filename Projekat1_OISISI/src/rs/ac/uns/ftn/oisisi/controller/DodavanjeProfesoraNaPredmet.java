@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
+import rs.ac.uns.ftn.oisisi.view.Toolbar;
 
 public class DodavanjeProfesoraNaPredmet implements ActionListener{
 
@@ -13,7 +14,7 @@ public class DodavanjeProfesoraNaPredmet implements ActionListener{
 		
 		PredmetiController.getInstance().dodavanjeProfesoraNaPredmet();
 		PredmetiJTable.getInstance().refresTabelu();
-		
+		Toolbar.getInstance().A();
 	}
 
 }

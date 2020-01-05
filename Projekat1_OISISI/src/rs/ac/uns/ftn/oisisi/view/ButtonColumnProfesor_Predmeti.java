@@ -41,8 +41,8 @@ implements TableCellRenderer, TableCellEditor, MouseListener  {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				fireEditingStopped();
-				JOptionPane.showMessageDialog(tabela, "Selektovani su predmeti u redu: " + tabela.getSelectedRow());
+				DialogListPredmetiKodProfesora dialog = new DialogListPredmetiKodProfesora(Main_Frame.getInstance(),"Lista profesora", true);
+				dialog.setVisible(true);
 			}
 		});
 		this.isEditorActive = false;

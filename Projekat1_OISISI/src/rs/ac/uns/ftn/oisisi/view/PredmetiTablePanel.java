@@ -85,14 +85,15 @@ public class PredmetiTablePanel extends JPanel{
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
+				PredmetiJTable tabela = (PredmetiJTable) e.getComponent();
+				setSelektovan_red(tabela.convertRowIndexToModel(tabela.getSelectedRow()));
 				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				PredmetiJTable tabela = (PredmetiJTable) e.getComponent();
-				selektovan_red=tabela.convertRowIndexToModel(tabela.getSelectedRow());
+				setSelektovan_red(tabela.convertRowIndexToModel(tabela.getSelectedRow()));
 			}
 
 			@Override
