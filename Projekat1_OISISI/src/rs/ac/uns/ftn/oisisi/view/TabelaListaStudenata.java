@@ -19,6 +19,7 @@ public class TabelaListaStudenata extends JTable  {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableListaStudenataNaPredmetu());
 		
+		
 		this.setRowHeight(20);
 	}
 	
