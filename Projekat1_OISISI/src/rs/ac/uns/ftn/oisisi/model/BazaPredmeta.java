@@ -323,6 +323,7 @@ public class BazaPredmeta {
 		
 			predmeti.get(i).getProfesori_predavaci().add(prof);
 			broj_profesora_na_predmetu++;
+			//System.out.println(broj_profesora_na_predmetu);
 		
 		
 	}
@@ -389,9 +390,11 @@ public class BazaPredmeta {
 		return izlaz;
 	}
 	
+
 	public void obrisiStudentaSaPredmeta(int a,int i) {
 		
 		predmeti.get(a).getStudenti_na_predmetu().remove(i);
+
 		broj_studenta_na_predmetu--;
 	}
 	

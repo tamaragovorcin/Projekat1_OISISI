@@ -94,6 +94,6 @@ private static StudentiController instance = null;
 		BazaStudenta.getInstance().dodajPredmetStudentu(predmet,indeks);
 		
 	}
-
+	
 }
 

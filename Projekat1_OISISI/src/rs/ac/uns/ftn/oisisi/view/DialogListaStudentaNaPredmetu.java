@@ -51,8 +51,8 @@ private static final long serialVersionUID = -1986048344792559710L;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int row = TabelaListaStudenata.getInstance().getSelectedRow();
 		int predmet = PredmetiJTable.getInstance().getSelectedRow();
+		int row = TabelaListaStudenata.getInstance().getSelectedRow();
 		if (e.getActionCommand().equals("NAZAD")) {
 			mode = DialogListaStudentaNaPredmetu.NAZAD;
 		} else {

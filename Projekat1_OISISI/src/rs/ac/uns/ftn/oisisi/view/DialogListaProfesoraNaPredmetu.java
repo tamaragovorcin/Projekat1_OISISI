@@ -73,6 +73,7 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getActionCommand().equals("NAZAD")) {
+			//mode = DialogListaStudentaNaPredmetu.NAZAD;
 			dispose();
 		} else {
 			
@@ -90,6 +91,7 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 				
 				JOptionPane.showMessageDialog(null, "Uspesno je obrisan profesor sa liste predavaca na predmetu.");
 				TabelaListaProfesora.getInstance().refresujTabelu();
+
 			}
 			else {
 				setVisible(false);
@@ -98,6 +100,6 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 			}
 		}
 		
+
 	}
-		
 }
