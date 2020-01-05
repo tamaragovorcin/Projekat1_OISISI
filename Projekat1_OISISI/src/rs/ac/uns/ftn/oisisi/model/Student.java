@@ -1,9 +1,10 @@
 package rs.ac.uns.ftn.oisisi.model;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student extends Osoba{
+public class Student extends Osoba implements Serializable{
 
 	private String brojIndeksa;
 	private String datumUpisa;

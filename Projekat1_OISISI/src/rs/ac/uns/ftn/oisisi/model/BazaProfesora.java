@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.oisisi.model;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -174,7 +178,7 @@ private static BazaProfesora instance = null;
 		this.broj_profesora = broj_profesora;
 	}
 	
-	public void sacuvajProfesoreTXT() throws IOException {
+/*	public void sacuvajProfesoreTXT() throws IOException {
 		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT))); 
 			for(int i = 0; i<profesori.size();i++) {
 				Profesor p = profesori.get(i);
@@ -182,9 +186,30 @@ private static BazaProfesora instance = null;
 				br.write(a);
 			}
 			br.close();
-	}
+	}*/
 	
-	public void ucitajProfesoreTXT() throws IOException {
+	 public void sacuvajProfesoreTXT() throws IOException{
+		 ObjectOutputStream out=null;
+		 
+		 try {
+			 out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("profesori.raw")));
+			 for(Profesor p:profesori) {
+				 out.writeObject(p);
+			 }
+		 }catch(Exception e) {
+			 e.printStackTrace();
+		 }finally {
+			 if(out!=null) {
+				 try {
+					 out.close();
+				 }catch(Exception e2) {
+					 
+				 }
+			 }
+		 }
+	 }
+	
+/*	public void ucitajProfesoreTXT() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
 		
 		String ulaz = new String();
@@ -199,7 +224,39 @@ private static BazaProfesora instance = null;
 		}
 		ProfesoriJTable.getInstance().refresTabelu();
 		
-	}
+	}*/
+	 
+	 public void ucitajProfesoreTXT() throws IOException {
+			ObjectInputStream in =null;
+			Profesor p=null;
+			
+			try {
+				in=new ObjectInputStream(new BufferedInputStream(new FileInputStream("profesori.raw")));
+				while(true) {
+					p=(Profesor) in.readObject();
+					dodajprofesora2(p);
+				}
+			}catch(Exception e) {
+				// e.printStackTrace();
+			 }finally {
+				 if(in!=null) {
+					 try {
+						 in.close();
+					 }catch(Exception e2) {
+						 
+					 }
+				 }
+			 }
+				 
+			 
+			 }
+			 
+
+			private void dodajprofesora2(Profesor p) {
+				// TODO Auto-generated method stub
+				broj_profesora++;
+				profesori.add(p);
+			}
 
 	private boolean dodajprofesora(String[] delovi) {
 		

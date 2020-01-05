@@ -18,6 +18,8 @@ import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
+import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
+import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 
 
 public class MenuBar extends JMenuBar {
@@ -157,7 +159,27 @@ file = new JMenu("File");
 		miClose.setMnemonic(KeyEvent.VK_C);
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		miClose.setIcon(new ImageIcon("images2/minus.png"));
-		
+		miClose.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int odabir = JOptionPane.showConfirmDialog(Main_Frame.getInstance(), "Da li ste sigurni da zelite da zatvorite aplikaciju?","Zatvaranje aplikacije",JOptionPane.YES_NO_OPTION);
+				
+				if(odabir==JOptionPane.YES_OPTION) {
+					try {
+						PredmetiController.getInstance().sacuvajPredmeteTXT();
+						StudentiController.getInstance().sacuvajStudenteTXT();
+						ProfesoriController.getInstance().sacuvajProfesoreTXT();
+						System.exit(0);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+			}
+		});
 	
 		file.add(miClose);
 		

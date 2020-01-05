@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.oisisi.model;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,6 +10,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 
 import java.util.ArrayList;
@@ -242,7 +246,7 @@ public class BazaPredmeta {
 
 	}
 
-	public void sacuvajPredmeteTXT() throws IOException {
+	/*public void sacuvajPredmeteTXT() throws IOException {
 		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT)));
 		for (int i = 0; i < predmeti.size(); i++) {
 			Predmet p = predmeti.get(i);
@@ -250,9 +254,33 @@ public class BazaPredmeta {
 			br.write(a);
 		}
 		br.close();
-	}
+	}*/
 
-	public void ucitajPredmeteTXT() throws IOException {
+	
+	
+	public void sacuvajPredmeteTXT() throws IOException{
+		 ObjectOutputStream out=null;
+		 
+		 try {
+			 out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.raw")));
+			 for(Predmet p:predmeti) {
+				 out.writeObject(p);
+			 }
+		 }catch(Exception e) {
+			 e.printStackTrace();
+		 }finally {
+			 if(out!=null) {
+				 try {
+					 out.close();
+				 }catch(Exception e2) {
+					 
+				 }
+			 }
+		 }
+	 }
+	
+	
+	/*public void ucitajPredmeteTXT() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
 
 		String ulaz = new String();
@@ -267,7 +295,39 @@ public class BazaPredmeta {
 		}
 		PredmetiJTable.getInstance().refresTabelu();
 
-	}
+	}*/
+	
+	public void ucitajPredmeteTXT() throws IOException {
+		ObjectInputStream in =null;
+	Predmet p=null;
+		
+		try {
+			in=new ObjectInputStream(new BufferedInputStream(new FileInputStream("predmeti.raw")));
+			while(true) {
+				p=(Predmet) in.readObject();
+				dodajpredmeta2(p);
+			}
+		}catch(Exception e) {
+			// e.printStackTrace();
+		 }finally {
+			 if(in!=null) {
+				 try {
+					 in.close();
+				 }catch(Exception e2) {
+					 
+				 }
+			 }
+		 }
+			 
+		 
+		 }
+		 
+
+		private void dodajpredmeta2(Predmet p) {
+			// TODO Auto-generated method stub
+			broj_predmeta++;
+			predmeti.add(p);
+		}
 
 	private boolean dodajpredmet(String[] delovi) {
 
@@ -318,6 +378,7 @@ public class BazaPredmeta {
 		p = predmeti.get(red);
 		return p;
 	}
+	
 	
 
 	public boolean PostojiProfesorNaPredmetu(int red, String licna) {

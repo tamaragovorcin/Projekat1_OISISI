@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.oisisi.model;
 
-public abstract class Osoba {
+import java.io.Serializable;
+
+public abstract class Osoba implements Serializable {
 	private String ime;
 	private String prezime;
 	private String datumRodjenja;

@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.oisisi.model;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -365,7 +369,7 @@ public class BazaStudenta {
 		
 	
 	
-	public void sacuvajStudenteTXT() throws IOException {
+	/*public void sacuvajStudenteTXT() throws IOException {
 		BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nazivTXT))); 
 			for(int i = 0; i<studenti.size();i++) {
 				Student p = studenti.get(i);
@@ -373,9 +377,31 @@ public class BazaStudenta {
 				br.write(a);
 			}
 			br.close();
-	}
+	}*/
+	 
+	 
+	 public void sacuvajStudenteTXT() throws IOException{
+		 ObjectOutputStream out=null;
+		 
+		 try {
+			 out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("studenti.raw")));
+			 for(Student s: studenti) {
+				 out.writeObject(s);
+			 }
+		 }catch(Exception e) {
+			 e.printStackTrace();
+		 }finally {
+			 if(out!=null) {
+				 try {
+					 out.close();
+				 }catch(Exception e2) {
+					 
+				 }
+			 }
+		 }
+	 }
 	
-	public void ucitajStudenteTXT() throws IOException {
+	/*public void ucitajStudenteTXT() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(nazivTXT)));
 		
 		String ulaz = new String();
@@ -390,6 +416,37 @@ public class BazaStudenta {
 		}
 		StudentiJTable.getInstance().refresTabelu();
 		
+	}*/
+	 public void ucitajStudenteTXT() throws IOException {
+	ObjectInputStream in =null;
+	Student s=null;
+	
+	try {
+		in=new ObjectInputStream(new BufferedInputStream(new FileInputStream("studenti.raw")));
+		while(true) {
+			s=(Student) in.readObject();
+			dodajstudenta2(s);
+		}
+	}catch(Exception e) {
+		// e.printStackTrace();
+	 }finally {
+		 if(in!=null) {
+			 try {
+				 in.close();
+			 }catch(Exception e2) {
+				 
+			 }
+		 }
+	 }
+		 
+	 
+	 }
+	 
+
+	private void dodajstudenta2(Student s) {
+		// TODO Auto-generated method stub
+		broj_studenata++;
+		studenti.add(s);
 	}
 
 	private boolean dodajstudenta(String[] delovi) {

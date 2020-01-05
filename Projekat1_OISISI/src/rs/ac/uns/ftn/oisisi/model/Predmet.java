@@ -1,8 +1,9 @@
 package rs.ac.uns.ftn.oisisi.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Predmet {
+public class Predmet implements Serializable{
 	private String sifra_predmeta;
 	private String naziv_predmeta;
 	private String semestar;

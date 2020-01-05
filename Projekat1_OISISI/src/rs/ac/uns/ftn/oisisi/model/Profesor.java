@@ -1,8 +1,9 @@
 package rs.ac.uns.ftn.oisisi.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Profesor extends Osoba {
+public class Profesor extends Osoba implements Serializable{
 
 	private String adresa_kancelarije;
 	private String broj_licne_karte;
