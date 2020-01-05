@@ -376,25 +376,28 @@ public class BazaPredmeta {
 		p = predmeti.get(red);
 		return p;
 	}
-
-public boolean PostojiStudentNaPredmetu(int red, String indeks) {
-	boolean izlaz = false;
-	for( Student stud:predmeti.get(red).getStudenti_na_predmetu()) {
-		if(stud.getBrojIndeksa().equals(indeks)) {
-			izlaz= true;
-			
+	
+	public boolean PostojiStudentNaPredmetu(int red, String indeks) {
+		boolean izlaz = false;
+		for( Student stud:predmeti.get(red).getStudenti_na_predmetu()) {
+			if(stud.getBrojIndeksa().equals(indeks)) {
+				izlaz= true;
+				
+			}
 		}
+	
+		return izlaz;
 	}
-
-	return izlaz;
-}
-
-public void obrisiStudentaSaPredmeta(int i) {
 	
-	predmeti.get(i).getStudenti_na_predmetu().remove(i);
-	broj_studenta_na_predmetu--;
+	public void obrisiStudentaSaPredmeta(int i) {
+		
+		predmeti.get(i).getStudenti_na_predmetu().remove(i);
+		broj_studenta_na_predmetu--;
+	}
 	
-	
-	
-}
+	public void obrisiProfesorasaPredmeta(int predmet,int profesor) {
+		predmeti.get(predmet).getProfesori_predavaci().remove(profesor);
+		broj_profesora_na_predmetu--;
+		
+	}
 }

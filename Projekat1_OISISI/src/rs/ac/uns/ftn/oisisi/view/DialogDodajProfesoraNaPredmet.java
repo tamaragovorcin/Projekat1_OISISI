@@ -73,7 +73,7 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 				
 				if(postojiProfesor== true && postojiProfesorNaPredmetu==false) {
 					dispose();
-					PredmetiController.getInstance().dodajProfesora(profesor, predmet, red);//ne  predmet
+					PredmetiController.getInstance().dodajProfesora(profesor, predmet, red);
 					ProfesoriController.getInstance().dodajPredmetProfesoru(predmet,licna);
 					JOptionPane.showMessageDialog(null, "Profesor je uspesno dodat na predmet!");
 				}

@@ -18,10 +18,10 @@ import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class DialogListaStudentaNaPredmetu extends JDialog implements ActionListener{
 private static final long serialVersionUID = -1986048344792559710L;
-private int mode = 1;
-public static final int NAZAD = 0;
-public static final int OBRISI = 1;
-	
+	private int mode = 1;
+	public static final int NAZAD = 0;
+	public static final int OBRISI = 1;
+		
 	private JPanel dole;
 	protected JButton odustani;
 	private JTable listaIndeksa;
@@ -51,27 +51,21 @@ public static final int OBRISI = 1;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 		int row = TabelaListaStudenata.getInstance().getSelectedRow();
 		
 		if (e.getActionCommand().equals("NAZAD")) {
 			mode = DialogListaStudentaNaPredmetu.NAZAD;
 		} else {
 			mode = DialogListaStudentaNaPredmetu.OBRISI;
+	
 			if(row>=0 && row<BazaPredmeta.getInstance().getBroj_studenta_na_predmetu()) {
-				//BazaPredmeta dialog = new DodavanjeStudentaNaPredmetDialog(null, "Dodavanje studenta na predmet", true);
+			
 				BazaPredmeta.getInstance().obrisiStudentaSaPredmeta(row);
 				TabelaListaStudenata.getInstance().refresujTabelu();
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Predmet nije selektovan");
 			}
-			//for (Integer i : listaIndeksa) {
-					//if (i.getBrojIndeksa().equals(sifra)) {
-						//listaIndeksa.remove(row);
-						
-					
-				//}
 			}
 		setVisible(false);
 	}

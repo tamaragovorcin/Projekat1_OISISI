@@ -70,7 +70,7 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 				
 				if(postojiStudent== true && postojiStudentNaPredmetu==false) {
 					dispose();
-					PredmetiController.getInstance().dodajStudenta(stud, predmet, red);//ne  predmet
+					PredmetiController.getInstance().dodajStudenta(stud, predmet, red);
 					StudentiController.getInstance().dodajPredmetStuddentu(predmet,indeks);
 					JOptionPane.showMessageDialog(null, "Student je uspesno dodat na predmet!");
 				}

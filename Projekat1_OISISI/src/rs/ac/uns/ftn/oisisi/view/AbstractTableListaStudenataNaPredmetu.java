@@ -10,7 +10,7 @@ public class AbstractTableListaStudenataNaPredmetu extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		int selektovan = PredmetiJTable.getInstance().getSelectedRow(); // treba da se izmeni sa onim gde ti je sort
+		int selektovan = PredmetiJTable.getInstance().getSelectedRow(); 
 					
 		return  BazaPredmeta.getInstance().getPredmete().get(selektovan).getStudenti_na_predmetu().size();
 	}
