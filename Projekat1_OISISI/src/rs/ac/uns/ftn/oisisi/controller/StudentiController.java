@@ -94,6 +94,9 @@ private static StudentiController instance = null;
 		BazaStudenta.getInstance().dodajPredmetStudentu(predmet,indeks);
 		
 	}
-	
+	public void obrisiPredmetKodStudenta(Predmet pred, String indeks) {
+		BazaStudenta.getInstance().obrisiPredmetKodStudenta(pred,indeks);
+		
+	}
 }
 

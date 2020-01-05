@@ -36,7 +36,6 @@ public class BazaPredmeta {
 
 	private List<String> kolone;
 	private List<Predmet> predmeti;
-
 	private List<Predmet> pretraga;
 
 	private static int broj_predmeta = 0;
@@ -403,6 +402,9 @@ public class BazaPredmeta {
 		broj_profesora_na_predmetu--;
 		
 	}
-
-	
+	public void obrisiStudentasaPredmeta(int predmet,int student) {
+		predmeti.get(predmet).getStudenti_na_predmetu().remove(student);
+		broj_studenta_na_predmetu--;
+		
+	}
 }

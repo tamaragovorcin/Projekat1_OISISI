@@ -449,4 +449,17 @@ public class BazaStudenta {
 			}
 		}
 	}
+	
+	public void obrisiPredmetKodStudenta(Predmet pred, String indeks) {
+		for(Student s:studenti) {
+			if(s.getBrojIndeksa().equals(indeks)) {
+				for (int i = 0; i < s.getPredmeti().size(); i++) {
+					if(s.getPredmeti().get(i).getSifra_predmeta().equals(pred.getSifra_predmeta())) {
+							s.getPredmeti().remove(i);
+					}
+				}
+			}
+		}
+		
+	}
 }

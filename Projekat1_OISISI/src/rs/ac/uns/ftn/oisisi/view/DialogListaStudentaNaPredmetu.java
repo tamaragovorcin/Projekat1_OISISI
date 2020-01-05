@@ -13,7 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
+import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
+import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
+import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class DialogListaStudentaNaPredmetu extends JDialog implements ActionListener{
@@ -51,24 +55,37 @@ private static final long serialVersionUID = -1986048344792559710L;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int predmet = PredmetiJTable.getInstance().getSelectedRow();
-		int row = TabelaListaStudenata.getInstance().getSelectedRow();
 		if (e.getActionCommand().equals("NAZAD")) {
-			mode = DialogListaStudentaNaPredmetu.NAZAD;
+			//mode = DialogListaStudentaNaPredmetu.NAZAD;
+			dispose();
 		} else {
-			mode = DialogListaStudentaNaPredmetu.OBRISI;
-			System.out.println(BazaPredmeta.getInstance().getBroj_studenta_na_predmetu());
-			if(row>=0 && row<BazaPredmeta.getInstance().getBroj_studenta_na_predmetu()) {
 			
-				BazaPredmeta.getInstance().obrisiStudentaSaPredmeta(predmet,row);
+			int predmet = PredmetiJTable.getInstance().getSelectedRow();
+			int student = TabelaListaStudenata.getInstance().getSelectedRow();
+			
+			Predmet pred = BazaPredmeta.getInstance().getPredmete().get(predmet);
+			String indeks = pred.getStudenti_na_predmetu().get(student).getBrojIndeksa();
+			
+		    mode = DialogListaStudentaNaPredmetu.OBRISI;
+		    
+			if(student>=0 && student<BazaPredmeta.getInstance().getPredmete().get(predmet).getStudenti_na_predmetu().size()) {
+				PredmetiController.getInstance().obrisiStudentaSaPredmeta(predmet,student);
+				StudentiController.getInstance().obrisiPredmetKodStudenta(pred,indeks);
+				
+				JOptionPane.showMessageDialog(null, "Uspesno je obrisan student sa predmeta.");
 				TabelaListaStudenata.getInstance().refresujTabelu();
+
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Predmet nije selektovan");
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+				setVisible(true);
 			}
-			}
-		setVisible(false);
+		}
+		
+
 	}
+
 	
 	
 		
