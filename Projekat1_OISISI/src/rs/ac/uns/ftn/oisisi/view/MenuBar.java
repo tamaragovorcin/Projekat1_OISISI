@@ -20,6 +20,9 @@ import javax.swing.WindowConstants;
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 import rs.ac.uns.ftn.oisisi.controller.StudentiController;
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
+import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
+import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
 
 public class MenuBar extends JMenuBar {
@@ -47,16 +50,16 @@ private JMenuItem novipredprof;
 private JMenuItem editstudent;
 private JMenuItem editprofesor;
 private JMenuItem editpredmet;
-private JMenu editprofstud;
-private JMenuItem editpredstud;
-private JMenuItem editpredprof;
+//private JMenu editprofstud;
+//private JMenuItem editpredstud;
+//private JMenuItem editpredprof;
 
 private JMenuItem delstudent;
 private JMenuItem delprofesor;
 private JMenuItem delpredmet;
-private JMenu delprofstud;
-private JMenuItem delpredstud;
-private JMenuItem delpredprof;
+//private JMenu delprofstud;
+//private JMenuItem delpredstud;
+//private JMenuItem delpredprof;
 
 private JMenuItem aboutstud1;
 private JMenuItem aboutstud2;
@@ -88,7 +91,7 @@ file = new JMenu("File");
 		
 					novistudent.setMnemonic(KeyEvent.VK_N);
 					novistudent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-					novistudent.setIcon(new ImageIcon("images2/plus.png"));
+					novistudent.setIcon(new ImageIcon("images2/buttonplus.png"));
 					novistudent.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent arg0) {
@@ -102,9 +105,9 @@ file = new JMenu("File");
 					miNew.add(novistudent);
 					miNew.addSeparator();
 					
-					noviprofesor.setMnemonic(KeyEvent.VK_N);
-					noviprofesor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-					noviprofesor.setIcon(new ImageIcon("images2/plus.png"));
+					noviprofesor.setMnemonic(KeyEvent.VK_P);
+					noviprofesor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+					noviprofesor.setIcon(new ImageIcon("images2/buttonplus.png"));
 					
 					noviprofesor.addActionListener(new ActionListener() {
 						@Override
@@ -118,9 +121,9 @@ file = new JMenu("File");
 					miNew.add(noviprofesor);
 					miNew.addSeparator();
 					
-					novipredmet.setMnemonic(KeyEvent.VK_N);
-					novipredmet.setIcon(new ImageIcon("images2/plus.png"));
-					novipredmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+					novipredmet.setMnemonic(KeyEvent.VK_R);
+					novipredmet.setIcon(new ImageIcon("images2/buttonplus.png"));
+					novipredmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
 					novipredmet.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent arg0) {
@@ -133,32 +136,50 @@ file = new JMenu("File");
 					miNew.add(novipredmet);
 					
 					
-					novipredstud.setMnemonic(KeyEvent.VK_N);
-					novipredstud.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-					novipredstud.setIcon(new ImageIcon("images2/plus.png"));
+					novipredstud.setMnemonic(KeyEvent.VK_T);
+					novipredstud.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+					novipredstud.setIcon(new ImageIcon("images2/buttonplus.png"));
+					novipredstud.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							DodavanjeStudentaNaPredmetDialog dialog = new DodavanjeStudentaNaPredmetDialog(Main_Frame.getInstance(), "Dodavanje studenta na predmet", true);
+							dialog.setVisible(true);
+						PredmetiJTable.getInstance().refresTabelu();
+
+						}
+					});
 					noviprofstud.add(novipredstud);
 					noviprofstud.addSeparator();
 					
-					novipredprof.setMnemonic(KeyEvent.VK_N);
-					novipredprof.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-					novipredprof.setIcon(new ImageIcon("images2/plus.png"));
+					novipredprof.setMnemonic(KeyEvent.VK_F);
+					novipredprof.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
+					novipredprof.setIcon(new ImageIcon("images2/buttonplus.png"));
+					novipredprof.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							DialogDodajProfesoraNaPredmet dialog = new DialogDodajProfesoraNaPredmet(Main_Frame.getInstance(), "Dodavanje profesora na predmet", true);
+							dialog.setVisible(true);
+						PredmetiJTable.getInstance().refresTabelu();
+
+						}
+					});
 					noviprofstud.add(novipredprof);
 					
 					
 					
-					noviprofstud.setIcon(new ImageIcon("images2/plus.png"));
+					noviprofstud.setIcon(new ImageIcon("images2/buttonplus.png"));
 					miNew.add(noviprofstud);
 					miNew.addSeparator();
 					
 
-	    miNew.setIcon(new ImageIcon("images2/plus.png"));
+	    miNew.setIcon(new ImageIcon("images2/buttonplus.png"));
 	    file.add(miNew);
 	    file.addSeparator();
 		
 	    
 		miClose.setMnemonic(KeyEvent.VK_C);
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		miClose.setIcon(new ImageIcon("images2/minus.png"));
+		miClose.setIcon(new ImageIcon("images2/close.png"));
 		miClose.addActionListener( new ActionListener() {
 			
 			@Override
@@ -191,44 +212,76 @@ edit = new JMenu("Edit");
 		editstudent =new JMenuItem("Edit Student");
 		editprofesor=new JMenuItem("Edit Profesor");
 		editpredmet= new JMenuItem("Edit Predmet");
-		editprofstud=new JMenu("Edit Student/Profesor");
-		editpredstud=new JMenuItem("Edit Student");
-		editpredprof=new JMenuItem("Edit Profesor");
+		//editprofstud=new JMenu("Edit Student/Profesor");
+		//editpredstud=new JMenuItem("Edit Student");
+		//editpredprof=new JMenuItem("Edit Profesor");
 		
 		editstudent.setMnemonic(KeyEvent.VK_E);
 		editstudent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		editstudent.setIcon(new ImageIcon("images2/close.png"));
+		editstudent.setIcon(new ImageIcon("images2/edit.png"));
+		editstudent.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = StudentiJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata()) {
+					StudentiController.getInstance().izmeniStudenta(row);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+				}
+				StudentiJTable.getInstance().refresTabelu();  
+				editstudent.setSelected(false);
+			}
+		});
 		editEdit.add(editstudent);
 		editEdit.addSeparator();
 		
-		editprofesor.setMnemonic(KeyEvent.VK_E);
-		editprofesor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		editprofesor.setIcon(new ImageIcon("images2/close.png"));
+		editprofesor.setMnemonic(KeyEvent.VK_A);
+		editprofesor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		editprofesor.setIcon(new ImageIcon("images2/edit.png"));
+		editprofesor.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row =ProfesoriJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora()) {
+					ProfesoriController.getInstance().izmeniProfesora(row);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+				}
+				ProfesoriJTable.getInstance().refresTabelu();  
+				editprofesor.setSelected(false);
+			}
+		});
 		editEdit.add(editprofesor);
 		editEdit.addSeparator();
 		
-		editpredmet.setMnemonic(KeyEvent.VK_E);
-		editpredmet.setIcon(new ImageIcon("images2/close.png"));
-		editpredmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		editpredmet.setMnemonic(KeyEvent.VK_B);
+		editpredmet.setIcon(new ImageIcon("images2/edit.png"));
+		editpredmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
+		editpredmet.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = PredmetiJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
+					PredmetiController.getInstance().izmeniPredmet(row);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+				}
+				PredmetiJTable.getInstance().refresTabelu();  
+				editpredmet.setSelected(false);
+			}
+		});
 		editEdit.add(editpredmet);
-		
-		
-		editpredstud.setMnemonic(KeyEvent.VK_E);
-		editpredstud.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		editpredstud.setIcon(new ImageIcon("images2/close.png"));
-		editprofstud.add(editpredstud);
-		editprofstud.addSeparator();
-		
-		editpredprof.setMnemonic(KeyEvent.VK_E);
-		editpredprof.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		editpredprof.setIcon(new ImageIcon("images2/close.png"));
-		editprofstud.add(editpredprof);
+	
 		
 		
 		
-		editprofstud.setIcon(new ImageIcon("images2/close.png"));
-		editEdit.add(editprofstud);
-		editEdit.addSeparator();
+	
+		
 		
 		editEdit.setIcon(new ImageIcon("images2/edit.png"));	
 		edit.add(editEdit);
@@ -242,30 +295,94 @@ edit = new JMenu("Edit");
 		delstudent =new JMenuItem("Delete Student");
 		delprofesor=new JMenuItem("Delete Profesor");
 		delpredmet= new JMenuItem("Delete Predmet");
-		delprofstud=new JMenu("Delete Student/Profesor");
-		delpredstud=new JMenuItem("Delete Student");
-		delpredprof=new JMenuItem("Delete Profesor");
+	//	delprofstud=new JMenu("Delete Student/Profesor");
+		//delpredstud=new JMenuItem("Delete Student");
+		//delpredprof=new JMenuItem("Delete Profesor");
 		
 		
 		delstudent.setMnemonic(KeyEvent.VK_D);
 		delstudent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		delstudent.setIcon(new ImageIcon("images2/close.png"));
+		delstudent.setIcon(new ImageIcon("images2/garbage.png"));
+		
+		delstudent.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = StudentiJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata() ) {
+					int izbor = JOptionPane.showConfirmDialog(null,
+							"Da li ste sigurni da zelite da obrisete stduenta?","Brisanje studenta",JOptionPane.YES_NO_OPTION);
+					if (izbor == JOptionPane.YES_OPTION) {
+						JOptionPane.showMessageDialog(null, "Student je obrisan!");
+						StudentiController.getInstance().izbrisiStudeta(row);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Student nije obrisan.");
+					}
+				}else {
+						JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+					}
+					StudentiJTable.getInstance().refresTabelu();
+					delstudent.setSelected(false);
+			}
+		});
 		editDelete.add(delstudent);
 		editDelete.addSeparator();
 		
-		delprofesor.setMnemonic(KeyEvent.VK_D);
-		delprofesor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		delprofesor.setIcon(new ImageIcon("images2/close.png"));
+		delprofesor.setMnemonic(KeyEvent.VK_V);
+		delprofesor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+		delprofesor.setIcon(new ImageIcon("images2/garbage.png"));
+		delprofesor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = ProfesoriJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora() ) {
+					int izbor = JOptionPane.showConfirmDialog(null,
+							"Da li ste sigurni da zelite da obrisete profesora?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
+					if (izbor == JOptionPane.YES_OPTION) {
+						ProfesoriController.getInstance().izbrisiProfesora(row);
+						JOptionPane.showMessageDialog(null, "Profesor je obrisan!");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Profesor nije obrisan.");
+					}
+				}else {
+						JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+					}
+					ProfesoriJTable.getInstance().refresTabelu();
+					delprofesor.setSelected(false);
+			}
+		});
 		editDelete.add(delprofesor);
 		editDelete.addSeparator();
 		
-		delpredmet.setMnemonic(KeyEvent.VK_D);
-		delpredmet.setIcon(new ImageIcon("images2/close.png"));
-		delpredmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		delpredmet.setMnemonic(KeyEvent.VK_M);
+		delpredmet.setIcon(new ImageIcon("images2/garbage.png"));
+		delpredmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
+		delpredmet.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) { 
+				int row = PredmetiJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
+					int izbor = JOptionPane.showConfirmDialog(null,
+							"Da li ste sigurni da zelite da obrisete predmet?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
+					if (izbor == JOptionPane.YES_OPTION) {
+						PredmetiController.getInstance().izbrisiPredmet(row);
+						JOptionPane.showMessageDialog(null, "Predmet je obrisan!");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Predmet nije obrisan.");
+					}
+				}else {
+						JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+					}
+					PredmetiJTable.getInstance().refresTabelu();
+					delpredmet.setSelected(false);
+			}
+		});
 		editDelete.add(delpredmet);
 		
 		
-		delpredstud.setMnemonic(KeyEvent.VK_D);
+		/*delpredstud.setMnemonic(KeyEvent.VK_D);
 		delpredstud.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		delpredstud.setIcon(new ImageIcon("images2/close.png"));
 		delprofstud.add(delpredstud);
@@ -274,13 +391,14 @@ edit = new JMenu("Edit");
 		delpredprof.setMnemonic(KeyEvent.VK_D);
 		delpredprof.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		delpredprof.setIcon(new ImageIcon("images2/close.png"));
+		
 		delprofstud.add(delpredprof);
+		*/
 		
 		
-		
-		delprofstud.setIcon(new ImageIcon("images2/close.png"));
-		editDelete.add(delprofstud);
-		editDelete.addSeparator();
+		//delprofstud.setIcon(new ImageIcon("images2/close.png"));
+		//editDelete.add(delprofstud);
+		//editDelete.addSeparator();
 		
 		
 		editDelete.setIcon(new ImageIcon("images2/garbage.png"));
@@ -291,6 +409,16 @@ edit = new JMenu("Edit");
 		helpHelp=new JMenuItem("Help");
 		helpHelp.setMnemonic(KeyEvent.VK_H);
 		helpHelp.setIcon(new ImageIcon("images2/information.png"));
+		helpHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		helpHelp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					JOptionPane.showMessageDialog(null, "Pomoc");
+				
+			}
+		});
 		help.add(helpHelp);
 		help.addSeparator();
 		
@@ -300,21 +428,39 @@ edit = new JMenu("Edit");
 		aboutstud2=new JMenuItem("About Tamara Govorcin");
 		aboutapp= new JMenuItem("About App");
 		
-		aboutstud1.setMnemonic(KeyEvent.VK_A);
-		aboutstud1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
-		aboutstud1.setIcon(new ImageIcon("images2/close.png"));
+		aboutstud1.setMnemonic(KeyEvent.VK_L);
+		aboutstud1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+		aboutstud1.setIcon(new ImageIcon("images2/about.png"));
+		aboutstud1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					JOptionPane.showMessageDialog(null, "Nesto o Luni Zivkovic RA47/2017");
+				
+			}
+		});
 		helpAbout.add(aboutstud1);
 		helpAbout.addSeparator();
 		
-		aboutstud2.setMnemonic(KeyEvent.VK_A);
-		aboutstud2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
-		aboutstud2.setIcon(new ImageIcon("images2/close.png"));
+		aboutstud2.setMnemonic(KeyEvent.VK_T);
+		aboutstud2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+		aboutstud2.setIcon(new ImageIcon("images2/about.png"));
+		aboutstud2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					JOptionPane.showMessageDialog(null, "Nesto o Tamari Govorcin");
+				
+			}
+		});
 		helpAbout.add(aboutstud2);
 		helpAbout.addSeparator();
 		
-		aboutapp.setMnemonic(KeyEvent.VK_A);
-		aboutapp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
-		aboutapp.setIcon(new ImageIcon("images2/close.png"));
+		aboutapp.setMnemonic(KeyEvent.VK_Q);
+		aboutapp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+		aboutapp.setIcon(new ImageIcon("images2/about.png"));
 		helpAbout.add(aboutapp);
 		helpAbout.addSeparator();
 		

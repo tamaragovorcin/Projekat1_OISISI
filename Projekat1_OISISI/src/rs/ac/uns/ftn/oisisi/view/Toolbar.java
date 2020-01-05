@@ -81,7 +81,7 @@ public class Toolbar extends JToolBar {
 				
 		dodajStudentButton = new JToggleButton();
 		dodajStudentButton.setToolTipText("Dodaj novog studenta");
-		dodajStudentButton.setIcon(new ImageIcon("images2/student.png"));
+		dodajStudentButton.setIcon(new ImageIcon("images2/add-user1.png"));
 		
 		dodajPredmetButton = new JToggleButton();
 		dodajPredmetButton.setToolTipText("Dodavanje novog predmeta");
@@ -105,7 +105,7 @@ public class Toolbar extends JToolBar {
 		changePredmetButton.setMnemonic(KeyEvent.VK_1);
 		
 		changestudentButton = new JToggleButton();
-		changestudentButton.setIcon(new ImageIcon("images2/pencil.png"));
+		changestudentButton.setIcon(new ImageIcon("images2/edit-user1.png"));
 		changestudentButton.setToolTipText("Izmena studenta");
 		changestudentButton.setMnemonic(KeyEvent.VK_1);
 		
@@ -115,7 +115,7 @@ public class Toolbar extends JToolBar {
 		changeprofesorButton.setMnemonic(KeyEvent.VK_1);
 		
 		deletestudentButton = new JToggleButton();
-		deletestudentButton.setIcon(new ImageIcon("images2/delete.png"));
+		deletestudentButton.setIcon(new ImageIcon("images2/remove-user1.png"));
 		deletestudentButton.setToolTipText("Brisanje studenta");
 		deletestudentButton.setMnemonic(KeyEvent.VK_2);
 		
