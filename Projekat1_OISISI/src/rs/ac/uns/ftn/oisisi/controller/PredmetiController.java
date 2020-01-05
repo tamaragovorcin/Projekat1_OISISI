@@ -16,6 +16,7 @@ import rs.ac.uns.ftn.oisisi.view.IzmenaPredmetaDialog;
 import rs.ac.uns.ftn.oisisi.view.Main_Frame;
 import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
 import rs.ac.uns.ftn.oisisi.view.PredmetiTablePanel;
+import rs.ac.uns.ftn.oisisi.view.TabelaListaStudenata;
 import rs.ac.uns.ftn.oisisi.view.Toolbar;
 
 public class PredmetiController {
