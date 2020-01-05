@@ -40,23 +40,17 @@ private static StudentiController instance = null;
     	if (rowSelectedIndex < 0) {
 			return;
 		}
-    	// izmena modela
     	Student student = BazaStudenta.getInstance().getRow(rowSelectedIndex);
     	BazaStudenta.getInstance().izbrisiStudenta(student.getBrojIndeksa());
-		// azuriranje prikaza
-		//Main_Frame.getInstance().azurirajPrikazStudenta("UKLONJEN", rowSelectedIndex);
     }
 	
 	public void izmeniStudenta(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {
 			return;
 		}
-		// izmena modela
 		IzmenaStudentaDialog dialog = new IzmenaStudentaDialog(Main_Frame.getInstance(), "Izmena studenta", true,
 				rowSelectedIndex);
-		dialog.setVisible(true);
-		// TODO: izmena dodatnih polja modela tabele
-		
+		dialog.setVisible(true);		
 }
 	
 	public void sacuvajStudenteTXT() throws IOException {
@@ -69,7 +63,7 @@ private static StudentiController instance = null;
 	
 	public void pretraziStudenta() {
 
-		JTextField tekst = Toolbar.getInstance().getTekst();
+		JTextField tekst = Toolbar.getInstance().getSearchField();
 		String a = tekst.getText();
 
 		BazaStudenta.getInstance().pretragaStudenta(a);

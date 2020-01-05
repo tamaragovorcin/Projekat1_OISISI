@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -28,35 +26,27 @@ import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
-
-
-
-
 public class Toolbar extends JToolBar {
 
 	private static final long serialVersionUID = -3010935269356037536L;
 	
 	enum Dugme {
 		STUDENT,PREDMET,PROFESOR;
-	
-		
-		
 	};
 	
-	private JToggleButton addButton;
-	
-	private JToggleButton changeButton;
+	private JToggleButton changePredmetButton;
 	private JToggleButton changestudentButton;
 	private JToggleButton changeprofesorButton;
-	private JToggleButton deleteButton;
+
 	private JToggleButton deletestudentButton;
+	private JToggleButton deleteProfesorButton;
+	private JToggleButton deletePredmetButton;
 	
-	private JButton searchButton;
 	private JButton searchstudentButton;
 	private JButton searchProfesorButton;
+	private JButton searchPredmetButton;
+	
 	private JTextField searchField;
-	private JTextField searchstudentField;
-	private JTextField searchProfesorField;
 	
 	private JToggleButton dodajStudentButton;
 	private JToggleButton dodajPredmetButton;
@@ -79,26 +69,19 @@ public class Toolbar extends JToolBar {
 		return instance;
 	}
 	
-	
 	private Toolbar(Dugme d) {
 		super(SwingConstants.HORIZONTAL);
 		setLayout(new BorderLayout());
 		levo = new JPanel();
+		levo.setOpaque(false);
 		desno = new JPanel();
+		desno.setOpaque(false);
 		levo.setLayout(new FlowLayout(FlowLayout.LEFT));
 		desno.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		
-		addButton = new JToggleButton();
-		addButton.setToolTipText("Dodavanje nove osobe");
-		addButton.setIcon(new ImageIcon("images2/add.png"));
-		addButton.setMnemonic(KeyEvent.VK_0);
-		
-
+				
 		dodajStudentButton = new JToggleButton();
 		dodajStudentButton.setToolTipText("Dodaj novog studenta");
 		dodajStudentButton.setIcon(new ImageIcon("images2/student.png"));
-		
-		
 		
 		dodajPredmetButton = new JToggleButton();
 		dodajPredmetButton.setToolTipText("Dodavanje novog predmeta");
@@ -116,43 +99,55 @@ public class Toolbar extends JToolBar {
 		dodajProfesoraNaPredmet.setToolTipText("Dodavanje profesora na predmet");
 		dodajProfesoraNaPredmet.setIcon(new ImageIcon("images2/teacher.png"));
 		
-		changeButton = new JToggleButton();
-		changeButton.setToolTipText("Izmena predmeta");
-		changeButton.setIcon(new ImageIcon("images2/pencil.png"));
-		changeButton.setMnemonic(KeyEvent.VK_1);
-		
+		changePredmetButton = new JToggleButton();
+		changePredmetButton.setToolTipText("Izmena predmeta");
+		changePredmetButton.setIcon(new ImageIcon("images2/pencil.png"));
+		changePredmetButton.setMnemonic(KeyEvent.VK_1);
 		
 		changestudentButton = new JToggleButton();
-		changestudentButton.setToolTipText("Izmena studenta");
 		changestudentButton.setIcon(new ImageIcon("images2/pencil.png"));
+		changestudentButton.setToolTipText("Izmena studenta");
 		changestudentButton.setMnemonic(KeyEvent.VK_1);
 		
-		
 		changeprofesorButton = new JToggleButton();
-		changeprofesorButton.setToolTipText("Izmena studenta");
 		changeprofesorButton.setIcon(new ImageIcon("images2/pencil.png"));
+		changeprofesorButton.setToolTipText("Izmena profesora");
 		changeprofesorButton.setMnemonic(KeyEvent.VK_1);
 		
-		
-		deleteButton = new JToggleButton();
-		deleteButton.setToolTipText("Brisanje");
-		deleteButton.setIcon(new ImageIcon("images2/delete.png"));
-		deleteButton.setMnemonic(KeyEvent.VK_2);
-	
 		deletestudentButton = new JToggleButton();
-		deletestudentButton.setToolTipText("Brisanje");
 		deletestudentButton.setIcon(new ImageIcon("images2/delete.png"));
+		deletestudentButton.setToolTipText("Brisanje studenta");
 		deletestudentButton.setMnemonic(KeyEvent.VK_2);
 		
-		searchButton = new JButton();
-		searchButton.setToolTipText("Pretrazivanje");
-		searchButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
-		searchButton.setMnemonic(KeyEvent.VK_4);
-	
+		deleteProfesorButton = new JToggleButton();
+		deleteProfesorButton.setIcon(new ImageIcon("images2/delete.png"));
+		deleteProfesorButton.setToolTipText("Brisanje profesora");
+		deleteProfesorButton.setMnemonic(KeyEvent.VK_2);
+		
+		deletePredmetButton = new JToggleButton();
+		deletePredmetButton.setToolTipText("Brisanje");
+		deletePredmetButton.setIcon(new ImageIcon("images2/delete.png"));
+		deletePredmetButton.setToolTipText("Brisanje predmeta");
+		deletePredmetButton.setMnemonic(KeyEvent.VK_2);
+		
+		searchPredmetButton = new JButton();
+		searchPredmetButton.setToolTipText("Pretrazivanje predmeta");
+		searchPredmetButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
+		searchPredmetButton.setMnemonic(KeyEvent.VK_4);
+		
+		searchstudentButton = new JButton();
+		searchstudentButton.setToolTipText("Pretrazivanje studenta");
+		searchstudentButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
+		searchstudentButton.setMnemonic(KeyEvent.VK_4);
+		
+		searchProfesorButton = new JButton();
+		searchProfesorButton.setToolTipText("Pretrazivanje profesora");
+		searchProfesorButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
+		searchProfesorButton.setMnemonic(KeyEvent.VK_4);
 	
 		searchField = new JTextField(20);
 		searchField.setToolTipText("Upis za pretragu");
-		
+	
 		dodajStudentButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -200,10 +195,8 @@ public class Toolbar extends JToolBar {
 		});
 		
 		deletestudentButton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		
 				int row = StudentiJTable.getInstance().getSelectedRow();
 				if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata() ) {
 					int izbor = JOptionPane.showConfirmDialog(null,
@@ -215,15 +208,24 @@ public class Toolbar extends JToolBar {
 					else {
 						JOptionPane.showMessageDialog(null, "Student nije obrisan.");
 					}
-					
 				}else {
 						JOptionPane.showMessageDialog(null, "Student nije selektovan.");
 					}
-					
 					StudentiJTable.getInstance().refresTabelu();
 					deletestudentButton.setSelected(false);
 			}
 		});
+		
+		searchstudentButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			StudentiController.getInstance().pretraziStudenta();
+			StudentiJTable.getInstance().refresTabelu();
+			searchstudentButton.setSelected(false);
+			}
+		});
+		
 		changeprofesorButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -240,6 +242,83 @@ public class Toolbar extends JToolBar {
 			}
 		});
 		
+		deleteProfesorButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = ProfesoriJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora() ) {
+					int izbor = JOptionPane.showConfirmDialog(null,
+							"Da li ste sigurni da zelite da obrisete profesora?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
+					if (izbor == JOptionPane.YES_OPTION) {
+						ProfesoriController.getInstance().izbrisiProfesora(row);
+						JOptionPane.showMessageDialog(null, "Profesor je obrisan!");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Profesor nije obrisan.");
+					}
+				}else {
+						JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+					}
+					ProfesoriJTable.getInstance().refresTabelu();
+					deleteProfesorButton.setSelected(false);
+			}
+		});
+		
+		searchProfesorButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ProfesoriController.getInstance().pretraziProfesora();
+				ProfesoriJTable.getInstance().refresTabelu();
+				searchProfesorButton.setSelected(false);
+			}
+		});
+		
+		deletePredmetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) { 
+				int row = PredmetiJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
+					int izbor = JOptionPane.showConfirmDialog(null,
+							"Da li ste sigurni da zelite da obrisete predmet?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
+					if (izbor == JOptionPane.YES_OPTION) {
+						PredmetiController.getInstance().izbrisiPredmet(row);
+						JOptionPane.showMessageDialog(null, "Predmet je obrisan!");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Predmet nije obrisan.");
+					}
+				}else {
+						JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+					}
+					PredmetiJTable.getInstance().refresTabelu();
+					deletePredmetButton.setSelected(false);
+			}
+		});
+		
+		changePredmetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = PredmetiJTable.getInstance().getSelectedRow();
+				if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
+					PredmetiController.getInstance().izmeniPredmet(row);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+				}
+				PredmetiJTable.getInstance().refresTabelu();  
+				changePredmetButton.setSelected(false);
+			}
+		});
+		
+		searchPredmetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PredmetiController.getInstance().pretraziPredmet();
+				PredmetiJTable.getInstance().refresTabelu();
+				searchPredmetButton.setSelected(false);
+			}
+		});
+		
 		dodajProfesoraNaPredmet.addActionListener(new DodavanjeProfesoraNaPredmet());
 		
 		dodajStudentaNaPredmet.addActionListener(new DodavanjeStudentaNaPredmet());
@@ -248,240 +327,100 @@ public class Toolbar extends JToolBar {
 		
 		setFloatable(false);
 	
-		
-		}
+	}
 	
 	public void promena(Dugme d) {
 		removeAll();
 		levo.removeAll();
 		desno.removeAll();
 		
+		searchField.setText("");
 		if(d == Dugme.STUDENT) {
 			levo.add(dodajStudentButton,FlowLayout.LEFT);
 		}
-		
 		else if(d == Dugme.PREDMET)  {
 			levo.add(dodajPredmetButton,FlowLayout.LEFT);
 		}
-		
 		else if(d==Dugme.PROFESOR) {
 			levo.add(dodajProfesoraButton,FlowLayout.LEFT);
 		}
-		
-		else {
-			JOptionPane.showMessageDialog(null, "");
-		}
-
+	
 		addSeparator();
-		
-		
-		if(d == Dugme.STUDENT) {
-			changestudentButton.setToolTipText("Izmena studenta");
-			
-			deletestudentButton.setToolTipText("Brisanje studenta");
-		
-			
-			searchButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-				StudentiController.getInstance().pretraziStudenta();
-				StudentiJTable.getInstance().refresTabelu();
-				searchButton.setSelected(false);
-				}
-			});
 
+		if(d == Dugme.STUDENT) {
+			
 			levo.add(changestudentButton);
 			addSeparator();
 			levo.add(deletestudentButton);
-			addSeparator();
+		
 			desno.add(searchField);
 			addSeparator();
-			desno.add(searchButton);
+			desno.add(searchstudentButton);
 			
 			add(levo,BorderLayout.WEST);
 			add(desno, BorderLayout.EAST);
-				
 			}
 		else if(d == Dugme.PREDMET)  {
-			changeButton.setToolTipText("Izmena predmeta");
-			changeButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					int row = PredmetiJTable.getInstance().getSelectedRow();
-					if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
-						PredmetiController.getInstance().izmeniPredmet(row);
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
-					}
-					PredmetiJTable.getInstance().refresTabelu();  
-					changeButton.setSelected(false);
-				}
-			});
-			
-			
-			deleteButton.setToolTipText("Brisanje predmeta");
-			deleteButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) { //on tebi ovo brka
-			
-					int row = PredmetiJTable.getInstance().getSelectedRow();
-					if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
-						int izbor = JOptionPane.showConfirmDialog(null,
-								"Da li ste sigurni da zelite da obrisete predmet?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
-						if (izbor == JOptionPane.YES_OPTION) {
-							PredmetiController.getInstance().izbrisiPredmet(row);
-							JOptionPane.showMessageDialog(null, "Predmet je obrisan!");
-							
-						}
-						else {
-							JOptionPane.showMessageDialog(null, "Predmet nije obrisan.");
-						}
-						
-					}else {
-							JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
-						}
-						
-						PredmetiJTable.getInstance().refresTabelu();
-						deleteButton.setSelected(false);
-				}
-			});
-			
-			
-			searchButton.addActionListener(new ActionListener() {
-				
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					PredmetiController.getInstance().pretraziPredmet();
-					PredmetiJTable.getInstance().refresTabelu();
-					searchButton.setSelected(false);
-				}
-			});
-			
 		
-			
-			levo.add(changeButton);
+			levo.add(changePredmetButton);
 			addSeparator();
-			levo.add(deleteButton);
+			levo.add(deletePredmetButton);
 			addSeparator();
 			levo.add(dodajStudentaNaPredmet);
+			addSeparator();
 			levo.add(dodajProfesoraNaPredmet);
 			
 			desno.add(searchField);
 			addSeparator();
-			desno.add(searchButton);
+			desno.add(searchPredmetButton);
 			
 			add(levo,BorderLayout.WEST);
 			add(desno, BorderLayout.EAST);
-			
-			
-			levo.add(changeButton);
-			addSeparator();
-			levo.add(deleteButton);
-			addSeparator();
-			levo.add(dodajStudentaNaPredmet);
-			levo.add(dodajProfesoraNaPredmet);
-			
-			desno.add(searchField);
-			addSeparator();
-			desno.add(searchButton);
-			
-			add(levo,BorderLayout.WEST);
-			add(desno, BorderLayout.EAST);
-		
 		}
-		
-		
 		else if(d==Dugme.PROFESOR) { 
-			changeprofesorButton.setToolTipText("Izmena profesora");
-		
-			deleteButton.setToolTipText("Brisanje profesora");
-			deleteButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-			
-					int row = ProfesoriJTable.getInstance().getSelectedRow();
-					if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora() ) {
-						int izbor = JOptionPane.showConfirmDialog(null,
-								"Da li ste sigurni da zelite da obrisete profesora?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
-						if (izbor == JOptionPane.YES_OPTION) {
-							ProfesoriController.getInstance().izbrisiProfesora(row);
-							JOptionPane.showMessageDialog(null, "Profesor je obrisan!");
-							
-						}
-						else {
-							JOptionPane.showMessageDialog(null, "Profesor nije obrisan.");
-						}
-						
-					}else {
-							JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
-						}
-						
-						ProfesoriJTable.getInstance().refresTabelu();
-					deleteButton.setSelected(false);
-				}
-			});
-			
-			searchButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					ProfesoriController.getInstance().pretraziProfesora();
-					ProfesoriJTable.getInstance().refresTabelu();
-					searchButton.setSelected(false);
-				}
-			});
 			
 			levo.add(changeprofesorButton);
 			addSeparator();
-			levo.add(deleteButton);
-		
+			levo.add(deleteProfesorButton);
+			
 			desno.add(searchField);
 			addSeparator();
-			desno.add(searchButton);
-			
-			
+			desno.add(searchProfesorButton);
 			
 			add(levo,BorderLayout.WEST);
 			add(desno, BorderLayout.EAST);
 		}
 	}
-		
-		public Dugme getDugme(int i) {
-			Dugme d = null;
-			if(i==0) {
-				d = Dugme.STUDENT;
-			}
-			else if(i==1) {
-				d = Dugme.PREDMET;
-			}
-			else if(i==2) {
-				d=Dugme.PROFESOR;
-			}
-			return d;
+	public Dugme getDugme(int i) {
+		Dugme d = null;
+		if(i==0) {
+			d = Dugme.STUDENT;
 		}
-
+		else if(i==1) {
+			d = Dugme.PREDMET;
+		}
+		else if(i==2) {
+			d=Dugme.PROFESOR;
+		}
+		return d;
+	}
 
 	public JTextField getPolje() {
 		return polje;
 	}
 
-
 	public void setPolje(JTextField polje) {
 		this.polje = polje;
 	}
 	
-	public JTextField getTekst() {
+	public JTextField getSearchField() {
 		return searchField;
 	}
 
-	
-	
+	public void setSearchField(JTextField searchField) {
+		this.searchField = searchField;
+	}
+
 	public void A() {
 		dodajStudentaNaPredmet.setSelected(false);
 		dodajProfesoraNaPredmet.setSelected(false);
