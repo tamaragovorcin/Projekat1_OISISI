@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -276,7 +275,7 @@ public class Toolbar extends JToolBar {
 		deletePredmetButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) { 
-				int row = PredmetiJTable.getInstance().getSelectedRow();
+				int row = PredmetiTablePanel.getSelektovan_red();
 				if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
 					int izbor = JOptionPane.showConfirmDialog(null,
 							"Da li ste sigurni da zelite da obrisete predmet?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
@@ -298,7 +297,7 @@ public class Toolbar extends JToolBar {
 		changePredmetButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int row = PredmetiJTable.getInstance().getSelectedRow();
+				int row = PredmetiTablePanel.getSelektovan_red();
 				if(row>=0 && row<BazaPredmeta.getInstance().getBroj_predmeta() ) {
 					PredmetiController.getInstance().izmeniPredmet(row);
 				}

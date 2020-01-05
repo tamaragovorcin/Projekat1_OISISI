@@ -3,6 +3,9 @@ package rs.ac.uns.ftn.oisisi.model;
 import java.io.Serializable;
 
 public abstract class Osoba implements Serializable {
+
+	private static final long serialVersionUID = -2586380881304506742L;
+	
 	private String ime;
 	private String prezime;
 	private String datumRodjenja;

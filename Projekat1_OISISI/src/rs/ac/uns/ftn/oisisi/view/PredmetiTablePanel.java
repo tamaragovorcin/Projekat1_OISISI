@@ -13,16 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
-import com.sun.jdi.connect.Connector.SelectedArgument;
-
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 
 
 public class PredmetiTablePanel extends JPanel{
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 6551445060786191977L;
 
 	private PredmetiJTable predmetiTable;
@@ -33,8 +28,7 @@ public class PredmetiTablePanel extends JPanel{
 	public PredmetiTablePanel() {
 		setLayout(new BorderLayout());
 		setOpaque(false);
-		KreiranjeTabalePredmet();
-		
+		KreiranjeTabalePredmet();	
 	}
 	
 	private void KreiranjeTabalePredmet() {
@@ -69,20 +63,18 @@ public class PredmetiTablePanel extends JPanel{
 			e1.printStackTrace();
 		}
 		
-		
 		predmetiTable = PredmetiJTable.getInstance();
 		scrollPane = new JScrollPane(predmetiTable);
 		
 		TableRowSorter<TableModel>sortiranje = new TableRowSorter<TableModel>(predmetiTable.getModel());
 		predmetiTable.setRowSorter(sortiranje);
 		predmetiTable.addMouseListener(new MouseListener() {
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
-
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				PredmetiJTable tabela = (PredmetiJTable) e.getComponent();
@@ -112,8 +104,6 @@ public class PredmetiTablePanel extends JPanel{
 		
 		
 		add(scrollPane,BorderLayout.CENTER);
-		
-		
 	}
 	
 	public static int getSelektovan_red() {
@@ -123,8 +113,4 @@ public class PredmetiTablePanel extends JPanel{
 	public static void setSelektovan_red(int selektovan_red) {
 		PredmetiTablePanel.selektovan_red = selektovan_red;
 	}
-
-
-
-	
 }

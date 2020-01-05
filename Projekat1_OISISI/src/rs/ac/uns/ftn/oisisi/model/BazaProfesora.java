@@ -2,23 +2,14 @@ package rs.ac.uns.ftn.oisisi.model;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
-import rs.ac.uns.ftn.oisisi.view.ProfesoriJTable;
-
 
 public class BazaProfesora {
 
@@ -30,8 +21,6 @@ private static BazaProfesora instance = null;
 		}
 		return instance;
 	}
-	
-
 
 	private static int broj_profesora = 0;
 	private List<String>kolone;
@@ -55,9 +44,9 @@ private static BazaProfesora instance = null;
 		this.kolone.add("TITULA");
 		this.kolone.add("ZVANJE");
 		this.kolone.add("SPISAK PREDMETA");
-		//initProfesori();
 	}
 
+	@SuppressWarnings("unused")
 	private void initProfesori() {
 		this.profesori=new ArrayList<Profesor>();
 		this.profesori.add(new Profesor("Pera","Peric","20.05.1965.","Masarikova 15","111","peraperic@gmail.com","Radnicka 55","111","Redovni profesor","Doktor nauka"));
@@ -156,9 +145,7 @@ private static BazaProfesora instance = null;
 				i.setEmail(email);
 				i.setAdresa_kancelarije(adresa_kancelarije);
 				i.setTitula(titula);
-				i.setZvanje(zvanje);
-				
-				
+				i.setZvanje(zvanje);	
 			}
 		}
 	}
@@ -168,7 +155,7 @@ private static BazaProfesora instance = null;
 	}
 
 	public void setBroj_profesora(int broj_profesora) {
-		this.broj_profesora = broj_profesora;
+		BazaProfesora.broj_profesora = broj_profesora;
 	}
 	
 	 public void sacuvajProfesoreTXT() throws IOException{
@@ -218,30 +205,6 @@ private static BazaProfesora instance = null;
 	 private void dodajprofesora2(Profesor p) {
 		broj_profesora++;
 		profesori.add(p);
-	}
-
-	private boolean dodajprofesora(String[] delovi) {
-		
-		String a = delovi[0];
-		if(profesorNePostoji(a)) {
-			
-			Profesor novi = new Profesor(delovi[0],delovi[1],delovi[2],delovi[3],delovi[4],delovi[5],delovi[6],delovi[7],delovi[8],delovi[9]);
-			profesori.add(novi);
-			broj_profesora++;
-			return true;
-		}
-		return false;
-		
-	}
-
-	private boolean profesorNePostoji(String a) {
-		for(Profesor p: profesori) {
-			if(a.equals(p.getBroj_licne_karte())) {
-				return false;
-			}
-		}
-		return true;
-		
 	}
 
 	 public void pretragaProfesora(String ulaz) {
@@ -420,8 +383,6 @@ private static BazaProfesora instance = null;
 			if (pretraga.size() == 0) {
 				JOptionPane.showMessageDialog(null, "Ne postoji profesor sa unetim vrednostima.");
 			}
-			
-			
 	}
 
 	public Profesor getProfesorPoPredmetu(String licna) {
@@ -462,10 +423,6 @@ private static BazaProfesora instance = null;
 					}
 				}
 			}
-		}
-		
+		}	
 	}
-
-
-
 }

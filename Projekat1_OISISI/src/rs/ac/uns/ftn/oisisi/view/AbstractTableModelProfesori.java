@@ -11,15 +11,7 @@ import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 
 public class AbstractTableModelProfesori extends AbstractTableModel{
 
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2995603907983526790L;
-	
-
-	public static String kolonaDugme = "DUGME";
-	public static String kolonaCheck = "CHECK";
 	
 	private List<Boolean> koJeOtkacen;
 	
@@ -30,11 +22,10 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 		}
 	}
 
-
 	public int getRowCount() {
 		return BazaProfesora.getInstance().getProfesore().size();
-		
 	}
+	
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		switch (columnIndex) {
@@ -65,7 +56,6 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 		}
 	}
 
-
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return columnIndex>=10;
@@ -77,10 +67,7 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 
 	@Override
 	public String getColumnName(int column) {
-		if (column >= BazaProfesora.getInstance().getColumnCount()) {
-			return column == 11 ? kolonaDugme : kolonaCheck;
-		}
-			return BazaProfesora.getInstance().getColumnName(column);
+		return BazaProfesora.getInstance().getColumnName(column);
 	}
 
 
@@ -93,8 +80,6 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 			return btn;
 		} 
 		return null;
-			
-		
 	}
 
 	public void profesorDodat() {

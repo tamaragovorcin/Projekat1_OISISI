@@ -2,36 +2,25 @@ package rs.ac.uns.ftn.oisisi.model;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
-import rs.ac.uns.ftn.oisisi.view.PredmetiJTable;
-import rs.ac.uns.ftn.oisisi.view.StudentiJTable;
 
 public class BazaStudenta {
 	
 	private static BazaStudenta instance=null;
 	
 	public static BazaStudenta getInstance(){
-		
 		if(instance==null) {
 			instance=new BazaStudenta();
 		}
 			return instance;	
 	}
-	
 	
 	private static int broj_studenata=0;
 	private List<String>kolone;
@@ -55,8 +44,7 @@ public class BazaStudenta {
 		this.kolone.add("TRENUTNA GODINA STUDIJA");
 		this.kolone.add("STATUS");
 		this.kolone.add("SPISAK PREDMETA");
-		
-		//initi();
+
 	}
 
 	public void initStudenti(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
@@ -165,7 +153,7 @@ public class BazaStudenta {
 	}
 
 	public void setBroj_studenata(int broj_studenata) {
-		this.broj_studenata=broj_studenata;
+		BazaStudenta.broj_studenata=broj_studenata;
 	}
 	 public void pretragaStudenta(String ulaz) {
 			if (ulaz.trim().length() == 0) {
@@ -342,12 +330,9 @@ public class BazaStudenta {
 
 			if (pretraga.size() == 0) {
 				JOptionPane.showMessageDialog(null, "Ne postoji student sa unetim vrednostima.");
-			}
-			
-			
+			}	
 	}
 	
-
 	 public void sacuvajStudenteTXT() throws IOException{
 		 ObjectOutputStream out=null;
 		 
@@ -369,7 +354,6 @@ public class BazaStudenta {
 		 }
 	 }
 	
-
 	 public void ucitajStudenteTXT() throws IOException {
 		ObjectInputStream in =null;
 		Student s=null;
@@ -381,7 +365,6 @@ public class BazaStudenta {
 				dodajstudenta2(s);
 			}
 		}catch(Exception e) {
-			// e.printStackTrace();
 		 }finally {
 			 if(in!=null) {
 				 try {
@@ -393,34 +376,11 @@ public class BazaStudenta {
 		 }
 	 }
 	 
-
 	private void dodajstudenta2(Student s) {
 		broj_studenata++;
 		studenti.add(s);
 	}
 
-	private boolean dodajstudenta(String[] delovi) {
-		
-		String a = delovi[6];
-		if(studentNePostoji(a)) {
-			
-			Student novi = new Student(delovi[0],delovi[1],delovi[2],delovi[3],delovi[4],delovi[5],delovi[6],delovi[7],delovi[8],delovi[9]);
-			studenti.add(novi);
-			broj_studenata++;
-			return true;
-		}
-		return false;
-		
-	}
-
-	private boolean studentNePostoji(String a) {
-		for(Student s:studenti) {
-			if(a.equals(s.getBrojIndeksa())) {
-				return false;
-			}
-		}
-		return true;
-	}
 	public Student getStudentaPoPredmetu(String indeks) {
 		Student p=null;
 		for(Student stud: studenti) {

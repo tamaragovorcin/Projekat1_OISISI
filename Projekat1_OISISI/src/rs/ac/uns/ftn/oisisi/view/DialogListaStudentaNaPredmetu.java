@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 import rs.ac.uns.ftn.oisisi.controller.StudentiController;
@@ -26,7 +27,6 @@ private static final long serialVersionUID = -1986048344792559710L;
 	public static final int NAZAD = 0;
 	public static final int OBRISI = 1;
 		
-	private JPanel dole;
 	protected JButton odustani;
 	private JTable listaIndeksa;
   
@@ -37,7 +37,7 @@ private static final long serialVersionUID = -1986048344792559710L;
 		setLayout(new BorderLayout());
 		setSize(300,400);
 		setLocationRelativeTo(parent);
-	//	setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
 		JPanel pan_odgovor = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JButton obrisi = new JButton("OBRISI");
 		obrisi.addActionListener(this);
@@ -84,23 +84,18 @@ private static final long serialVersionUID = -1986048344792559710L;
 		}
 		
 
+
 	}
 
 	
-	
-		
-		
 	private void PrikazTabele() {
 		listaIndeksa =  TabelaListaStudenata.getInstance();
 		
 		JScrollPane scrol =  new JScrollPane(listaIndeksa);
 		add(scrol, BorderLayout.CENTER);
-		TabelaListaStudenata.getInstance().refresujTabelu();
-		
-		
+		TabelaListaStudenata.getInstance().refresujTabelu();	
 	}
 	
-
 	public int getMode() {
 		return mode;
 	}

@@ -11,7 +11,6 @@ public class DodavanjeProfesoraNaPredmet implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		
 		PredmetiController.getInstance().dodavanjeProfesoraNaPredmet();
 		PredmetiJTable.getInstance().refresTabelu();
 		Toolbar.getInstance().A();

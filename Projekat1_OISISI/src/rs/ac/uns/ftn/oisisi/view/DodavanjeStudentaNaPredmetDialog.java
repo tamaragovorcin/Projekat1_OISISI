@@ -21,17 +21,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
-import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
-import rs.ac.uns.ftn.oisisi.model.Profesor;
 import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class DodavanjeStudentaNaPredmetDialog extends JDialog{
+	
 	private static final long serialVersionUID = 3086370650016308061L;
+	
 	JTextField txtBrojIndeksa = new JTextField();
 
-	
 	public DodavanjeStudentaNaPredmetDialog(Main_Frame instance, String string, boolean b) {
 		super(instance, string, b);
 		setSize(300,150);
@@ -54,19 +53,16 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				int red = PredmetiJTable.getInstance().getSelectedRow();
+				int red = PredmetiTablePanel.getSelektovan_red();
 				String indeks = pokupiUnetiTekst();
 				
 				Predmet predmet = PredmetiController.getInstance().getPredmetPoStudentu(red);
 				
 				Student stud = StudentiController.getInstance().getStudentaPoPredmetu(indeks);
 				
-	
 				boolean postojiStudent =StudentiController.getInstance().PostojiBrojIndeksa(indeks);
 				
-				boolean postojiStudentNaPredmetu = PredmetiController.getInstance().PostojiStudentNaPredmetu(red,indeks);//ne red
-				
-			
+				boolean postojiStudentNaPredmetu = PredmetiController.getInstance().PostojiStudentNaPredmetu(red,indeks);
 				
 				if(postojiStudent== true && postojiStudentNaPredmetu==false) {
 					dispose();
@@ -90,21 +86,12 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 						JOptionPane.showMessageDialog(null, "Nije moguce dodati studenta na predmet.");
 						setVisible(true);
 					}
-				}
-				
-				
-				
+				}	
 			}
-
-			
 		});
 
-		
-		
 		pan_odogovr.add(odustanak);
 		pan_odogovr.add(potvrda);
-		
-		
 		
 		JPanel pan_centar = new JPanel();
 		pan_centar.setBackground(Color.white);
@@ -121,8 +108,7 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub	
 			}
 			
 			@Override
@@ -132,7 +118,6 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 				} else {
 					potvrda.setEnabled(false);
 				}
-	
 			}
 			
 			@Override
@@ -155,7 +140,6 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 		gbcTXTIndeks.insets = new Insets(10, 20, 0, 20);
 		pan_centar.add(txtBrojIndeksa, gbcTXTIndeks);
 		
-		
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odogovr, BorderLayout.SOUTH);
 
@@ -177,13 +161,10 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 		txtBrojIndeksa.setBackground(Color.WHITE);
 		return izlaz;
 	}
-	
 
 	private String pokupiUnetiTekst() {
 		String tekst = new String();
 		tekst =txtBrojIndeksa.getText().toString(); 
 		return tekst;
 	}
-	
-	
 }
