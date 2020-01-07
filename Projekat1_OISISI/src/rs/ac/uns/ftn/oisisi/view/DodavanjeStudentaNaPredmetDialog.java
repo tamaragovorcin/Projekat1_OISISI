@@ -64,7 +64,13 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 				
 				boolean postojiStudentNaPredmetu = PredmetiController.getInstance().PostojiStudentNaPredmetu(red,indeks);
 				
-				if(postojiStudent== true && postojiStudentNaPredmetu==false) {
+				boolean odgovarajucaGod=false;
+				
+			
+			
+				
+				
+				if(postojiStudent== true && postojiStudentNaPredmetu==false ) {
 					dispose();
 					PredmetiController.getInstance().dodajStudenta(stud, predmet, red);
 					StudentiController.getInstance().dodajPredmetStuddentu(predmet,indeks);
@@ -79,6 +85,11 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 					else if(postojiStudentNaPredmetu) {
 						setVisible(false);
 						JOptionPane.showMessageDialog(null, "Student postoji vec na listi tog predmeta!");
+						setVisible(true);
+					}
+					else if(!odgovarajucaGod) {
+						setVisible(false);
+						JOptionPane.showMessageDialog(null, "Student i predmet ne pripadaju istoj godini!");
 						setVisible(true);
 					}
 					else {

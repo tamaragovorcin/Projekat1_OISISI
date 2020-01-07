@@ -331,6 +331,8 @@ public class BazaPredmeta {
 		return izlaz;
 	}
 	
+	
+	
 	public void obrisiStudentaSaPredmeta(int a,int i) {
 		predmeti.get(a).getStudenti_na_predmetu().remove(i);
 		broj_studenta_na_predmetu--;

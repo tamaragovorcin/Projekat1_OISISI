@@ -31,4 +31,5 @@ public class TabbedPane extends JTabbedPane {
 		TabbedPane.pritisnutTab = pritisnutTab;
 	}
 	
+
 }

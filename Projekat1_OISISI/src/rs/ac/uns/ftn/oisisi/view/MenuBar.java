@@ -56,6 +56,8 @@ public class MenuBar extends JMenuBar {
 		}
 		return instance;	
 	}
+	
+	
 	private MenuBar() {
 	
 		file = new JMenu("File");
@@ -67,7 +69,13 @@ public class MenuBar extends JMenuBar {
 		noviprofstud=new JMenu("New Student/Profesor");
 		novipredstud=new JMenuItem("New Student");
 		novipredprof=new JMenuItem("New Profesor");
+		
+	
 			
+		
+		
+		
+		
 		novistudent.setMnemonic(KeyEvent.VK_N);
 		novistudent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		novistudent.setIcon(new ImageIcon("images2/buttonplus.png"));
@@ -395,7 +403,78 @@ public class MenuBar extends JMenuBar {
 		add(file);
 		add(edit);
 		add(help);
+		
+		novistudent.setEnabled(true);
+		novipredmet.setEnabled(false);
+		noviprofesor.setEnabled(false);
+		noviprofstud.setEnabled(false);
+	
+		
+		editstudent.setEnabled(true);
+		editprofesor.setEnabled(false);
+		editpredmet.setEnabled(false);
+		
+		delstudent.setEnabled(true);
+		delpredmet.setEnabled(false);
+		delprofesor.setEnabled(false);
 	}
+	
+	public void PromenaDugmica(int a) {
+		if(a==0) {
+			novistudent.setEnabled(true);
+			novipredmet.setEnabled(false);
+			noviprofesor.setEnabled(false);
+			noviprofstud.setEnabled(false);
+		
+			
+			editstudent.setEnabled(true);
+			editprofesor.setEnabled(false);
+			editpredmet.setEnabled(false);
+			
+			delstudent.setEnabled(true);
+			delpredmet.setEnabled(false);
+			delprofesor.setEnabled(false);
+			
+			
+		}
+		
+		
+	if(a==1) {
+		novistudent.setEnabled(false);
+		novipredmet.setEnabled(true);
+		noviprofesor.setEnabled(false);
+		noviprofstud.setEnabled(true);
+	
+		
+		editstudent.setEnabled(false);
+		editprofesor.setEnabled(false);
+		editpredmet.setEnabled(true);
+		
+		delstudent.setEnabled(false);
+		delpredmet.setEnabled(true);
+		delprofesor.setEnabled(false);
+		
+		
+	}
+	if(a==2) {
+		novistudent.setEnabled(false);
+		novipredmet.setEnabled(false);
+		noviprofesor.setEnabled(true);
+		noviprofstud.setEnabled(false);
+	
+		
+		editstudent.setEnabled(false);
+		editprofesor.setEnabled(true);
+		editpredmet.setEnabled(false);
+		
+		delstudent.setEnabled(false);
+		delpredmet.setEnabled(false);
+		delprofesor.setEnabled(true);
+		
+		
+	}
+	}
+	
 }
 
 
