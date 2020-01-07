@@ -14,8 +14,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import javax.net.ssl.SSLEngineResult.Status;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,14 +23,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
-import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class IzmenaStudentaDialog extends JDialog implements ActionListener {
-	
 	
 	private static final long serialVersionUID = 8377505010808280172L;
 
@@ -63,7 +57,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		
 		super(instance, string, b);
 		
-		
 		Student student = studenti.get(row);
 		red = row;
 		
@@ -88,10 +81,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		pan_centar.setLayout(new GridBagLayout());
 		pan_centar.setBackground(new Color(204, 227, 249));
 		
-
-		
-		
-
 		JLabel labelaIme = new JLabel("Ime*:");
 		labelaIme.setPreferredSize(dim);
 
@@ -124,15 +113,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 			}
 		});
 		
-		
-		
-	
-		
-		
-		
-		
-		
-		
 		JLabel labelaPrezime = new JLabel("Prezime*:");
 		labelaIme.setPreferredSize(dim);
 
@@ -164,10 +144,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 			}
 		});
 	
-		
-		
-	
-		
 		JLabel labelaDatum = new JLabel("Datum rodjenja*:");
 		labelaDatum.setPreferredSize(dim);
 
@@ -198,9 +174,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		
-	
-		
 		
 		JLabel labelaAdresa = new JLabel("Adresa*:");
 		labelaAdresa.setPreferredSize(dim);
@@ -233,8 +206,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 			}
 		});
 		
-		
-		
 		JLabel labelaTelefon = new JLabel("Broj telefona*:");
 		labelaTelefon.setPreferredSize(dim);
 
@@ -266,8 +237,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 			}
 		});
 		
-		
-		
 		JLabel labelaEmail = new JLabel("Email*:");
 		labelaEmail.setPreferredSize(dim);
 
@@ -298,8 +267,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-	
-		
 		
 		JLabel labelaIndeks = new JLabel("Indeks*:");
 		labelaIndeks.setPreferredSize(dim);
@@ -332,8 +299,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-	
-		
 		
 		JLabel labelaDatumUpisa = new JLabel("Datum upisa*:");
 		labelaIndeks.setPreferredSize(dim);
@@ -366,14 +331,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 			}
 		});
 		
-		
-		
-		
-		
-		
-		
-
-		//JPanel panGodina = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel lblGodina = new JLabel("Godina*:");
 		lblGodina.setPreferredSize(dim);
 		String godina[] = { "     ", "I", "II", "III", "IV", "V" };
@@ -393,7 +350,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		});
 
 		
-budzet.addActionListener(new ActionListener() {
+		budzet.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -418,12 +375,9 @@ budzet.addActionListener(new ActionListener() {
 				}
 			}
 		});
-		
 	 
 		btnGroup1.add(budzet);
 		btnGroup1.add(samofinansiranje);
-		
-		
 		
 		GridBagConstraints gbcIme = new GridBagConstraints();
 		gbcIme.gridx = 0;
@@ -435,6 +389,7 @@ budzet.addActionListener(new ActionListener() {
 		gbcPrezime .gridx = 0;
 		gbcPrezime .gridy = 1;
 		gbcPrezime .insets = new Insets(20, 20, 0, 0);
+		gbcPrezime.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaPrezime , gbcPrezime );
 		
 		GridBagConstraints gbcDatumRodjenja = new GridBagConstraints();
@@ -471,14 +426,8 @@ budzet.addActionListener(new ActionListener() {
 		gbcDatumUpisa .gridx = 0;
 		gbcDatumUpisa .gridy = 7;
 		gbcDatumUpisa .insets =new Insets(20, 20, 0, 0);
+		gbcDatumUpisa.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaDatumUpisa , gbcDatumUpisa );
-		
-		
-		
-		
-		
-		
-		
 		
 		GridBagConstraints gbcTekstIme = new GridBagConstraints();
 		gbcTekstIme .gridx = 1;
@@ -488,7 +437,6 @@ budzet.addActionListener(new ActionListener() {
 		gbcTekstIme .insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtIme , gbcTekstIme );
 
-	
 		GridBagConstraints gbcTekstPrezime = new GridBagConstraints();
 		gbcTekstPrezime .gridx = 1;
 		gbcTekstPrezime .gridy = 1;
@@ -496,8 +444,7 @@ budzet.addActionListener(new ActionListener() {
 		gbcTekstPrezime .fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstPrezime .insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtPrezime , gbcTekstPrezime );
-		
-		
+				
 		GridBagConstraints gbcTekstDatumRodjenja = new GridBagConstraints();
 		gbcTekstDatumRodjenja .gridx = 1;
 		gbcTekstDatumRodjenja .gridy = 2;
@@ -505,7 +452,6 @@ budzet.addActionListener(new ActionListener() {
 		gbcTekstDatumRodjenja .fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstDatumRodjenja.insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtDatumRodjenja, gbcTekstDatumRodjenja );
-		
 		
 		GridBagConstraints gbcTekstAdresa = new GridBagConstraints();
 		gbcTekstAdresa .gridx = 1;
@@ -515,7 +461,6 @@ budzet.addActionListener(new ActionListener() {
 		gbcTekstAdresa .insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtAdresa , gbcTekstAdresa );
 		
-		
 		GridBagConstraints gbcTekstTelefon = new GridBagConstraints();
 		gbcTekstTelefon .gridx = 1;
 		gbcTekstTelefon .gridy = 4;
@@ -523,7 +468,6 @@ budzet.addActionListener(new ActionListener() {
 		gbcTekstTelefon .fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstTelefon .insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtTelefon , gbcTekstTelefon );
-		
 		
 		GridBagConstraints gbcTekstEmail = new GridBagConstraints();
 		gbcTekstEmail .gridx = 1;
@@ -533,8 +477,6 @@ budzet.addActionListener(new ActionListener() {
 		gbcTekstEmail.insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtEmail , gbcTekstEmail );
 		
-		
-		
 		GridBagConstraints gbcTekstBrojIndeksa= new GridBagConstraints();
 		gbcTekstBrojIndeksa .gridx = 1;
 		gbcTekstBrojIndeksa .gridy = 6;
@@ -542,8 +484,6 @@ budzet.addActionListener(new ActionListener() {
 		gbcTekstBrojIndeksa .fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstBrojIndeksa .insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtIndeks , gbcTekstBrojIndeksa );
-		
-		
 		
 		GridBagConstraints gbcTekstDatumUpisa = new GridBagConstraints();
 		gbcTekstDatumUpisa .gridx = 1;
@@ -553,15 +493,11 @@ budzet.addActionListener(new ActionListener() {
 		gbcTekstDatumUpisa .insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtDatumUpisa , gbcTekstDatumUpisa );
 		
-
-
-
 		GridBagConstraints gbcGodina = new GridBagConstraints();
 		gbcGodina.gridx = 0;
 		gbcGodina.gridy = 8;
 		gbcGodina.insets = new Insets(20, 20, 0, 0);
 		pan_centar.add(lblGodina, gbcGodina);
-
 
 		GridBagConstraints gbcComboBoxGodina = new GridBagConstraints();
 		gbcComboBoxGodina.gridx = 1;
@@ -571,12 +507,12 @@ budzet.addActionListener(new ActionListener() {
 		pan_centar.add(godinaComboBox, gbcComboBoxGodina);
 
 		budzet.setOpaque(false);
-		
-		
+				
 		GridBagConstraints gbcButtonGroup = new GridBagConstraints();
 		gbcButtonGroup.gridx = 0;
 		gbcButtonGroup.gridy = 9;
 		gbcButtonGroup.insets = new Insets(20, 20, 0, 0);
+		gbcButtonGroup.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(budzet, gbcButtonGroup);
 		
 		samofinansiranje.setOpaque(false);
@@ -585,21 +521,15 @@ budzet.addActionListener(new ActionListener() {
 		gbcButtonGroup1.gridx = 1;
 		gbcButtonGroup1.gridy = 9;
 		gbcButtonGroup1.insets = new Insets(20, 20, 0, 0);
+		gbcButtonGroup1.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(samofinansiranje, gbcButtonGroup1);
-		
-		
 		
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odgovor, BorderLayout.SOUTH);
 		
-
-		
 		Set();
 		setResizable(false);	
-		
-		
 	}
-
 
 	public String[] pokupiUnetiTekst() {
 		String tekst[] = new String[10];
@@ -619,16 +549,13 @@ budzet.addActionListener(new ActionListener() {
 			tekst[9]="S";}
 		else {
 			tekst[9]="B";}
-		
-	
 		return tekst;
 	}
 
 	protected boolean provera() {
 		String tekst[] = pokupiUnetiTekst();
 		boolean izlaz = true;
-
-
+		
 		if (!Pattern.matches("[a-zA-Z0-9]*", tekst[0])) {
 			txtIme.setBackground(Color.RED);
 			return false;
@@ -674,8 +601,6 @@ budzet.addActionListener(new ActionListener() {
 			}
 		}
 
-		
-		
 		for (String t : tekst) {
 			if ((t = t.trim()).length() == 0) {
 				txtIme.setBackground(Color.WHITE);
@@ -700,9 +625,6 @@ budzet.addActionListener(new ActionListener() {
 
 		return izlaz;
 	}
-
-	
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -745,8 +667,6 @@ budzet.addActionListener(new ActionListener() {
 				student.setGodinaStudija(tekst[8]);
 				student.setStatus(tekst[9]);
 				
-				
-				
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				StudentiJTable.getInstance().refresTabelu();
 			}
@@ -754,8 +674,6 @@ budzet.addActionListener(new ActionListener() {
 		setVisible(false);
 	}
 		
-
-	
 	public int getMode() {
 		return mode;
 	}
@@ -812,12 +730,7 @@ budzet.addActionListener(new ActionListener() {
 		}else {
 			budzet.setSelected(true);
 		}
-	
-
-		
-	
-	
-}
+	}
 }
 
 

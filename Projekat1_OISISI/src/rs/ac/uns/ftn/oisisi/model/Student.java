@@ -13,7 +13,6 @@ public class Student extends Osoba implements Serializable{
     private	String Status;
 	private ArrayList<Predmet> predmeti;
 	
-	
 	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
 			String kontakt_telefon,String email, String brojIndeksa,String datumUpisa, String godinaStudija, String status) {
 		super(ime, prezime, datumRodjenja, adresaStanovanja, kontakt_telefon, email);
@@ -24,16 +23,13 @@ public class Student extends Osoba implements Serializable{
 		this.predmeti = new ArrayList<Predmet>();
 	}
 
-
 	public String getBrojIndeksa() {
 		return brojIndeksa;
 	}
 
-
 	public void setBrojIndeksa(String brojIndeksa) {
 		this.brojIndeksa = brojIndeksa;
 	}
-
 
 	public String getDatumUpisa() {
 		return datumUpisa;

@@ -5,9 +5,6 @@ import javax.swing.ListSelectionModel;
 
 public class TabelaListaProfesora extends JTable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3950006387990901019L;
 	private static TabelaListaProfesora instance = null;
 	

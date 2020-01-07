@@ -12,12 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.WindowConstants;
 
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
-import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 
 
@@ -26,13 +24,11 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 
 	private static final long serialVersionUID = -1986048344792559710L;
 	
-	private int mode = 1;
 	public static final int NAZAD = 0;
 	public static final int OBRISI = 1;
 
 	protected JButton odustani;
 	private JTable listaLicnihKarti;
-  
 	
 	public DialogListaProfesoraNaPredmetu(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
@@ -52,12 +48,11 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 		add(pan_odgovor, BorderLayout.SOUTH);
 
 		setResizable(false);
-	     PrikazTabele();
+	    PrikazTabele();
 	}
 	
 	private void PrikazTabele() {
 		listaLicnihKarti =  TabelaListaProfesora.getInstance();
-		
 		JScrollPane scrol =  new JScrollPane(listaLicnihKarti);
 		add(scrol, BorderLayout.CENTER);
 		TabelaListaProfesora.getInstance().refresujTabelu();
@@ -75,8 +70,6 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 			
 			Predmet pred = BazaPredmeta.getInstance().getPredmete().get(predmet);
 			String licna = pred.getProfesori_predavaci().get(profesor).getBroj_licne_karte();
-			
-		    mode = DialogListaProfesoraNaPredmetu.OBRISI;
 		    
 			if(profesor>=0 && profesor<BazaPredmeta.getInstance().getPredmete().get(predmet).getProfesori_predavaci().size()) {
 				PredmetiController.getInstance().obrisiProfesoraSaPredmeta(predmet,profesor);

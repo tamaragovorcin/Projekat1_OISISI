@@ -9,7 +9,6 @@ import javax.swing.JTable;
 
 public class DialogListPredmetiKodStudenta  extends JDialog{
 	
-	
 	private static final long serialVersionUID = 641427397276372778L;
 
 	protected JButton odustani;
@@ -17,7 +16,6 @@ public class DialogListPredmetiKodStudenta  extends JDialog{
 	
 	public DialogListPredmetiKodStudenta(Main_Frame instance, String string, boolean b) {
 		super(instance, string, b);
-
 		setLayout(new BorderLayout());
 		setSize(300,400);
 		setLocationRelativeTo(instance);
@@ -26,7 +24,6 @@ public class DialogListPredmetiKodStudenta  extends JDialog{
 
 	private void PrikazTabele() {
 		listaSifriPredmeta =  TabelaListaPredmetaKodStudenta.getInstance();
-		
 		JScrollPane scrol =  new JScrollPane(listaSifriPredmeta);
 		add(scrol, BorderLayout.CENTER);
 		TabelaListaPredmetaKodStudenta.getInstance().refresujTabelu();

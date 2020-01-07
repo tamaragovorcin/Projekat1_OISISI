@@ -7,20 +7,14 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
 import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
-import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 
 public class ProfesoriTablePanel extends JPanel{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 632955195529615254L;
 
 	private ProfesoriJTable profesoriTable;
@@ -30,7 +24,7 @@ public class ProfesoriTablePanel extends JPanel{
 	public ProfesoriTablePanel() {
 		setLayout(new BorderLayout());
 		setOpaque(false);
-		 KreiranjeTabaleProfesor();
+		KreiranjeTabaleProfesor();
 	}
 	
 	private void KreiranjeTabaleProfesor() {
@@ -43,7 +37,6 @@ public class ProfesoriTablePanel extends JPanel{
 		JPanel dole = new JPanel();
 		JPanel levo = new JPanel();
 		JPanel desno = new JPanel();
-		
 		
 		gore.setOpaque(false);
 		dole.setOpaque(false);
@@ -61,10 +54,8 @@ public class ProfesoriTablePanel extends JPanel{
 		try {
 			ProfesoriController.getInstance().ucitajProfesoreTXT();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 		
 		profesoriTable = ProfesoriJTable.getInstance();
 		scrollPane = new JScrollPane(profesoriTable);
@@ -84,8 +75,6 @@ public class ProfesoriTablePanel extends JPanel{
 				// TODO Auto-generated method stub
 				ProfesoriJTable tabela = (ProfesoriJTable) e.getComponent();
 				setSelektovan_red(tabela.convertRowIndexToModel(tabela.getSelectedRow()));
-				
-				
 			}
 
 			@Override
@@ -105,14 +94,9 @@ public class ProfesoriTablePanel extends JPanel{
 				// TODO Auto-generated method stub
 				
 			}
-			
 		});
 		
-		
 		add(scrollPane,BorderLayout.CENTER);
-		
-		
-	
 	}
 	
 	public static int getSelektovan_red() {
@@ -120,7 +104,7 @@ public class ProfesoriTablePanel extends JPanel{
 	}
 
 	public static void setSelektovan_red(int selektovan_red) {
-		PredmetiTablePanel.selektovan_red = selektovan_red;
+		ProfesoriTablePanel.selektovan_red = selektovan_red;
 	}
 	
 }

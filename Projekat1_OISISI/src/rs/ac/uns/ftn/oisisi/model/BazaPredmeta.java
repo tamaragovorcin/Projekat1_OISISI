@@ -255,7 +255,7 @@ public class BazaPredmeta {
 				dodajpredmeta2(p);
 			}
 		}catch(Exception e) {
-			// e.printStackTrace();
+			
 	    }finally {
 			 if(in!=null) {
 				 try {
@@ -305,9 +305,7 @@ public class BazaPredmeta {
 		
 		predmeti.get(i).getStudenti_na_predmetu().add(student);
 		broj_studenta_na_predmetu++;
-	
-	
-}
+	}
 
 	public static int getBroj_studenta_na_predmetu() {
 		return broj_studenta_na_predmetu;
@@ -346,7 +344,6 @@ public class BazaPredmeta {
 	public void obrisiStudentasaPredmeta(int predmet,int student) {
 		predmeti.get(predmet).getStudenti_na_predmetu().remove(student);
 		broj_studenta_na_predmetu--;
-		
 	}
 
 	public List<Predmet> getPretraga() {

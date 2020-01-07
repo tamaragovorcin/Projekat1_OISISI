@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -14,7 +12,6 @@ public class StatusBar extends JPanel implements Runnable{
 
 	private static final long serialVersionUID = -7863806568418316202L;
 
-	
 		private JLabel vreme;
 		private Thread th;
 		
@@ -38,7 +35,6 @@ public class StatusBar extends JPanel implements Runnable{
 			JLabel leva=new JLabel("             Studentska sluzba");
 			add(leva,BorderLayout.WEST);
 			vreme=new JLabel();
-			
 			
 			add(vreme,BorderLayout.EAST);
 			th=new Thread(this);

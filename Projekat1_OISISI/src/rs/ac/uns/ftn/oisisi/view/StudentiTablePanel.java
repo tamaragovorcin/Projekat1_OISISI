@@ -6,13 +6,10 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
-import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 
 public class StudentiTablePanel extends JPanel{
@@ -22,12 +19,10 @@ public class StudentiTablePanel extends JPanel{
 	private JScrollPane scrollPane;
 	public static int selektovan_red = -1;
 	
-	
-	
 	public StudentiTablePanel() {
 		setLayout(new BorderLayout());
 		setOpaque(false);
-		 KreiranjeTabaleStudent();
+		KreiranjeTabaleStudent();
 	}
 	
 	private void KreiranjeTabaleStudent() {
@@ -40,7 +35,6 @@ public class StudentiTablePanel extends JPanel{
 		JPanel dole = new JPanel();
 		JPanel levo = new JPanel();
 		JPanel desno = new JPanel();
-		
 		
 		gore.setOpaque(false);
 		dole.setOpaque(false);
@@ -58,10 +52,8 @@ public class StudentiTablePanel extends JPanel{
 		try {
 			StudentiController.getInstance().ucitajStudenteTXT();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 		
 		studentiJTable = StudentiJTable.getInstance();
 		scrollPane = new JScrollPane(studentiJTable);
@@ -104,11 +96,7 @@ public class StudentiTablePanel extends JPanel{
 			
 		});
 		
-		
 		add(scrollPane,BorderLayout.CENTER);
-		
-		
-	
 	}
 	
 	public static int getSelektovan_red() {
@@ -116,6 +104,6 @@ public class StudentiTablePanel extends JPanel{
 	}
 
 	public static void setSelektovan_red(int selektovan_red) {
-		PredmetiTablePanel.selektovan_red = selektovan_red;
+		StudentiTablePanel.selektovan_red = selektovan_red;
 	}
 }

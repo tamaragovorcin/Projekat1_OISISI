@@ -5,8 +5,8 @@ import javax.swing.JTabbedPane;
 
 public class TabbedPane extends JTabbedPane {
 
-	
 	private static final long serialVersionUID = -3879401383396843796L;
+	
 	private  static TabbedPane instance =null;
 	public static int pritisnutTab = 0;
 	

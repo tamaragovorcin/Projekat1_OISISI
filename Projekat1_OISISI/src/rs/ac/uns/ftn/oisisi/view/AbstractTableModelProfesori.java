@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
-
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 
 public class AbstractTableModelProfesori extends AbstractTableModel{
@@ -27,7 +25,7 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 			return BazaProfesora.getInstance().getProfesore().size();
 		}
 		else {
-			return BazaProfesora.getInstance().getProfesore().size();
+			return BazaProfesora.getInstance().getPretraga().size();
 		}
 	}
 	

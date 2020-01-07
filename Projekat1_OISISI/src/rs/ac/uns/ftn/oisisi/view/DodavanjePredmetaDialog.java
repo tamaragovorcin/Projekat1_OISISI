@@ -30,7 +30,6 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = -720118426910400743L;
 
-	private int mode = 1;
 	public static final int ODUSTANAK = 0;
 	public static final int POTVRDA = 1;
 
@@ -257,7 +256,6 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		if (e.getActionCommand().equals("ODUSTANAK")) {
 			dispose();
 		} else {
-			mode = DodavanjePredmetaDialog.POTVRDA;
 			if(BazaPredmeta.getInstance().getPredmete().size()==0) {
 				BazaPredmeta.getInstance().initPredmete(tekst[0], tekst[1], tekst[2], tekst[3]);
 			}
@@ -281,14 +279,6 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 			
 			}
 		setVisible(false);
-	}
-	
-	public int getMode() {
-		return mode;
-	}
-
-	public void setMode(int mode) {
-		this.mode = mode;
 	}
 
 }

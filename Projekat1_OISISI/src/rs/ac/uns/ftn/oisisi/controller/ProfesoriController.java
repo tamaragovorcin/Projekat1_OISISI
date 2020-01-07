@@ -3,7 +3,6 @@ import java.io.IOException;
 
 import javax.swing.JTextField;
 
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
@@ -76,7 +75,6 @@ private static ProfesoriController instance = null;
 		if(BazaProfesora.getInstance().postojiLicnaKarta(licna)) {
 			izlaz = true;
 		}
-		
 		return izlaz;
 	}
 

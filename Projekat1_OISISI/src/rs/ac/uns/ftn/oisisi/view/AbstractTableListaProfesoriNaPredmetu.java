@@ -11,8 +11,14 @@ public class AbstractTableListaProfesoriNaPredmetu extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		int selektovan = PredmetiTablePanel.getSelektovan_red();
-		return BazaPredmeta.getInstance().getPredmete().get(selektovan).getProfesori_predavaci().size();
+		if(BazaPredmeta.getInstance().getPretraga().size()==0) {
+			int selektovan = PredmetiTablePanel.getSelektovan_red();
+			return BazaPredmeta.getInstance().getPredmete().get(selektovan).getProfesori_predavaci().size();
+		}
+		else {
+			int selektovan = PredmetiTablePanel.getSelektovan_red();
+			return BazaPredmeta.getInstance().getPretraga().get(selektovan).getProfesori_predavaci().size();
+		}
 	}
 
 	@Override

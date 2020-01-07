@@ -29,7 +29,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = -720118426910400743L;
 
-	private int mode = 1;
 	public static final int ODUSTANAK = 0;
 	public static final int POTVRDA = 1;
 
@@ -351,6 +350,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		gbcPrezime.gridx = 0;
 		gbcPrezime.gridy = 1;
 		gbcPrezime.insets = new Insets(20, 20, 0, 0);
+		gbcPrezime.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaPrezime, gbcPrezime);
 
 		GridBagConstraints gbcDatumRodjenja = new GridBagConstraints();
@@ -387,6 +387,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		gbcDatumUpisa.gridx = 0;
 		gbcDatumUpisa.gridy = 7;
 		gbcDatumUpisa.insets = new Insets(20, 20, 0, 0);
+		gbcDatumUpisa.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaDatumUpisa, gbcDatumUpisa);
 
 		GridBagConstraints gbcTekstIme = new GridBagConstraints();
@@ -472,6 +473,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		gbcButtonGroup.gridx = 0;
 		gbcButtonGroup.gridy = 9;
 		gbcButtonGroup.insets = new Insets(20, 20, 0, 0);
+		gbcButtonGroup.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(budzet, gbcButtonGroup);
 
 		samofinansiranje.setOpaque(false);
@@ -480,6 +482,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		gbcButtonGroup1.gridx = 1;
 		gbcButtonGroup1.gridy = 9;
 		gbcButtonGroup1.insets = new Insets(20, 20, 0, 0);
+		gbcButtonGroup1.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(samofinansiranje, gbcButtonGroup1);
 
 		add(pan_centar, BorderLayout.CENTER);
@@ -591,9 +594,8 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		String tekst[] = pokupiUnetiTekst();
 
 		if (e.getActionCommand().equals("ODUSTANAK")) {
-			mode = DodavanjeStudentaDialog.ODUSTANAK;
+			dispose();
 		} else {
-			mode = DodavanjeStudentaDialog.POTVRDA;
 			if (BazaStudenta.getInstance().getStudente().size() == 0) {
 				BazaStudenta.getInstance().initStudenti(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4], tekst[5],
 						tekst[6], tekst[7], tekst[8], tekst[9]);
@@ -616,14 +618,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 			}
 		}
 		setVisible(false);
-	}
-
-	public int getMode() {
-		return mode;
-	}
-
-	public void setMode(int mode) {
-		this.mode = mode;
 	}
 
 }

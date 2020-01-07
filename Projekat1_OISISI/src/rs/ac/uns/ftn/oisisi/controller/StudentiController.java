@@ -2,8 +2,6 @@ package rs.ac.uns.ftn.oisisi.controller;
 
 import java.io.IOException;
 import javax.swing.JTextField;
-
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Student;
@@ -62,7 +60,6 @@ private static StudentiController instance = null;
 		String a = tekst.getText();
 
 		BazaStudenta.getInstance().pretragaStudenta(a);
-
 	}
 	public Student getStudentaPoPredmetu(String licna) {
 		Student p;
@@ -75,17 +72,15 @@ private static StudentiController instance = null;
 		if(BazaStudenta.getInstance().postojiBrojIndeksa(licna)) {
 			izlaz = true;
 		}
-		
 		return izlaz;
 	}
 
 	public void dodajPredmetStuddentu(Predmet predmet, String indeks) {
 		BazaStudenta.getInstance().dodajPredmetStudentu(predmet,indeks);
-		
 	}
+	
 	public void obrisiPredmetKodStudenta(Predmet pred, String indeks) {
-		BazaStudenta.getInstance().obrisiPredmetKodStudenta(pred,indeks);
-		
+		BazaStudenta.getInstance().obrisiPredmetKodStudenta(pred,indeks);	
 	}
 }
 
