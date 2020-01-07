@@ -8,11 +8,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 
 public class ProfesoriJTable extends JTable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4206039227512091130L;
-private static ProfesoriJTable instance = null;
+	
+	private static ProfesoriJTable instance = null;
 	
 	static public ProfesoriJTable getInstance() {
 		if(instance == null) {
@@ -27,13 +26,12 @@ private static ProfesoriJTable instance = null;
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelProfesori());
 		new ButtonColumnProfesor_Predmeti(this, 10);
-	
 	}
 
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		Component c = super.prepareRenderer(renderer, row, column);
-		// selektovani red ce imati drugaciju boju od ostalih
+		
 		if (isRowSelected(row)) {
 			c.setBackground(Color.LIGHT_GRAY);
 		} else {

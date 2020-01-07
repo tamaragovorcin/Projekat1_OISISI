@@ -11,7 +11,7 @@ public class StudentiJTable extends JTable {
 
 	private static final long serialVersionUID = 4206039227512091130L;
 
-private static StudentiJTable instance = null;
+	private static StudentiJTable instance = null;
 	
 	static public StudentiJTable getInstance() {
 		if(instance == null) {
@@ -19,7 +19,6 @@ private static StudentiJTable instance = null;
 		}
 		return instance;
 	}
-	
 	
 	private StudentiJTable() {
 		this.setRowSelectionAllowed(true);
@@ -32,7 +31,7 @@ private static StudentiJTable instance = null;
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		Component c = super.prepareRenderer(renderer, row, column);
-		// selektovani red ce imati drugaciju boju od ostalih
+
 		if (isRowSelected(row)) {
 			c.setBackground(Color.LIGHT_GRAY);
 		} else {

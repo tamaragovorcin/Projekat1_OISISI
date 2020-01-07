@@ -62,7 +62,6 @@ public class Predmet implements Serializable{
 		this.studenti_na_predmetu = studenti_na_predmetu;
 	}
 	
-
 	@Override
 	public String toString() {
 		return sifra_predmeta+ " - " + naziv_predmeta + " - " + semestar + " - " + godina_studija_izvodjenja + " - " + profesori_predavaci+ "\n";

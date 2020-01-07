@@ -31,10 +31,7 @@ public class PredmetiController {
 	private PredmetiController() {
 	}
 
-	public void dodajPredmet() {
-
-		// BazaPredmeta.getInstance().dodajPredmet();
-	}
+	public void dodajPredmet() {}
 
 	public void izbrisiPredmet(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {

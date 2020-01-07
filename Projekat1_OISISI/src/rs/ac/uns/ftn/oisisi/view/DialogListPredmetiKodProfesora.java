@@ -16,7 +16,6 @@ public class DialogListPredmetiKodProfesora extends JDialog{
 	
 	public DialogListPredmetiKodProfesora(Main_Frame instance, String string, boolean b) {
 		super(instance, string, b);
-
 		setLayout(new BorderLayout());
 		setSize(300,400);
 		setLocationRelativeTo(instance);
@@ -25,11 +24,9 @@ public class DialogListPredmetiKodProfesora extends JDialog{
 
 	private void PrikazTabele() {
 		listaSifriPredmeta =  TabelaListaPredmetaKodProfesora.getInstance();
-		
 		JScrollPane scrol =  new JScrollPane(listaSifriPredmeta);
 		add(scrol, BorderLayout.CENTER);
 		TabelaListaPredmetaKodProfesora.getInstance().refresujTabelu();
-		
 	}
 
 }

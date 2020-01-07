@@ -25,8 +25,7 @@ import rs.ac.uns.ftn.oisisi.model.Profesor;
 public class DodavanjeProfesoraDialog extends JDialog implements ActionListener{
 
 private static final long serialVersionUID = -720118426910400743L;
-	
-	private int mode = 1;
+
 	public static final int ODUSTANAK = 0;
 	public static final int POTVRDA = 1;
 
@@ -360,6 +359,7 @@ private static final long serialVersionUID = -720118426910400743L;
 		gbcPrezime .gridx = 0;
 		gbcPrezime .gridy = 1;
 		gbcPrezime .insets = new Insets(20, 20, 0, 0);
+		gbcPrezime.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaPrezime , gbcPrezime );
 		
 		GridBagConstraints gbcDatumRodjenja = new GridBagConstraints();
@@ -402,12 +402,14 @@ private static final long serialVersionUID = -720118426910400743L;
 		gbcTitula  .gridx = 0;
 		gbcTitula   .gridy = 8;
 		gbcTitula  .insets =new Insets(20, 20, 0, 0);
+		gbcTitula.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaTitula   , gbcTitula  );
 		
 		GridBagConstraints gbcZvanje = new GridBagConstraints();
 		gbcZvanje.gridx = 0;
 		gbcZvanje.gridy = 9;
 		gbcZvanje.insets =new Insets(20, 20, 0, 0);
+		gbcZvanje.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaZvanje   , gbcZvanje  );
 		
 		GridBagConstraints gbcTekstIme = new GridBagConstraints();
@@ -597,9 +599,8 @@ private static final long serialVersionUID = -720118426910400743L;
 		String tekst[] = pokupiUnetiTekst();
 		
 		if (e.getActionCommand().equals("ODUSTANAK")) {
-			mode = DodavanjeProfesoraDialog.ODUSTANAK;
+			dispose();
 		} else {
-			mode = DodavanjeProfesoraDialog.POTVRDA;
 			if(BazaProfesora.getInstance().getProfesore().size()==0) {
 				BazaProfesora.getInstance().dodajProfesora(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4],tekst[5],tekst[6],tekst[7],tekst[8], tekst[9]);
 			}
@@ -624,14 +625,5 @@ private static final long serialVersionUID = -720118426910400743L;
 		
 		setVisible(false);
 	}
-		
-	public int getMode() {
-		return mode;
-	}
-
-	public void setMode(int mode) {
-		this.mode = mode;
-	}
-
 }
 

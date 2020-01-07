@@ -190,7 +190,7 @@ private static BazaProfesora instance = null;
 					dodajprofesora2(p);
 				}
 			}catch(Exception e) {
-				// e.printStackTrace();
+
 			 }finally {
 				 if(in!=null) {
 					 try {

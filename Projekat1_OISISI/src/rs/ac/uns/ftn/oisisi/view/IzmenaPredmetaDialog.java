@@ -27,7 +27,6 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 8377505010808280172L;
 
-	private int mode = 1;
 	public static final int ODUSTANAK = 0; 
 	public static final int POTVRDA = 1;
 
@@ -45,7 +44,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 	public IzmenaPredmetaDialog(Main_Frame instance, String string, boolean b,int row) {
 		
 		super(instance, string, b);
-		setSize(400, 400);
+		setSize(400, 300);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle("Izmena predmeta");
@@ -232,10 +231,8 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		String tekst[] = pokupiUnetiTekst();
 	
 		if (e.getActionCommand().equals("ODUSTANAK")) {
-			mode = IzmenaPredmetaDialog.ODUSTANAK;
 			dispose();
-		} else {
-			mode = IzmenaPredmetaDialog.POTVRDA;  	
+		} else {	
 			if(!predmet.getSifra_predmeta().equals(tekst[0])) { 
 				for(Predmet p: predmeti) {
 					if(tekst[0].equals(p.getSifra_predmeta())) {
@@ -260,15 +257,6 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		}
 		setVisible(false);
 	}
-
-	public int getMode() {
-		return mode;
-	}
-
-	public void setMode(int mode) {
-		this.mode = mode;
-	}
-
 
 	public void  Set() {
 		if(BazaPredmeta.getInstance().getPretraga().size()==0) {

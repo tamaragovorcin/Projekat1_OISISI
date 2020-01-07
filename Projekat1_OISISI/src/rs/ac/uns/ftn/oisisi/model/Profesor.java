@@ -13,9 +13,6 @@ public class Profesor extends Osoba implements Serializable{
 	private String zvanje;
 	private ArrayList<Predmet>spisak_predmeta;
 	
-	
-	
-	
 	public Profesor(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
 			String kontakt_telefon, String email, String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
 		super(ime, prezime, datumRodjenja, adresaStanovanja,  kontakt_telefon,email);
@@ -26,25 +23,10 @@ public class Profesor extends Osoba implements Serializable{
 		this.spisak_predmeta = new ArrayList<Predmet>();
 	}
 	
-	
-
 	public String getAdresa_kancelarije() {
 		return adresa_kancelarije;
 	}
-	/*@Override
-	public String toString() {
-	String a= "Profesor [adresa_kancelarije=" + adresa_kancelarije + ", broj_licne_karte=" + broj_licne_karte
-				+ ", titula=" + titula + ", zvanje=" + zvanje +  "]";
-	String p=null;
-		for (Predmet predmet : spisak_predmeta) {
-			p+= predmet.getNaziv_predmeta();
-		}
 	
-	return a + p;
-	}
-*/
-
-
 	public void setAdresa_kancelarije(String adresa_kancelarije) {
 		this.adresa_kancelarije = adresa_kancelarije;
 	}
@@ -74,7 +56,6 @@ public class Profesor extends Osoba implements Serializable{
 	}
 	@Override
 	public String toString() {
-		
 		return super.toString() + " - " + adresa_kancelarije+ " - " + broj_licne_karte + " - " + titula + " - " + zvanje + " - " + spisak_predmeta+ "\n";
 	}
 }

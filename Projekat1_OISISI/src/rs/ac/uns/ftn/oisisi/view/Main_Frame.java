@@ -23,6 +23,7 @@ import rs.ac.uns.ftn.oisisi.controller.TabbedPaneListener;
 public class Main_Frame extends JFrame{
 
 	private static final long serialVersionUID = 6925220640504028152L;
+	
 	private static Main_Frame instance = null;
 	
 	public static int screenHight = 0;
@@ -165,7 +166,6 @@ public class Main_Frame extends JFrame{
 		validate();
 	}
 
-	
 	private JTable tabelaProfesora;
 
 	public void azurirajPrikazProfesora(String a, int i) {

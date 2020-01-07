@@ -81,68 +81,73 @@ public class Toolbar extends JToolBar {
 		dodajStudentButton = new JToggleButton();
 		dodajStudentButton.setToolTipText("Dodaj novog studenta");
 		dodajStudentButton.setIcon(new ImageIcon("images2/add-user1.png"));
+		dodajStudentButton.setMnemonic(KeyEvent.VK_Q);
 		
 		dodajPredmetButton = new JToggleButton();
 		dodajPredmetButton.setToolTipText("Dodavanje novog predmeta");
-		dodajPredmetButton.setIcon(new ImageIcon("images2/book2.png"));
+		dodajPredmetButton.setIcon(new ImageIcon("images2/library.png"));
+		dodajPredmetButton.setMnemonic(KeyEvent.VK_A);
 		
 		dodajProfesoraButton = new JToggleButton();
 		dodajProfesoraButton.setToolTipText("Dodavanje novog profesora");
-		dodajProfesoraButton.setIcon(new ImageIcon("images2/teacher.png"));
+		dodajProfesoraButton.setIcon(new ImageIcon("images2/add-user1.png"));
+		dodajProfesoraButton.setMnemonic(KeyEvent.VK_Z);
 		
 		dodajStudentaNaPredmet = new JToggleButton();
 		dodajStudentaNaPredmet.setToolTipText("Dodavanje studenta na predmet");
 		dodajStudentaNaPredmet.setIcon(new ImageIcon("images2/student.png"));
+		dodajStudentaNaPredmet.setMnemonic(KeyEvent.VK_F);
 		
 		dodajProfesoraNaPredmet = new JToggleButton();
 		dodajProfesoraNaPredmet.setToolTipText("Dodavanje profesora na predmet");
-		dodajProfesoraNaPredmet.setIcon(new ImageIcon("images2/teacher.png"));
+		dodajProfesoraNaPredmet.setIcon(new ImageIcon("images2/profesor.png"));
+		dodajProfesoraNaPredmet.setMnemonic(KeyEvent.VK_G);
 		
 		changePredmetButton = new JToggleButton();
 		changePredmetButton.setToolTipText("Izmena predmeta");
 		changePredmetButton.setIcon(new ImageIcon("images2/pencil.png"));
-		changePredmetButton.setMnemonic(KeyEvent.VK_1);
+		changePredmetButton.setMnemonic(KeyEvent.VK_S);
 		
 		changestudentButton = new JToggleButton();
 		changestudentButton.setIcon(new ImageIcon("images2/edit-user1.png"));
 		changestudentButton.setToolTipText("Izmena studenta");
-		changestudentButton.setMnemonic(KeyEvent.VK_1);
+		changestudentButton.setMnemonic(KeyEvent.VK_W);
 		
 		changeprofesorButton = new JToggleButton();
-		changeprofesorButton.setIcon(new ImageIcon("images2/pencil.png"));
+		changeprofesorButton.setIcon(new ImageIcon("images2/edit-user1.png"));
 		changeprofesorButton.setToolTipText("Izmena profesora");
-		changeprofesorButton.setMnemonic(KeyEvent.VK_1);
+		changeprofesorButton.setMnemonic(KeyEvent.VK_X);
 		
 		deletestudentButton = new JToggleButton();
 		deletestudentButton.setIcon(new ImageIcon("images2/remove-user1.png"));
 		deletestudentButton.setToolTipText("Brisanje studenta");
-		deletestudentButton.setMnemonic(KeyEvent.VK_2);
+		deletestudentButton.setMnemonic(KeyEvent.VK_E);
 		
 		deleteProfesorButton = new JToggleButton();
-		deleteProfesorButton.setIcon(new ImageIcon("images2/delete.png"));
+		deleteProfesorButton.setIcon(new ImageIcon("images2/remove-user1.png"));
 		deleteProfesorButton.setToolTipText("Brisanje profesora");
-		deleteProfesorButton.setMnemonic(KeyEvent.VK_2);
+		deleteProfesorButton.setMnemonic(KeyEvent.VK_C);
 		
 		deletePredmetButton = new JToggleButton();
 		deletePredmetButton.setToolTipText("Brisanje");
-		deletePredmetButton.setIcon(new ImageIcon("images2/delete.png"));
+		deletePredmetButton.setIcon(new ImageIcon("images2/trash.png"));
 		deletePredmetButton.setToolTipText("Brisanje predmeta");
-		deletePredmetButton.setMnemonic(KeyEvent.VK_2);
+		deletePredmetButton.setMnemonic(KeyEvent.VK_D);
 		
 		searchPredmetButton = new JButton();
 		searchPredmetButton.setToolTipText("Pretrazivanje predmeta");
 		searchPredmetButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
-		searchPredmetButton.setMnemonic(KeyEvent.VK_4);
+		searchPredmetButton.setMnemonic(KeyEvent.VK_S);
 		
 		searchstudentButton = new JButton();
 		searchstudentButton.setToolTipText("Pretrazivanje studenta");
 		searchstudentButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
-		searchstudentButton.setMnemonic(KeyEvent.VK_4);
+		searchstudentButton.setMnemonic(KeyEvent.VK_S);
 		
 		searchProfesorButton = new JButton();
 		searchProfesorButton.setToolTipText("Pretrazivanje profesora");
 		searchProfesorButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
-		searchProfesorButton.setMnemonic(KeyEvent.VK_4);
+		searchProfesorButton.setMnemonic(KeyEvent.VK_S);
 	
 		searchField = new JTextField(20);
 		searchField.setToolTipText("Upis za pretragu");
@@ -152,9 +157,8 @@ public class Toolbar extends JToolBar {
 			public void actionPerformed(ActionEvent arg0) {
 				DodavanjeStudentaDialog dialog = new DodavanjeStudentaDialog(Main_Frame.getInstance(), "Dodavanje novog studenta", true);
 				dialog.setVisible(true);
-			StudentiJTable.getInstance().refresTabelu();
-			dodajStudentButton.setSelected(false);
-			
+				StudentiJTable.getInstance().refresTabelu();
+				dodajStudentButton.setSelected(false);
 			}
 		});
 		

@@ -13,34 +13,35 @@ import javax.swing.table.TableCellRenderer;
 
 public class ButtonColumnStudent_Predmet extends AbstractCellEditor
 implements TableCellRenderer, TableCellEditor, MouseListener{
+	
 	private static final long serialVersionUID = -3987781982073614497L;
-	 private JButton renderButton;
+	
+    private JButton renderButton;
 		
-		private JButton editorButton;
+	private JButton editorButton;
 
-		private JTable tabela;
-		private boolean isEditorActive = false;
+	private JTable tabela;
+	private boolean isEditorActive = false;
 		
-		public ButtonColumnStudent_Predmet(JTable tabela, int kolona) {
-			this.tabela = tabela;
-		
-			this.tabela.getColumnModel().getColumn(kolona).setCellRenderer(this);
+	public ButtonColumnStudent_Predmet(JTable tabela, int kolona) {
+		this.tabela = tabela;
+		this.tabela.getColumnModel().getColumn(kolona).setCellRenderer(this);
 			
-			this.tabela.getColumnModel().getColumn(kolona).setCellEditor(this);
+		this.tabela.getColumnModel().getColumn(kolona).setCellEditor(this);
 		
-			this.renderButton = new JButton("Predmeti");
-			this.editorButton = new JButton("Predmeti");
+		this.renderButton = new JButton("Predmeti");
+		this.editorButton = new JButton("Predmeti");
 			
-			this.editorButton.addActionListener(new ActionListener() {
+		this.editorButton.addActionListener(new ActionListener() {
 				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					DialogListPredmetiKodStudenta dialog = new DialogListPredmetiKodStudenta(Main_Frame.getInstance(),"Lista studenata", true);
-					dialog.setVisible(true);
-				}
-			});
-			this.isEditorActive = false;
-		}
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DialogListPredmetiKodStudenta dialog = new DialogListPredmetiKodStudenta(Main_Frame.getInstance(),"Lista studenata", true);
+				dialog.setVisible(true);
+			}
+		});
+		this.isEditorActive = false;
+	}
 
 		@Override
 		public Object getCellEditorValue() {

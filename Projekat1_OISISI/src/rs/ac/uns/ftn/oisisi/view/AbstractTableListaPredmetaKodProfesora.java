@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.oisisi.view;
 
 import javax.swing.table.AbstractTableModel;
+
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
 
@@ -10,8 +11,15 @@ public class AbstractTableListaPredmetaKodProfesora extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		int selektovan = ProfesoriJTable.getInstance().getSelectedRow(); 
-		return  BazaProfesora.getInstance().getProfesore().get(selektovan).getSpisak_predmeta().size();
+		if(BazaProfesora.getInstance().getPretraga().size()==0) {
+			int selektovan = ProfesoriTablePanel.getSelektovan_red();
+			return  BazaProfesora.getInstance().getProfesore().get(selektovan).getSpisak_predmeta().size();
+		}
+		else {
+			int selektovan = ProfesoriTablePanel.getSelektovan_red();
+			return BazaProfesora.getInstance().getPretraga().get(selektovan).getSpisak_predmeta().size();
+		}
+		
 	}
 
 	@Override
@@ -26,7 +34,7 @@ public class AbstractTableListaPredmetaKodProfesora extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) { 
-			int selektovan = ProfesoriJTable.getInstance().getSelectedRow();
+			int selektovan = ProfesoriTablePanel.getSelektovan_red();
 			Profesor p = BazaProfesora.getInstance().getProfesore().get(selektovan);
 			return p.getSpisak_predmeta().get(rowIndex).getSifra_predmeta();
 	}

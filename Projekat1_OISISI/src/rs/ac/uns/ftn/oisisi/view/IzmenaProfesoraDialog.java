@@ -15,27 +15,20 @@ import java.awt.event.KeyListener;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
-import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
-import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 8377505010808280172L;
 
-	private int mode = 1;
 	public static final int ODUSTANAK = 0; 
 	public static final int POTVRDA = 1;
 
@@ -85,17 +78,12 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 		pan_centar.setLayout(new GridBagLayout());
 		pan_centar.setBackground(new Color(204, 227, 249));
 		
-
-		
-		
-
-
 		JLabel labelaIme = new JLabel("Ime*:");
 		labelaIme.setPreferredSize(dim);
 
 		txtIme.setPreferredSize(dim);
 		txtIme.setName("txtIme");
-		txtIme.setBackground(Color.CYAN);
+		txtIme.setBackground(Color.GRAY);
 		txtIme.addKeyListener(new KeyListener() {
 
 			@Override
@@ -127,7 +115,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 		txtPrezime.setPreferredSize(dim);
 		txtPrezime.setName("txtPrezime");
-		txtPrezime.setBackground(Color.CYAN);
+		txtPrezime.setBackground(Color.GRAY);
 		txtPrezime.addKeyListener(new KeyListener() {
 
 			@Override
@@ -153,16 +141,12 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 			}
 		});
 	
-		
-		
-	
-		
 		JLabel labelaDatum = new JLabel("Datum rodjenja*:");
 		labelaDatum.setPreferredSize(dim);
 
 		txtDatumRodjenja.setPreferredSize(dim);
 		txtDatumRodjenja.setName("txtDatumRodjenja");
-		txtDatumRodjenja.setBackground(Color.CYAN);
+		txtDatumRodjenja.setBackground(Color.GRAY);
 		txtDatumRodjenja.addKeyListener(new KeyListener() {
 
 			@Override
@@ -188,15 +172,12 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 			}
 		});
 		
-	
-		
-		
 		JLabel labelaAdresa = new JLabel("Adresa*:");
 		labelaAdresa.setPreferredSize(dim);
 
 		txtAdresa.setPreferredSize(dim);
 		txtAdresa.setName("txtDatumRodjenja");
-		txtAdresa.setBackground(Color.CYAN);
+		txtAdresa.setBackground(Color.GRAY);
 		txtAdresa.addKeyListener(new KeyListener() {
 
 			@Override
@@ -229,7 +210,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 		txtTelefon.setPreferredSize(dim);
 		txtTelefon.setName("txtTelefon");
-		txtTelefon.setBackground(Color.CYAN);
+		txtTelefon.setBackground(Color.GRAY);
 		txtTelefon.addKeyListener(new KeyListener() {
 
 			@Override
@@ -262,7 +243,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 		txtEmail.setPreferredSize(dim);
 		txtEmail.setName("txtEmail");
-		txtEmail.setBackground(Color.CYAN);
+		txtEmail.setBackground(Color.GRAY);
 		txtEmail.addKeyListener(new KeyListener() {
 
 			@Override
@@ -295,7 +276,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 		txtAdresaKancelarije.setPreferredSize(dim);
 		txtAdresaKancelarije.setName("txtAdresaKancelarije");
-		txtAdresaKancelarije.setBackground(Color.CYAN);
+		txtAdresaKancelarije.setBackground(Color.GRAY);
 		txtAdresaKancelarije.addKeyListener(new KeyListener() {
 
 			@Override
@@ -328,7 +309,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 		txtBrojLicneKarte.setPreferredSize(dim);
 		txtBrojLicneKarte.setName("txtBrojLicneKarte");
-		txtBrojLicneKarte.setBackground(Color.CYAN);
+		txtBrojLicneKarte.setBackground(Color.GRAY);
 		txtBrojLicneKarte.addKeyListener(new KeyListener() {
 
 			@Override
@@ -359,7 +340,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 		txtTitula.setPreferredSize(dim);
 		txtTitula.setName("txtTitula");
-		txtTitula.setBackground(Color.CYAN);
+		txtTitula.setBackground(Color.GRAY);
 		txtTitula.addKeyListener(new KeyListener() {
 
 			@Override
@@ -391,7 +372,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 		txtZvanje.setPreferredSize(dim);
 		txtZvanje.setName("txtZvanje");
-		txtZvanje.setBackground(Color.CYAN);
+		txtZvanje.setBackground(Color.GRAY);
 		txtZvanje.addKeyListener(new KeyListener() {
 
 			@Override
@@ -429,6 +410,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 		gbcPrezime .gridx = 0;
 		gbcPrezime .gridy = 1;
 		gbcPrezime .insets = new Insets(20, 20, 0, 0);
+		gbcPrezime.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaPrezime , gbcPrezime );
 		
 		GridBagConstraints gbcDatumRodjenja = new GridBagConstraints();
@@ -472,12 +454,14 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 		gbcTitula  .gridx = 0;
 		gbcTitula   .gridy = 8;
 		gbcTitula  .insets =new Insets(20, 20, 0, 0);
+		gbcTitula.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaTitula   , gbcTitula  );
 		
 		GridBagConstraints gbcZvanje = new GridBagConstraints();
 		gbcZvanje.gridx = 0;
 		gbcZvanje.gridy = 9;
 		gbcZvanje.insets =new Insets(20, 20, 0, 0);
+		gbcZvanje.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(labelaZvanje   , gbcZvanje  );
 		
 		
@@ -683,26 +667,20 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 		return izlaz;
 	}
-
 	
-	
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String tekst[] = pokupiUnetiTekst();
 	
 		if (e.getActionCommand().equals("ODUSTANAK")) {
-			mode = IzmenaStudentaDialog.ODUSTANAK;
-			//dispose();
+			dispose();
 		} else {
-			mode = IzmenaProfesoraDialog.POTVRDA;  	
 			if(!profesor.getBroj_licne_karte().equals(tekst[7])) { 
 				for(Profesor p:profesori) {
 					if(tekst[7].equals(p.getBroj_licne_karte())) {
 						JOptionPane.showMessageDialog((Component) e.getSource(), "Izmenjeni  broj licne karte vec postoji!");
 						return;
 					}
-					
 				}
 				
 				profesor.setIme(tekst[0]);
@@ -726,28 +704,15 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 				profesor.setKontakt_telefon(tekst[4]);
 				profesor.setEmail(tekst[5]);
 				profesor.setAdresa_kancelarije(tekst[6]);
-				//profesor.setBroj_licne_karte(tekst[7]);
 				profesor.setTitula(tekst[8]);
 				profesor.setZvanje(tekst[9]);
-				
-				
+			
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				ProfesoriJTable.getInstance().refresTabelu();
 			}
 		}
 		setVisible(false);
 	}
-		
-
-	
-	public int getMode() {
-		return mode;
-	}
-
-	public void setMode(int mode) {
-		this.mode = mode;
-	}
-
 
 	public void  Set() {
 		if(BazaProfesora.getInstance().getPretraga().size()==0) {
@@ -756,7 +721,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 		else {
 			profesor = BazaProfesora.getInstance().getPretraga().get(red);
 		}
-		profesor= BazaProfesora.getInstance().getProfesore().get(red);
+
 		txtIme.setText(profesor.getIme());
 		txtPrezime.setText(profesor.getPrezime());
 		txtDatumRodjenja.setText(profesor.getDatumRodjenja());
@@ -767,8 +732,5 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 		txtBrojLicneKarte.setText(profesor.getBroj_licne_karte());
 		txtTitula.setText(profesor.getTitula());
 		txtZvanje.setText(profesor.getZvanje());
-		
-		
-	
-}
+	}
 }

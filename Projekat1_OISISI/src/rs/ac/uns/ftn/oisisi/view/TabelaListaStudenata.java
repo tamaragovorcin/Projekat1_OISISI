@@ -4,7 +4,9 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 public class TabelaListaStudenata extends JTable  {
+	
 	private static final long serialVersionUID = -3950006387990901019L;
+	
 	private static TabelaListaStudenata instance = null;
 	
 	public static TabelaListaStudenata getInstance() {
@@ -18,8 +20,6 @@ public class TabelaListaStudenata extends JTable  {
 		this.setRowSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableListaStudenataNaPredmetu());
-		
-		
 		this.setRowHeight(20);
 	}
 	

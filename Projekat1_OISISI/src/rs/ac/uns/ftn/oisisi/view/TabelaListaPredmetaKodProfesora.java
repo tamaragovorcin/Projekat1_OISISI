@@ -4,9 +4,9 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 public class TabelaListaPredmetaKodProfesora extends JTable {
-
-
+	
 	private static final long serialVersionUID = -5247479565785686953L;
+	
 	private static TabelaListaPredmetaKodProfesora instance = null;
 	
 	public static TabelaListaPredmetaKodProfesora getInstance() {
