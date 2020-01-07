@@ -66,7 +66,6 @@ public class Student extends Osoba implements Serializable{
 
 
 
-
 	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;
 	}

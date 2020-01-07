@@ -82,13 +82,16 @@ public class ProfesoriTablePanel extends JPanel{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
+				ProfesoriJTable tabela = (ProfesoriJTable) e.getComponent();
+				setSelektovan_red(tabela.convertRowIndexToModel(tabela.getSelectedRow()));
+				
 				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				ProfesoriJTable tabela = (ProfesoriJTable) e.getComponent();
-				selektovan_red=tabela.convertRowIndexToModel(tabela.getSelectedRow());
+				setSelektovan_red(tabela.convertRowIndexToModel(tabela.getSelectedRow()));
 			}
 
 			@Override
@@ -110,6 +113,14 @@ public class ProfesoriTablePanel extends JPanel{
 		
 		
 	
+	}
+	
+	public static int getSelektovan_red() {
+		return selektovan_red;
+	}
+
+	public static void setSelektovan_red(int selektovan_red) {
+		PredmetiTablePanel.selektovan_red = selektovan_red;
 	}
 	
 }

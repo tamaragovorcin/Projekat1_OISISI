@@ -425,4 +425,11 @@ private static BazaProfesora instance = null;
 			}
 		}	
 	}
+	public List<Profesor> getPretraga() {
+		return pretraga;
+	}
+
+	public void setPretraga(List<Profesor> pretraga) {
+		this.pretraga = pretraga;
+	}
 }

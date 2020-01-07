@@ -21,6 +21,9 @@ public class StudentiTablePanel extends JPanel{
 	private StudentiJTable studentiJTable;
 	private JScrollPane scrollPane;
 	public static int selektovan_red = -1;
+	
+	
+	
 	public StudentiTablePanel() {
 		setLayout(new BorderLayout());
 		setOpaque(false);
@@ -76,13 +79,15 @@ public class StudentiTablePanel extends JPanel{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
+				StudentiJTable tabela = (StudentiJTable) e.getComponent();
+				setSelektovan_red(tabela.convertRowIndexToModel(tabela.getSelectedRow()));
 				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				StudentiJTable tabela = (StudentiJTable) e.getComponent();
-				selektovan_red=tabela.convertRowIndexToModel(tabela.getSelectedRow());
+				setSelektovan_red(tabela.convertRowIndexToModel(tabela.getSelectedRow()));
 			}
 
 			@Override
@@ -104,5 +109,13 @@ public class StudentiTablePanel extends JPanel{
 		
 		
 	
+	}
+	
+	public static int getSelektovan_red() {
+		return selektovan_red;
+	}
+
+	public static void setSelektovan_red(int selektovan_red) {
+		PredmetiTablePanel.selektovan_red = selektovan_red;
 	}
 }

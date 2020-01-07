@@ -60,7 +60,7 @@ private static final long serialVersionUID = -1986048344792559710L;
 			dispose();
 		} else {
 			
-			int predmet = PredmetiJTable.getInstance().getSelectedRow();
+			int predmet =  PredmetiTablePanel.getSelektovan_red();
 			int student = TabelaListaStudenata.getInstance().getSelectedRow();
 			
 			Predmet pred = BazaPredmeta.getInstance().getPredmete().get(predmet);

@@ -766,7 +766,12 @@ budzet.addActionListener(new ActionListener() {
 
 
 	public void  Set() {
-		
+		if(BazaStudenta.getInstance().getPretraga().size()==0) {
+			student = BazaStudenta.getInstance().getStudente().get(red);
+		}
+		else {
+			student = BazaStudenta.getInstance().getPretraga().get(red);
+		}
 		student = BazaStudenta.getInstance().getStudente().get(red);
 		txtIme.setText(student.getIme());
 		txtPrezime.setText(student.getPrezime());

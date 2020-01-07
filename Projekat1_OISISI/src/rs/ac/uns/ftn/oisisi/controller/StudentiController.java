@@ -2,6 +2,8 @@ package rs.ac.uns.ftn.oisisi.controller;
 
 import java.io.IOException;
 import javax.swing.JTextField;
+
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Student;
@@ -27,8 +29,14 @@ private static StudentiController instance = null;
     	if (rowSelectedIndex < 0) {
 			return;
 		}
-    	Student student = BazaStudenta.getInstance().getRow(rowSelectedIndex);
-    	BazaStudenta.getInstance().izbrisiStudenta(student.getBrojIndeksa());
+    	if (BazaStudenta.getInstance().getPretraga().size() == 0) {
+			Student student = BazaStudenta.getInstance().getRow(rowSelectedIndex);
+			BazaStudenta.getInstance().izbrisiStudenta(student.getBrojIndeksa());
+		} else {
+			Student student = BazaStudenta.getInstance().getPretraga().get(rowSelectedIndex);
+			BazaStudenta.getInstance().izbrisiStudenta(student.getBrojIndeksa());
+			BazaStudenta.getInstance().getPretraga().remove(rowSelectedIndex);
+		}
     }
 	
 	public void izmeniStudenta(int rowSelectedIndex) {

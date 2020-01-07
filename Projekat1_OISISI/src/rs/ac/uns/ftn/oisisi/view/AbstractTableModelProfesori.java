@@ -23,7 +23,12 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 	}
 
 	public int getRowCount() {
-		return BazaProfesora.getInstance().getProfesore().size();
+		if(BazaProfesora.getInstance().getPretraga().size()==0) {
+			return BazaProfesora.getInstance().getProfesore().size();
+		}
+		else {
+			return BazaProfesora.getInstance().getProfesore().size();
+		}
 	}
 	
 	@Override

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
+
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
 public class AbstractTableModelStudenti  extends AbstractTableModel {
@@ -21,7 +23,12 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 	}
 
 	public int getRowCount() {
-	return BazaStudenta.getInstance().getStudente().size();
+		if(BazaStudenta.getInstance().getPretraga().size()==0) {
+			return BazaStudenta.getInstance().getStudente().size();
+		}
+		else {
+			return BazaStudenta.getInstance().getPretraga().size();
+		}
 		
 	}
 	@Override

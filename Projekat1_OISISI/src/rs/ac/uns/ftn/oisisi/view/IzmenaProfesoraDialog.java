@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
@@ -749,7 +750,12 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 
 
 	public void  Set() {
-		
+		if(BazaProfesora.getInstance().getPretraga().size()==0) {
+			profesor = BazaProfesora.getInstance().getProfesore().get(red);
+		}
+		else {
+			profesor = BazaProfesora.getInstance().getPretraga().get(red);
+		}
 		profesor= BazaProfesora.getInstance().getProfesore().get(red);
 		txtIme.setText(profesor.getIme());
 		txtPrezime.setText(profesor.getPrezime());

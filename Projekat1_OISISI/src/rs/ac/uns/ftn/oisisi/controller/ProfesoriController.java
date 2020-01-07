@@ -2,6 +2,8 @@ package rs.ac.uns.ftn.oisisi.controller;
 import java.io.IOException;
 
 import javax.swing.JTextField;
+
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
@@ -29,9 +31,14 @@ private static ProfesoriController instance = null;
     	if (rowSelectedIndex < 0) {
 			return;
 		}
-    	Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
-    	BazaProfesora.getInstance().izbrisiProfesora(profesor.getBroj_licne_karte());
-		
+    	if (BazaProfesora.getInstance().getPretraga().size() == 0) {
+			Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
+			BazaProfesora.getInstance().izbrisiProfesora(profesor.getBroj_licne_karte());
+		} else {
+			Profesor profesor = BazaProfesora.getInstance().getPretraga().get(rowSelectedIndex);
+			BazaProfesora.getInstance().izbrisiProfesora(profesor.getBroj_licne_karte());
+			BazaProfesora.getInstance().getPretraga().remove(rowSelectedIndex);
+		}
     }
     public void izmeniProfesora(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {

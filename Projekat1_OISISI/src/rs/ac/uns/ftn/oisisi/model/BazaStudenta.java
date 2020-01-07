@@ -422,4 +422,11 @@ public class BazaStudenta {
 		}
 		
 	}
+	public List<Student> getPretraga() {
+		return pretraga;
+	}
+
+	public void setPretraga(List<Student> pretraga) {
+		this.pretraga = pretraga;
+	}
 }

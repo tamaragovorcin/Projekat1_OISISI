@@ -181,7 +181,7 @@ public class Toolbar extends JToolBar {
 		changestudentButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int row = StudentiJTable.getInstance().getSelectedRow();
+				int row =  StudentiTablePanel.getSelektovan_red();
 				if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata()) {
 					StudentiController.getInstance().izmeniStudenta(row);
 				}
@@ -196,7 +196,7 @@ public class Toolbar extends JToolBar {
 		deletestudentButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int row = StudentiJTable.getInstance().getSelectedRow();
+				int row =  StudentiTablePanel.getSelektovan_red();
 				if(row>=0 && row<BazaStudenta.getInstance().getBroj_studenata() ) {
 					int izbor = JOptionPane.showConfirmDialog(null,
 							"Da li ste sigurni da zelite da obrisete stduenta?","Brisanje studenta",JOptionPane.YES_NO_OPTION);
@@ -229,7 +229,7 @@ public class Toolbar extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int row =ProfesoriJTable.getInstance().getSelectedRow();
+				int row =ProfesoriTablePanel.getSelektovan_red();
 				if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora()) {
 					ProfesoriController.getInstance().izmeniProfesora(row);
 				}
@@ -244,7 +244,7 @@ public class Toolbar extends JToolBar {
 		deleteProfesorButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int row = ProfesoriJTable.getInstance().getSelectedRow();
+				int row =  ProfesoriTablePanel.getSelektovan_red();
 				if(row>=0 && row<BazaProfesora.getInstance().getBroj_profesora() ) {
 					int izbor = JOptionPane.showConfirmDialog(null,
 							"Da li ste sigurni da zelite da obrisete profesora?","Brisanje predmeta",JOptionPane.YES_NO_OPTION);
