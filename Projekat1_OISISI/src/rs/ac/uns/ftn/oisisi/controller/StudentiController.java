@@ -60,6 +60,7 @@ private static StudentiController instance = null;
 		String a = tekst.getText();
 
 		BazaStudenta.getInstance().pretragaStudenta(a);
+		
 	}
 	public Student getStudentaPoPredmetu(String licna) {
 		Student p;

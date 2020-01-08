@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -28,11 +30,11 @@ import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 public class Toolbar extends JToolBar {
 
 	private static final long serialVersionUID = -3010935269356037536L;
-	
+
 	enum Dugme {
-		STUDENT,PREDMET,PROFESOR;
+		STUDENT, PREDMET, PROFESOR;
 	};
-	
+
 	private JToggleButton changePredmetButton;
 	private JToggleButton changestudentButton;
 	private JToggleButton changeprofesorButton;
@@ -40,34 +42,34 @@ public class Toolbar extends JToolBar {
 	private JToggleButton deletestudentButton;
 	private JToggleButton deleteProfesorButton;
 	private JToggleButton deletePredmetButton;
-	
+
 	private JButton searchstudentButton;
 	private JButton searchProfesorButton;
 	private JButton searchPredmetButton;
-	
+
 	private JTextField searchField;
-	
+
 	private JToggleButton dodajStudentButton;
 	private JToggleButton dodajPredmetButton;
 	private JToggleButton dodajProfesoraButton;
-	
+
 	private JToggleButton dodajStudentaNaPredmet;
 	private JToggleButton dodajProfesoraNaPredmet;
-	
+
 	private JTextField polje;
-	
+
 	private JPanel levo;
 	private JPanel desno;
 
-	private  static Toolbar instance =null;
-	
+	private static Toolbar instance = null;
+
 	public static Toolbar getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new Toolbar(Dugme.STUDENT);
 		}
 		return instance;
 	}
-	
+
 	private Toolbar(Dugme d) {
 		super(SwingConstants.HORIZONTAL);
 		setLayout(new BorderLayout());
@@ -151,7 +153,43 @@ public class Toolbar extends JToolBar {
 	
 		searchField = new JTextField(20);
 		searchField.setToolTipText("Upis za pretragu");
-	
+		searchField.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				JTextField txt = (JTextField) e.getComponent();
+				if(txt.getText().trim().length()==0) {
+					if(TabbedPane.getPritisnutTab()==0) {
+						StudentiController.getInstance().pretraziStudenta();
+						StudentiJTable.getInstance().refresTabelu();
+					}
+					if(TabbedPane.getPritisnutTab()==1) {
+						PredmetiController.getInstance().pretraziPredmet();
+						PredmetiJTable.getInstance().refresTabelu();
+					}
+					if(TabbedPane.getPritisnutTab()==2) {
+						ProfesoriController.getInstance().pretraziProfesora();
+						ProfesoriJTable.getInstance().refresTabelu();
+						
+					}
+				}
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
 		dodajStudentButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -331,40 +369,37 @@ public class Toolbar extends JToolBar {
 		setFloatable(false);
 	
 	}
-	
+
 	public void promena(Dugme d) {
 		removeAll();
 		levo.removeAll();
 		desno.removeAll();
-		
+
 		searchField.setText("");
-		if(d == Dugme.STUDENT) {
-			levo.add(dodajStudentButton,FlowLayout.LEFT);
+		if (d == Dugme.STUDENT) {
+			levo.add(dodajStudentButton, FlowLayout.LEFT);
+		} else if (d == Dugme.PREDMET) {
+			levo.add(dodajPredmetButton, FlowLayout.LEFT);
+		} else if (d == Dugme.PROFESOR) {
+			levo.add(dodajProfesoraButton, FlowLayout.LEFT);
 		}
-		else if(d == Dugme.PREDMET)  {
-			levo.add(dodajPredmetButton,FlowLayout.LEFT);
-		}
-		else if(d==Dugme.PROFESOR) {
-			levo.add(dodajProfesoraButton,FlowLayout.LEFT);
-		}
-	
+
 		addSeparator();
 
-		if(d == Dugme.STUDENT) {
-			
+		if (d == Dugme.STUDENT) {
+
 			levo.add(changestudentButton);
 			addSeparator();
 			levo.add(deletestudentButton);
-		
+
 			desno.add(searchField);
 			addSeparator();
 			desno.add(searchstudentButton);
-			
-			add(levo,BorderLayout.WEST);
+
+			add(levo, BorderLayout.WEST);
 			add(desno, BorderLayout.EAST);
-			}
-		else if(d == Dugme.PREDMET)  {
-		
+		} else if (d == Dugme.PREDMET) {
+
 			levo.add(changePredmetButton);
 			addSeparator();
 			levo.add(deletePredmetButton);
@@ -372,38 +407,36 @@ public class Toolbar extends JToolBar {
 			levo.add(dodajStudentaNaPredmet);
 			addSeparator();
 			levo.add(dodajProfesoraNaPredmet);
-			
+
 			desno.add(searchField);
 			addSeparator();
 			desno.add(searchPredmetButton);
-			
-			add(levo,BorderLayout.WEST);
+
+			add(levo, BorderLayout.WEST);
 			add(desno, BorderLayout.EAST);
-		}
-		else if(d==Dugme.PROFESOR) { 
-			
+		} else if (d == Dugme.PROFESOR) {
+
 			levo.add(changeprofesorButton);
 			addSeparator();
 			levo.add(deleteProfesorButton);
-			
+
 			desno.add(searchField);
 			addSeparator();
 			desno.add(searchProfesorButton);
-			
-			add(levo,BorderLayout.WEST);
+
+			add(levo, BorderLayout.WEST);
 			add(desno, BorderLayout.EAST);
 		}
 	}
+
 	public Dugme getDugme(int i) {
 		Dugme d = null;
-		if(i==0) {
+		if (i == 0) {
 			d = Dugme.STUDENT;
-		}
-		else if(i==1) {
+		} else if (i == 1) {
 			d = Dugme.PREDMET;
-		}
-		else if(i==2) {
-			d=Dugme.PROFESOR;
+		} else if (i == 2) {
+			d = Dugme.PROFESOR;
 		}
 		return d;
 	}
@@ -415,7 +448,7 @@ public class Toolbar extends JToolBar {
 	public void setPolje(JTextField polje) {
 		this.polje = polje;
 	}
-	
+
 	public JTextField getSearchField() {
 		return searchField;
 	}
@@ -428,5 +461,5 @@ public class Toolbar extends JToolBar {
 		dodajStudentaNaPredmet.setSelected(false);
 		dodajProfesoraNaPredmet.setSelected(false);
 	}
-	
+
 }
