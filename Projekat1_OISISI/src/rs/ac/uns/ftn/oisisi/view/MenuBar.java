@@ -69,13 +69,7 @@ public class MenuBar extends JMenuBar {
 		noviprofstud=new JMenu("New Student/Profesor");
 		novipredstud=new JMenuItem("New Student");
 		novipredprof=new JMenuItem("New Profesor");
-		
-	
-			
-		
-		
-		
-		
+				
 		novistudent.setMnemonic(KeyEvent.VK_N);
 		novistudent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		novistudent.setIcon(new ImageIcon("images2/buttonplus.png"));
@@ -196,7 +190,7 @@ public class MenuBar extends JMenuBar {
 					StudentiController.getInstance().izmeniStudenta(row);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Student nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				}
 				StudentiJTable.getInstance().refresTabelu();  
 				editstudent.setSelected(false);
@@ -217,7 +211,7 @@ public class MenuBar extends JMenuBar {
 					ProfesoriController.getInstance().izmeniProfesora(row);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Profesor nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				}
 				ProfesoriJTable.getInstance().refresTabelu();  
 				editprofesor.setSelected(false);
@@ -238,7 +232,7 @@ public class MenuBar extends JMenuBar {
 					PredmetiController.getInstance().izmeniPredmet(row);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Predmet nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				}
 				PredmetiJTable.getInstance().refresTabelu();  
 				editpredmet.setSelected(false);
@@ -273,7 +267,7 @@ public class MenuBar extends JMenuBar {
 						JOptionPane.showMessageDialog(null, "Student nije obrisan.");
 					}
 				}else {
-						JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Student nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					}
 					StudentiJTable.getInstance().refresTabelu();
 					delstudent.setSelected(false);
@@ -300,7 +294,7 @@ public class MenuBar extends JMenuBar {
 						JOptionPane.showMessageDialog(null, "Profesor nije obrisan.");
 					}
 				}else {
-						JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Profesor nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					}
 					ProfesoriJTable.getInstance().refresTabelu();
 					delprofesor.setSelected(false);
@@ -327,7 +321,7 @@ public class MenuBar extends JMenuBar {
 						JOptionPane.showMessageDialog(null, "Predmet nije obrisan.");
 					}
 				}else {
-						JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Predmet nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					}
 					PredmetiJTable.getInstance().refresTabelu();
 					delpredmet.setSelected(false);
@@ -426,7 +420,6 @@ public class MenuBar extends JMenuBar {
 			noviprofesor.setEnabled(false);
 			noviprofstud.setEnabled(false);
 		
-			
 			editstudent.setEnabled(true);
 			editprofesor.setEnabled(false);
 			editpredmet.setEnabled(false);
@@ -434,45 +427,35 @@ public class MenuBar extends JMenuBar {
 			delstudent.setEnabled(true);
 			delpredmet.setEnabled(false);
 			delprofesor.setEnabled(false);
-			
-			
 		}
+		if(a==1) {
+			novistudent.setEnabled(false);
+			novipredmet.setEnabled(true);
+			noviprofesor.setEnabled(false);
+			noviprofstud.setEnabled(true);
 		
+			editstudent.setEnabled(false);
+			editprofesor.setEnabled(false);
+			editpredmet.setEnabled(true);
+			
+			delstudent.setEnabled(false);
+			delpredmet.setEnabled(true);
+			delprofesor.setEnabled(false);
+		}
+		if(a==2) {
+			novistudent.setEnabled(false);
+			novipredmet.setEnabled(false);
+			noviprofesor.setEnabled(true);
+			noviprofstud.setEnabled(false);
 		
-	if(a==1) {
-		novistudent.setEnabled(false);
-		novipredmet.setEnabled(true);
-		noviprofesor.setEnabled(false);
-		noviprofstud.setEnabled(true);
-	
-		
-		editstudent.setEnabled(false);
-		editprofesor.setEnabled(false);
-		editpredmet.setEnabled(true);
-		
-		delstudent.setEnabled(false);
-		delpredmet.setEnabled(true);
-		delprofesor.setEnabled(false);
-		
-		
-	}
-	if(a==2) {
-		novistudent.setEnabled(false);
-		novipredmet.setEnabled(false);
-		noviprofesor.setEnabled(true);
-		noviprofstud.setEnabled(false);
-	
-		
-		editstudent.setEnabled(false);
-		editprofesor.setEnabled(true);
-		editpredmet.setEnabled(false);
-		
-		delstudent.setEnabled(false);
-		delpredmet.setEnabled(false);
-		delprofesor.setEnabled(true);
-		
-		
-	}
+			editstudent.setEnabled(false);
+			editprofesor.setEnabled(true);
+			editpredmet.setEnabled(false);
+			
+			delstudent.setEnabled(false);
+			delpredmet.setEnabled(false);
+			delprofesor.setEnabled(true);
+		}
 	}
 	
 }

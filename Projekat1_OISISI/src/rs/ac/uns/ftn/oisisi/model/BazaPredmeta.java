@@ -49,7 +49,7 @@ public class BazaPredmeta {
 		this.predmeti.add(new Predmet(sifra, naziv, semestar, godina));
 		broj_predmeta++;
 	}
-
+	
 	public List<Predmet> getPredmete() {
 		return predmeti;
 	}
@@ -142,7 +142,7 @@ public class BazaPredmeta {
 		String[] deo = celina.split(":");
 
 		if (deo.length != 2 || deo[1].trim().length() == 0) {
-			JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet!");
+			JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
@@ -171,8 +171,7 @@ public class BazaPredmeta {
 				}
 			}
 		} else {
-			JOptionPane.showMessageDialog(null,
-					"Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.");
+			JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		if (podelaTeksta.length > 1) {
@@ -182,7 +181,7 @@ public class BazaPredmeta {
 				deo = celina.split(":");
 
 				if (deo.length != 2 || deo[1].trim().length() == 0) {
-					JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet!");
+					JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 
@@ -211,8 +210,7 @@ public class BazaPredmeta {
 						}
 					}
 				} else {
-					JOptionPane.showMessageDialog(null,
-							"Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.");
+					JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 			}
@@ -272,7 +270,7 @@ public class BazaPredmeta {
 		predmeti.add(p);
 	}
 
-	public void dodajProfesoraNaPredmet(Profesor prof, Predmet pred, int i) {
+	public void dodajProfesoraNaPredmet(Profesor prof, int i) {
 		predmeti.get(i).getProfesori_predavaci().add(prof);
 		broj_profesora_na_predmetu++;
 	}
@@ -301,7 +299,7 @@ public class BazaPredmeta {
 		return izlaz;
 	}
 
-	public void dodajStudentaNaPredmet(Student student, Predmet pred, int i) {
+	public void dodajStudentaNaPredmet(Student student, int i) {
 		
 		predmeti.get(i).getStudenti_na_predmetu().add(student);
 		broj_studenta_na_predmetu++;

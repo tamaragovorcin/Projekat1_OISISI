@@ -64,24 +64,24 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 				
 				if(postojiProfesor== true && postojiProfesorNaPredmetu==false) {
 					dispose();
-					PredmetiController.getInstance().dodajProfesora(profesor, predmet, red);
+					PredmetiController.getInstance().dodajProfesora(profesor, red);
 					ProfesoriController.getInstance().dodajPredmetProfesoru(predmet,licna);
 					JOptionPane.showMessageDialog(null, "Profesor je uspesno dodat na predmet!");
 				}
 				else {
 					if(!postojiProfesor) {
 						setVisible(false);
-						JOptionPane.showMessageDialog(null, "Ne postoji profesor sa tim brojem licne karte!");
+						JOptionPane.showMessageDialog(null, "Ne postoji profesor sa tim brojem licne karte.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						setVisible(true);
 					}
 					else if(postojiProfesorNaPredmetu) {
 						setVisible(false);
-						JOptionPane.showMessageDialog(null, "Profesor postoji vec na listi tog predmeta kao predavac!");
+						JOptionPane.showMessageDialog(null, "Profesor vec postoji na listi tog predmeta kao predavac.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						setVisible(true);
 					}
 					else {
 						setVisible(false);
-						JOptionPane.showMessageDialog(null, "Nije moguce dodati profesora na predmet.");
+						JOptionPane.showMessageDialog(null, "Nije moguce dodati profesora na predmet.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						setVisible(true);
 					}
 				}	

@@ -28,9 +28,6 @@ public class PredmetiController {
 		return instance;
 	}
 
-	private PredmetiController() {
-	}
-
 	public void dodajPredmet() {}
 
 	public void izbrisiPredmet(int rowSelectedIndex) {
@@ -81,12 +78,12 @@ public class PredmetiController {
 					"Dodavanje profesora na predmet", true);
 			dialog.setVisible(true);
 		} else {
-			JOptionPane.showMessageDialog(null, "Predmet nije selektovan");
+			JOptionPane.showMessageDialog(null, "Predmet nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
-	public void dodajProfesora(Profesor prof, Predmet pred, int i) {
-		BazaPredmeta.getInstance().dodajProfesoraNaPredmet(prof, pred, i);
+	public void dodajProfesora(Profesor prof, int i) {
+		BazaPredmeta.getInstance().dodajProfesoraNaPredmet(prof, i);
 	}
 
 	public Predmet getPredmetPoProfesoru(int red) {
@@ -111,12 +108,12 @@ public class PredmetiController {
 					"Dodavanje studenta na predmet", true);
 			dialog.setVisible(true);
 		} else {
-			JOptionPane.showMessageDialog(null, "Predmet nije selektovan");
+			JOptionPane.showMessageDialog(null, "Predmet nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
-	public void dodajStudenta(Student stud, Predmet pred, int i) {
-		BazaPredmeta.getInstance().dodajStudentaNaPredmet(stud, pred, i);
+	public void dodajStudenta(Student stud,int i) {
+		BazaPredmeta.getInstance().dodajStudentaNaPredmet(stud, i);
 	}
 
 	public Predmet getPredmetPoStudentu(int red) {

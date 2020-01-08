@@ -43,9 +43,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 	JTextField txtTitula=new JTextField();
 	JTextField txtZvanje=new JTextField();
 	
-	
 	List<Profesor> profesori = BazaProfesora.getInstance().getProfesore();
-	
 	
 	private int red;
 	private Profesor profesor;
@@ -53,8 +51,6 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 		
 		super(instance, string, b);
 		
-		
-		Profesor profesor = profesori.get(row);
 		red = row;
 		
 		setSize(400, 500);
@@ -678,7 +674,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 			if(!profesor.getBroj_licne_karte().equals(tekst[7])) { 
 				for(Profesor p:profesori) {
 					if(tekst[7].equals(p.getBroj_licne_karte())) {
-						JOptionPane.showMessageDialog((Component) e.getSource(), "Izmenjeni  broj licne karte vec postoji!");
+						JOptionPane.showMessageDialog(null, "Upisan broj licne karte vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				}

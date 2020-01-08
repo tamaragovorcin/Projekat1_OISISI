@@ -272,7 +272,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 				} 
 				else if(nesto ==1) {
 					setVisible(false);
-					JOptionPane.showMessageDialog(null, "Uneta sifra predmeta vec postoji!");
+					JOptionPane.showMessageDialog(null, "Predmet sa tom sifrom vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					setVisible(true);
 				}
 			}

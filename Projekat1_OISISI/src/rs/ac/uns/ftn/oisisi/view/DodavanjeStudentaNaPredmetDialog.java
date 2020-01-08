@@ -66,35 +66,31 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 				
 				boolean odgovarajucaGod=false;
 				
-			
-			
-				
-				
 				if(postojiStudent== true && postojiStudentNaPredmetu==false ) {
 					dispose();
-					PredmetiController.getInstance().dodajStudenta(stud, predmet, red);
+					PredmetiController.getInstance().dodajStudenta(stud, red);
 					StudentiController.getInstance().dodajPredmetStuddentu(predmet,indeks);
 					JOptionPane.showMessageDialog(null, "Student je uspesno dodat na predmet!");
 				}
 				else {
 					if(!postojiStudent) {
 						setVisible(false);
-						JOptionPane.showMessageDialog(null, "Ne postoji student sa tim brojem indeksa!");
+						JOptionPane.showMessageDialog(null, "Ne postoji student sa tim brojem indeksa.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						setVisible(true);
 					}
 					else if(postojiStudentNaPredmetu) {
 						setVisible(false);
-						JOptionPane.showMessageDialog(null, "Student postoji vec na listi tog predmeta!");
+						JOptionPane.showMessageDialog(null, "Student postoji vec na listi tog predmeta.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						setVisible(true);
 					}
 					else if(!odgovarajucaGod) {
 						setVisible(false);
-						JOptionPane.showMessageDialog(null, "Student i predmet ne pripadaju istoj godini!");
+						JOptionPane.showMessageDialog(null, "Student i predmet ne pripadaju istoj godini studija.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						setVisible(true);
 					}
 					else {
 						setVisible(false);
-						JOptionPane.showMessageDialog(null, "Nije moguce dodati studenta na predmet.");
+						JOptionPane.showMessageDialog(null, "Nije moguce dodati studenta na predmet.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						setVisible(true);
 					}
 				}	

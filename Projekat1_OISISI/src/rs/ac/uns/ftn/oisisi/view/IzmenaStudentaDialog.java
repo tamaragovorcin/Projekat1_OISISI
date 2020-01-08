@@ -638,12 +638,10 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 			if(!student.getBrojIndeksa().equals(tekst[6])) { 
 				for(Student p:studenti) {
 					if(tekst[6].equals(p.getBrojIndeksa())) {
-						JOptionPane.showMessageDialog((Component) e.getSource(), "Izmenjeni  broj indeksa vec postoji!");
+						JOptionPane.showMessageDialog(null, "Upisan broj indeksa vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						return;
-					}
-					
+					}	
 				}
-				
 				student.setIme(tekst[0]);
 				student.setPrezime(tekst[1]);
 				student.setDatumRodjenja(tekst[2]);
@@ -682,7 +680,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		this.mode = mode;
 	}
 
-
 	public void  Set() {
 		if(BazaStudenta.getInstance().getPretraga().size()==0) {
 			student = BazaStudenta.getInstance().getStudente().get(red);
@@ -700,7 +697,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		txtIndeks.setText(student.getBrojIndeksa());
 		txtDatumUpisa.setText(student.getDatumUpisa());
 		String godina2 = student.getGodinaStudija();
-		String budz =student.getStatus();
 		
 		switch(godina2){
 			case "I":

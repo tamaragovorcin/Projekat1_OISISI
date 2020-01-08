@@ -617,7 +617,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				} 
 				else if(nesto ==1) {
 					setVisible(false);
-					JOptionPane.showMessageDialog(null, "Profesor sa datim brojem licne karte vec postoji!");
+					JOptionPane.showMessageDialog(null, "Profesorsa tim brojem licne karte vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					setVisible(true);
 				}
 			}

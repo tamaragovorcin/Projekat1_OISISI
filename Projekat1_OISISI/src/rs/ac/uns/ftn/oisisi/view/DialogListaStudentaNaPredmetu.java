@@ -70,7 +70,7 @@ public class DialogListaStudentaNaPredmetu extends JDialog implements ActionList
 			}
 			else {
 				setVisible(false);
-				JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+				JOptionPane.showMessageDialog(null, "Student nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				setVisible(true);
 			}
 		}

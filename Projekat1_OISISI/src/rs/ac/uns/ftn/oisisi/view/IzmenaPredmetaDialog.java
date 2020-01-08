@@ -236,7 +236,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 			if(!predmet.getSifra_predmeta().equals(tekst[0])) { 
 				for(Predmet p: predmeti) {
 					if(tekst[0].equals(p.getSifra_predmeta())) {
-						JOptionPane.showMessageDialog((Component) e.getSource(), "Izmenjena sifra vec postoji!");
+						JOptionPane.showMessageDialog(null, "Upisan broj sifre vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				}

@@ -137,17 +137,17 @@ public class Toolbar extends JToolBar {
 		searchPredmetButton = new JButton();
 		searchPredmetButton.setToolTipText("Pretrazivanje predmeta");
 		searchPredmetButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
-		searchPredmetButton.setMnemonic(KeyEvent.VK_S);
+		searchPredmetButton.setMnemonic(KeyEvent.VK_H);
 		
 		searchstudentButton = new JButton();
 		searchstudentButton.setToolTipText("Pretrazivanje studenta");
 		searchstudentButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
-		searchstudentButton.setMnemonic(KeyEvent.VK_S);
+		searchstudentButton.setMnemonic(KeyEvent.VK_R);
 		
 		searchProfesorButton = new JButton();
 		searchProfesorButton.setToolTipText("Pretrazivanje profesora");
 		searchProfesorButton.setIcon(new ImageIcon("images2/magnifying-glass.png"));
-		searchProfesorButton.setMnemonic(KeyEvent.VK_S);
+		searchProfesorButton.setMnemonic(KeyEvent.VK_V);
 	
 		searchField = new JTextField(20);
 		searchField.setToolTipText("Upis za pretragu");
@@ -190,7 +190,7 @@ public class Toolbar extends JToolBar {
 					StudentiController.getInstance().izmeniStudenta(row);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Student nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				}
 				StudentiJTable.getInstance().refresTabelu();  
 				changestudentButton.setSelected(false);
@@ -212,7 +212,7 @@ public class Toolbar extends JToolBar {
 						JOptionPane.showMessageDialog(null, "Student nije obrisan.");
 					}
 				}else {
-						JOptionPane.showMessageDialog(null, "Student nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Student nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					}
 					StudentiJTable.getInstance().refresTabelu();
 					deletestudentButton.setSelected(false);
@@ -238,7 +238,7 @@ public class Toolbar extends JToolBar {
 					ProfesoriController.getInstance().izmeniProfesora(row);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Profesor nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				}
 				ProfesoriJTable.getInstance().refresTabelu();  
 				changeprofesorButton.setSelected(false);
@@ -260,7 +260,7 @@ public class Toolbar extends JToolBar {
 						JOptionPane.showMessageDialog(null, "Profesor nije obrisan.");
 					}
 				}else {
-						JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Profesor nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					}
 					ProfesoriJTable.getInstance().refresTabelu();
 					deleteProfesorButton.setSelected(false);
@@ -291,7 +291,7 @@ public class Toolbar extends JToolBar {
 						JOptionPane.showMessageDialog(null, "Predmet nije obrisan.");
 					}
 				}else {
-						JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Predmet nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					}
 					PredmetiJTable.getInstance().refresTabelu();
 					deletePredmetButton.setSelected(false);
@@ -306,7 +306,7 @@ public class Toolbar extends JToolBar {
 					PredmetiController.getInstance().izmeniPredmet(row);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Predmet nije selektovan.");
+					JOptionPane.showMessageDialog(null, "Predmet nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				}
 				PredmetiJTable.getInstance().refresTabelu();  
 				changePredmetButton.setSelected(false);

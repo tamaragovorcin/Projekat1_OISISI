@@ -612,7 +612,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 							tekst[6], tekst[7], tekst[8], tekst[9]);
 				} else if (nesto == 1) {
 					setVisible(false);
-					JOptionPane.showMessageDialog(null, "Student sa istim brojem indeksa vec postoji!");
+					JOptionPane.showMessageDialog(null, "Student sa tim brojem indeksa vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					setVisible(true);
 				}
 			}

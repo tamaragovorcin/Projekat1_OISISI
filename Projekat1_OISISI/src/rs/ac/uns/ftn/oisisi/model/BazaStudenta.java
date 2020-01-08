@@ -53,11 +53,6 @@ public class BazaStudenta {
 		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,kontakt_telefon,email,brojIndeksa,datumUpisa,godinaStudija,status));
 		broj_studenata++;
 	}
-	
-	public void initi() {
-		this.studenti.add(new Student("Ana","Petrovic","14.02.1999","Pavla Simica 2","065264102","anapetrovic@gmail.com","RA/47/2017","01.10.2017","III","B"));
-		broj_studenata++;
-	}
 
 	public List<Student> getStudente() {
 		return studenti;
@@ -168,7 +163,7 @@ public class BazaStudenta {
 			String[] deo = celina.split(":");
 		
 			if (deo.length != 2 || deo[1].trim().length() == 0) {
-				JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite studenta!");
+				JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite studenta.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
@@ -236,10 +231,9 @@ public class BazaStudenta {
 							}
 					}
 			} else {
-				JOptionPane.showMessageDialog(null,
-						"Unete vrednosti nisu dobre! Moguce opcije su: "
+				JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: " 
 						+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, broj indeksa "
-						+ "datum upisa, godina_studija i status.");
+						+ "datum upisa, godina_studija i status.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
@@ -250,7 +244,7 @@ public class BazaStudenta {
 					deo = celina.split(":");
 					
 					if (deo.length != 2 || deo[1].trim().length() == 0) {
-						JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite studenta!");
+						JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite studenta.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					
@@ -318,10 +312,9 @@ public class BazaStudenta {
 									}
 							}
 					} else {
-						JOptionPane.showMessageDialog(null,
-								"Unete vrednosti nisu dobre! Moguce opcije su: "
-								+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, broj indeksa " 
-								+ "datum upisa, godina_studija i status.");
+						JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: " 
+								+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, broj indeksa "
+								+ "datum upisa, godina_studija i status.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				

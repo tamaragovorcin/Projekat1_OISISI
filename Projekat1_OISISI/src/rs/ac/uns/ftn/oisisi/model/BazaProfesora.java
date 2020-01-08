@@ -46,16 +46,6 @@ private static BazaProfesora instance = null;
 		this.kolone.add("SPISAK PREDMETA");
 	}
 
-	@SuppressWarnings("unused")
-	private void initProfesori() {
-		this.profesori=new ArrayList<Profesor>();
-		this.profesori.add(new Profesor("Pera","Peric","20.05.1965.","Masarikova 15","111","peraperic@gmail.com","Radnicka 55","111","Redovni profesor","Doktor nauka"));
-		this.profesori.add(new Profesor("Jovan","Jovanovic","20.08.1970.","Sfarikova 15","0694566123","jovanjovanovic@gmail.com","Radnicka 55","222","Redovni profesor","Doktor nauka"));
-		this.profesori.add(new Profesor("Natalija","Jokic","05.05.1975.","Puskinova 9","0654599255","natalijajokic@gmail.com","Radnicka 55","333","Redovni profesor","Doktor nauka"));
-		
-		++broj_profesora;
-	}
-
 	public List<Profesor>getProfesore() {
 		return profesori;
 	}
@@ -220,7 +210,7 @@ private static BazaProfesora instance = null;
 			String[] deo = celina.split(":");
 		
 			if (deo.length != 2 || deo[1].trim().length() == 0) {
-				JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite profesora!");
+				JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite profesora.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
@@ -288,10 +278,9 @@ private static BazaProfesora instance = null;
 							}
 					}
 			} else {
-				JOptionPane.showMessageDialog(null,
-						"Unete vrednosti nisu dobre! Moguce opcije su: "
-						+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, adresa_kancelarije, "
-						+ "licna_karta, titula i zvanje.");
+				JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: " + 
+						"ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, adresa_kancelarije," + 
+						"licna_karta, titula i zvanje.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
@@ -302,7 +291,7 @@ private static BazaProfesora instance = null;
 					deo = celina.split(":");
 					
 					if (deo.length != 2 || deo[1].trim().length() == 0) {
-						JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite profesora!");
+						JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite profesora.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					
@@ -370,10 +359,9 @@ private static BazaProfesora instance = null;
 									}
 							}
 					} else {
-						JOptionPane.showMessageDialog(null,
-								"Unete vrednosti nisu dobre! Moguce opcije su: "
-								+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, adresa_kancelarije, "
-								+ "licna_karta, titula i zvanje.");
+						JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: " + 
+								"ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, adresa_kancelarije," + 
+								"licna_karta, titula i zvanje.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				
