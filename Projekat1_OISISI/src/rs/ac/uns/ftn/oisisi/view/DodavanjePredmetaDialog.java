@@ -120,7 +120,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 		JLabel lblsemestar = new JLabel("Semestar*:");
 		lblsemestar.setPreferredSize(dim);
-		String semestar[] = { "    ", "zimski", "letnji" };
+		String semestar[] = { "    ", "1", "2","3","4","5","6","7","8" };
 
 		semestarComboBox = new JComboBox<String>(semestar);
 		semestarComboBox.addActionListener(new ActionListener() {
@@ -137,7 +137,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 		JLabel lblGodina = new JLabel("Godina*:");
 		lblGodina.setPreferredSize(dim);
-		String godina[] = { "     ", "I", "II", "III", "IV", "V" };
+		String godina[] = { "     ", "1", "2", "3", "4" };
 		godinaComboBox = new JComboBox<String>(godina);
 		godinaComboBox.addActionListener(new ActionListener() {
 
@@ -228,7 +228,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		String tekst[] = pokupiUnetiTekst();
 		boolean izlaz = true;
 
-		if (!Pattern.matches("[a-zA-Z0-9]*", tekst[0])) {
+		if (!Pattern.matches("[a-zA-Z0-9 ]*", tekst[0])) {
 			txtSifra.setBackground(Color.RED);
 			return false;
 		}

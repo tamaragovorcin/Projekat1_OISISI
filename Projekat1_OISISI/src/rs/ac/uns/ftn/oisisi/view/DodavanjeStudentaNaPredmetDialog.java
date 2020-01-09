@@ -157,7 +157,7 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 	public boolean provera() {
 		String tekst = pokupiUnetiTekst();
 		boolean izlaz = true;
-		if (!Pattern.matches("[A-Z]{2,3}/[0-9]{1,3}/[0-9]{4}", tekst)) {
+		if (!Pattern.matches("[A-Z]{2,3} [0-9]{1,3}/[0-9]{4}", tekst)) {
 			txtBrojIndeksa.setBackground(Color.RED);
 			izlaz= false;
 		}

@@ -135,7 +135,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		JPanel panSemestar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel lblsemestar = new JLabel("Semestar*:");
 		lblsemestar.setPreferredSize(dim);
-		String semestar[] = { "    ", "zimski", "letnji" };
+		String semestar[] = { "    ", "1", "2","3","4","5","6","7","8"};
 
 		semestarComboBox = new JComboBox<String>(semestar);
 		
@@ -157,7 +157,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		JPanel panGodina = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel lblGodina = new JLabel("Godina*:");
 		lblGodina.setPreferredSize(dim);
-		String godina[] = { "     ", "I", "II", "III", "IV", "V" };
+		String godina[] = { "     ", "1", "2", "3", "4"  };
 		godinaComboBox = new JComboBox<String>(godina);
 		
 		godinaComboBox.addActionListener(new ActionListener() {
@@ -269,12 +269,31 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		txtNaziv.setText(predmet.getNaziv_predmeta());	
 		String a = predmet.getSemestar();
 		switch(a){
-			case "zimski":
+			case "1":
 				 br=1;
 				 break;
-			case "letnji":
+			case "2":
 				br=2;
 				break;
+			case "3":
+				br=3;
+				break;
+			case "4":
+				br=4;
+				break;
+			case "5":
+				br=5;
+				break;
+			case "6":
+				br=6;
+				break;
+			case "7":
+				br=7;
+				break;
+			case "8":
+				br=8;
+				break;
+				
 			default: 
 				br= 0;
 		}
@@ -282,20 +301,18 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		String godina2 = predmet.getGodina_studija_izvodjenja();
 		
 		switch(godina2){
-			case "I":
+			case "1":
 				 br2=1;
 				 break;
-			case "II":
+			case "2":
 				br2=2;
 				break;
-			case "III":
+			case "3":
 				 br2=3;
 				 break;
-			case "IV":
+			case "4":
 				br2=4;
-				break;
-			case "V":
-				br2=5;
+			
 				break;
 			default:
 				br2 =0;

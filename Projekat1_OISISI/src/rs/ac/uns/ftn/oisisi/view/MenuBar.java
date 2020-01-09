@@ -360,7 +360,8 @@ public class MenuBar extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, "Nesto o Luni Zivkovic RA47/2017");
+					JOptionPane.showMessageDialog(null, "Student 1: Luna Živković, 14.02.1999. "
+													+"Student treće godine računarstva i automatike. Broj indeksa: RA 47/2017");
 			}
 		});
 		helpAbout.add(aboutstud1);
@@ -374,7 +375,8 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-					JOptionPane.showMessageDialog(null, "Nesto o Tamari Govorcin");
+					JOptionPane.showMessageDialog(null, "Student 2: Tamara Govorčin, 17.04.1999."
+												+"Student treće godine računarstva i automatike. Broj indeksa: RA 63/2017");
 				
 			}
 		});
@@ -384,6 +386,15 @@ public class MenuBar extends JMenuBar {
 		aboutapp.setMnemonic(KeyEvent.VK_Q);
 		aboutapp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		aboutapp.setIcon(new ImageIcon("images2/about.png"));
+aboutapp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					JOptionPane.showMessageDialog(null, "Aplikaciija Studentska sluzba omogucava rad sa studentima, profesorima i predmetima.");
+				
+			}
+		});
 		helpAbout.add(aboutapp);
 		helpAbout.addSeparator();
 		

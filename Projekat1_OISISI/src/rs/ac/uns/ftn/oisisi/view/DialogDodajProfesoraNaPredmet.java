@@ -148,7 +148,7 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 	public boolean provera() {
 		String tekst = pokupiUnetiTekst();
 		boolean izlaz = true;
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst)) {
+		if (!Pattern.matches("[\"a-zA-Z0-9_ ]*", tekst)) {
 			txtLicnaKarta.setBackground(Color.RED);
 			izlaz= false;
 		}

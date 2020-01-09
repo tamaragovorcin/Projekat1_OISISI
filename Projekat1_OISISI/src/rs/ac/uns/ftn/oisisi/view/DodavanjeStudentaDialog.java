@@ -298,7 +298,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 
 		JLabel lblGodina = new JLabel("Godina*:");
 		lblGodina.setPreferredSize(dim);
-		String godina[] = { "     ", "I", "II", "III", "IV", "V" };
+		String godina[] = { "     ", "1", "2", "3", "4" };
 		godinaComboBox = new JComboBox<String>(godina);
 		godinaComboBox.addActionListener(new ActionListener() {
 
@@ -519,25 +519,25 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		String tekst[] = pokupiUnetiTekst();
 		boolean izlaz = true;
 
-		if (!Pattern.matches("[a-zA-Z0-9]*", tekst[0])) {
+		if (!Pattern.matches("[a-zA-Z0-9čČćĆžŽšŠĐđ]*", tekst[0])) {
 			txtIme.setBackground(Color.RED);
 			return false;
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[1])) {
+		if (!Pattern.matches("[a-zA-Z0-9_ čČćĆžŽšŠđĐ]*", tekst[1])) {
 			txtPrezime.setBackground(Color.RED);
 			return false;
 		}
 		if (tekst[2].length() != 0) {
-			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[2])) {
+			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}.", tekst[2])) {
 				txtDatumRodjenja.setBackground(Color.RED);
 				return false;
 			}
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[3])) {
+		if (!Pattern.matches("[a-zA-Z0-9_,čČćĆžŽšŠđĐ ]*", tekst[3])) {
 			txtAdresa.setBackground(Color.RED);
 			return false;
 		}
-		if (!Pattern.matches("^[0-9]*", tekst[4])) {
+		if (!Pattern.matches("^[0-9/-]*", tekst[4])) {
 			txtTelefon.setBackground(Color.RED);
 			return false;	
 		}else if(tekst[4].length() >16) {
@@ -552,13 +552,13 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		}
 		if (tekst[6].length() != 0) {
 
-			if (!Pattern.matches("[A-Z]{2,3}/[0-9]{1,3}/[0-9]{4}", tekst[6])) {
+			if (!Pattern.matches("[A-Z]{2,3} [0-9]{1,3}/[0-9]{4}", tekst[6])) {
 				txtIndeks.setBackground(Color.RED);
 				return false;
 			}
 		}
 		if (tekst[7].length() != 0) {
-			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$", tekst[7])) {
+			if (!Pattern.matches("^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}.", tekst[7])) {
 				txtDatumUpisa.setBackground(Color.RED);
 				return false;
 			}
