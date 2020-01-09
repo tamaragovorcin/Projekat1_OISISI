@@ -67,8 +67,7 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 				boolean odgovarajucaGod=false;
 				
 			
-			
-				
+							
 				
 				if(postojiStudent== true && postojiStudentNaPredmetu==false ) {
 					dispose();
