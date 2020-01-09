@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
 
@@ -60,9 +61,11 @@ public class DialogDodajProfesoraNaPredmet extends JDialog{
 				
 				boolean postojiProfesor = ProfesoriController.getInstance().PostojiLicnaKarta(licna);
 				
-				boolean postojiProfesorNaPredmetu = PredmetiController.getInstance().PostojiProfesorNaPredmetu(red,licna);//ne red
+				boolean postojiProfesorNaPredmetu = PredmetiController.getInstance().PostojiProfesorNaPredmetu(red,licna);
 				
-				if(postojiProfesor== true && postojiProfesorNaPredmetu==false) {
+				int broj = 	BazaPredmeta.getInstance().getPredmete().get(red).getProfesori_predavaci().size();
+				
+				if(postojiProfesor== true && postojiProfesorNaPredmetu==false && broj==0) {
 					dispose();
 					PredmetiController.getInstance().dodajProfesora(profesor, red);
 					ProfesoriController.getInstance().dodajPredmetProfesoru(predmet,licna);

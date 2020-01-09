@@ -701,6 +701,7 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 				profesor.setTitula(tekst[8]);
 				profesor.setZvanje(tekst[9]);
 			
+				dispose();
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				ProfesoriJTable.getInstance().refresTabelu();
 			}

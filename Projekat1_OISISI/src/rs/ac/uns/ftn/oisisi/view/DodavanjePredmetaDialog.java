@@ -232,7 +232,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 			txtSifra.setBackground(Color.RED);
 			return false;
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[1])) {
+		if (!Pattern.matches("[a-zA-Z0-9_ čČćĆžŽšŠđĐ]*", tekst[1])) {
 			txtNaziv.setBackground(Color.RED);
 			return false;
 		}

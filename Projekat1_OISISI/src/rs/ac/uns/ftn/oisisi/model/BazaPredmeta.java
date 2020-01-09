@@ -106,6 +106,16 @@ public class BazaPredmeta {
 		for (Predmet i : predmeti) {
 			if (i.getSifra_predmeta().equals(sifra)) {
 				predmeti.remove(i);
+				for(Profesor p : BazaProfesora.getInstance().getProfesore()) {
+					if(p.getSpisak_predmeta().contains(i)) {
+						p.getSpisak_predmeta().clear();
+					}
+				}
+				for(Student s: BazaStudenta.getInstance().getStudente()) {
+					if(s.getPredmeti().contains(i)) {
+						s.getPredmeti().clear();
+					}
+				}
 				break;
 			}
 		}

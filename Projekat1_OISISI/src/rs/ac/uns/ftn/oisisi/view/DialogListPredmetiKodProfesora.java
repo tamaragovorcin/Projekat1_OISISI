@@ -17,7 +17,7 @@ public class DialogListPredmetiKodProfesora extends JDialog{
 	public DialogListPredmetiKodProfesora(Main_Frame instance, String string, boolean b) {
 		super(instance, string, b);
 		setLayout(new BorderLayout());
-		setSize(300,400);
+		setSize(300,150);
 		setLocationRelativeTo(instance);
 		PrikazTabele();
 	}

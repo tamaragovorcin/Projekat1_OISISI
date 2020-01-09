@@ -31,7 +31,7 @@ public class DialogListaStudentaNaPredmetu extends JDialog implements ActionList
 		super(parent, title, modal);
 
 		setLayout(new BorderLayout());
-		setSize(300,400);
+		setSize(900,200);
 		setLocationRelativeTo(parent);
 
 		JPanel pan_odgovor = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -53,20 +53,21 @@ public class DialogListaStudentaNaPredmetu extends JDialog implements ActionList
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("NAZAD")) {
 			dispose();
-		} else {
-			
-			int predmet =  PredmetiTablePanel.getSelektovan_red();
-			int student = TabelaListaStudenata.getInstance().getSelectedRow();
-			
-			Predmet pred = BazaPredmeta.getInstance().getPredmete().get(predmet);
-			String indeks = pred.getStudenti_na_predmetu().get(student).getBrojIndeksa();
-		    
-			if(student>=0 && student<BazaPredmeta.getInstance().getPredmete().get(predmet).getStudenti_na_predmetu().size()) {
-				PredmetiController.getInstance().obrisiStudentaSaPredmeta(predmet,student);
-				StudentiController.getInstance().obrisiPredmetKodStudenta(pred,indeks);
+		} else if(e.getActionCommand().equals("OBRISI")) {
+			if(BazaPredmeta.getInstance().getPredmete().get(PredmetiTablePanel.getSelektovan_red()).getStudenti_na_predmetu().size()==1)  {
+				int predmet =  PredmetiTablePanel.getSelektovan_red();
+				int student = TabelaListaStudenata.getInstance().getSelectedRow();
 				
-				JOptionPane.showMessageDialog(null, "Uspesno je obrisan student sa predmeta.");
-				TabelaListaStudenata.getInstance().refresujTabelu();
+				Predmet pred = BazaPredmeta.getInstance().getPredmete().get(predmet);
+				String indeks = pred.getStudenti_na_predmetu().get(student).getBrojIndeksa();
+			    
+				if(student>=0 && student<BazaPredmeta.getInstance().getPredmete().get(predmet).getStudenti_na_predmetu().size()) {
+					PredmetiController.getInstance().obrisiStudentaSaPredmeta(predmet,student);
+					StudentiController.getInstance().obrisiPredmetKodStudenta(pred,indeks);
+					
+					JOptionPane.showMessageDialog(null, "Uspesno je obrisan student sa predmeta.");
+					TabelaListaStudenata.getInstance().refresujTabelu();
+				}
 			}
 			else {
 				setVisible(false);

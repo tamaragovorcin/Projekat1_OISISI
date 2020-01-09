@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/rs/ac/uns/ftn/oisisi/view/DodavanjePredmetaDialog.java=UTF-8
 encoding//src/rs/ac/uns/ftn/oisisi/view/DodavanjeProfesoraDialog.java=UTF-8
 encoding//src/rs/ac/uns/ftn/oisisi/view/DodavanjeStudentaDialog.java=UTF-8
+encoding//src/rs/ac/uns/ftn/oisisi/view/IzmenaPredmetaDialog.java=UTF-8
 encoding//src/rs/ac/uns/ftn/oisisi/view/IzmenaProfesoraDialog.java=UTF-8
 encoding//src/rs/ac/uns/ftn/oisisi/view/IzmenaStudentaDialog.java=UTF-8
 encoding//src/rs/ac/uns/ftn/oisisi/view/MenuBar.java=UTF-8

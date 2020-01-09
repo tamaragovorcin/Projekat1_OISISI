@@ -31,8 +31,8 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 		
 		this.tabela.getColumnModel().getColumn(kolona).setCellEditor(this);
 	
-		this.renderButton = new JButton("Profesori");
-		this.editorButton = new JButton("Profesori");
+		this.renderButton = new JButton("Profesor");
+		this.editorButton = new JButton("Profesor");
 		
 		this.editorButton.addActionListener(new ActionListener() {
 			

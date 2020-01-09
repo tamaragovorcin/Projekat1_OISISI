@@ -209,7 +209,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 			txtSifra.setBackground(Color.RED);
 			return false;
 		}
-		if (!Pattern.matches("[a-zA-Z0-9_ ]*", tekst[1])) {
+		if (!Pattern.matches("[a-zA-Z0-9_ čČćĆžŽšŠđĐ]*", tekst[1])) {
 			txtNaziv.setBackground(Color.RED);
 			return false;
 		}
@@ -250,7 +250,8 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 				predmet.setNaziv_predmeta(tekst[1]);
 				predmet.setSemestar(tekst[2]);
 				predmet.setGodina_studija_izvodjenja(tekst[3]);
-		
+				
+				dispose();
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				PredmetiJTable.getInstance().refresTabelu();
 			}

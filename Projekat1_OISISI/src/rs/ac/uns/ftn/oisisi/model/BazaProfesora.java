@@ -118,6 +118,11 @@ private static BazaProfesora instance = null;
 		for (Profesor i : profesori) {
 			if (i.getBroj_licne_karte().equals(sifra)) {
 				profesori.remove(i);
+				for(Predmet p: BazaPredmeta.getInstance().getPredmete()) {
+					if(p.getProfesori_predavaci().contains(i)) {
+						p.getProfesori_predavaci().clear();
+					}
+				}
 				break;
 			}
 		}

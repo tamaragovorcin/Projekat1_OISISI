@@ -29,16 +29,16 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 
 	protected JButton odustani;
 	private JTable listaLicnihKarti;
-	
+	JButton obrisi;
 	public DialogListaProfesoraNaPredmetu(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 
 		setLayout(new BorderLayout());
-		setSize(300,400);
+		setSize(900,150);
 		setLocationRelativeTo(parent);
 		
 		JPanel pan_odgovor = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JButton obrisi = new JButton("OBRISI");
+		obrisi = new JButton("OBRISI");
 		obrisi.addActionListener(this);
 		JButton nazad = new JButton("NAZAD");
 		nazad.addActionListener(this);
@@ -63,8 +63,9 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 
 		if (e.getActionCommand().equals("NAZAD")) {
 			dispose();
-		} else {
-			
+		} 
+		else if(e.getActionCommand().equals("OBRISI"))  {
+		 if(BazaPredmeta.getInstance().getPredmete().get(PredmetiTablePanel.getSelektovan_red()).getProfesori_predavaci().size()==1) {
 			int predmet = PredmetiTablePanel.getSelektovan_red();
 			int profesor = TabelaListaProfesora.getInstance().getSelectedRow();
 			
@@ -78,11 +79,11 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 				JOptionPane.showMessageDialog(null, "Uspesno je obrisan profesor sa liste predavaca na predmetu.");
 				TabelaListaProfesora.getInstance().refresujTabelu();
 			}
-			else {
+		 }else {
 				setVisible(false);
-				JOptionPane.showMessageDialog(null, "Profesor nije selektovan.");
+				JOptionPane.showMessageDialog(null, "Profesor nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
 				setVisible(true);
-			}
+			}	
 		}
 	}
 }

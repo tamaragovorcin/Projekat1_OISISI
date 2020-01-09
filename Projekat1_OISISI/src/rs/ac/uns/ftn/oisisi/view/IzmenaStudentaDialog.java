@@ -665,6 +665,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 				student.setGodinaStudija(tekst[8]);
 				student.setStatus(tekst[9]);
 				
+				dispose();
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				StudentiJTable.getInstance().refresTabelu();
 			}
