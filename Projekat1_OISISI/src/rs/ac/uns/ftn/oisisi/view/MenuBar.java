@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.oisisi.view;
 
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -9,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
@@ -50,6 +52,8 @@ public class MenuBar extends JMenuBar {
 	private JMenuItem aboutstud2;
 	private JMenuItem aboutapp;
 	
+	private JScrollPane scrollPane;
+	TextField textField=new TextField();
 	public static MenuBar getInstance() {
 		if(instance==null) {		
 			instance=new MenuBar();	
@@ -337,12 +341,61 @@ public class MenuBar extends JMenuBar {
 		helpHelp=new JMenuItem("Help");
 		helpHelp.setMnemonic(KeyEvent.VK_H);
 		helpHelp.setIcon(new ImageIcon("images2/information.png"));
-		helpHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		helpHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		helpHelp.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, "Pomoc");
+				
+					
+				
+			
+				
+					textField.setText("Način korišćenja aplikacije \n\n"
+							+ "STUDENTI\n"
+							+ "1.	Dodavanje studenta je moguće iz menija na kartici File -> New -> New Student\n" +  
+							"2.	Izmena studenta moguća je iz menija Edit->Edit-> Edit Student\n" + 
+							"3.	Brisanje studenta moguće je iz menija Edit -> Delete ->Delete Student\n" + 
+							"Validacija unosa:\n" + 
+							"Datum je u formatu - XX.XX.XXXX\n" + 
+							"Broj telefona je u formatu - XXX/XXX(X)-XXX sa maksimalno 16 cifara\n" + 
+							"Indeks je u formatu XX(X) XX/XXXX (minimalno prva dva velika slova, maksimlano 3)\n" + 
+							"Email – bilo_šta@bilo_šta\n" + 
+							"Sva polja u dialogu moraju biti popunjena da bi mogli da dodate studenta\n\n\n"
+							+ "PREDMET/n" + 
+							"1.	Dodavanje predmeta File->New->New Predmet\n" + 
+							"2.	Izmena predmeta Edit->Edit-> Edit Predmet\n" + 
+							"3.	Brisanje predmeta Edit->Delete-> Delete Predmet\n" + 
+							"4.	Dodavanje studenta na predmet File->New->New Student/Profesor-> New Student\n" + 
+							"5.	Dodavanje profesora na predmet File->New->New Student/Profesor-> New Profesor\n" +  
+							"Sva polja u dialogu moraju biti popunjena da bi mogli da dodate predmet\n\n\n"
+							+ "PROFESOR/n" + 
+							"1.	Dodavanja profesora File-> New-> New Profesor\n" + 
+							"2.	Izmena profesora Edit->Edit-> Edit Profesor\n" + 
+							"3.	Brisanje profesora Edit->Delete-> Delete Profesor\n" + 
+							"Validacija unosa: Broj lične karte - 9 cifara sa navodnicima na pocetku i kraju\n" + 
+							"Datum u formatu – XX.XX.XXXX\n" + 
+							"Sva polja u dialogu moraju biti popunjena\n" + 
+							"Prečice:\n" + 
+							"ctrl + N – New Student\n" + 
+							"ctrl + R– New Predmet\n" + 
+							"ctrl + P – New Profesor\n" + 
+							"ctrl + T – New Student (na predmetu)\n" + 
+							"ctrl + F – New Profesor (na predmetu)\n" + 
+							"ctrl + E – Edit Student\n" + 
+							"ctrl + B – Edit Predmet\n" + 
+							"ctrl + A – Edit Profesor\n" + 
+							"ctrl + D – Delete Student\n" + 
+							"ctrl + M – Delete Predmet\n" + 
+							"ctrl + V – Delete Profesor  \n" + 
+							"ctrl + H – Help\n" + 
+							"ctrl + L - About Luna Živković\n"
+							+ "ctrl + T - About Tamara Govorčin/n"
+							+ "ctrl + Q - About App/n" + 
+							"");
+					
+					scrollPane=new JScrollPane(textField);
+					JOptionPane.showMessageDialog(null, scrollPane);
 			}
 		});
 		help.add(helpHelp);
@@ -360,8 +413,8 @@ public class MenuBar extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, "Student 1: Luna Živković, 14.02.1999. "
-													+"Student treće godine računarstva i automatike. Broj indeksa: RA 47/2017");
+					JOptionPane.showMessageDialog(null, "Student 1: Luna Živković, rodjena 14.02.1999. u Novom Sadu.\n"
+							+ "Student treće godine računarstva i automatike. Broj indeksa: RA 47/2017");
 			}
 		});
 		helpAbout.add(aboutstud1);
@@ -375,8 +428,8 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-					JOptionPane.showMessageDialog(null, "Student 2: Tamara Govorčin, 17.04.1999."
-												+"Student treće godine računarstva i automatike. Broj indeksa: RA 63/2017");
+					JOptionPane.showMessageDialog(null, "Student 2: Tamara Govorčin, rodjena 17.04.1999. u Novom Sadu.\n"
+							+ "Student treće godine računarstva i automatike. Broj indeksa: RA 63/2017");
 				
 			}
 		});
@@ -391,7 +444,12 @@ aboutapp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-					JOptionPane.showMessageDialog(null, "Aplikaciija Studentska sluzba omogucava rad sa studentima, profesorima i predmetima.");
+					JOptionPane.showMessageDialog(null, "Java Aplikaciija Studentska Sluzba verzija 1.0 omogucava rad sa studentima, profesorima i predmetima.\n\n"
+							+ "Kratak opis korišćenja aplikacije:\n" + 
+							"1.	Tabela student ima mogućnost dodavanja, brisanja, izmene, prikaza predmeta koje slusa student i pretragu studenata.\n" +  
+							"2.	Tabela predmet ima mogućnosti dodavanja, brisanja, izmenu, pretragu predmeta, mogućnost dodavanja studenta na predmet brisanje studenta sa predmeta,\n"
+							+ " dodavanje profesora na predmet brisanje profesora sa predmeta, listu profesora i studenta na predmetu.\n"  + 
+							"3.	 Tabela profesor ima mogćnost dodavanja, brisanja, izmenu profesora,  prikaz predmeta na kojima predaj profesor");
 				
 			}
 		});

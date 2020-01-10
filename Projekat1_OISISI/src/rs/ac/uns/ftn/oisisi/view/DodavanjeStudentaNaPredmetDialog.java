@@ -66,8 +66,13 @@ public class DodavanjeStudentaNaPredmetDialog extends JDialog{
 				
 				boolean odgovarajucaGod=false;
 				
+				if(stud!=null) {
+					if(predmet.getGodina_studija_izvodjenja().equals(stud.getGodinaStudija())) {
+						odgovarajucaGod=true;
+					}
+				}
 
-				if(postojiStudent== true && postojiStudentNaPredmetu==false ) {
+				if(postojiStudent== true && postojiStudentNaPredmetu==false && odgovarajucaGod==true) {
 					dispose();
 					PredmetiController.getInstance().dodajStudenta(stud, red);
 					StudentiController.getInstance().dodajPredmetStuddentu(predmet,indeks);
