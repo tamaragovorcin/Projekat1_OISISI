@@ -120,9 +120,22 @@ public class BazaStudenta {
 	public void izbrisiStudenta(String sifra) {
 		for (Student i : studenti) {
 			if (i.getBrojIndeksa().equals(sifra)) {
+				String broj = i.getBrojIndeksa();
 				studenti.remove(i);
+				
+				for(Predmet p: BazaPredmeta.getInstance().getPredmete()) {
+					if(p.getStudenti_na_predmetu().contains(i)) {
+						for(Student stud : p.getStudenti_na_predmetu()) {
+							if(stud.getBrojIndeksa().equals(broj)) {
+								p.getStudenti_na_predmetu().remove(stud);				
+								break;
+							}
+						}
+					}
+				}
 				break;
 			}
+			
 		}
 	}
 

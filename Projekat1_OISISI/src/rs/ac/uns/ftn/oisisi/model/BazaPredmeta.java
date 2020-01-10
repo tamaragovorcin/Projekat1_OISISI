@@ -105,6 +105,7 @@ public class BazaPredmeta {
 	public void izbrisiPredmet(String sifra) {
 		for (Predmet i : predmeti) {
 			if (i.getSifra_predmeta().equals(sifra)) {
+				String broj = i.getSifra_predmeta();
 				predmeti.remove(i);
 				for(Profesor p : BazaProfesora.getInstance().getProfesore()) {
 					if(p.getSpisak_predmeta().contains(i)) {
@@ -113,7 +114,12 @@ public class BazaPredmeta {
 				}
 				for(Student s: BazaStudenta.getInstance().getStudente()) {
 					if(s.getPredmeti().contains(i)) {
-						s.getPredmeti().clear();
+						for(Predmet pred: s.getPredmeti()) {
+							if(pred.getSifra_predmeta().equals(broj)) {
+								s.getPredmeti().remove(pred);
+								break;
+							}
+						}
 					}
 				}
 				break;
