@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -442,7 +441,7 @@ public class MenuBar  extends JMenuBar{
 		aboutapp.setMnemonic(KeyEvent.VK_Q);
 		aboutapp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		aboutapp.setIcon(new ImageIcon("images2/about.png"));
-aboutapp.addActionListener(new ActionListener() {
+		aboutapp.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

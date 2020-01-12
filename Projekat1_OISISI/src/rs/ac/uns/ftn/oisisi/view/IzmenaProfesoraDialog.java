@@ -22,7 +22,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
+import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
 
 public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
@@ -47,6 +49,10 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 	
 	private int red;
 	private Profesor profesor;
+	String imeProfesora;
+	String prezimeProfesora;
+	String LicnaKartaProfesora;
+	
 	public IzmenaProfesoraDialog(Main_Frame instance, String string, boolean b,int row) {
 		
 		super(instance, string, b);
@@ -688,6 +694,20 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 				profesor.setTitula(tekst[8]);
 				profesor.setZvanje(tekst[9]);
 				ProfesoriJTable.getInstance().refresTabelu();
+				
+				for(Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
+					for(Profesor prof: pred.getProfesori_predavaci()) {
+						if(prof.getIme().equals(imeProfesora)) {
+							prof.setIme(tekst[0]);
+						}
+						if(prof.getPrezime().equals(prezimeProfesora)) {
+							prof.setPrezime(tekst[1]);
+						}
+						if(prof.getBroj_licne_karte().equals(LicnaKartaProfesora)) {
+							prof.setBroj_licne_karte(tekst[7]);
+						}
+					}
+				}
 			}
 			else {
 				
@@ -704,6 +724,17 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 				dispose();
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				ProfesoriJTable.getInstance().refresTabelu();
+				
+				for(Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
+					for(Profesor prof: pred.getProfesori_predavaci()) {
+						if(prof.getIme().equals(imeProfesora)) {
+							prof.setIme(tekst[0]);
+						}
+						if(prof.getPrezime().equals(prezimeProfesora)) {
+							prof.setPrezime(tekst[1]);
+						}
+					}
+				}
 			}
 		}
 		setVisible(false);
@@ -727,5 +758,10 @@ public class IzmenaProfesoraDialog extends JDialog implements ActionListener {
 		txtBrojLicneKarte.setText(profesor.getBroj_licne_karte());
 		txtTitula.setText(profesor.getTitula());
 		txtZvanje.setText(profesor.getZvanje());
+		
+		imeProfesora = profesor.getIme();
+		prezimeProfesora = profesor.getPrezime();
+		LicnaKartaProfesora = profesor.getBroj_licne_karte();
+
 	}
 }

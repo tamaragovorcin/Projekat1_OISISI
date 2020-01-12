@@ -65,25 +65,25 @@ public class DialogListaProfesoraNaPredmetu extends JDialog implements ActionLis
 			dispose();
 		} 
 		else if(e.getActionCommand().equals("OBRISI"))  {
-		 if(BazaPredmeta.getInstance().getPredmete().get(PredmetiTablePanel.getSelektovan_red()).getProfesori_predavaci().size()==1) {
-			int predmet = PredmetiTablePanel.getSelektovan_red();
-			int profesor = TabelaListaProfesora.getInstance().getSelectedRow();
-			
-			Predmet pred = BazaPredmeta.getInstance().getPredmete().get(predmet);
-			String licna = pred.getProfesori_predavaci().get(profesor).getBroj_licne_karte();
-		    
-			if(profesor>=0 && profesor<BazaPredmeta.getInstance().getPredmete().get(predmet).getProfesori_predavaci().size()) {
-				PredmetiController.getInstance().obrisiProfesoraSaPredmeta(predmet,profesor);
-				ProfesoriController.getInstance().obrisiPredmetKodProfesora(pred,licna);
+			if(TabelaListaProfesora.getInstance().getSelectedRow()!=-1) {
+				int predmet = PredmetiTablePanel.getSelektovan_red();
+				int profesor = TabelaListaProfesora.getInstance().getSelectedRow();
 				
-				JOptionPane.showMessageDialog(null, "Uspesno je obrisan profesor sa liste predavaca na predmetu.");
-				TabelaListaProfesora.getInstance().refresujTabelu();
-			}
-		 }else {
-				setVisible(false);
-				JOptionPane.showMessageDialog(null, "Profesor nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
-				setVisible(true);
-			}	
+				Predmet pred = BazaPredmeta.getInstance().getPredmete().get(predmet);
+				String licna = pred.getProfesori_predavaci().get(profesor).getBroj_licne_karte();
+			    
+				if(profesor>=0 && profesor<BazaPredmeta.getInstance().getPredmete().get(predmet).getProfesori_predavaci().size()) {
+					PredmetiController.getInstance().obrisiProfesoraSaPredmeta(predmet,profesor);
+					ProfesoriController.getInstance().obrisiPredmetKodProfesora(pred,licna);
+					
+					JOptionPane.showMessageDialog(null, "Uspesno je obrisan profesor sa liste predavaca na predmetu.");
+					TabelaListaProfesora.getInstance().refresujTabelu();
+				}
+			 }else {
+					setVisible(false);
+					JOptionPane.showMessageDialog(null, "Profesor nije selektovan.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+					setVisible(true);
+				}	
 		}
 	}
 }

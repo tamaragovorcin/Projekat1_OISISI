@@ -22,8 +22,6 @@ import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
-import rs.ac.uns.ftn.oisisi.model.Student;
-
 public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 8377505010808280172L;

@@ -23,8 +23,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-
-import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
@@ -62,7 +60,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 	private int br2=0;
 	private int red;
 	private Student student;
-	private Predmet predmet;
 	
 	public IzmenaStudentaDialog(Main_Frame instance, String string, boolean b,int row) {
 		

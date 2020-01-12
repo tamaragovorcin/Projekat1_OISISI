@@ -257,7 +257,6 @@ public class BazaPredmeta {
 			 }
 		 }
 	 }
-	
 	public void ucitajPredmeteTXT() throws IOException {
 		ObjectInputStream in =null;
 		Predmet p=null;
