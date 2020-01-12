@@ -13,32 +13,33 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 public class ButtonColumnPredmet_Profesor extends AbstractCellEditor
-implements TableCellRenderer, TableCellEditor, MouseListener {
+		implements TableCellRenderer, TableCellEditor, MouseListener {
 
 	private static final long serialVersionUID = 517310325975137614L;
 
 	private JButton renderButton;
-	
+
 	private JButton editorButton;
 
 	private JTable tabela;
 	private boolean isEditorActive = false;
-	
+
 	public ButtonColumnPredmet_Profesor(JTable tabela, int kolona) {
 		this.tabela = tabela;
-	
+
 		this.tabela.getColumnModel().getColumn(kolona).setCellRenderer(this);
-		
+
 		this.tabela.getColumnModel().getColumn(kolona).setCellEditor(this);
-	
+
 		this.renderButton = new JButton("Profesor");
 		this.editorButton = new JButton("Profesor");
-		
+
 		this.editorButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DialogListaProfesoraNaPredmetu dialog = new DialogListaProfesoraNaPredmetu(Main_Frame.getInstance(),"Lista profesora", true);
+				DialogListaProfesoraNaPredmetu dialog = new DialogListaProfesoraNaPredmetu(Main_Frame.getInstance(),
+						"Lista profesora", true);
 				dialog.setVisible(true);
 			}
 		});

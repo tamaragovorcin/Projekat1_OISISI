@@ -1,38 +1,31 @@
 package rs.ac.uns.ftn.oisisi.model;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 public class BazaProfesora {
 
-private static BazaProfesora instance = null;
-	
+	private static BazaProfesora instance = null;
+
 	public static BazaProfesora getInstance() {
-		if(instance==null) {
+		if (instance == null) {
 			instance = new BazaProfesora();
 		}
 		return instance;
 	}
 
 	public static int broj_profesora = 0;
-	private List<String>kolone;
-	protected List<Profesor>profesori;
-	private List<Profesor>pretraga;
+	private List<String> kolone;
+	protected List<Profesor> profesori;
+	private List<Profesor> pretraga;
 	Predmet predmet;
-	
+
 	private BazaProfesora() {
-		
-		this.kolone=new ArrayList<String>();
-		this.profesori=new ArrayList<Profesor>();
-		this.pretraga= new ArrayList<Profesor>();
+
+		this.kolone = new ArrayList<String>();
+		this.profesori = new ArrayList<Profesor>();
+		this.pretraga = new ArrayList<Profesor>();
 		this.kolone.add("IME");
 		this.kolone.add("PREZIME");
 		this.kolone.add("DATUM RODJENJA");
@@ -46,14 +39,14 @@ private static BazaProfesora instance = null;
 		this.kolone.add("SPISAK PREDMETA");
 	}
 
-	public List<Profesor>getProfesore() {
+	public List<Profesor> getProfesore() {
 		return profesori;
 	}
-	
+
 	public void setProfesore(List<Profesor> profesori) {
-		this.profesori=profesori;
+		this.profesori = profesori;
 	}
-	
+
 	public int getColumnCount() {
 		return 11;
 	}
@@ -61,20 +54,19 @@ private static BazaProfesora instance = null;
 	public String getColumnName(int index) {
 		return this.kolone.get(index);
 	}
-	
+
 	public Profesor getRow(int rowIndex) {
 		return this.profesori.get(rowIndex);
 	}
 
 	public String getValueAt(int row, int column) {
 		List<Profesor> temp;
-		if(pretraga.size()==0) {
+		if (pretraga.size() == 0) {
 			temp = profesori;
+		} else {
+			temp = pretraga;
 		}
-		else {
-			temp=pretraga;
-		}
-		if(row<temp.size()) {
+		if (row < temp.size()) {
 			Profesor profesor = temp.get(row);
 			switch (column) {
 			case 0:
@@ -102,15 +94,16 @@ private static BazaProfesora instance = null;
 			default:
 				return null;
 			}
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	public void dodajProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
-			String kontakt_telefon, String email, String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
-		this.profesori.add(new Profesor(ime,prezime,datumRodjenja,adresaStanovanja,kontakt_telefon,email,adresa_kancelarije,broj_licne_karte,titula,zvanje));
+			String kontakt_telefon, String email, String adresa_kancelarije, String broj_licne_karte, String titula,
+			String zvanje) {
+		this.profesori.add(new Profesor(ime, prezime, datumRodjenja, adresaStanovanja, kontakt_telefon, email,
+				adresa_kancelarije, broj_licne_karte, titula, zvanje));
 		++broj_profesora;
 	}
 
@@ -118,8 +111,8 @@ private static BazaProfesora instance = null;
 		for (Profesor i : profesori) {
 			if (i.getBroj_licne_karte().equals(sifra)) {
 				profesori.remove(i);
-				for(Predmet p: BazaPredmeta.getInstance().getPredmete()) {
-					if(p.getProfesori_predavaci().contains(i)) {
+				for (Predmet p : BazaPredmeta.getInstance().getPredmete()) {
+					if (p.getProfesori_predavaci().contains(i)) {
 						p.getProfesori_predavaci().clear();
 					}
 				}
@@ -129,7 +122,8 @@ private static BazaProfesora instance = null;
 	}
 
 	public void izmeniProfesora(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
-			String kontakt_telefon, String email,String adresa_kancelarije, String broj_licne_karte, String titula, String zvanje) {
+			String kontakt_telefon, String email, String adresa_kancelarije, String broj_licne_karte, String titula,
+			String zvanje) {
 		for (Profesor i : profesori) {
 			if (i.getBroj_licne_karte().equals(broj_licne_karte)) {
 				i.setIme(ime);
@@ -140,7 +134,7 @@ private static BazaProfesora instance = null;
 				i.setEmail(email);
 				i.setAdresa_kancelarije(adresa_kancelarije);
 				i.setTitula(titula);
-				i.setZvanje(zvanje);	
+				i.setZvanje(zvanje);
 			}
 		}
 	}
@@ -152,236 +146,191 @@ private static BazaProfesora instance = null;
 	public void setBroj_profesora(int broj_profesora) {
 		BazaProfesora.broj_profesora = broj_profesora;
 	}
-	
-	 public void sacuvajProfesoreTXT() throws IOException{
-		 ObjectOutputStream out=null;
-		 
-		 try {
-			 out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("profesori.raw")));
-			 for(Profesor p:profesori) {
-				 out.writeObject(p);
-			 }
-		 }catch(Exception e) {
-			 e.printStackTrace();
-		 }finally {
-			 if(out!=null) {
-				 try {
-					 out.close();
-				 }catch(Exception e2) {
-					 
-				 }
-			 }
-		 }
-	 }
- 
-	 public void ucitajProfesoreTXT() throws IOException {
-			ObjectInputStream in =null;
-			Profesor p=null;
-			
-			try {
-				in=new ObjectInputStream(new BufferedInputStream(new FileInputStream("profesori.raw")));
-				while(true) {
-					p=(Profesor) in.readObject();
-					dodajprofesora2(p);
-				}
-			}catch(Exception e) {
 
-			 }finally {
-				 if(in!=null) {
-					 try {
-						 in.close();
-					 }catch(Exception e2) {
-						 
-					 }
-				 }
-			 }
-		 }
-	
-	 private void dodajprofesora2(Profesor p) {
-		broj_profesora++;
-		profesori.add(p);
-	}
-
-	 public void pretragaProfesora(String ulaz) {
-			if (ulaz.trim().length() == 0) {
-				pretraga.clear();
-				return;
-			}
-
+	public void pretragaProfesora(String ulaz) {
+		if (ulaz.trim().length() == 0) {
 			pretraga.clear();
+			return;
+		}
 
-			String podelaTeksta[] = ulaz.split(";");
-			String celina = podelaTeksta[0];
-			String[] deo = celina.split(":");
-		
-			if (deo.length != 2 || deo[1].trim().length() == 0) {
-				JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite profesora.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
-				return;
+		pretraga.clear();
+
+		String podelaTeksta[] = ulaz.split(";");
+		String celina = podelaTeksta[0];
+		String[] deo = celina.split(":");
+
+		if (deo.length != 2 || deo[1].trim().length() == 0) {
+			JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite profesora.", "Upozorenje!",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (deo[0].toLowerCase().equals("ime")) {
+			for (Profesor p : profesori) {
+				if (p.getIme().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
+				}
+
 			}
-			
-			if (deo[0].toLowerCase().equals("ime")) {
-				for (Profesor p : profesori) {
-					if (p.getIme().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-						pretraga.add(p);
-					}
+		} else if (deo[0].toLowerCase().equals("prezime")) {
+			for (Profesor p : profesori) {
+				if (p.getPrezime().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
+				}
 
-				}
-			} else if (deo[0].toLowerCase().equals("prezime")) {
-				for (Profesor p : profesori) {
-					if (p.getPrezime().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-						pretraga.add(p);
-					}
-
-				}
-			} else if (deo[0].toLowerCase().equals("datum_rodjenja")) {
-				for (Profesor p : profesori) {
-					if (p.getDatumRodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-						pretraga.add(p);
-					}
-
-				}
-			} else if (deo[0].toLowerCase().equals("adresa_stanovanja")) {
-				for (Profesor p : profesori) {
-					if (p.getAdresaStanovanja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-						pretraga.add(p);
-					}
-				}
-			}  else if (deo[0].toLowerCase().equals("telefon")) {
-					for (Profesor p : profesori) {
-						if (p.getKontakt_telefon().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(p);
-						}
-					}
-			}  else if (deo[0].toLowerCase().equals("email")) {
-					for (Profesor p : profesori) {
-						if (p.getEmail().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(p);
-						}
-					}
-			} else if (deo[0].toLowerCase().equals("adresa_kancelarije")) {
-					for (Profesor p : profesori) {
-						if (p.getAdresa_kancelarije().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(p);
-						}
-					}
-			} else if (deo[0].toLowerCase().equals("licna_karta")) {
-					for (Profesor p : profesori) {
-						if (p.getBroj_licne_karte().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(p);
-							}
-					}
-			} else if (deo[0].toLowerCase().equals("titula")) {
-					for (Profesor p : profesori) {
-						if (p.getTitula().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(p);
-						}
-					}
-			} else if (deo[0].toLowerCase().equals("zvanje")) {
-					for (Profesor p : profesori) {
-						if (p.getZvanje().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(p);
-							}
-					}
-			} else {
-				JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: " + 
-						"ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, adresa_kancelarije," + 
-						"licna_karta, titula i zvanje.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
-				return;
 			}
-			
-			if (podelaTeksta.length > 1) {
-				for (int i = 1; i < podelaTeksta.length; i++) {
-					
-					celina = podelaTeksta[i];
-					deo = celina.split(":");
-					
-					if (deo.length != 2 || deo[1].trim().length() == 0) {
-						JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite profesora.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
-						return;
-					}
-					
-					if (deo[0].toLowerCase().equals("ime")) {
-						for (Profesor p : profesori) {
-							if (!p.getIme().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-								pretraga.remove(p);
-							}
+		} else if (deo[0].toLowerCase().equals("datum_rodjenja")) {
+			for (Profesor p : profesori) {
+				if (p.getDatumRodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
+				}
 
-						}
-					} else if (deo[0].toLowerCase().equals("prezime")) {
-						for (Profesor p : profesori) {
-							if (!p.getPrezime().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-								pretraga.remove(p);
-							}
-
-						}
-					} else if (deo[0].toLowerCase().equals("datum_rodjenja")) {
-						for (Profesor p : profesori) {
-							if (!p.getDatumRodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-								pretraga.remove(p);
-							}
-
-						}
-					} else if (deo[0].toLowerCase().equals("adresa_stanovanja")) {
-						for (Profesor p : profesori) {
-							if (!p.getAdresaStanovanja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-								pretraga.remove(p);
-							}
-						}
-					}  else if (deo[0].toLowerCase().equals("telefon")) {
-							for (Profesor p : profesori) {
-								if (!p.getKontakt_telefon().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(p);
-								}
-							}
-					}  else if (deo[0].toLowerCase().equals("email")) {
-							for (Profesor p : profesori) {
-								if (!p.getEmail().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(p);
-								}
-							}
-					} else if (deo[0].toLowerCase().equals("adresa_kancelarije")) {
-							for (Profesor p : profesori) {
-								if (!p.getAdresa_kancelarije().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(p);
-								}
-							}
-					} else if (deo[0].toLowerCase().equals("licna_karta")) {
-							for (Profesor p : profesori) {
-								if (!p.getBroj_licne_karte().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(p);
-									}
-							}
-					} else if (deo[0].toLowerCase().equals("titula")) {
-							for (Profesor p : profesori) {
-								if (!p.getTitula().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(p);
-								}
-							}
-					} else if (deo[0].toLowerCase().equals("zvanje")) {
-							for (Profesor p : profesori) {
-								if (!p.getZvanje().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(p);
-									}
-							}
-					} else {
-						JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: " + 
-								"ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, adresa_kancelarije," + 
-								"licna_karta, titula i zvanje.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
-						return;
-					}
-				
+			}
+		} else if (deo[0].toLowerCase().equals("adresa_stanovanja")) {
+			for (Profesor p : profesori) {
+				if (p.getAdresaStanovanja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
 				}
 			}
-
-			if (pretraga.size() == 0) {
-				JOptionPane.showMessageDialog(null, "Ne postoji profesor sa unetim vrednostima.");
+		} else if (deo[0].toLowerCase().equals("telefon")) {
+			for (Profesor p : profesori) {
+				if (p.getKontakt_telefon().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
+				}
 			}
+		} else if (deo[0].toLowerCase().equals("email")) {
+			for (Profesor p : profesori) {
+				if (p.getEmail().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
+				}
+			}
+		} else if (deo[0].toLowerCase().equals("adresa_kancelarije")) {
+			for (Profesor p : profesori) {
+				if (p.getAdresa_kancelarije().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
+				}
+			}
+		} else if (deo[0].toLowerCase().equals("licna_karta")) {
+			for (Profesor p : profesori) {
+				if (p.getBroj_licne_karte().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
+				}
+			}
+		} else if (deo[0].toLowerCase().equals("titula")) {
+			for (Profesor p : profesori) {
+				if (p.getTitula().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
+				}
+			}
+		} else if (deo[0].toLowerCase().equals("zvanje")) {
+			for (Profesor p : profesori) {
+				if (p.getZvanje().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(p);
+				}
+			}
+		} else {
+			JOptionPane.showMessageDialog(null,
+					"Unete vrednosti nisu dobre! Moguce opcije su: "
+							+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, adresa_kancelarije,"
+							+ "licna_karta, titula i zvanje.",
+					"Upozorenje!", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (podelaTeksta.length > 1) {
+			for (int i = 1; i < podelaTeksta.length; i++) {
+
+				celina = podelaTeksta[i];
+				deo = celina.split(":");
+
+				if (deo.length != 2 || deo[1].trim().length() == 0) {
+					JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite profesora.", "Upozorenje!",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+				if (deo[0].toLowerCase().equals("ime")) {
+					for (Profesor p : profesori) {
+						if (!p.getIme().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+
+					}
+				} else if (deo[0].toLowerCase().equals("prezime")) {
+					for (Profesor p : profesori) {
+						if (!p.getPrezime().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+
+					}
+				} else if (deo[0].toLowerCase().equals("datum_rodjenja")) {
+					for (Profesor p : profesori) {
+						if (!p.getDatumRodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+
+					}
+				} else if (deo[0].toLowerCase().equals("adresa_stanovanja")) {
+					for (Profesor p : profesori) {
+						if (!p.getAdresaStanovanja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("telefon")) {
+					for (Profesor p : profesori) {
+						if (!p.getKontakt_telefon().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("email")) {
+					for (Profesor p : profesori) {
+						if (!p.getEmail().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("adresa_kancelarije")) {
+					for (Profesor p : profesori) {
+						if (!p.getAdresa_kancelarije().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("licna_karta")) {
+					for (Profesor p : profesori) {
+						if (!p.getBroj_licne_karte().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("titula")) {
+					for (Profesor p : profesori) {
+						if (!p.getTitula().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("zvanje")) {
+					for (Profesor p : profesori) {
+						if (!p.getZvanje().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(p);
+						}
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: "
+							+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, adresa_kancelarije,"
+							+ "licna_karta, titula i zvanje.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+			}
+		}
+
+		if (pretraga.size() == 0) {
+			JOptionPane.showMessageDialog(null, "Ne postoji profesor sa unetim vrednostima.");
+		}
 	}
 
 	public Profesor getProfesorPoPredmetu(String licna) {
-		Profesor p=null;
-		for(Profesor prof: profesori) {
-			if(prof.getBroj_licne_karte().equals(licna)) {
+		Profesor p = null;
+		for (Profesor prof : profesori) {
+			if (prof.getBroj_licne_karte().equals(licna)) {
 				p = prof;
 			}
 		}
@@ -389,10 +338,10 @@ private static BazaProfesora instance = null;
 	}
 
 	public boolean postojiLicnaKarta(String licna) {
-		boolean izlaz=false;
-		
-		for(Profesor prof: profesori) {
-			if(prof.getBroj_licne_karte().equals(licna)) {
+		boolean izlaz = false;
+
+		for (Profesor prof : profesori) {
+			if (prof.getBroj_licne_karte().equals(licna)) {
 				izlaz = true;
 			}
 		}
@@ -400,24 +349,25 @@ private static BazaProfesora instance = null;
 	}
 
 	public void dodajPredmetProfesu(Predmet predmet2, String licna) {
-		for(Profesor prof : profesori) {
-			if(prof.getBroj_licne_karte().equals(licna)) {
+		for (Profesor prof : profesori) {
+			if (prof.getBroj_licne_karte().equals(licna)) {
 				prof.getSpisak_predmeta().add(predmet2);
 			}
 		}
 	}
 
 	public void obrisiPredmetKodProfesora(Predmet pred, String licna) {
-		for(Profesor p : profesori) {
-			if(p.getBroj_licne_karte().equals(licna)) {
+		for (Profesor p : profesori) {
+			if (p.getBroj_licne_karte().equals(licna)) {
 				for (int i = 0; i < p.getSpisak_predmeta().size(); i++) {
-					if(p.getSpisak_predmeta().get(i).getSifra_predmeta().equals(pred.getSifra_predmeta())) {
-							p.getSpisak_predmeta().remove(i);
+					if (p.getSpisak_predmeta().get(i).getSifra_predmeta().equals(pred.getSifra_predmeta())) {
+						p.getSpisak_predmeta().remove(i);
 					}
 				}
 			}
-		}	
+		}
 	}
+
 	public List<Profesor> getPretraga() {
 		return pretraga;
 	}

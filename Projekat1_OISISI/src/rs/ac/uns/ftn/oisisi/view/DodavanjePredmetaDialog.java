@@ -51,7 +51,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		JButton odustanak = new JButton("ODUSTANAK");
 		odustanak.addActionListener(this);
 		JButton potvrda = new JButton("POTVRDA");
-		potvrda.setEnabled(false); 
+		potvrda.setEnabled(false);
 		potvrda.addActionListener(this);
 
 		pan_odogovr.add(odustanak);
@@ -89,7 +89,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 				}
 			}
 		});
-	
+
 		JLabel lblNaziv = new JLabel("Naziv predmeta*:");
 		lblNaziv.setPreferredSize(dim);
 
@@ -120,7 +120,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 		JLabel lblsemestar = new JLabel("Semestar*:");
 		lblsemestar.setPreferredSize(dim);
-		String semestar[] = { "    ", "1", "2","3","4","5","6","7","8" };
+		String semestar[] = { "    ", "1", "2", "3", "4", "5", "6", "7", "8" };
 
 		semestarComboBox = new JComboBox<String>(semestar);
 		semestarComboBox.addActionListener(new ActionListener() {
@@ -178,7 +178,7 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 		gbcTekstNaziv.fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstNaziv.insets = new Insets(20, 20, 0, 20);
 		pan_centar.add(txtNaziv, gbcTekstNaziv);
-		
+
 		GridBagConstraints gbcSemestar = new GridBagConstraints();
 		gbcSemestar.gridx = 0;
 		gbcSemestar.gridy = 2;
@@ -248,36 +248,35 @@ public class DodavanjePredmetaDialog extends JDialog implements ActionListener {
 
 		return izlaz;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String tekst[] = pokupiUnetiTekst();
-		
+
 		if (e.getActionCommand().equals("ODUSTANAK")) {
 			dispose();
 		} else {
-			if(BazaPredmeta.getInstance().getPredmete().size()==0) {
+			if (BazaPredmeta.getInstance().getPredmete().size() == 0) {
 				BazaPredmeta.getInstance().initPredmete(tekst[0], tekst[1], tekst[2], tekst[3]);
-			}
-			else {
-				int nesto=0;
-				for(Predmet p: BazaPredmeta.getInstance().getPredmete()) {
-					if(p.getSifra_predmeta().equals(tekst[0])) {
-						nesto =1;
+			} else {
+				int nesto = 0;
+				for (Predmet p : BazaPredmeta.getInstance().getPredmete()) {
+					if (p.getSifra_predmeta().equals(tekst[0])) {
+						nesto = 1;
 					}
 				}
-				if(nesto==0) {
+				if (nesto == 0) {
 					setVisible(true);
 					BazaPredmeta.getInstance().initPredmete(tekst[0], tekst[1], tekst[2], tekst[3]);
-				} 
-				else if(nesto ==1) {
+				} else if (nesto == 1) {
 					setVisible(false);
-					JOptionPane.showMessageDialog(null, "Predmet sa tom sifrom vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Predmet sa tom sifrom vec postoji.", "Upozorenje!",
+							JOptionPane.ERROR_MESSAGE);
 					setVisible(true);
 				}
 			}
-			
-			}
+
+		}
 		setVisible(false);
 	}
 

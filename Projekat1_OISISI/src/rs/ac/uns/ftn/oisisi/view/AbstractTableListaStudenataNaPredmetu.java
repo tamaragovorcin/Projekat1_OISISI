@@ -10,12 +10,11 @@ public class AbstractTableListaStudenataNaPredmetu extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		if(BazaPredmeta.getInstance().getPretraga().size()==0) {
-			int selektovan = PredmetiTablePanel.getSelektovan_red();		
-			return  BazaPredmeta.getInstance().getPredmete().get(selektovan).getStudenti_na_predmetu().size();
-		}
-		else {
-			int selektovan = PredmetiTablePanel.getSelektovan_red();	
+		if (BazaPredmeta.getInstance().getPretraga().size() == 0) {
+			int selektovan = PredmetiTablePanel.getSelektovan_red();
+			return BazaPredmeta.getInstance().getPredmete().get(selektovan).getStudenti_na_predmetu().size();
+		} else {
+			int selektovan = PredmetiTablePanel.getSelektovan_red();
 			return BazaPredmeta.getInstance().getPretraga().get(selektovan).getStudenti_na_predmetu().size();
 		}
 	}
@@ -29,26 +28,25 @@ public class AbstractTableListaStudenataNaPredmetu extends AbstractTableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		int selektovan = PredmetiTablePanel.getSelektovan_red();
 		if (selektovan != -1) {
-			if(BazaPredmeta.getInstance().getPretraga().size()==0) {
+			if (BazaPredmeta.getInstance().getPretraga().size() == 0) {
 				Predmet predmet = BazaPredmeta.getInstance().getPredmete().get(selektovan);
-				if(rowIndex <predmet.getStudenti_na_predmetu().size()) {
-					switch(columnIndex) {
+				if (rowIndex < predmet.getStudenti_na_predmetu().size()) {
+					switch (columnIndex) {
 					case 0:
 						return predmet.getStudenti_na_predmetu().get(rowIndex).getBrojIndeksa();
 					case 1:
 						return predmet.getStudenti_na_predmetu().get(rowIndex).getIme();
 					case 2:
 						return predmet.getStudenti_na_predmetu().get(rowIndex).getPrezime();
-					default: 
+					default:
 						break;
 					}
 				}
-			}
-			else {
+			} else {
 				Predmet predmet = BazaPredmeta.getInstance().getPretraga().get(selektovan);
-				if(rowIndex<predmet.getStudenti_na_predmetu().size()) {
-					switch(columnIndex) {
-					case 0: 
+				if (rowIndex < predmet.getStudenti_na_predmetu().size()) {
+					switch (columnIndex) {
+					case 0:
 						return predmet.getStudenti_na_predmetu().get(selektovan).getBrojIndeksa();
 					case 1:
 						return predmet.getStudenti_na_predmetu().get(rowIndex).getIme();
@@ -66,8 +64,8 @@ public class AbstractTableListaStudenataNaPredmetu extends AbstractTableModel {
 	}
 
 	public String getColumnName(int column) {
-		switch(column) {
-		case 0: 
+		switch (column) {
+		case 0:
 			return "Broj indeksa";
 		case 1:
 			return "Ime";
@@ -77,7 +75,5 @@ public class AbstractTableListaStudenataNaPredmetu extends AbstractTableModel {
 			return null;
 		}
 	}
-		
-
 
 }

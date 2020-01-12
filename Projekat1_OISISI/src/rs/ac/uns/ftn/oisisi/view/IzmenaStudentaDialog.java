@@ -672,7 +672,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 					}
 				}
 
-				
 				for (Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
 					for (Student stud : pred.getStudenti_na_predmetu()) {
 						if (stud.getBrojIndeksa().equals(student.getBrojIndeksa())) {
@@ -715,8 +714,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 						}
 					}
 				}
-			
-				
+
 				for (Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
 					for (Student stud : pred.getStudenti_na_predmetu()) {
 						if (stud.getBrojIndeksa().equals(student.getBrojIndeksa())) {

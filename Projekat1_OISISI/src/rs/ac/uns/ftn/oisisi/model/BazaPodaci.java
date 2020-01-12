@@ -21,6 +21,7 @@ public class BazaPodaci {
 		bazaPredmeta  = BazaPredmeta.getInstance();
 	}
 	
+	@SuppressWarnings({ "unchecked", "static-access" })
 	public void citanje() {
 		ObjectInputStream o = null;
 		try {

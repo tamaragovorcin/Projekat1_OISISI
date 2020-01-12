@@ -1,13 +1,5 @@
 package rs.ac.uns.ftn.oisisi.model;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +41,7 @@ public class BazaPredmeta {
 		this.predmeti.add(new Predmet(sifra, naziv, semestar, godina));
 		broj_predmeta++;
 	}
-	
+
 	public List<Predmet> getPredmete() {
 		return predmeti;
 	}
@@ -107,15 +99,15 @@ public class BazaPredmeta {
 			if (i.getSifra_predmeta().equals(sifra)) {
 				String broj = i.getSifra_predmeta();
 				predmeti.remove(i);
-				for(Profesor p : BazaProfesora.getInstance().getProfesore()) {
-					if(p.getSpisak_predmeta().contains(i)) {
+				for (Profesor p : BazaProfesora.getInstance().getProfesore()) {
+					if (p.getSpisak_predmeta().contains(i)) {
 						p.getSpisak_predmeta().clear();
 					}
 				}
-				for(Student s: BazaStudenta.getInstance().getStudente()) {
-					if(s.getPredmeti().contains(i)) {
-						for(Predmet pred: s.getPredmeti()) {
-							if(pred.getSifra_predmeta().equals(broj)) {
+				for (Student s : BazaStudenta.getInstance().getStudente()) {
+					if (s.getPredmeti().contains(i)) {
+						for (Predmet pred : s.getPredmeti()) {
+							if (pred.getSifra_predmeta().equals(broj)) {
 								s.getPredmeti().remove(pred);
 								break;
 							}
@@ -158,7 +150,8 @@ public class BazaPredmeta {
 		String[] deo = celina.split(":");
 
 		if (deo.length != 2 || deo[1].trim().length() == 0) {
-			JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet.", "Upozorenje!",
+					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
@@ -187,7 +180,9 @@ public class BazaPredmeta {
 				}
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					"Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.", "Upozorenje!",
+					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		if (podelaTeksta.length > 1) {
@@ -197,7 +192,8 @@ public class BazaPredmeta {
 				deo = celina.split(":");
 
 				if (deo.length != 2 || deo[1].trim().length() == 0) {
-					JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite predmet.", "Upozorenje!",
+							JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 
@@ -226,7 +222,9 @@ public class BazaPredmeta {
 						}
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"Unete vrednosti nisu dobre! Moguce opcije su: sifra, naziv, semestar i godina.",
+							"Upozorenje!", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 			}
@@ -237,59 +235,11 @@ public class BazaPredmeta {
 
 	}
 
-	public void sacuvajPredmeteTXT() throws IOException{
-		 ObjectOutputStream out=null;
-		 
-		 try {
-			 out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.raw")));
-			 for(Predmet p:predmeti) {
-				 out.writeObject(p);
-			 }
-		 }catch(Exception e) {
-			 e.printStackTrace();
-		 }finally {
-			 if(out!=null) {
-				 try {
-					 out.close();
-				 }catch(Exception e2) {
-					 
-				 }
-			 }
-		 }
-	 }
-	public void ucitajPredmeteTXT() throws IOException {
-		ObjectInputStream in =null;
-		Predmet p=null;
-		
-		try {
-			in=new ObjectInputStream(new BufferedInputStream(new FileInputStream("predmeti.raw")));
-			while(true) {
-				p=(Predmet) in.readObject();
-				dodajpredmeta2(p);
-			}
-		}catch(Exception e) {
-			
-	    }finally {
-			 if(in!=null) {
-				 try {
-					 in.close();
-				 }catch(Exception e2) {
-					 
-				 }
-			 }
-		 } 
-	 }
-		 
-	private void dodajpredmeta2(Predmet p) {
-		broj_predmeta++;
-		predmeti.add(p);
-	}
-
 	public void dodajProfesoraNaPredmet(Profesor prof, int i) {
 		predmeti.get(i).getProfesori_predavaci().add(prof);
 		broj_profesora_na_predmetu++;
 	}
-	
+
 	public static int getBroj_profesora_na_predmetu() {
 		return broj_profesora_na_predmetu;
 	}
@@ -303,19 +253,19 @@ public class BazaPredmeta {
 		p = predmeti.get(red);
 		return p;
 	}
-	
+
 	public boolean PostojiProfesorNaPredmetu(int red, String licna) {
 		boolean izlaz = false;
-		for( Profesor prof:predmeti.get(red).getProfesori_predavaci()) {
-			if(prof.getBroj_licne_karte().equals(licna)) {
-				izlaz= true;
+		for (Profesor prof : predmeti.get(red).getProfesori_predavaci()) {
+			if (prof.getBroj_licne_karte().equals(licna)) {
+				izlaz = true;
 			}
 		}
 		return izlaz;
 	}
 
 	public void dodajStudentaNaPredmet(Student student, int i) {
-		
+
 		predmeti.get(i).getStudenti_na_predmetu().add(student);
 		broj_studenta_na_predmetu++;
 	}
@@ -333,30 +283,28 @@ public class BazaPredmeta {
 		p = predmeti.get(red);
 		return p;
 	}
-	
+
 	public boolean PostojiStudentNaPredmetu(int red, String indeks) {
 		boolean izlaz = false;
-		for( Student stud:predmeti.get(red).getStudenti_na_predmetu()) {
-			if(stud.getBrojIndeksa().equals(indeks)) {
-				izlaz= true;
+		for (Student stud : predmeti.get(red).getStudenti_na_predmetu()) {
+			if (stud.getBrojIndeksa().equals(indeks)) {
+				izlaz = true;
 			}
 		}
 		return izlaz;
 	}
-	
-	
-	
-	public void obrisiStudentaSaPredmeta(int a,int i) {
+
+	public void obrisiStudentaSaPredmeta(int a, int i) {
 		predmeti.get(a).getStudenti_na_predmetu().remove(i);
 		broj_studenta_na_predmetu--;
 	}
-	
-	public void obrisiProfesorasaPredmeta(int predmet,int profesor) {
+
+	public void obrisiProfesorasaPredmeta(int predmet, int profesor) {
 		predmeti.get(predmet).getProfesori_predavaci().remove(profesor);
-		broj_profesora_na_predmetu--;	
+		broj_profesora_na_predmetu--;
 	}
 
-	public void obrisiStudentasaPredmeta(int predmet,int student) {
+	public void obrisiStudentasaPredmeta(int predmet, int student) {
 		predmeti.get(predmet).getStudenti_na_predmetu().remove(student);
 		broj_studenta_na_predmetu--;
 	}

@@ -10,11 +10,10 @@ public class AbstractTableListaPredmetaKodStudenta extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		if(BazaStudenta.getInstance().getPretraga().size()==0) {
-			int selektovan = StudentiTablePanel.getSelektovan_red();	
-			return  BazaStudenta.getInstance().getStudente().get(selektovan).getPredmeti().size();
-		}
-		else {
+		if (BazaStudenta.getInstance().getPretraga().size() == 0) {
+			int selektovan = StudentiTablePanel.getSelektovan_red();
+			return BazaStudenta.getInstance().getStudente().get(selektovan).getPredmeti().size();
+		} else {
 			int selektovan = StudentiTablePanel.getSelektovan_red();
 			return BazaStudenta.getInstance().getPretraga().get(selektovan).getPredmeti().size();
 		}

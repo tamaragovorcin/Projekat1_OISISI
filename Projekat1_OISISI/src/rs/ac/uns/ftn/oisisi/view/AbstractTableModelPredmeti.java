@@ -8,26 +8,24 @@ import javax.swing.table.AbstractTableModel;
 
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 
-
 public class AbstractTableModelPredmeti extends AbstractTableModel {
 
 	private static final long serialVersionUID = -5798037111446621009L;
 
 	private List<Boolean> koJeOtkacen;
-	
+
 	public AbstractTableModelPredmeti() {
 		this.koJeOtkacen = new ArrayList<>();
 		for (int i = 0; i < BazaPredmeta.getInstance().getPredmete().size(); i++) {
 			koJeOtkacen.add(false);
 		}
 	}
-	
+
 	@Override
-	public int getRowCount() { 
-		if(BazaPredmeta.getInstance().getPretraga().size()==0) {
+	public int getRowCount() {
+		if (BazaPredmeta.getInstance().getPretraga().size() == 0) {
 			return BazaPredmeta.getInstance().getPredmete().size();
-		}
-		else {
+		} else {
 			return BazaPredmeta.getInstance().getPretraga().size();
 		}
 	}
@@ -37,19 +35,19 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 		return BazaPredmeta.getInstance().getColumnCount();
 	}
 
-	public Object getValueAt(int rowIndex, int columnIndex){
+	public Object getValueAt(int rowIndex, int columnIndex) {
 		if (columnIndex < 4)
 			return BazaPredmeta.getInstance().getValueAt(rowIndex, columnIndex);
 		else if (columnIndex == 4) {
 			JButton btn = new JButton("" + rowIndex);
 			return btn;
-		} 
+		}
 		return null;
 	}
 
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return columnIndex>=4;
+		return columnIndex >= 4;
 	}
 
 	@Override
@@ -80,7 +78,7 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 	public void predmetDodat() {
 		this.koJeOtkacen.add(false);
 	}
-	
+
 	public void predmetUklonjen(int rowIndex) {
 		this.koJeOtkacen.remove(rowIndex);
 	}

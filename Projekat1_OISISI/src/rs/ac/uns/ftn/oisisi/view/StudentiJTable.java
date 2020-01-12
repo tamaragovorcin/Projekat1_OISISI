@@ -12,14 +12,14 @@ public class StudentiJTable extends JTable {
 	private static final long serialVersionUID = 4206039227512091130L;
 
 	private static StudentiJTable instance = null;
-	
+
 	static public StudentiJTable getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new StudentiJTable();
 		}
 		return instance;
 	}
-	
+
 	private StudentiJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
@@ -35,20 +35,19 @@ public class StudentiJTable extends JTable {
 		if (isRowSelected(row)) {
 			c.setBackground(Color.LIGHT_GRAY);
 		} else {
-			if(row%2 ==0) {
+			if (row % 2 == 0) {
 				c.setBackground(new Color(204, 227, 249));
-			}
-			else {
-			c.setBackground(Color.WHITE);
+			} else {
+				c.setBackground(Color.WHITE);
 			}
 		}
 		return c;
 	}
-	
+
 	public void refresTabelu() {
 		AbstractTableModelStudenti arp = (AbstractTableModelStudenti) this.getModel();
 		arp.fireTableDataChanged();
 		validate();
-		
+
 	}
 }
