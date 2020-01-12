@@ -6,11 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
 import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
@@ -19,7 +21,7 @@ import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
-public class MenuBar extends JMenuBar {
+public class MenuBar  extends JMenuBar{
 
 	private static final long serialVersionUID = -7863806568418316202L;
 	
@@ -53,6 +55,7 @@ public class MenuBar extends JMenuBar {
 	private JMenuItem aboutapp;
 	
 	private JScrollPane scrollPane;
+	JTextArea ta;
 	TextField textField=new TextField();
 	public static MenuBar getInstance() {
 		if(instance==null) {		
@@ -351,7 +354,7 @@ public class MenuBar extends JMenuBar {
 				
 			
 				
-					textField.setText("Način korišćenja aplikacije \n\n"
+					ta=new JTextArea("Način korišćenja aplikacije \n\n"
 							+ "STUDENTI\n"
 							+ "1.	Dodavanje studenta je moguće iz menija na kartici File -> New -> New Student\n" +  
 							"2.	Izmena studenta moguća je iz menija Edit->Edit-> Edit Student\n" + 
@@ -392,9 +395,9 @@ public class MenuBar extends JMenuBar {
 							"ctrl + L - About Luna Živković\n"
 							+ "ctrl + T - About Tamara Govorčin/n"
 							+ "ctrl + Q - About App/n" + 
-							"");
+							"",20,70);
 					
-					scrollPane=new JScrollPane(textField);
+					scrollPane=new JScrollPane(ta);
 					JOptionPane.showMessageDialog(null, scrollPane);
 			}
 		});

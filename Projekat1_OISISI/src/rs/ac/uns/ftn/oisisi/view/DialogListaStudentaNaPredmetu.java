@@ -54,7 +54,7 @@ public class DialogListaStudentaNaPredmetu extends JDialog implements ActionList
 		if (e.getActionCommand().equals("NAZAD")) {
 			dispose();
 		} else if(e.getActionCommand().equals("OBRISI")) {
-			if(BazaPredmeta.getInstance().getPredmete().get(PredmetiTablePanel.getSelektovan_red()).getStudenti_na_predmetu().size()==1)  {
+			if(BazaPredmeta.getInstance().getPredmete().get(PredmetiTablePanel.getSelektovan_red()).getStudenti_na_predmetu().size()>0)  {
 				int predmet =  PredmetiTablePanel.getSelektovan_red();
 				int student = TabelaListaStudenata.getInstance().getSelectedRow();
 				

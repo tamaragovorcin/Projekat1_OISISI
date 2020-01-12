@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 
 import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.Predmet;
+import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
@@ -34,6 +35,8 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 	JTextField txtNaziv = new JTextField();
 	JComboBox<String> semestarComboBox;
 	JComboBox<String> godinaComboBox;
+	
+	String godina;
 	
 	List<Predmet> predmeti = BazaPredmeta.getInstance().getPredmete();
 	
@@ -143,7 +146,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (isValid()) {
+				if (provera()) {
 					potvrda.setEnabled(true);
 				} else {
 					potvrda.setEnabled(false);
@@ -164,7 +167,7 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (isValid()) {
+				if (provera()) {
 					potvrda.setEnabled(true);
 				} else {
 					potvrda.setEnabled(false);
@@ -245,6 +248,10 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 				predmet.setSemestar(tekst[2]);
 				predmet.setGodina_studija_izvodjenja(tekst[3]);
 				PredmetiJTable.getInstance().refresTabelu();
+				
+				if(!godina.equals(tekst[3])) {
+					predmet.getStudenti_na_predmetu().clear();
+				}
 			}
 			else {
 				predmet.setNaziv_predmeta(tekst[1]);
@@ -254,6 +261,10 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 				dispose();
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				PredmetiJTable.getInstance().refresTabelu();
+				
+				if(!godina.equals(tekst[3])) {
+					predmet.getStudenti_na_predmetu().clear();
+				}
 			}
 		}
 		setVisible(false);
@@ -320,6 +331,11 @@ public class IzmenaPredmetaDialog extends JDialog implements ActionListener{
 		}
 		
 		godinaComboBox.setSelectedIndex(br2);
+		
+		godina=predmet.getGodina_studija_izvodjenja();		
+		
+		
+	
 	}
 	
 	

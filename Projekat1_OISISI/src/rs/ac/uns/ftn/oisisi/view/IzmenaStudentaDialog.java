@@ -23,7 +23,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import rs.ac.uns.ftn.oisisi.controller.StudentiController;
+import rs.ac.uns.ftn.oisisi.model.BazaPredmeta;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
+import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class IzmenaStudentaDialog extends JDialog implements ActionListener {
@@ -48,11 +52,18 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 	ButtonGroup btnGroup1 = new ButtonGroup();
 	
 	List<Student> studenti = BazaStudenta.getInstance().getStudente();
+	String imeStudenta;
+	String prezimeStudenta;
+	String indeksStudenta;
+	String godina;
+
 	
 	String statusStudenta;
 	private int br2=0;
 	private int red;
 	private Student student;
+	private Predmet predmet;
+	
 	public IzmenaStudentaDialog(Main_Frame instance, String string, boolean b,int row) {
 		
 		super(instance, string, b);
@@ -642,6 +653,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 						return;
 					}	
 				}
+				
 				student.setIme(tekst[0]);
 				student.setPrezime(tekst[1]);
 				student.setDatumRodjenja(tekst[2]);
@@ -653,7 +665,27 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 				student.setGodinaStudija(tekst[8]);
 				student.setStatus(tekst[9]);
 				StudentiJTable.getInstance().refresTabelu();
+				
+				for(Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
+					for(Student stud: pred.getStudenti_na_predmetu()) {
+						if(stud.getIme().equals(imeStudenta)) {
+							stud.setIme(tekst[0]);
+						}if(stud.getPrezime().equals(prezimeStudenta)) {
+							stud.setPrezime(tekst[1]);
+						}
+						if(stud.getBrojIndeksa().equals(indeksStudenta)) {
+							stud.setBrojIndeksa(tekst[6]);
+						}
+						
+						
+					}
+				}
+				
 			}
+		
+				
+	
+				
 			else {
 				student.setIme(tekst[0]);
 				student.setPrezime(tekst[1]);
@@ -668,8 +700,26 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 				dispose();
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				StudentiJTable.getInstance().refresTabelu();
+				
+				for(Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
+					for(Student stud: pred.getStudenti_na_predmetu()) {
+						if(stud.getIme().equals(imeStudenta)) {
+							stud.setIme(tekst[0]);
+						}if(stud.getPrezime().equals(prezimeStudenta)) {
+							stud.setPrezime(tekst[1]);
+						}
+					}
+				}
+				
+				
+				
 			}
 		}
+		
+		
+		
+		
+	
 		setVisible(false);
 	}
 		
@@ -689,6 +739,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 			student = BazaStudenta.getInstance().getPretraga().get(red);
 		}
 		student = BazaStudenta.getInstance().getStudente().get(red);
+		
 		txtIme.setText(student.getIme());
 		txtPrezime.setText(student.getPrezime());
 		txtDatumRodjenja.setText(student.getDatumRodjenja());
@@ -724,6 +775,11 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		}else {
 			budzet.setSelected(true);
 		}
+		
+		imeStudenta=student.getIme();
+		prezimeStudenta=student.getPrezime();
+		indeksStudenta=student.getBrojIndeksa();
+		godina=student.getGodinaStudija();
 	}
 }
 
