@@ -540,9 +540,6 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		if (!Pattern.matches("^[0-9/-]*", tekst[4])) {
 			txtTelefon.setBackground(Color.RED);
 			return false;	
-		}else if(tekst[4].length() >16) {
-			txtTelefon.setBackground(Color.RED);
-			return false;	
 		}
 		if (tekst[5].length() != 0) {
 			if (!Pattern.matches("^(.+)@(.+)$", tekst[5])) {
