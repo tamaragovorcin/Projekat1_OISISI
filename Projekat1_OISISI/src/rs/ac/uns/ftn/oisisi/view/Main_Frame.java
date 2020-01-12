@@ -7,17 +7,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
-
-import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
-import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
-import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 import rs.ac.uns.ftn.oisisi.controller.TabbedPaneListener;
+import rs.ac.uns.ftn.oisisi.model.BazaPodaci;
 
 public class Main_Frame extends JFrame{
 
@@ -40,6 +36,10 @@ public class Main_Frame extends JFrame{
 	}
 	
 	private Main_Frame() {
+		  BazaPodaci bp = new BazaPodaci();
+			
+			bp.citanje();
+		
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
@@ -51,6 +51,9 @@ public class Main_Frame extends JFrame{
 		setLocationRelativeTo(null);
         getContentPane().setBackground(Color.LIGHT_GRAY);
         setLayout(new BorderLayout());
+        
+      
+        
         
         toolbar = Toolbar.getInstance();
         add(toolbar,BorderLayout.NORTH);
@@ -73,12 +76,12 @@ public class Main_Frame extends JFrame{
 		 add(statusBar,BorderLayout.SOUTH);
 		statusBar.setVisible(true);
 		
-		
 		this.addWindowListener(new WindowListener() {
 			
 			@Override
 			public void windowOpened(WindowEvent e) {
 				// TODO Auto-generated method stub
+			
 				
 			}
 			
@@ -107,11 +110,13 @@ public class Main_Frame extends JFrame{
 				if(izbor ==JOptionPane.YES_OPTION) {
 					
 					try {
-						PredmetiController.getInstance().sacuvajPredmeteTXT();
+					/*	PredmetiController.getInstance().sacuvajPredmeteTXT();
 						StudentiController.getInstance().sacuvajStudenteTXT();
 						ProfesoriController.getInstance().sacuvajProfesoreTXT();
-					} catch (IOException e1) {
-						e1.printStackTrace();
+						*/
+						bp.cuvanje();
+					} catch (Exception t) {
+						// TODO: handle exception
 					}
 					frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				}

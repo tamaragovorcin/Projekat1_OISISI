@@ -22,9 +22,9 @@ public class BazaStudenta {
 			return instance;	
 	}
 	
-	private static int broj_studenata=0;
+	public static int broj_studenata=0;
 	private List<String>kolone;
-	private List<Student> studenti;
+	protected List<Student> studenti;
 	private List<Student> pretraga;
 	Student student;
 	
@@ -164,7 +164,8 @@ public class BazaStudenta {
 		BazaStudenta.broj_studenata=broj_studenata;
 	}
 	 public void pretragaStudenta(String ulaz) {
-			if (ulaz.trim().length() == 0) {
+			
+		 if (ulaz.trim().length() == 0) {
 				pretraga.clear();
 				return;
 			}

@@ -22,9 +22,9 @@ private static BazaProfesora instance = null;
 		return instance;
 	}
 
-	private static int broj_profesora = 0;
+	public static int broj_profesora = 0;
 	private List<String>kolone;
-	private List<Profesor>profesori;
+	protected List<Profesor>profesori;
 	private List<Profesor>pretraga;
 	Predmet predmet;
 	

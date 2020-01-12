@@ -29,45 +29,42 @@ import rs.ac.uns.ftn.oisisi.model.Predmet;
 import rs.ac.uns.ftn.oisisi.model.Student;
 
 public class IzmenaStudentaDialog extends JDialog implements ActionListener {
-	
+
 	private static final long serialVersionUID = 8377505010808280172L;
 
 	private int mode = 1;
-	public static final int ODUSTANAK = 0; 
+	public static final int ODUSTANAK = 0;
 	public static final int POTVRDA = 1;
 
 	JTextField txtIme = new JTextField();
 	JTextField txtPrezime = new JTextField();
 	JTextField txtDatumRodjenja = new JTextField();
-	JTextField txtAdresa=new JTextField();
-	JTextField txtTelefon=new JTextField();
-	JTextField txtEmail =new JTextField();
-	JTextField txtIndeks=new JTextField();
-	JTextField txtDatumUpisa=new JTextField();
+	JTextField txtAdresa = new JTextField();
+	JTextField txtTelefon = new JTextField();
+	JTextField txtEmail = new JTextField();
+	JTextField txtIndeks = new JTextField();
+	JTextField txtDatumUpisa = new JTextField();
 	JComboBox<String> godinaComboBox;
-	JRadioButton budzet = new JRadioButton("Budzet",true);
+	JRadioButton budzet = new JRadioButton("Budzet", true);
 	JRadioButton samofinansiranje = new JRadioButton("Samofinansiranje");
 	ButtonGroup btnGroup1 = new ButtonGroup();
-	
+
 	List<Student> studenti = BazaStudenta.getInstance().getStudente();
 	String imeStudenta;
 	String prezimeStudenta;
 	String indeksStudenta;
 	String godina;
 
-	
 	String statusStudenta;
-	private int br2=0;
+	private int br2 = 0;
 	private int red;
 	private Student student;
-	
-	public IzmenaStudentaDialog(Main_Frame instance, String string, boolean b,int row) {
-		
+
+	public IzmenaStudentaDialog(Main_Frame instance, String string, boolean b, int row) {
+
 		super(instance, string, b);
-		
-		Student student = studenti.get(row);
+
 		red = row;
-		
 		setSize(400, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -88,14 +85,14 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		pan_centar.setBackground(Color.white);
 		pan_centar.setLayout(new GridBagLayout());
 		pan_centar.setBackground(new Color(204, 227, 249));
-		
+
 		JLabel labelaIme = new JLabel("Ime*:");
 		labelaIme.setPreferredSize(dim);
 
 		txtIme.setPreferredSize(dim);
 		txtIme.setName("txtIme");
 		txtIme.setBackground(Color.GRAY);
-		//txtIme.setText(student.getIme());
+		// txtIme.setText(student.getIme());
 		txtIme.addKeyListener(new KeyListener() {
 
 			@Override
@@ -120,7 +117,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		
+
 		JLabel labelaPrezime = new JLabel("Prezime*:");
 		labelaIme.setPreferredSize(dim);
 
@@ -151,7 +148,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-	
+
 		JLabel labelaDatum = new JLabel("Datum rodjenja*:");
 		labelaDatum.setPreferredSize(dim);
 
@@ -182,7 +179,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		
+
 		JLabel labelaAdresa = new JLabel("Adresa*:");
 		labelaAdresa.setPreferredSize(dim);
 
@@ -213,7 +210,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		
+
 		JLabel labelaTelefon = new JLabel("Broj telefona*:");
 		labelaTelefon.setPreferredSize(dim);
 
@@ -244,7 +241,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		
+
 		JLabel labelaEmail = new JLabel("Email*:");
 		labelaEmail.setPreferredSize(dim);
 
@@ -275,14 +272,13 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		
+
 		JLabel labelaIndeks = new JLabel("Indeks*:");
 		labelaIndeks.setPreferredSize(dim);
 
 		txtIndeks.setPreferredSize(dim);
 		txtIndeks.setName("txtIndeks");
 		txtIndeks.setBackground(Color.GRAY);
-		txtIndeks.setText(student.getBrojIndeksa());
 		txtIndeks.addKeyListener(new KeyListener() {
 
 			@Override
@@ -307,7 +303,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		
+
 		JLabel labelaDatumUpisa = new JLabel("Datum upisa*:");
 		labelaIndeks.setPreferredSize(dim);
 
@@ -338,12 +334,12 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 
 			}
 		});
-		
+
 		JLabel lblGodina = new JLabel("Godina*:");
 		lblGodina.setPreferredSize(dim);
 		String godina[] = { "     ", "1", "2", "3", "4" };
 		godinaComboBox = new JComboBox<String>(godina);
-		
+
 		godinaComboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -357,9 +353,8 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 			}
 		});
 
-		
 		budzet.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -370,9 +365,9 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 				}
 			}
 		});
-		
+
 		samofinansiranje.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -383,10 +378,10 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 				}
 			}
 		});
-	 
+
 		btnGroup1.add(budzet);
 		btnGroup1.add(samofinansiranje);
-		
+
 		GridBagConstraints gbcIme = new GridBagConstraints();
 		gbcIme.gridx = 0;
 		gbcIme.gridy = 0;
@@ -394,113 +389,113 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		pan_centar.add(labelaIme, gbcIme);
 
 		GridBagConstraints gbcPrezime = new GridBagConstraints();
-		gbcPrezime .gridx = 0;
-		gbcPrezime .gridy = 1;
-		gbcPrezime .insets = new Insets(20, 20, 0, 0);
+		gbcPrezime.gridx = 0;
+		gbcPrezime.gridy = 1;
+		gbcPrezime.insets = new Insets(20, 20, 0, 0);
 		gbcPrezime.anchor = GridBagConstraints.LINE_START;
-		pan_centar.add(labelaPrezime , gbcPrezime );
-		
+		pan_centar.add(labelaPrezime, gbcPrezime);
+
 		GridBagConstraints gbcDatumRodjenja = new GridBagConstraints();
-		gbcDatumRodjenja .gridx = 0;
-		gbcDatumRodjenja .gridy = 2;
-		gbcDatumRodjenja .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaDatum , gbcDatumRodjenja );
-		
+		gbcDatumRodjenja.gridx = 0;
+		gbcDatumRodjenja.gridy = 2;
+		gbcDatumRodjenja.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaDatum, gbcDatumRodjenja);
+
 		GridBagConstraints gbcAdresa = new GridBagConstraints();
-		gbcAdresa  .gridx = 0;
-		gbcAdresa  .gridy = 3;
-		gbcAdresa  .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaAdresa  , gbcAdresa  );
-		
+		gbcAdresa.gridx = 0;
+		gbcAdresa.gridy = 3;
+		gbcAdresa.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaAdresa, gbcAdresa);
+
 		GridBagConstraints gbcTelefon = new GridBagConstraints();
-		gbcTelefon .gridx = 0;
+		gbcTelefon.gridx = 0;
 		gbcTelefon.gridy = 4;
-		gbcTelefon .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaTelefon , gbcTelefon );
-		
+		gbcTelefon.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaTelefon, gbcTelefon);
+
 		GridBagConstraints gbcEmail = new GridBagConstraints();
-		gbcEmail .gridx = 0;
+		gbcEmail.gridx = 0;
 		gbcEmail.gridy = 5;
-		gbcEmail .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaEmail , gbcEmail );
-		
+		gbcEmail.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaEmail, gbcEmail);
+
 		GridBagConstraints gbcBrojIndexa = new GridBagConstraints();
-		gbcBrojIndexa .gridx = 0;
-		gbcBrojIndexa .gridy = 6;
-		gbcBrojIndexa .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaIndeks , gbcBrojIndexa );
-		
+		gbcBrojIndexa.gridx = 0;
+		gbcBrojIndexa.gridy = 6;
+		gbcBrojIndexa.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaIndeks, gbcBrojIndexa);
+
 		GridBagConstraints gbcDatumUpisa = new GridBagConstraints();
-		gbcDatumUpisa .gridx = 0;
-		gbcDatumUpisa .gridy = 7;
-		gbcDatumUpisa .insets =new Insets(20, 20, 0, 0);
+		gbcDatumUpisa.gridx = 0;
+		gbcDatumUpisa.gridy = 7;
+		gbcDatumUpisa.insets = new Insets(20, 20, 0, 0);
 		gbcDatumUpisa.anchor = GridBagConstraints.LINE_START;
-		pan_centar.add(labelaDatumUpisa , gbcDatumUpisa );
-		
+		pan_centar.add(labelaDatumUpisa, gbcDatumUpisa);
+
 		GridBagConstraints gbcTekstIme = new GridBagConstraints();
-		gbcTekstIme .gridx = 1;
-		gbcTekstIme .gridy = 0;
-		gbcTekstIme .weightx = 200;
-		gbcTekstIme .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstIme .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtIme , gbcTekstIme );
+		gbcTekstIme.gridx = 1;
+		gbcTekstIme.gridy = 0;
+		gbcTekstIme.weightx = 200;
+		gbcTekstIme.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstIme.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtIme, gbcTekstIme);
 
 		GridBagConstraints gbcTekstPrezime = new GridBagConstraints();
-		gbcTekstPrezime .gridx = 1;
-		gbcTekstPrezime .gridy = 1;
+		gbcTekstPrezime.gridx = 1;
+		gbcTekstPrezime.gridy = 1;
 		gbcTekstPrezime.weightx = 200;
-		gbcTekstPrezime .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstPrezime .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtPrezime , gbcTekstPrezime );
-				
+		gbcTekstPrezime.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstPrezime.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtPrezime, gbcTekstPrezime);
+
 		GridBagConstraints gbcTekstDatumRodjenja = new GridBagConstraints();
-		gbcTekstDatumRodjenja .gridx = 1;
-		gbcTekstDatumRodjenja .gridy = 2;
-		gbcTekstDatumRodjenja .weightx = 200;
-		gbcTekstDatumRodjenja .fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstDatumRodjenja.gridx = 1;
+		gbcTekstDatumRodjenja.gridy = 2;
+		gbcTekstDatumRodjenja.weightx = 200;
+		gbcTekstDatumRodjenja.fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstDatumRodjenja.insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtDatumRodjenja, gbcTekstDatumRodjenja );
-		
+		pan_centar.add(txtDatumRodjenja, gbcTekstDatumRodjenja);
+
 		GridBagConstraints gbcTekstAdresa = new GridBagConstraints();
-		gbcTekstAdresa .gridx = 1;
-		gbcTekstAdresa .gridy = 3;
-		gbcTekstAdresa .weightx = 200;
-		gbcTekstAdresa .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstAdresa .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtAdresa , gbcTekstAdresa );
-		
+		gbcTekstAdresa.gridx = 1;
+		gbcTekstAdresa.gridy = 3;
+		gbcTekstAdresa.weightx = 200;
+		gbcTekstAdresa.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstAdresa.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtAdresa, gbcTekstAdresa);
+
 		GridBagConstraints gbcTekstTelefon = new GridBagConstraints();
-		gbcTekstTelefon .gridx = 1;
-		gbcTekstTelefon .gridy = 4;
-		gbcTekstTelefon .weightx = 200;
-		gbcTekstTelefon .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstTelefon .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtTelefon , gbcTekstTelefon );
-		
+		gbcTekstTelefon.gridx = 1;
+		gbcTekstTelefon.gridy = 4;
+		gbcTekstTelefon.weightx = 200;
+		gbcTekstTelefon.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstTelefon.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtTelefon, gbcTekstTelefon);
+
 		GridBagConstraints gbcTekstEmail = new GridBagConstraints();
-		gbcTekstEmail .gridx = 1;
+		gbcTekstEmail.gridx = 1;
 		gbcTekstEmail.gridy = 5;
-		gbcTekstEmail .weightx = 200;
-		gbcTekstEmail .fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstEmail.weightx = 200;
+		gbcTekstEmail.fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstEmail.insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtEmail , gbcTekstEmail );
-		
-		GridBagConstraints gbcTekstBrojIndeksa= new GridBagConstraints();
-		gbcTekstBrojIndeksa .gridx = 1;
-		gbcTekstBrojIndeksa .gridy = 6;
-		gbcTekstBrojIndeksa .weightx = 200;
-		gbcTekstBrojIndeksa .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstBrojIndeksa .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtIndeks , gbcTekstBrojIndeksa );
-		
+		pan_centar.add(txtEmail, gbcTekstEmail);
+
+		GridBagConstraints gbcTekstBrojIndeksa = new GridBagConstraints();
+		gbcTekstBrojIndeksa.gridx = 1;
+		gbcTekstBrojIndeksa.gridy = 6;
+		gbcTekstBrojIndeksa.weightx = 200;
+		gbcTekstBrojIndeksa.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstBrojIndeksa.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtIndeks, gbcTekstBrojIndeksa);
+
 		GridBagConstraints gbcTekstDatumUpisa = new GridBagConstraints();
-		gbcTekstDatumUpisa .gridx = 1;
-		gbcTekstDatumUpisa .gridy = 7;
-		gbcTekstDatumUpisa .weightx = 200;
-		gbcTekstDatumUpisa .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstDatumUpisa .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtDatumUpisa , gbcTekstDatumUpisa );
-		
+		gbcTekstDatumUpisa.gridx = 1;
+		gbcTekstDatumUpisa.gridy = 7;
+		gbcTekstDatumUpisa.weightx = 200;
+		gbcTekstDatumUpisa.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstDatumUpisa.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtDatumUpisa, gbcTekstDatumUpisa);
+
 		GridBagConstraints gbcGodina = new GridBagConstraints();
 		gbcGodina.gridx = 0;
 		gbcGodina.gridy = 8;
@@ -515,28 +510,28 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		pan_centar.add(godinaComboBox, gbcComboBoxGodina);
 
 		budzet.setOpaque(false);
-				
+
 		GridBagConstraints gbcButtonGroup = new GridBagConstraints();
 		gbcButtonGroup.gridx = 0;
 		gbcButtonGroup.gridy = 9;
 		gbcButtonGroup.insets = new Insets(20, 20, 0, 0);
 		gbcButtonGroup.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(budzet, gbcButtonGroup);
-		
+
 		samofinansiranje.setOpaque(false);
-		
+
 		GridBagConstraints gbcButtonGroup1 = new GridBagConstraints();
 		gbcButtonGroup1.gridx = 1;
 		gbcButtonGroup1.gridy = 9;
 		gbcButtonGroup1.insets = new Insets(20, 20, 0, 0);
 		gbcButtonGroup1.anchor = GridBagConstraints.LINE_START;
 		pan_centar.add(samofinansiranje, gbcButtonGroup1);
-		
+
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odgovor, BorderLayout.SOUTH);
-		
+
 		Set();
-		setResizable(false);	
+		setResizable(false);
 	}
 
 	public String[] pokupiUnetiTekst() {
@@ -546,24 +541,25 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		}
 		tekst[0] = txtIme.getText().toString();
 		tekst[1] = txtPrezime.getText().toString();
-		tekst[2]=txtDatumRodjenja.getText().toString();
-		tekst[3]=txtAdresa.getText().toString();
-		tekst[4]=txtTelefon.getText().toString();
-		tekst[5]=txtEmail.getText().toString();
-		tekst[6]=txtIndeks.getText().toString();
-		tekst[7]=txtDatumUpisa.getText().toString();
+		tekst[2] = txtDatumRodjenja.getText().toString();
+		tekst[3] = txtAdresa.getText().toString();
+		tekst[4] = txtTelefon.getText().toString();
+		tekst[5] = txtEmail.getText().toString();
+		tekst[6] = txtIndeks.getText().toString();
+		tekst[7] = txtDatumUpisa.getText().toString();
 		tekst[8] = godinaComboBox.getSelectedItem().toString();
-		if(samofinansiranje.isSelected()) {
-			tekst[9]="S";}
-		else {
-			tekst[9]="B";}
+		if (samofinansiranje.isSelected()) {
+			tekst[9] = "S";
+		} else {
+			tekst[9] = "B";
+		}
 		return tekst;
 	}
 
 	protected boolean provera() {
 		String tekst[] = pokupiUnetiTekst();
 		boolean izlaz = true;
-		
+
 		if (!Pattern.matches("[a-zA-Z0-9čČćĆžŽšŠđĐ]*", tekst[0])) {
 			txtIme.setBackground(Color.RED);
 			return false;
@@ -584,10 +580,10 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		}
 		if (!Pattern.matches("^[0-9-/]*", tekst[4])) {
 			txtTelefon.setBackground(Color.RED);
-			return false;	
-		}else if(tekst[4].length() >16) {
+			return false;
+		} else if (tekst[4].length() > 16) {
 			txtTelefon.setBackground(Color.RED);
-			return false;	
+			return false;
 		}
 		if (tekst[5].length() != 0) {
 			if (!Pattern.matches("^(.+)@(.+)$", tekst[5])) {
@@ -637,20 +633,21 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String tekst[] = pokupiUnetiTekst();
-	
+
 		if (e.getActionCommand().equals("ODUSTANAK")) {
-			mode = IzmenaStudentaDialog.ODUSTANAK;
-			//dispose();
+
+			dispose();
 		} else {
-			mode = IzmenaStudentaDialog.POTVRDA;  	
-			if(!student.getBrojIndeksa().equals(tekst[6])) { 
-				for(Student p:studenti) {
-					if(tekst[6].equals(p.getBrojIndeksa())) {
-						JOptionPane.showMessageDialog(null, "Upisan broj indeksa vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+			mode = IzmenaStudentaDialog.POTVRDA;
+			if (!student.getBrojIndeksa().equals(tekst[6])) {
+				for (Student p : studenti) {
+					if (tekst[6].equals(p.getBrojIndeksa())) {
+						JOptionPane.showMessageDialog(null, "Upisan broj indeksa vec postoji.", "Upozorenje!",
+								JOptionPane.ERROR_MESSAGE);
 						return;
-					}	
+					}
 				}
-				
+
 				student.setIme(tekst[0]);
 				student.setPrezime(tekst[1]);
 				student.setDatumRodjenja(tekst[2]);
@@ -662,27 +659,39 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 				student.setGodinaStudija(tekst[8]);
 				student.setStatus(tekst[9]);
 				StudentiJTable.getInstance().refresTabelu();
-				
-				for(Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
-					for(Student stud: pred.getStudenti_na_predmetu()) {
-						if(stud.getIme().equals(imeStudenta)) {
+
+				for (Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
+					for (Student stud : pred.getStudenti_na_predmetu()) {
+						if (stud.getIme().equals(imeStudenta)) {
 							stud.setIme(tekst[0]);
-						}if(stud.getPrezime().equals(prezimeStudenta)) {
+						}
+						if (stud.getPrezime().equals(prezimeStudenta)) {
 							stud.setPrezime(tekst[1]);
 						}
-						if(stud.getBrojIndeksa().equals(indeksStudenta)) {
+						if (stud.getBrojIndeksa().equals(indeksStudenta)) {
 							stud.setBrojIndeksa(tekst[6]);
 						}
-						
-						
+
 					}
 				}
+
 				
+				for (Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
+					for (Student stud : pred.getStudenti_na_predmetu()) {
+						if (stud.getBrojIndeksa().equals(student.getBrojIndeksa())) {
+							if (godina.equals(tekst[8])) {
+								break;
+							} else {
+								pred.getStudenti_na_predmetu().remove(stud);
+								break;
+							}
+						}
+
+					}
+				}
+
 			}
-		
-				
-	
-				
+
 			else {
 				student.setIme(tekst[0]);
 				student.setPrezime(tekst[1]);
@@ -693,33 +702,44 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 				student.setDatumUpisa(tekst[7]);
 				student.setGodinaStudija(tekst[8]);
 				student.setStatus(tekst[9]);
-				
+
 				dispose();
 				JOptionPane.showMessageDialog((Component) e.getSource(), "Uspesna izmena!");
 				StudentiJTable.getInstance().refresTabelu();
-				
-				for(Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
-					for(Student stud: pred.getStudenti_na_predmetu()) {
-						if(stud.getIme().equals(imeStudenta)) {
+
+				for (Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
+					for (Student stud : pred.getStudenti_na_predmetu()) {
+						if (stud.getIme().equals(imeStudenta)) {
 							stud.setIme(tekst[0]);
-						}if(stud.getPrezime().equals(prezimeStudenta)) {
+						}
+						if (stud.getPrezime().equals(prezimeStudenta)) {
 							stud.setPrezime(tekst[1]);
 						}
 					}
 				}
+			
 				
-				
-				
+				for (Predmet pred : BazaPredmeta.getInstance().getPredmete()) {
+					for (Student stud : pred.getStudenti_na_predmetu()) {
+						if (stud.getBrojIndeksa().equals(student.getBrojIndeksa())) {
+							if (godina.equals(tekst[8])) {
+								break;
+							} else {
+								pred.getStudenti_na_predmetu().remove(stud);
+								break;
+							}
+						}
+
+					}
+
+				}
 			}
+
 		}
-		
-		
-		
-		
-	
+
 		setVisible(false);
 	}
-		
+
 	public int getMode() {
 		return mode;
 	}
@@ -728,15 +748,13 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		this.mode = mode;
 	}
 
-	public void  Set() {
-		if(BazaStudenta.getInstance().getPretraga().size()==0) {
+	public void Set() {
+		if (BazaStudenta.getInstance().getPretraga().size() == 0) {
 			student = BazaStudenta.getInstance().getStudente().get(red);
-		}
-		else {
+		} else {
 			student = BazaStudenta.getInstance().getPretraga().get(red);
 		}
-		student = BazaStudenta.getInstance().getStudente().get(red);
-		
+
 		txtIme.setText(student.getIme());
 		txtPrezime.setText(student.getPrezime());
 		txtDatumRodjenja.setText(student.getDatumRodjenja());
@@ -746,38 +764,36 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		txtIndeks.setText(student.getBrojIndeksa());
 		txtDatumUpisa.setText(student.getDatumUpisa());
 		String godina2 = student.getGodinaStudija();
-		
-		switch(godina2){
-			case "1":
-				 br2=1;
-				 break;
-			case "2":
-				br2=2;
-				break;
-			case "3":
-				 br2=3;
-				 break;
-			case "4":
-				br2=4;
-				break;
-				
-			default:
-				br2 =0;
+
+		switch (godina2) {
+		case "1":
+			br2 = 1;
+			break;
+		case "2":
+			br2 = 2;
+			break;
+		case "3":
+			br2 = 3;
+			break;
+		case "4":
+			br2 = 4;
+			break;
+
+		default:
+			br2 = 0;
 		}
-		
+
 		godinaComboBox.setSelectedIndex(br2);
-		
-		if(student.getStatus()=="S") {
+
+		if (student.getStatus() == "S") {
 			samofinansiranje.setSelected(true);
-		}else {
+		} else {
 			budzet.setSelected(true);
 		}
-		
-		imeStudenta=student.getIme();
-		prezimeStudenta=student.getPrezime();
-		indeksStudenta=student.getBrojIndeksa();
-		godina=student.getGodinaStudija();
+
+		imeStudenta = student.getIme();
+		prezimeStudenta = student.getPrezime();
+		indeksStudenta = student.getBrojIndeksa();
+		godina = student.getGodinaStudija();
 	}
 }
-
-

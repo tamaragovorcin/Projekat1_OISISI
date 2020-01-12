@@ -6,12 +6,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import rs.ac.uns.ftn.oisisi.controller.ProfesoriController;
 
 public class ProfesoriTablePanel extends JPanel{
 	
@@ -51,9 +49,9 @@ public class ProfesoriTablePanel extends JPanel{
 		add(levo,BorderLayout.WEST);
 		add(desno,BorderLayout.EAST);
 		
-		try {
-			ProfesoriController.getInstance().ucitajProfesoreTXT();
-		} catch (IOException e1) {
+	try {
+			//ProfesoriController.getInstance().ucitajProfesoreTXT();
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		
@@ -74,7 +72,7 @@ public class ProfesoriTablePanel extends JPanel{
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
 				ProfesoriJTable tabela = (ProfesoriJTable) e.getComponent();
-				setSelektovan_red(tabela.convertRowIndexToModel(tabela.getSelectedRow()));
+			setSelektovan_red(tabela.convertRowIndexToModel(tabela.getSelectedRow()));
 			}
 
 			@Override

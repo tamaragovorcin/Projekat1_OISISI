@@ -7,13 +7,12 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import rs.ac.uns.ftn.oisisi.controller.PredmetiController;
+
 
 
 public class PredmetiTablePanel extends JPanel{
@@ -57,8 +56,8 @@ public class PredmetiTablePanel extends JPanel{
 		add(desno,BorderLayout.EAST);
 		
 		try {
-			PredmetiController.getInstance().ucitajPredmeteTXT();
-		} catch (IOException e1) {
+			//PredmetiController.getInstance().ucitajPredmeteTXT();
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}

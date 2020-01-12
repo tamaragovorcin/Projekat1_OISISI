@@ -5,12 +5,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import rs.ac.uns.ftn.oisisi.controller.StudentiController;
 
 public class StudentiTablePanel extends JPanel{
 	private static final long serialVersionUID = 632955195529615254L;
@@ -50,8 +48,8 @@ public class StudentiTablePanel extends JPanel{
 		add(desno,BorderLayout.EAST);
 		
 		try {
-			StudentiController.getInstance().ucitajStudenteTXT();
-		} catch (IOException e1) {
+			//StudentiController.getInstance().ucitajStudenteTXT();
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		

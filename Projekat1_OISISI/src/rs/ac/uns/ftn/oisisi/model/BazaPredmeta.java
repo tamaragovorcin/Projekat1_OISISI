@@ -25,10 +25,10 @@ public class BazaPredmeta {
 	}
 
 	private List<String> kolone;
-	private List<Predmet> predmeti;
+	protected List<Predmet> predmeti;
 	private List<Predmet> pretraga;
 
-	private static int broj_predmeta = 0;
+	protected static int broj_predmeta = 0;
 	private static int broj_profesora_na_predmetu = 0;
 	private static int broj_studenta_na_predmetu = 0;
 
