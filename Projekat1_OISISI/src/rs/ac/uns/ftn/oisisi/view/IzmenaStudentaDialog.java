@@ -581,9 +581,6 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 		if (!Pattern.matches("^[0-9-/]*", tekst[4])) {
 			txtTelefon.setBackground(Color.RED);
 			return false;
-		} else if (tekst[4].length() > 16) {
-			txtTelefon.setBackground(Color.RED);
-			return false;
 		}
 		if (tekst[5].length() != 0) {
 			if (!Pattern.matches("^(.+)@(.+)$", tekst[5])) {
@@ -683,6 +680,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 								break;
 							} else {
 								pred.getStudenti_na_predmetu().remove(stud);
+								student.getPredmeti().clear();
 								break;
 							}
 						}
@@ -726,6 +724,7 @@ public class IzmenaStudentaDialog extends JDialog implements ActionListener {
 								break;
 							} else {
 								pred.getStudenti_na_predmetu().remove(stud);
+								student.getPredmeti().clear();
 								break;
 							}
 						}

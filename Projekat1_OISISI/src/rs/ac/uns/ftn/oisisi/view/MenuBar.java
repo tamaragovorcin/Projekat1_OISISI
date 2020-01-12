@@ -353,31 +353,34 @@ public class MenuBar  extends JMenuBar{
 				
 			
 				
-					ta=new JTextArea("Način korišćenja aplikacije \n\n"
-							+ "STUDENTI\n"
-							+ "1.	Dodavanje studenta je moguće iz menija na kartici File -> New -> New Student\n" +  
-							"2.	Izmena studenta moguća je iz menija Edit->Edit-> Edit Student\n" + 
-							"3.	Brisanje studenta moguće je iz menija Edit -> Delete ->Delete Student\n" + 
+					ta=new JTextArea("\t\t\t NAČIN KORIŠĆENJA APLIKACIJE \n\n"
+							+ "TABELA STUDENATA\n"
+							+ "1.	Dodavanje studenta je moguće pomoću dugmeta u tabeli ili preko File -> New -> New Student\n" +  
+							"2.	Izmena studenta moguća je iz pomoću dugmeta u tabeli ili preko Edit->Edit-> Edit Student\n" + 
+							"3.	Brisanje studenta moguće je pomoću dugmeta u tabeli ili preko Edit -> Delete ->Delete Student\n" + 
 							"Validacija unosa:\n" + 
-							"Datum je u formatu - XX.XX.XXXX\n" + 
-							"Broj telefona je u formatu - XXX/XXX(X)-XXX sa maksimalno 16 cifara\n" + 
-							"Indeks je u formatu XX(X) XX/XXXX (minimalno prva dva velika slova, maksimlano 3)\n" + 
-							"Email – bilo_šta@bilo_šta\n" + 
+							"Datum je u formatu - 00.00.0000.\n" + 
+							"Broj telefona može sadržati bilo koju cifru i znakove / i -.\n" + 
+							"Indeks je u formatu XX(X) 00(0)/0000 (minimalno prva dva velika slova, maksimlano 3).\n" + 
+							"Email – bilo_šta@bilo_šta.\n" + 
 							"Sva polja u dialogu moraju biti popunjena da bi mogli da dodate studenta\n\n\n"
-							+ "PREDMET/n" + 
-							"1.	Dodavanje predmeta File->New->New Predmet\n" + 
-							"2.	Izmena predmeta Edit->Edit-> Edit Predmet\n" + 
-							"3.	Brisanje predmeta Edit->Delete-> Delete Predmet\n" + 
-							"4.	Dodavanje studenta na predmet File->New->New Student/Profesor-> New Student\n" + 
-							"5.	Dodavanje profesora na predmet File->New->New Student/Profesor-> New Profesor\n" +  
+							+ "TABELA PREDMETA\n" + 
+							"1.	Dodavanje predmeta moguće je pomoću dugmeta u tabeli ili preko File->New->New Predmet\n" + 
+							"2.	Izmena predmeta moguće je pomoću dugmeta u tabeli ili preko Edit->Edit-> Edit Predmet\n" + 
+							"3.	Brisanje predmeta moguće je pomoću dugmeta u tabeli ili preko Edit->Delete-> Delete Predmet\n" + 
+							"4.	Dodavanje studenta na predmet moguće je pomoću dugmeta u tabeli ili preko File->New->New Student/Profesor-> New Student\n" + 
+							"5.	Dodavanje profesora na predmet moguće je pomoću dugmeta u tabeli ili preko File->New->New Student/Profesor-> New Profesor\n"
+							+ "Validacija unosa:/n"
+							+ "Indeks koji unosite pri dodavanju studenta na predmet mora biti u formatu XX(X) 00(0)/0000.\n"
+							+ "Broj licne karte koju unosite pri dodavanju profesora na predmet mora biti u formatu \"000...00\".\n" +  
 							"Sva polja u dialogu moraju biti popunjena da bi mogli da dodate predmet\n\n\n"
-							+ "PROFESOR/n" + 
-							"1.	Dodavanja profesora File-> New-> New Profesor\n" + 
-							"2.	Izmena profesora Edit->Edit-> Edit Profesor\n" + 
-							"3.	Brisanje profesora Edit->Delete-> Delete Profesor\n" + 
+							+ "TABELA PROFESORA\n" + 
+							"1.	Dodavanja profesora na predmet moguće je pomoću dugmeta u tabeli ili preko File-> New-> New Profesor\n" + 
+							"2.	Izmena profesora na predmet moguće je pomoću dugmeta u tabeli ili preko Edit->Edit-> Edit Profesor\n" + 
+							"3.	Brisanje profesora na predmet moguće je pomoću dugmeta u tabeli ili preko Edit->Delete-> Delete Profesor\n" + 
 							"Validacija unosa: Broj lične karte - 9 cifara sa navodnicima na pocetku i kraju\n" + 
-							"Datum u formatu – XX.XX.XXXX\n" + 
-							"Sva polja u dialogu moraju biti popunjena\n" + 
+							"Datum u formatu – 00.00.0000.\n" + 
+							"Sva polja u dialogu moraju biti popunjena da bi mogli da dodate profesora\n\n\n" + 
 							"Prečice:\n" + 
 							"ctrl + N – New Student\n" + 
 							"ctrl + R– New Predmet\n" + 
@@ -392,8 +395,8 @@ public class MenuBar  extends JMenuBar{
 							"ctrl + V – Delete Profesor  \n" + 
 							"ctrl + H – Help\n" + 
 							"ctrl + L - About Luna Živković\n"
-							+ "ctrl + T - About Tamara Govorčin/n"
-							+ "ctrl + Q - About App/n" + 
+							+ "ctrl + T - About Tamara Govorčin\n"
+							+ "ctrl + Q - About App\n" + 
 							"",20,70);
 					
 					scrollPane=new JScrollPane(ta);
@@ -449,9 +452,9 @@ public class MenuBar  extends JMenuBar{
 					JOptionPane.showMessageDialog(null, "Java Aplikaciija Studentska Sluzba verzija 1.0 omogucava rad sa studentima, profesorima i predmetima.\n\n"
 							+ "Kratak opis korišćenja aplikacije:\n" + 
 							"1.	Tabela student ima mogućnost dodavanja, brisanja, izmene, prikaza predmeta koje slusa student i pretragu studenata.\n" +  
-							"2.	Tabela predmet ima mogućnosti dodavanja, brisanja, izmenu, pretragu predmeta, mogućnost dodavanja studenta na predmet brisanje studenta sa predmeta,\n"
-							+ " dodavanje profesora na predmet brisanje profesora sa predmeta, listu profesora i studenta na predmetu.\n"  + 
-							"3.	 Tabela profesor ima mogćnost dodavanja, brisanja, izmenu profesora,  prikaz predmeta na kojima predaj profesor");
+							"2.	Tabela predmet ima mogućnosti dodavanja, brisanja, izmenu, pretragu predmeta, mogućnost dodavanja studenta na predmet, brisanje studenta sa predmeta,\n"
+							+ " dodavanje profesora na predmet, brisanje profesora sa predmeta, listu profesora i studenta na predmetu.\n"  + 
+							"3.	 Tabela profesor ima mogćnost dodavanja, brisanja, izmenu profesora i prikaz predmeta na kojima predaje profesor");
 				
 			}
 		});
