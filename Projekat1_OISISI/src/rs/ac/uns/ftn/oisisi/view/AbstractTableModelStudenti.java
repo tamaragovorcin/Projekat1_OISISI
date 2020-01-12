@@ -7,28 +7,28 @@ import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 import rs.ac.uns.ftn.oisisi.model.BazaStudenta;
 
-public class AbstractTableModelStudenti  extends AbstractTableModel {
-	
+public class AbstractTableModelStudenti extends AbstractTableModel {
+
 	private static final long serialVersionUID = 2995603907983526790L;
-	
+
 	private List<Boolean> koJeOtkacen;
-	
+
 	public AbstractTableModelStudenti() {
 		this.koJeOtkacen = new ArrayList<>();
-		for (int i = 0; i <BazaStudenta.getInstance().getStudente().size() ; i++) {
+		for (int i = 0; i < BazaStudenta.getInstance().getStudente().size(); i++) {
 			koJeOtkacen.add(false);
 		}
 	}
 
 	public int getRowCount() {
-		if(BazaStudenta.getInstance().getPretraga().size()==0) {
+		if (BazaStudenta.getInstance().getPretraga().size() == 0) {
 			return BazaStudenta.getInstance().getStudente().size();
-		}
-		else {
+		} else {
 			return BazaStudenta.getInstance().getPretraga().size();
 		}
-		
+
 	}
+
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		switch (columnIndex) {
@@ -61,14 +61,14 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return columnIndex>=10;
+		return columnIndex >= 10;
 	}
-	
+
 	@Override
 	public int getColumnCount() {
 		return BazaStudenta.getInstance().getColumnCount();
 	}
-	
+
 	@Override
 	public String getColumnName(int column) {
 		return BazaStudenta.getInstance().getColumnName(column);
@@ -76,23 +76,22 @@ public class AbstractTableModelStudenti  extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		
+
 		if (columnIndex < 10)
 			return BazaStudenta.getInstance().getValueAt(rowIndex, columnIndex);
 		else if (columnIndex == 10) {
 			JButton btn = new JButton("" + rowIndex);
 			return btn;
-		} 
+		}
 		return null;
 	}
-	
+
 	public void studentDodat() {
 		this.koJeOtkacen.add(false);
 	}
-	
+
 	public void studentUklonjen(int rowIndex) {
 		this.koJeOtkacen.remove(rowIndex);
 	}
-	
-	
+
 }

@@ -8,4 +8,3 @@ public class App {
 		Main_Frame.getInstance();
 	}
 }
-

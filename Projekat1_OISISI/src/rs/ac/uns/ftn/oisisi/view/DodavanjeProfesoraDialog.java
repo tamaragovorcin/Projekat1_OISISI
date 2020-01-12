@@ -21,10 +21,9 @@ import javax.swing.JTextField;
 import rs.ac.uns.ftn.oisisi.model.BazaProfesora;
 import rs.ac.uns.ftn.oisisi.model.Profesor;
 
+public class DodavanjeProfesoraDialog extends JDialog implements ActionListener {
 
-public class DodavanjeProfesoraDialog extends JDialog implements ActionListener{
-
-private static final long serialVersionUID = -720118426910400743L;
+	private static final long serialVersionUID = -720118426910400743L;
 
 	public static final int ODUSTANAK = 0;
 	public static final int POTVRDA = 1;
@@ -32,14 +31,14 @@ private static final long serialVersionUID = -720118426910400743L;
 	JTextField txtIme = new JTextField();
 	JTextField txtPrezime = new JTextField();
 	JTextField txtDatumRodjenja = new JTextField();
-	JTextField txtAdresa=new JTextField();
-	JTextField txtTelefon=new JTextField();
-	JTextField txtEmail =new JTextField();
-	JTextField txtAdresaKancelarije=new JTextField();
-	JTextField txtBrojLicneKarte=new JTextField();
-	JTextField txtTitula=new JTextField();
-	JTextField txtZvanje=new JTextField();
-	
+	JTextField txtAdresa = new JTextField();
+	JTextField txtTelefon = new JTextField();
+	JTextField txtEmail = new JTextField();
+	JTextField txtAdresaKancelarije = new JTextField();
+	JTextField txtBrojLicneKarte = new JTextField();
+	JTextField txtTitula = new JTextField();
+	JTextField txtZvanje = new JTextField();
+
 	public DodavanjeProfesoraDialog(Main_Frame instance, String string, boolean b) {
 		super(instance, string, b);
 		setSize(400, 500);
@@ -58,7 +57,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 		pan_odogovr.add(odustanak);
 		pan_odogovr.add(potvrda);
-		
+
 		JPanel pan_centar = new JPanel();
 		pan_centar.setBackground(Color.white);
 		pan_centar.setLayout(new GridBagLayout());
@@ -92,7 +91,7 @@ private static final long serialVersionUID = -720118426910400743L;
 
 			}
 		});
-	
+
 		JLabel labelaPrezime = new JLabel("Prezime*:");
 		labelaIme.setPreferredSize(dim);
 
@@ -120,7 +119,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				}
 			}
 		});
-	
+
 		JLabel labelaDatum = new JLabel("Datum rodjenja*:");
 		labelaDatum.setPreferredSize(dim);
 
@@ -150,7 +149,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				}
 			}
 		});
-	
+
 		JLabel labelaAdresa = new JLabel("Adresa*:");
 		labelaAdresa.setPreferredSize(dim);
 
@@ -178,7 +177,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				}
 			}
 		});
-		
+
 		JLabel labelaTelefon = new JLabel("Broj telefona*:");
 		labelaTelefon.setPreferredSize(dim);
 
@@ -206,7 +205,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				}
 			}
 		});
-		
+
 		JLabel labelaEmail = new JLabel("Email*:");
 		labelaEmail.setPreferredSize(dim);
 
@@ -234,7 +233,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				}
 			}
 		});
-	
+
 		JLabel labelaAdresaKancelarije = new JLabel("Adresa kancelarije*:");
 		labelaAdresaKancelarije.setPreferredSize(dim);
 
@@ -262,7 +261,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				}
 			}
 		});
-		
+
 		JLabel labelaBrojLicneKarte = new JLabel("Broj licne karte*:");
 		labelaBrojLicneKarte.setPreferredSize(dim);
 
@@ -290,7 +289,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				}
 			}
 		});
-		
+
 		JLabel labelaTitula = new JLabel("Titula*:");
 		labelaBrojLicneKarte.setPreferredSize(dim);
 
@@ -318,7 +317,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				}
 			}
 		});
-	
+
 		JLabel labelaZvanje = new JLabel("Zvanje*:");
 		labelaBrojLicneKarte.setPreferredSize(dim);
 
@@ -348,7 +347,7 @@ private static final long serialVersionUID = -720118426910400743L;
 				}
 			}
 		});
-		
+
 		GridBagConstraints gbcIme = new GridBagConstraints();
 		gbcIme.gridx = 0;
 		gbcIme.gridy = 0;
@@ -356,148 +355,148 @@ private static final long serialVersionUID = -720118426910400743L;
 		pan_centar.add(labelaIme, gbcIme);
 
 		GridBagConstraints gbcPrezime = new GridBagConstraints();
-		gbcPrezime .gridx = 0;
-		gbcPrezime .gridy = 1;
-		gbcPrezime .insets = new Insets(20, 20, 0, 0);
+		gbcPrezime.gridx = 0;
+		gbcPrezime.gridy = 1;
+		gbcPrezime.insets = new Insets(20, 20, 0, 0);
 		gbcPrezime.anchor = GridBagConstraints.LINE_START;
-		pan_centar.add(labelaPrezime , gbcPrezime );
-		
+		pan_centar.add(labelaPrezime, gbcPrezime);
+
 		GridBagConstraints gbcDatumRodjenja = new GridBagConstraints();
-		gbcDatumRodjenja .gridx = 0;
-		gbcDatumRodjenja .gridy = 2;
-		gbcDatumRodjenja .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaDatum , gbcDatumRodjenja );
-		
+		gbcDatumRodjenja.gridx = 0;
+		gbcDatumRodjenja.gridy = 2;
+		gbcDatumRodjenja.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaDatum, gbcDatumRodjenja);
+
 		GridBagConstraints gbcAdresa = new GridBagConstraints();
-		gbcAdresa  .gridx = 0;
-		gbcAdresa  .gridy = 3;
-		gbcAdresa  .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaAdresa  , gbcAdresa  );
-		
+		gbcAdresa.gridx = 0;
+		gbcAdresa.gridy = 3;
+		gbcAdresa.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaAdresa, gbcAdresa);
+
 		GridBagConstraints gbcTelefon = new GridBagConstraints();
-		gbcTelefon .gridx = 0;
+		gbcTelefon.gridx = 0;
 		gbcTelefon.gridy = 4;
-		gbcTelefon .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaTelefon , gbcTelefon );
-		
+		gbcTelefon.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaTelefon, gbcTelefon);
+
 		GridBagConstraints gbcEmail = new GridBagConstraints();
-		gbcEmail .gridx = 0;
+		gbcEmail.gridx = 0;
 		gbcEmail.gridy = 5;
-		gbcEmail .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaEmail , gbcEmail );
-		
+		gbcEmail.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaEmail, gbcEmail);
+
 		GridBagConstraints gbcAdresaKancelarije = new GridBagConstraints();
-		gbcAdresaKancelarije .gridx = 0;
-		gbcAdresaKancelarije .gridy = 6;
-		gbcAdresaKancelarije .insets = new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaAdresaKancelarije , gbcAdresaKancelarije );
-		
+		gbcAdresaKancelarije.gridx = 0;
+		gbcAdresaKancelarije.gridy = 6;
+		gbcAdresaKancelarije.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaAdresaKancelarije, gbcAdresaKancelarije);
+
 		GridBagConstraints gbcBrojLicneKarte = new GridBagConstraints();
-		gbcBrojLicneKarte  .gridx = 0;
-		gbcBrojLicneKarte  .gridy = 7;
-		gbcBrojLicneKarte  .insets =new Insets(20, 20, 0, 0);
-		pan_centar.add(labelaBrojLicneKarte  , gbcBrojLicneKarte  );
-		
+		gbcBrojLicneKarte.gridx = 0;
+		gbcBrojLicneKarte.gridy = 7;
+		gbcBrojLicneKarte.insets = new Insets(20, 20, 0, 0);
+		pan_centar.add(labelaBrojLicneKarte, gbcBrojLicneKarte);
+
 		GridBagConstraints gbcTitula = new GridBagConstraints();
-		gbcTitula  .gridx = 0;
-		gbcTitula   .gridy = 8;
-		gbcTitula  .insets =new Insets(20, 20, 0, 0);
+		gbcTitula.gridx = 0;
+		gbcTitula.gridy = 8;
+		gbcTitula.insets = new Insets(20, 20, 0, 0);
 		gbcTitula.anchor = GridBagConstraints.LINE_START;
-		pan_centar.add(labelaTitula   , gbcTitula  );
-		
+		pan_centar.add(labelaTitula, gbcTitula);
+
 		GridBagConstraints gbcZvanje = new GridBagConstraints();
 		gbcZvanje.gridx = 0;
 		gbcZvanje.gridy = 9;
-		gbcZvanje.insets =new Insets(20, 20, 0, 0);
+		gbcZvanje.insets = new Insets(20, 20, 0, 0);
 		gbcZvanje.anchor = GridBagConstraints.LINE_START;
-		pan_centar.add(labelaZvanje   , gbcZvanje  );
-		
+		pan_centar.add(labelaZvanje, gbcZvanje);
+
 		GridBagConstraints gbcTekstIme = new GridBagConstraints();
-		gbcTekstIme .gridx = 1;
-		gbcTekstIme .gridy = 0;
-		gbcTekstIme .weightx = 200;
-		gbcTekstIme .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstIme .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtIme , gbcTekstIme );
+		gbcTekstIme.gridx = 1;
+		gbcTekstIme.gridy = 0;
+		gbcTekstIme.weightx = 200;
+		gbcTekstIme.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstIme.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtIme, gbcTekstIme);
 
 		GridBagConstraints gbcTekstPrezime = new GridBagConstraints();
-		gbcTekstPrezime .gridx = 1;
-		gbcTekstPrezime .gridy = 1;
+		gbcTekstPrezime.gridx = 1;
+		gbcTekstPrezime.gridy = 1;
 		gbcTekstPrezime.weightx = 200;
-		gbcTekstPrezime .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstPrezime .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtPrezime , gbcTekstPrezime );
-		
+		gbcTekstPrezime.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstPrezime.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtPrezime, gbcTekstPrezime);
+
 		GridBagConstraints gbcTekstDatumRodjenja = new GridBagConstraints();
-		gbcTekstDatumRodjenja .gridx = 1;
-		gbcTekstDatumRodjenja .gridy = 2;
-		gbcTekstDatumRodjenja .weightx = 200;
-		gbcTekstDatumRodjenja .fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstDatumRodjenja.gridx = 1;
+		gbcTekstDatumRodjenja.gridy = 2;
+		gbcTekstDatumRodjenja.weightx = 200;
+		gbcTekstDatumRodjenja.fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstDatumRodjenja.insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtDatumRodjenja, gbcTekstDatumRodjenja );
-		
+		pan_centar.add(txtDatumRodjenja, gbcTekstDatumRodjenja);
+
 		GridBagConstraints gbcTekstAdresa = new GridBagConstraints();
-		gbcTekstAdresa .gridx = 1;
-		gbcTekstAdresa .gridy = 3;
-		gbcTekstAdresa .weightx = 200;
-		gbcTekstAdresa .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstAdresa .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtAdresa , gbcTekstAdresa );
-		
+		gbcTekstAdresa.gridx = 1;
+		gbcTekstAdresa.gridy = 3;
+		gbcTekstAdresa.weightx = 200;
+		gbcTekstAdresa.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstAdresa.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtAdresa, gbcTekstAdresa);
+
 		GridBagConstraints gbcTekstTelefon = new GridBagConstraints();
-		gbcTekstTelefon .gridx = 1;
-		gbcTekstTelefon .gridy = 4;
-		gbcTekstTelefon .weightx = 200;
-		gbcTekstTelefon .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstTelefon .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtTelefon , gbcTekstTelefon );
-		
+		gbcTekstTelefon.gridx = 1;
+		gbcTekstTelefon.gridy = 4;
+		gbcTekstTelefon.weightx = 200;
+		gbcTekstTelefon.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstTelefon.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtTelefon, gbcTekstTelefon);
+
 		GridBagConstraints gbcTekstEmail = new GridBagConstraints();
-		gbcTekstEmail .gridx = 1;
+		gbcTekstEmail.gridx = 1;
 		gbcTekstEmail.gridy = 5;
-		gbcTekstEmail .weightx = 200;
-		gbcTekstEmail .fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstEmail.weightx = 200;
+		gbcTekstEmail.fill = GridBagConstraints.HORIZONTAL;
 		gbcTekstEmail.insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtEmail , gbcTekstEmail );
-	
-		GridBagConstraints gbcTekstAdresaKancelarije= new GridBagConstraints();
-		gbcTekstAdresaKancelarije .gridx = 1;
-		gbcTekstAdresaKancelarije .gridy = 6;
-		gbcTekstAdresaKancelarije .weightx = 200;
-		gbcTekstAdresaKancelarije .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstAdresaKancelarije .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtAdresaKancelarije , gbcTekstAdresaKancelarije );
-		
+		pan_centar.add(txtEmail, gbcTekstEmail);
+
+		GridBagConstraints gbcTekstAdresaKancelarije = new GridBagConstraints();
+		gbcTekstAdresaKancelarije.gridx = 1;
+		gbcTekstAdresaKancelarije.gridy = 6;
+		gbcTekstAdresaKancelarije.weightx = 200;
+		gbcTekstAdresaKancelarije.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstAdresaKancelarije.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtAdresaKancelarije, gbcTekstAdresaKancelarije);
+
 		GridBagConstraints gbcTekstBrojLicneKarte = new GridBagConstraints();
-		gbcTekstBrojLicneKarte .gridx = 1;
+		gbcTekstBrojLicneKarte.gridx = 1;
 		gbcTekstBrojLicneKarte.gridy = 7;
-		gbcTekstBrojLicneKarte .weightx = 200;
-		gbcTekstBrojLicneKarte .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstBrojLicneKarte .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtBrojLicneKarte , gbcTekstBrojLicneKarte );
-		
-		GridBagConstraints gbcTekstTitula= new GridBagConstraints();
-		gbcTekstTitula .gridx = 1;
+		gbcTekstBrojLicneKarte.weightx = 200;
+		gbcTekstBrojLicneKarte.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstBrojLicneKarte.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtBrojLicneKarte, gbcTekstBrojLicneKarte);
+
+		GridBagConstraints gbcTekstTitula = new GridBagConstraints();
+		gbcTekstTitula.gridx = 1;
 		gbcTekstTitula.gridy = 8;
-		gbcTekstTitula .weightx = 200;
-		gbcTekstTitula .fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstTitula .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtTitula , gbcTekstTitula );
+		gbcTekstTitula.weightx = 200;
+		gbcTekstTitula.fill = GridBagConstraints.HORIZONTAL;
+		gbcTekstTitula.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtTitula, gbcTekstTitula);
 
 		GridBagConstraints gbcTekstZvanje = new GridBagConstraints();
-		gbcTekstZvanje .gridx = 1;
+		gbcTekstZvanje.gridx = 1;
 		gbcTekstZvanje.gridy = 9;
-		gbcTekstZvanje .weightx = 200;
+		gbcTekstZvanje.weightx = 200;
 		gbcTekstZvanje.fill = GridBagConstraints.HORIZONTAL;
-		gbcTekstZvanje .insets = new Insets(20, 20, 0, 20);
-		pan_centar.add(txtZvanje , gbcTekstZvanje );
-		
+		gbcTekstZvanje.insets = new Insets(20, 20, 0, 20);
+		pan_centar.add(txtZvanje, gbcTekstZvanje);
+
 		add(pan_centar, BorderLayout.CENTER);
 		add(pan_odogovr, BorderLayout.SOUTH);
 
 		setResizable(false);
 	}
-	
+
 	public String[] pokupiUnetiTekst() {
 		String tekst[] = new String[10];
 		for (int i = 0; i < tekst.length; i++) {
@@ -505,14 +504,14 @@ private static final long serialVersionUID = -720118426910400743L;
 		}
 		tekst[0] = txtIme.getText().toString();
 		tekst[1] = txtPrezime.getText().toString();
-		tekst[2]=txtDatumRodjenja.getText().toString();
-		tekst[3]=txtAdresa.getText().toString();
-		tekst[4]=txtTelefon.getText().toString();
-		tekst[5]=txtEmail.getText().toString();
-		tekst[6]=txtAdresaKancelarije.getText().toString();
-		tekst[7]=txtBrojLicneKarte.getText().toString();
+		tekst[2] = txtDatumRodjenja.getText().toString();
+		tekst[3] = txtAdresa.getText().toString();
+		tekst[4] = txtTelefon.getText().toString();
+		tekst[5] = txtEmail.getText().toString();
+		tekst[6] = txtAdresaKancelarije.getText().toString();
+		tekst[7] = txtBrojLicneKarte.getText().toString();
 		tekst[8] = txtTitula.getText().toString();
-		tekst[9]=txtZvanje.getText().toString();
+		tekst[9] = txtZvanje.getText().toString();
 		return tekst;
 	}
 
@@ -540,7 +539,7 @@ private static final long serialVersionUID = -720118426910400743L;
 		}
 		if (!Pattern.matches("^[0-9-/]*", tekst[4])) {
 			txtTelefon.setBackground(Color.RED);
-			return false;	
+			return false;
 		}
 		if (tekst[5].length() != 0) {
 			if (!Pattern.matches("^(.+)@(.+)$", tekst[5])) {
@@ -564,7 +563,7 @@ private static final long serialVersionUID = -720118426910400743L;
 			txtZvanje.setBackground(Color.RED);
 			return false;
 		}
-		
+
 		for (String t : tekst) {
 			if ((t = t.trim()).length() == 0) {
 				txtIme.setBackground(Color.WHITE);
@@ -597,33 +596,33 @@ private static final long serialVersionUID = -720118426910400743L;
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String tekst[] = pokupiUnetiTekst();
-		
+
 		if (e.getActionCommand().equals("ODUSTANAK")) {
 			dispose();
 		} else {
-			if(BazaProfesora.getInstance().getProfesore().size()==0) {
-				BazaProfesora.getInstance().dodajProfesora(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4],tekst[5],tekst[6],tekst[7],tekst[8], tekst[9]);
-			}
-			else {
-				int nesto=0;
-				for(Profesor p: BazaProfesora.getInstance().getProfesore()) {
-					if(p.getBroj_licne_karte().equals(tekst[7])) {
-						nesto =1;
+			if (BazaProfesora.getInstance().getProfesore().size() == 0) {
+				BazaProfesora.getInstance().dodajProfesora(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4], tekst[5],
+						tekst[6], tekst[7], tekst[8], tekst[9]);
+			} else {
+				int nesto = 0;
+				for (Profesor p : BazaProfesora.getInstance().getProfesore()) {
+					if (p.getBroj_licne_karte().equals(tekst[7])) {
+						nesto = 1;
 					}
 				}
-				if(nesto==0) {
+				if (nesto == 0) {
 					setVisible(true);
-					BazaProfesora.getInstance().dodajProfesora(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4],tekst[5],tekst[6],tekst[7],tekst[8], tekst[9]);
-				} 
-				else if(nesto ==1) {
+					BazaProfesora.getInstance().dodajProfesora(tekst[0], tekst[1], tekst[2], tekst[3], tekst[4],
+							tekst[5], tekst[6], tekst[7], tekst[8], tekst[9]);
+				} else if (nesto == 1) {
 					setVisible(false);
-					JOptionPane.showMessageDialog(null, "Profesorsa tim brojem licne karte vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Profesorsa tim brojem licne karte vec postoji.", "Upozorenje!",
+							JOptionPane.ERROR_MESSAGE);
 					setVisible(true);
 				}
 			}
 		}
-		
+
 		setVisible(false);
 	}
 }
-

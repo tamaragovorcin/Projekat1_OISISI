@@ -7,27 +7,27 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 
-public class PredmetiJTable extends JTable{
+public class PredmetiJTable extends JTable {
 
 	private static final long serialVersionUID = -7818780852556687386L;
-	
+
 	private static PredmetiJTable instance = null;
-	
+
 	static public PredmetiJTable getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new PredmetiJTable();
 		}
 		return instance;
 	}
-	
+
 	private PredmetiJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelPredmeti());
-		new ButtonColumnPredmet_Profesor(this,4);
+		new ButtonColumnPredmet_Profesor(this, 4);
 		this.setRowHeight(20);
-		new ButtonColumnPredmet_Student(this,5);
+		new ButtonColumnPredmet_Student(this, 5);
 		this.setRowHeight(20);
 	}
 
@@ -37,11 +37,10 @@ public class PredmetiJTable extends JTable{
 		if (isRowSelected(row)) {
 			c.setBackground(Color.LIGHT_GRAY);
 		} else {
-			if(row%2 ==0) {
+			if (row % 2 == 0) {
 				c.setBackground(new Color(204, 227, 249));
-			}
-			else {
-			c.setBackground(Color.WHITE);
+			} else {
+				c.setBackground(Color.WHITE);
 			}
 		}
 		return c;

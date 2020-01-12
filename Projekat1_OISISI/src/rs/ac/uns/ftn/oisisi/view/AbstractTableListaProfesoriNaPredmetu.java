@@ -11,11 +11,10 @@ public class AbstractTableListaProfesoriNaPredmetu extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		if(BazaPredmeta.getInstance().getPretraga().size()==0) {
+		if (BazaPredmeta.getInstance().getPretraga().size() == 0) {
 			int selektovan = PredmetiTablePanel.getSelektovan_red();
 			return BazaPredmeta.getInstance().getPredmete().get(selektovan).getProfesori_predavaci().size();
-		}
-		else {
+		} else {
 			int selektovan = PredmetiTablePanel.getSelektovan_red();
 			return BazaPredmeta.getInstance().getPretraga().get(selektovan).getProfesori_predavaci().size();
 		}
@@ -28,28 +27,27 @@ public class AbstractTableListaProfesoriNaPredmetu extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		int selektovan =  PredmetiTablePanel.getSelektovan_red();
+		int selektovan = PredmetiTablePanel.getSelektovan_red();
 		if (selektovan != -1) {
-			if(BazaPredmeta.getInstance().getPretraga().size()==0) {
+			if (BazaPredmeta.getInstance().getPretraga().size() == 0) {
 				Predmet predmet = BazaPredmeta.getInstance().getPredmete().get(selektovan);
-				if(rowIndex <predmet.getProfesori_predavaci().size()) {
-					switch(columnIndex) {
+				if (rowIndex < predmet.getProfesori_predavaci().size()) {
+					switch (columnIndex) {
 					case 0:
 						return predmet.getProfesori_predavaci().get(rowIndex).getBroj_licne_karte();
 					case 1:
 						return predmet.getProfesori_predavaci().get(rowIndex).getIme();
 					case 2:
 						return predmet.getProfesori_predavaci().get(rowIndex).getPrezime();
-					default: 
+					default:
 						break;
 					}
 				}
-			}
-			else {
+			} else {
 				Predmet predmet = BazaPredmeta.getInstance().getPretraga().get(selektovan);
-				if(rowIndex<predmet.getProfesori_predavaci().size()) {
-					switch(columnIndex) {
-					case 0: 
+				if (rowIndex < predmet.getProfesori_predavaci().size()) {
+					switch (columnIndex) {
+					case 0:
 						return predmet.getProfesori_predavaci().get(selektovan).getBroj_licne_karte();
 					case 1:
 						return predmet.getProfesori_predavaci().get(rowIndex).getIme();
@@ -67,8 +65,8 @@ public class AbstractTableListaProfesoriNaPredmetu extends AbstractTableModel {
 	}
 
 	public String getColumnName(int column) {
-		switch(column) {
-		case 0: 
+		switch (column) {
+		case 0:
 			return "Broj licne karte";
 		case 1:
 			return "Ime";
@@ -76,7 +74,7 @@ public class AbstractTableListaProfesoriNaPredmetu extends AbstractTableModel {
 			return "Prezime";
 		default:
 			return null;
-		}	
+		}
 	}
 
 }

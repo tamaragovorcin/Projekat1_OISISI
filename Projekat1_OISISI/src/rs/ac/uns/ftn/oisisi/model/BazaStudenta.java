@@ -1,38 +1,31 @@
 package rs.ac.uns.ftn.oisisi.model;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 public class BazaStudenta {
-	
-	private static BazaStudenta instance=null;
-	
-	public static BazaStudenta getInstance(){
-		if(instance==null) {
-			instance=new BazaStudenta();
+
+	private static BazaStudenta instance = null;
+
+	public static BazaStudenta getInstance() {
+		if (instance == null) {
+			instance = new BazaStudenta();
 		}
-			return instance;	
+		return instance;
 	}
-	
-	public static int broj_studenata=0;
-	private List<String>kolone;
+
+	public static int broj_studenata = 0;
+	private List<String> kolone;
 	protected List<Student> studenti;
 	private List<Student> pretraga;
 	Student student;
-	
+
 	private BazaStudenta() {
-		
-		this.kolone=new ArrayList<String>();
+
+		this.kolone = new ArrayList<String>();
 		this.studenti = new ArrayList<Student>();
-		this.pretraga= new ArrayList<Student>();
+		this.pretraga = new ArrayList<Student>();
 		this.kolone.add("IME");
 		this.kolone.add("PREZIME");
 		this.kolone.add("DATUM RODJENJA");
@@ -48,20 +41,22 @@ public class BazaStudenta {
 	}
 
 	public void initStudenti(String ime, String prezime, String datumRodjenja, String adresaStanovanja,
-		String kontakt_telefon, String email, String brojIndeksa,String datumUpisa, String godinaStudija, String status) {
+			String kontakt_telefon, String email, String brojIndeksa, String datumUpisa, String godinaStudija,
+			String status) {
 
-		this.studenti.add(new Student(ime,prezime,datumRodjenja,adresaStanovanja,kontakt_telefon,email,brojIndeksa,datumUpisa,godinaStudija,status));
+		this.studenti.add(new Student(ime, prezime, datumRodjenja, adresaStanovanja, kontakt_telefon, email,
+				brojIndeksa, datumUpisa, godinaStudija, status));
 		broj_studenata++;
 	}
 
 	public List<Student> getStudente() {
 		return studenti;
 	}
-	
+
 	public void setStudente(List<Student> studenti) {
-		this.studenti=studenti;
+		this.studenti = studenti;
 	}
-	
+
 	public int getColumnCount() {
 		return 11;
 	}
@@ -69,21 +64,20 @@ public class BazaStudenta {
 	public String getColumnName(int index) {
 		return this.kolone.get(index);
 	}
-	
+
 	public Student getRow(int rowIndex) {
 		return this.studenti.get(rowIndex);
 	}
 
 	public String getValueAt(int row, int column) {
-		
+
 		List<Student> temp;
-		if(pretraga.size()==0) {
+		if (pretraga.size() == 0) {
 			temp = studenti;
+		} else {
+			temp = pretraga;
 		}
-		else {
-			temp=pretraga;
-		}
-		if(row<temp.size()) {
+		if (row < temp.size()) {
 			Student student = temp.get(row);
 			switch (column) {
 			case 0:
@@ -111,8 +105,7 @@ public class BazaStudenta {
 			default:
 				return null;
 			}
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -122,12 +115,12 @@ public class BazaStudenta {
 			if (i.getBrojIndeksa().equals(sifra)) {
 				String broj = i.getBrojIndeksa();
 				studenti.remove(i);
-				
-				for(Predmet p: BazaPredmeta.getInstance().getPredmete()) {
-					if(p.getStudenti_na_predmetu().contains(i)) {
-						for(Student stud : p.getStudenti_na_predmetu()) {
-							if(stud.getBrojIndeksa().equals(broj)) {
-								p.getStudenti_na_predmetu().remove(stud);				
+
+				for (Predmet p : BazaPredmeta.getInstance().getPredmete()) {
+					if (p.getStudenti_na_predmetu().contains(i)) {
+						for (Student stud : p.getStudenti_na_predmetu()) {
+							if (stud.getBrojIndeksa().equals(broj)) {
+								p.getStudenti_na_predmetu().remove(stud);
 								break;
 							}
 						}
@@ -135,12 +128,12 @@ public class BazaStudenta {
 				}
 				break;
 			}
-			
+
 		}
 	}
 
 	public void izmeniStudent(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String email,
-			String kontakt_telefon, String indeks, String datumUpisa,String godinaStudija,String status) {
+			String kontakt_telefon, String indeks, String datumUpisa, String godinaStudija, String status) {
 		for (Student i : studenti) {
 			if (i.getBrojIndeksa().equals(indeks)) {
 				i.setIme(ime);
@@ -161,237 +154,196 @@ public class BazaStudenta {
 	}
 
 	public void setBroj_studenata(int broj_studenata) {
-		BazaStudenta.broj_studenata=broj_studenata;
+		BazaStudenta.broj_studenata = broj_studenata;
 	}
-	 public void pretragaStudenta(String ulaz) {
-			
-		 if (ulaz.trim().length() == 0) {
-				pretraga.clear();
-				return;
-			}
 
+	public void pretragaStudenta(String ulaz) {
+
+		if (ulaz.trim().length() == 0) {
 			pretraga.clear();
+			return;
+		}
 
-			String podelaTeksta[] = ulaz.split(";");
-			String celina = podelaTeksta[0];
-			String[] deo = celina.split(":");
-		
-			if (deo.length != 2 || deo[1].trim().length() == 0) {
-				JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite studenta.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
-				return;
+		pretraga.clear();
+
+		String podelaTeksta[] = ulaz.split(";");
+		String celina = podelaTeksta[0];
+		String[] deo = celina.split(":");
+
+		if (deo.length != 2 || deo[1].trim().length() == 0) {
+			JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite studenta.", "Upozorenje!",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (deo[0].toLowerCase().equals("ime")) {
+			for (Student s : studenti) {
+				if (s.getIme().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
+				}
+
 			}
-			
-			if (deo[0].toLowerCase().equals("ime")) {
-				for (Student s:studenti) {
-					if (s.getIme().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-						pretraga.add(s);
-					}
+		} else if (deo[0].toLowerCase().equals("prezime")) {
+			for (Student s : studenti) {
+				if (s.getPrezime().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
+				}
 
-				}
-			} else if (deo[0].toLowerCase().equals("prezime")) {
-				for (Student s:studenti) {
-					if (s.getPrezime().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-						pretraga.add(s);
-					}
-
-				}
-			} else if (deo[0].toLowerCase().equals("datum_rodjenja")) {
-				for (Student s:studenti) {
-					if (s.getDatumRodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-						pretraga.add(s);
-					}
-
-				}
-			} else if (deo[0].toLowerCase().equals("adresa_stanovanja")) {
-				for (Student s:studenti) {
-					if (s.getAdresaStanovanja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-						pretraga.add(s);
-					}
-				}
-			}  else if (deo[0].toLowerCase().equals("telefon")) {
-					for (Student s:studenti) {
-						if (s.getKontakt_telefon().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(s);
-						}
-					}
-			}  else if (deo[0].toLowerCase().equals("email")) {
-					for (Student s:studenti) {
-						if (s.getEmail().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(s);
-						}
-					}
-			} else if (deo[0].toLowerCase().equals("broj_indeksa")) {
-					for (Student s:studenti) {
-						if (s.getBrojIndeksa().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(s);
-						}
-					}
-			} else if (deo[0].toLowerCase().equals("datum_upisa")) {
-					for (Student s:studenti) {
-						if (s.getDatumUpisa().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(s);
-							}
-					}
-			} else if (deo[0].toLowerCase().equals("godina_studija")) {
-					for (Student s:studenti) {
-						if (s.getGodinaStudija().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(s);
-						}
-					}
-			} else if (deo[0].toLowerCase().equals("status")) {
-					for (Student s:studenti) {
-						if (s.getStatus().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-							pretraga.add(s);
-							}
-					}
-			} else {
-				JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: " 
-						+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, broj indeksa "
-						+ "datum upisa, godina_studija i status.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
-				return;
 			}
-			
-			if (podelaTeksta.length > 1) {
-				for (int i = 1; i < podelaTeksta.length; i++) {
-					
-					celina = podelaTeksta[i];
-					deo = celina.split(":");
-					
-					if (deo.length != 2 || deo[1].trim().length() == 0) {
-						JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite studenta.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
-						return;
-					}
-					
-					if (deo[0].toLowerCase().equals("ime")) {
-						for (Student s:studenti) {
-							if (!s.getIme().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-								pretraga.remove(s);
-							}
+		} else if (deo[0].toLowerCase().equals("datum_rodjenja")) {
+			for (Student s : studenti) {
+				if (s.getDatumRodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
+				}
 
-						}
-					} else if (deo[0].toLowerCase().equals("prezime")) {
-						for (Student s:studenti) {
-							if (!s.getPrezime().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-								pretraga.remove(s);
-							}
-
-						}
-					} else if (deo[0].toLowerCase().equals("datum_rodjenja")) {
-						for (Student s:studenti) {
-							if (!s.getDatumRodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-								pretraga.remove(s);
-							}
-
-						}
-					} else if (deo[0].toLowerCase().equals("adresa_stanovanja")) {
-						for (Student s:studenti) {
-							if (!s.getAdresaStanovanja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-								pretraga.remove(s);
-							}
-						}
-					}  else if (deo[0].toLowerCase().equals("telefon")) {
-							for (Student s:studenti) {
-								if (!s.getKontakt_telefon().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(s);
-								}
-							}
-					}  else if (deo[0].toLowerCase().equals("email")) {
-							for (Student s:studenti) {
-								if (!s.getEmail().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(s);
-								}
-							}
-					} else if (deo[0].toLowerCase().equals("broj_indeksa")) {
-							for (Student s:studenti) {
-								if (!s.getBrojIndeksa().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(s);
-								}
-							}
-					} else if (deo[0].toLowerCase().equals("datum_upisa")) {
-							for (Student s:studenti) {
-								if (!s.getDatumUpisa().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(s);
-									}
-							}
-					} else if (deo[0].toLowerCase().equals("godina_studija")) {
-							for (Student s:studenti) {
-								if (!s.getGodinaStudija().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(s);
-								}
-							}
-					} else if (deo[0].toLowerCase().equals("status")) {
-							for (Student s:studenti) {
-								if (!s.getStatus().toLowerCase().equals(deo[1].trim().toLowerCase())) {
-									pretraga.remove(s);
-									}
-							}
-					} else {
-						JOptionPane.showMessageDialog(null, "Unete vrednosti nisu dobre! Moguce opcije su: " 
-								+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, broj indeksa "
-								+ "datum upisa, godina_studija i status.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
-						return;
-					}
-				
+			}
+		} else if (deo[0].toLowerCase().equals("adresa_stanovanja")) {
+			for (Student s : studenti) {
+				if (s.getAdresaStanovanja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
 				}
 			}
-
-			if (pretraga.size() == 0) {
-				JOptionPane.showMessageDialog(null, "Ne postoji student sa unetim vrednostima.");
-			}	
-	}
-	
-	 public void sacuvajStudenteTXT() throws IOException{
-		 ObjectOutputStream out=null;
-		 
-		 try {
-			 out=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("studenti.raw")));
-			 for(Student s: studenti) {
-				 out.writeObject(s);
-			 }
-		 }catch(Exception e) {
-			 e.printStackTrace();
-		 }finally {
-			 if(out!=null) {
-				 try {
-					 out.close();
-				 }catch(Exception e2) {
-					 
-				 }
-			 }
-		 }
-	 }
-	
-	 public void ucitajStudenteTXT() throws IOException {
-		ObjectInputStream in =null;
-		Student s=null;
-		
-		try {
-			in=new ObjectInputStream(new BufferedInputStream(new FileInputStream("studenti.raw")));
-			while(true) {
-				s=(Student) in.readObject();
-				dodajstudenta2(s);
+		} else if (deo[0].toLowerCase().equals("telefon")) {
+			for (Student s : studenti) {
+				if (s.getKontakt_telefon().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
+				}
 			}
-		}catch(Exception e) {
-		 }finally {
-			 if(in!=null) {
-				 try {
-					 in.close();
-				 }catch(Exception e2) {
-					 
-				 }
-			 }
-		 }
-	 }
-	 
-	private void dodajstudenta2(Student s) {
-		broj_studenata++;
-		studenti.add(s);
+		} else if (deo[0].toLowerCase().equals("email")) {
+			for (Student s : studenti) {
+				if (s.getEmail().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
+				}
+			}
+		} else if (deo[0].toLowerCase().equals("broj_indeksa")) {
+			for (Student s : studenti) {
+				if (s.getBrojIndeksa().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
+				}
+			}
+		} else if (deo[0].toLowerCase().equals("datum_upisa")) {
+			for (Student s : studenti) {
+				if (s.getDatumUpisa().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
+				}
+			}
+		} else if (deo[0].toLowerCase().equals("godina_studija")) {
+			for (Student s : studenti) {
+				if (s.getGodinaStudija().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
+				}
+			}
+		} else if (deo[0].toLowerCase().equals("status")) {
+			for (Student s : studenti) {
+				if (s.getStatus().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+					pretraga.add(s);
+				}
+			}
+		} else {
+			JOptionPane.showMessageDialog(null,
+					"Unete vrednosti nisu dobre! Moguce opcije su: "
+							+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, broj indeksa "
+							+ "datum upisa, godina_studija i status.",
+					"Upozorenje!", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (podelaTeksta.length > 1) {
+			for (int i = 1; i < podelaTeksta.length; i++) {
+
+				celina = podelaTeksta[i];
+				deo = celina.split(":");
+
+				if (deo.length != 2 || deo[1].trim().length() == 0) {
+					JOptionPane.showMessageDialog(null, "Pokusajte ponovo da pretrazite studenta.", "Upozorenje!",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+				if (deo[0].toLowerCase().equals("ime")) {
+					for (Student s : studenti) {
+						if (!s.getIme().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+
+					}
+				} else if (deo[0].toLowerCase().equals("prezime")) {
+					for (Student s : studenti) {
+						if (!s.getPrezime().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+
+					}
+				} else if (deo[0].toLowerCase().equals("datum_rodjenja")) {
+					for (Student s : studenti) {
+						if (!s.getDatumRodjenja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+
+					}
+				} else if (deo[0].toLowerCase().equals("adresa_stanovanja")) {
+					for (Student s : studenti) {
+						if (!s.getAdresaStanovanja().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("telefon")) {
+					for (Student s : studenti) {
+						if (!s.getKontakt_telefon().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("email")) {
+					for (Student s : studenti) {
+						if (!s.getEmail().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("broj_indeksa")) {
+					for (Student s : studenti) {
+						if (!s.getBrojIndeksa().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("datum_upisa")) {
+					for (Student s : studenti) {
+						if (!s.getDatumUpisa().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("godina_studija")) {
+					for (Student s : studenti) {
+						if (!s.getGodinaStudija().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+					}
+				} else if (deo[0].toLowerCase().equals("status")) {
+					for (Student s : studenti) {
+						if (!s.getStatus().toLowerCase().equals(deo[1].trim().toLowerCase())) {
+							pretraga.remove(s);
+						}
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Unete vrednosti nisu dobre! Moguce opcije su: "
+									+ "ime, prezime, datum_rodjenja, adresa_stanovanja, telefon, email, broj indeksa "
+									+ "datum upisa, godina_studija i status.",
+							"Upozorenje!", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+			}
+		}
+
+		if (pretraga.size() == 0) {
+			JOptionPane.showMessageDialog(null, "Ne postoji student sa unetim vrednostima.");
+		}
 	}
 
 	public Student getStudentaPoPredmetu(String indeks) {
-		Student p=null;
-		for(Student stud: studenti) {
-			if(stud.getBrojIndeksa().equals(indeks)) {
+		Student p = null;
+		for (Student stud : studenti) {
+			if (stud.getBrojIndeksa().equals(indeks)) {
 				p = stud;
 			}
 		}
@@ -399,10 +351,10 @@ public class BazaStudenta {
 	}
 
 	public boolean postojiBrojIndeksa(String indeks) {
-		boolean izlaz=false;
-		
-		for(Student stud: studenti) {
-			if(stud.getBrojIndeksa().equals(indeks)) {
+		boolean izlaz = false;
+
+		for (Student stud : studenti) {
+			if (stud.getBrojIndeksa().equals(indeks)) {
 				izlaz = true;
 			}
 		}
@@ -410,25 +362,26 @@ public class BazaStudenta {
 	}
 
 	public void dodajPredmetStudentu(Predmet predmet2, String indeks) {
-		for(Student stud: studenti) {
-			if(stud.getBrojIndeksa().equals(indeks)) {
+		for (Student stud : studenti) {
+			if (stud.getBrojIndeksa().equals(indeks)) {
 				stud.getPredmeti().add(predmet2);
 			}
 		}
 	}
-	
+
 	public void obrisiPredmetKodStudenta(Predmet pred, String indeks) {
-		for(Student s:studenti) {
-			if(s.getBrojIndeksa().equals(indeks)) {
+		for (Student s : studenti) {
+			if (s.getBrojIndeksa().equals(indeks)) {
 				for (int i = 0; i < s.getPredmeti().size(); i++) {
-					if(s.getPredmeti().get(i).getSifra_predmeta().equals(pred.getSifra_predmeta())) {
-							s.getPredmeti().remove(i);
+					if (s.getPredmeti().get(i).getSifra_predmeta().equals(pred.getSifra_predmeta())) {
+						s.getPredmeti().remove(i);
 					}
 				}
 			}
 		}
-		
+
 	}
+
 	public List<Student> getPretraga() {
 		return pretraga;
 	}

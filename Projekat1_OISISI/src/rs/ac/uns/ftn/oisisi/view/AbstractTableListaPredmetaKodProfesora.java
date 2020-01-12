@@ -11,15 +11,14 @@ public class AbstractTableListaPredmetaKodProfesora extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		if(BazaProfesora.getInstance().getPretraga().size()==0) {
+		if (BazaProfesora.getInstance().getPretraga().size() == 0) {
 			int selektovan = ProfesoriTablePanel.getSelektovan_red();
-			return  BazaProfesora.getInstance().getProfesore().get(selektovan).getSpisak_predmeta().size();
-		}
-		else {
+			return BazaProfesora.getInstance().getProfesore().get(selektovan).getSpisak_predmeta().size();
+		} else {
 			int selektovan = ProfesoriTablePanel.getSelektovan_red();
 			return BazaProfesora.getInstance().getPretraga().get(selektovan).getSpisak_predmeta().size();
 		}
-		
+
 	}
 
 	@Override
@@ -33,11 +32,10 @@ public class AbstractTableListaPredmetaKodProfesora extends AbstractTableModel {
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) { 
-			int selektovan = ProfesoriTablePanel.getSelektovan_red();
-			Profesor p = BazaProfesora.getInstance().getProfesore().get(selektovan);
-			return p.getSpisak_predmeta().get(rowIndex).getSifra_predmeta();
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		int selektovan = ProfesoriTablePanel.getSelektovan_red();
+		Profesor p = BazaProfesora.getInstance().getProfesore().get(selektovan);
+		return p.getSpisak_predmeta().get(rowIndex).getSifra_predmeta();
 	}
-
 
 }

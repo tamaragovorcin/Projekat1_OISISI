@@ -1,5 +1,4 @@
 package rs.ac.uns.ftn.oisisi.controller;
-import java.io.IOException;
 
 import javax.swing.JTextField;
 
@@ -11,26 +10,28 @@ import rs.ac.uns.ftn.oisisi.view.Main_Frame;
 import rs.ac.uns.ftn.oisisi.view.Toolbar;
 
 public class ProfesoriController {
-private static ProfesoriController instance = null;
-	
+	private static ProfesoriController instance = null;
+
 	public static ProfesoriController getInstance() {
 		if (instance == null) {
 			instance = new ProfesoriController();
 		}
 		return instance;
 	}
-	
-	private ProfesoriController() {}
-	
-	public void dodajProfesora() {
-		BazaProfesora.getInstance().dodajProfesora("Ana","Petrovic","15.02.1956.","Fruskogorska 8","anapetrovic@gmail.com","0645899164","Radnicka 64","4569793","Redovni profesor","Doktor nauka");
+
+	private ProfesoriController() {
 	}
-	
-    public void izbrisiProfesora(int rowSelectedIndex) {
-    	if (rowSelectedIndex < 0) {
+
+	public void dodajProfesora() {
+		BazaProfesora.getInstance().dodajProfesora("Ana", "Petrovic", "15.02.1956.", "Fruskogorska 8",
+				"anapetrovic@gmail.com", "0645899164", "Radnicka 64", "4569793", "Redovni profesor", "Doktor nauka");
+	}
+
+	public void izbrisiProfesora(int rowSelectedIndex) {
+		if (rowSelectedIndex < 0) {
 			return;
 		}
-    	if (BazaProfesora.getInstance().getPretraga().size() == 0) {
+		if (BazaProfesora.getInstance().getPretraga().size() == 0) {
 			Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
 			BazaProfesora.getInstance().izbrisiProfesora(profesor.getBroj_licne_karte());
 		} else {
@@ -38,23 +39,16 @@ private static ProfesoriController instance = null;
 			BazaProfesora.getInstance().izbrisiProfesora(profesor.getBroj_licne_karte());
 			BazaProfesora.getInstance().getPretraga().remove(rowSelectedIndex);
 		}
-    }
-    public void izmeniProfesora(int rowSelectedIndex) {
+	}
+
+	public void izmeniProfesora(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {
 			return;
 		}
-	
+
 		IzmenaProfesoraDialog dialog = new IzmenaProfesoraDialog(Main_Frame.getInstance(), "Izmena profesora", true,
 				rowSelectedIndex);
-		dialog.setVisible(true);	
-    }
-    
-    public void sacuvajProfesoreTXT() throws IOException {
-		BazaProfesora.getInstance().sacuvajProfesoreTXT();
-	}
-
-	public void ucitajProfesoreTXT() throws IOException {
-		BazaProfesora.getInstance().ucitajProfesoreTXT();
+		dialog.setVisible(true);
 	}
 
 	public void pretraziProfesora() {
@@ -71,19 +65,19 @@ private static ProfesoriController instance = null;
 	}
 
 	public boolean PostojiLicnaKarta(String licna) {
-		boolean izlaz=false;
-		if(BazaProfesora.getInstance().postojiLicnaKarta(licna)) {
+		boolean izlaz = false;
+		if (BazaProfesora.getInstance().postojiLicnaKarta(licna)) {
 			izlaz = true;
 		}
 		return izlaz;
 	}
 
 	public void dodajPredmetProfesoru(Predmet predmet, String licna) {
-		BazaProfesora.getInstance().dodajPredmetProfesu(predmet,licna);	
+		BazaProfesora.getInstance().dodajPredmetProfesu(predmet, licna);
 	}
 
 	public void obrisiPredmetKodProfesora(Predmet pred, String licna) {
-		BazaProfesora.getInstance().obrisiPredmetKodProfesora(pred,licna);		
+		BazaProfesora.getInstance().obrisiPredmetKodProfesora(pred, licna);
 	}
 
 }

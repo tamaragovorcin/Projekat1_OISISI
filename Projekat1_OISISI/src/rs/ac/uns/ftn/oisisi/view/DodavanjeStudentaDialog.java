@@ -539,7 +539,7 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 		}
 		if (!Pattern.matches("^[0-9/-]*", tekst[4])) {
 			txtTelefon.setBackground(Color.RED);
-			return false;	
+			return false;
 		}
 		if (tekst[5].length() != 0) {
 			if (!Pattern.matches("^(.+)@(.+)$", tekst[5])) {
@@ -609,7 +609,8 @@ public class DodavanjeStudentaDialog extends JDialog implements ActionListener {
 							tekst[6], tekst[7], tekst[8], tekst[9]);
 				} else if (nesto == 1) {
 					setVisible(false);
-					JOptionPane.showMessageDialog(null, "Student sa tim brojem indeksa vec postoji.", "Upozorenje!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Student sa tim brojem indeksa vec postoji.", "Upozorenje!",
+							JOptionPane.ERROR_MESSAGE);
 					setVisible(true);
 				}
 			}

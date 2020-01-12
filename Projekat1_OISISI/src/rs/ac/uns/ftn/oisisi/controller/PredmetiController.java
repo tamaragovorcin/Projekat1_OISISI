@@ -1,7 +1,5 @@
 package rs.ac.uns.ftn.oisisi.controller;
 
-import java.io.IOException;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -28,7 +26,8 @@ public class PredmetiController {
 		return instance;
 	}
 
-	public void dodajPredmet() {}
+	public void dodajPredmet() {
+	}
 
 	public void izbrisiPredmet(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0) {
@@ -61,14 +60,6 @@ public class PredmetiController {
 
 		BazaPredmeta.getInstance().pretragaPredmeta(a);
 		PredmetiJTable.getInstance().refresTabelu();
-	}
-
-	public void sacuvajPredmeteTXT() throws IOException {
-		BazaPredmeta.getInstance().sacuvajPredmeteTXT();
-	}
-
-	public void ucitajPredmeteTXT() throws IOException {
-		BazaPredmeta.getInstance().ucitajPredmeteTXT();
 	}
 
 	public void dodavanjeProfesoraNaPredmet() {
@@ -112,7 +103,7 @@ public class PredmetiController {
 		}
 	}
 
-	public void dodajStudenta(Student stud,int i) {
+	public void dodajStudenta(Student stud, int i) {
 		BazaPredmeta.getInstance().dodajStudentaNaPredmet(stud, i);
 	}
 
@@ -136,7 +127,7 @@ public class PredmetiController {
 	}
 
 	public void obrisiStudentaSaPredmeta(int predmet, int student) {
-		BazaPredmeta.getInstance().obrisiStudentasaPredmeta(predmet,student);
-		
+		BazaPredmeta.getInstance().obrisiStudentasaPredmeta(predmet, student);
+
 	}
 }
